@@ -1,0 +1,74 @@
+name: telecom
+description: A new Flutter project.
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  get_it: ^7.2.0
+  lottie: ^2.3.2
+  path_provider: ^2.0.14
+  path: ^1.8.2
+  sqflite: ^2.2.6
+  flutter_svg: ^2.0.5
+  awesome_notifications: ^0.7.4+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  
+  
+  
+  
+  flutter_lints: ^2.0.0
+
+
+
+
+
+flutter:
+
+  
+  
+  
+  uses-material-design: true
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
