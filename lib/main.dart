@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+// ignore: library_prefixes
+import 'package:telecom/di/get_it.dart' as getIt;
 
 void main() {
+  getIt.setup();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -45,11 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
