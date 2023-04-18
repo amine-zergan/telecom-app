@@ -1,17 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-
-import 'package:telecom/model/project/project_model.dart';
+import 'package:telecom/model/components/project/project_model.dart';
 import 'package:telecom/model/site/site_model.dart';
 
 class Task {
   final int? id;
   final String description;
+  final Project project;
   final List<Site> sites;
   final String region;
-  final Project project;
+
   final DateTime date;
   Task({
     this.id,

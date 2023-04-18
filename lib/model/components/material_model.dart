@@ -80,3 +80,16 @@ Type convertvalue(String name) {
     return Type.outdoor;
   }
 }
+
+extension Converter on Type {
+  // ignore: unnecessary_this
+  String get value => this.name;
+
+  Type convert(String name) {
+    if (Type.indoor.name == name) {
+      return Type.indoor;
+    } else {
+      return Type.outdoor;
+    }
+  }
+}
