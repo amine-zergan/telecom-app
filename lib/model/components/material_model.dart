@@ -1,13 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-enum Type { indoor, outdoor }
+import 'package:telecom/utils/converter/enum/indoor_outdoor_enum.dart';
 
 class Equipement {
   final int? id;
   final String name;
   final String ref;
-  final Type type;
+  final Qualification type;
   Equipement({
     this.id,
     required this.name,
@@ -19,7 +19,7 @@ class Equipement {
     int? id,
     String? name,
     String? ref,
-    Type? type,
+    Qualification? type,
   }) {
     return Equipement(
       id: id ?? this.id,
@@ -34,7 +34,7 @@ class Equipement {
       'id': id,
       'name': name,
       'ref': ref,
-      'type': type.name.toString(),
+      'type': type.value(),
     };
   }
 
@@ -43,7 +43,7 @@ class Equipement {
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
       ref: map['ref'] as String,
-      type: convertvalue(map['type'] as String),
+      type: EnumParse.fromString(map['type'] as String),
     );
   }
 
@@ -70,26 +70,5 @@ class Equipement {
   @override
   int get hashCode {
     return id.hashCode ^ name.hashCode ^ ref.hashCode ^ type.hashCode;
-  }
-}
-
-Type convertvalue(String name) {
-  if (name == Type.indoor.name) {
-    return Type.indoor;
-  } else {
-    return Type.outdoor;
-  }
-}
-
-extension Converter on Type {
-  // ignore: unnecessary_this
-  String get value => this.name;
-
-  Type convert(String name) {
-    if (Type.indoor.name == name) {
-      return Type.indoor;
-    } else {
-      return Type.outdoor;
-    }
   }
 }

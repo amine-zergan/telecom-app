@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // ignore: library_prefixes
 import 'package:telecom/di/get_it.dart' as getIt;
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
