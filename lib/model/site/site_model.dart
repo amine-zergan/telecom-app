@@ -13,17 +13,16 @@ class Site {
   final String phone;
   final String description;
   final DateTime create;
-  Site({
-    this.id,
-    required this.name,
-    required this.operator,
-    required this.longitude,
-    required this.latitude,
-    required this.responsible,
-    required this.phone,
-    required this.description,
-    required this.create,
-  });
+  const Site(
+      {this.id,
+      required this.name,
+      required this.operator,
+      required this.longitude,
+      required this.latitude,
+      required this.responsible,
+      required this.phone,
+      required this.description,
+      required this.create});
 
   Site copyWith({
     int? id,
