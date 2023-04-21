@@ -1,25 +1,25 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class User {
+class Contact {
   final int? id;
   final String name;
   final String post;
   final int contact;
-  User({
+  Contact({
     this.id,
     required this.name,
     required this.post,
     required this.contact,
   });
 
-  User copyWith({
+  Contact copyWith({
     int? id,
     String? name,
     String? post,
     int? contact,
   }) {
-    return User(
+    return Contact(
       id: id ?? this.id,
       name: name ?? this.name,
       post: post ?? this.post,
@@ -36,8 +36,8 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory Contact.fromMap(Map<String, dynamic> map) {
+    return Contact(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
       post: map['post'] as String,
@@ -47,16 +47,16 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Contact.fromJson(String source) =>
+      Contact.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, post: $post, contact: $contact)';
+    return 'Contact(id: $id, name: $name, post: $post, contact: $contact)';
   }
 
   @override
-  bool operator ==(covariant User other) {
+  bool operator ==(covariant Contact other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&

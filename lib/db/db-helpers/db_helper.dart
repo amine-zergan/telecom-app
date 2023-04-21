@@ -23,70 +23,101 @@ class DbHelper {
     Directory dir = await getApplicationDocumentsDirectory();
     String pathdb = join(dir.path, "telecom.db");
     Database mydb = await openDatabase(pathdb, onCreate: _create, version: 1);
-
     return mydb;
   }
 
-// ########## create query tables in your database ########
+  /// create query tables in your database
   Future<void> _create(Database db, int version) async {
-    await db.execute("""
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  poste TEXT NOT NULL,
-  telephone INTEGER,
-  image TEXT  
-)
-""");
-    await db.execute("""
-CREATE TABLE societies(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  address TEXT NOT NULL,
-  logo TEXT 
-)""");
-    await db.execute("""
-CREATE TABLE sites(
-  id INTEGER PRIMARY KEY,
-  nom TEXT NOT NULL,
-  longitude TEXT NOT NULL,
-  latitude TEXT NOT NULL,
-  description TEXT,
-  maintenancie TEXT,
-  contact INTEGER
-)
-""");
-    await db.execute("""
-CREATE TABLE projects(
-  id INTEGER PRIMARY KEY,
-  nom TEXT NOT NULL,
-  path TEXT 
-)
-""");
+    // table history for save action in App
     await db.execute("""
 CREATE TABLE historiques(
   id INTEGER PRIMARY KEY,
-  tache TEXT NOT NULL,
-  date TEXT
+  task TEXT NOT NULL,
+  date int
 )
 """);
+
+    /// Table for Operator Mobile in App
+    /// inject query in db for operator with logo in assest file
     await db.execute("""
-CREATE TABLE emploies(
+CREATE TABLE operators(
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  logo TEXT 
+)""");
+
+    /// Table for Project Mobile in App
+    /// inject query in db for project with logo in assest file:huawei , nokia, Nec ....
+    await db.execute("""
+CREATE TABLE operators(
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  image TEXT 
+)""");
+
+    /// Table for Equipements Mobile in App
+    await db.execute("""
+CREATE TABLE equipements(
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  type TEXT ,
+  ref TEXT NOT NULL
+)""");
+
+    /// Table for Sites Mobile in App Not ready
+    ///  ...modified soon
+    await db.execute("""
+CREATE TABLE sites(
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  operator TEXT NOT NULL,
+  urlOperator TEXT NOT NULL,
+  latitude TEXT NOT NULL,
+  longitude TEXT NOT NULL,
+  description TEXT,
+  responsable TEXT,
+  phone INTEGER,
+  description TEXT,
+  create int
+)
+""");
+
+    /// Table for Entreprises Mobile in App Ok
+    await db.execute("""
+CREATE TABLE entreprises(
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  taille TEXT ,
+  address TEXT NOT NULL ,
+  departement TEXT,
+  contract TEXT,
+  logo TEXT
+)
+""");
+
+    /// Table for Contact Mobile in App Ok
+    await db.execute("""
+CREATE TABLE contacts(
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
   post TEXT NOT NULL,
   contact INTEGER
 )
 """);
+
+    /// Table for Profile Mobile in App Ok
     await db.execute("""
-CREATE TABLE emploies_missions(
+CREATE TABLE profile(
   id INTEGER PRIMARY KEY,
-  mission_id INTEGER NOT NULL,
-  employ_id INTEGER NOT NULL,
-  FOREIGN KEY (mission_id) REFERENCES missions(id),
-  FOREIGN KEY (employ_id) REFERENCES emploies(id)
+  name TEXT NOT NULL,
+  address TEXT ,
+  post TEXT NOT NULL,
+  phone INTEGER,
+  createAt int,
+  image TEXT
 )
 """);
+
     await db.execute("""
 CREATE TABLE missions(
   id INTEGER PRIMARY KEY,
@@ -140,16 +171,17 @@ INSERT INTO projects(nom,path) VALUES('ooredoo','assets/ooredoo.png')
 INSERT INTO projects(nom,path) VALUES('telecom','assets/Telecom.png')
 """);
     }).then((_) {
+      // ignore: avoid_print
       print("values for project add with success");
     });
   }
 
-//############ close database ##############//
+  /// close database
   Future close() async {
     final db = await instance.db;
     db.close().then((_) {
-      // ignore:
-      print("databse closed");
+      // ignore:, avoid_print
+      print("===== database was cloased with succcess =======");
     });
   }
 }
