@@ -12,10 +12,10 @@ class Onboard {
 
 const List<Onboard> dataOnboard = [
   Onboard(
-    title: "Planifie Les Activités",
+    title: "Planifier Les Activités",
     image: "assets/svg/dashbord.svg",
     description:
-        "Gerer, planifier et consulter  vos activites et vos taches de travail  ",
+        "Gerer, planifier et consulter votre activites et les taches du travail  ",
   ),
   Onboard(
     title: "Choisir La Destination",
@@ -27,12 +27,12 @@ const List<Onboard> dataOnboard = [
     title: "Gestion de Rapport D'activité",
     image: "assets/svg/reporting.svg",
     description:
-        "creer vos Rapport RFI, DPM, DRM, ouverture et cloture de Mission ",
+        "Creer vos Rapport RFI, DPM, DRM, ouverture et cloture de Mission ",
   ),
   Onboard(
     title: "Gestion De Repetoire ",
     image: "assets/svg/contact.svg",
     description:
-        " creer, organiser votre list contact et ajouter vos collegues de travail",
+        " Creer et organiser votre list contact. Ajouter votre collegues de travail",
   ),
 ];

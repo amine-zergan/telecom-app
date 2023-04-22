@@ -1,53 +1,44 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:telecom/view/pages/onboard/data_onboard.dart';
-import 'package:telecom/view/theme/size_constants.dart';
 
-class OnboardPage extends StatelessWidget {
+import '../components/body_page_view.dart';
+import '../components/bottom_widget.dart';
+
+class OnboardPage extends StatefulWidget {
   const OnboardPage({super.key});
 
+  @override
+  State<OnboardPage> createState() => _OnboardPageState();
+}
+
+class _OnboardPageState extends State<OnboardPage> {
+  int selectIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: PageView.builder(
-          itemCount: dataOnboard.length,
-          itemBuilder: (context, index) {
-            final onbard = dataOnboard[index];
-            return Padding(
-              padding: const EdgeInsets.all(padding10),
-              child: Column(
-                children: [
-                  const Spacer(),
-                  Expanded(
-                    child: Text(
-                      onbard.title,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                  ),
-                  const Spacer(),
-                  Expanded(
-                    flex: 3,
-                    child: SvgPicture.asset(onbard.image),
-                  ),
-                  const Spacer(
-                    flex: 2,
-                  ),
-                  Expanded(
-                    child: Text(
-                      onbard.description,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          letterSpacing: 0.8, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  const Spacer(),
-                ],
+        bottom: false,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 6,
+              child: PageView.builder(
+                itemCount: dataOnboard.length,
+                onPageChanged: (value) {
+                  setState(() {
+                    selectIndex = value;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final onbard = dataOnboard[index];
+                  return BodyPageView(onbard: onbard);
+                },
               ),
-            );
-          },
+            ),
+            ButtomWidget(selectIndex: selectIndex)
+          ],
         ),
       ),
     );
