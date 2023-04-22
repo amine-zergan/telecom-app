@@ -5,7 +5,6 @@ import 'package:telecom/view/pages/onboard/components/title_widget_pageview.dart
 
 import '../../../theme/size_constants.dart';
 import '../data_onboard.dart';
-import '../page/onboard_page.dart';
 
 class BodyPageView extends StatelessWidget {
   const BodyPageView({

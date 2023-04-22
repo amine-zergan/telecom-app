@@ -15,19 +15,19 @@ const List<Onboard> dataOnboard = [
     title: "Planifier Les Activités",
     image: "assets/svg/dashbord.svg",
     description:
-        "Gerer, planifier et consulter votre activites et les taches du travail  ",
+        "Gerer, planifier et consulter votre activites et votre taches du travail  ",
   ),
   Onboard(
     title: "Choisir La Destination",
     image: "assets/svg/roadmap.svg",
     description:
-        "Naviguer facilement en mettre la coordonnée de site ou la destination souhaitée en simple clique",
+        "Naviguer facilement en mettre les coordonnées de site ou la destination souhaitée en simple clique",
   ),
   Onboard(
     title: "Gestion de Rapport D'activité",
     image: "assets/svg/reporting.svg",
     description:
-        "Creer vos Rapport RFI, DPM, DRM, ouverture et cloture de Mission ",
+        "Creer votre Rapport RFI, DPM, DRM, ouverture et cloture de Mission ",
   ),
   Onboard(
     title: "Gestion De Repetoire ",
