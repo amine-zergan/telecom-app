@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 // ignore: library_prefixes
 import 'package:telecom/di/get_it.dart' as getIt;
 import 'package:telecom/view/routes/routes_navigation.dart';
+import 'package:telecom/view/theme/theming.dart';
 
 void main() {
   getIt.setup();
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      darkTheme: ThemeApp.dark,
+      themeMode: ThemeMode.system,
       home: const MyHomePage(title: 'Telecom Application'),
     );
   }
