@@ -1,1 +1,1 @@
-const padding10 = 10;
+const padding10 = 15.0;
