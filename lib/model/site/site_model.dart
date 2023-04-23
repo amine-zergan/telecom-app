@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:telecom/model/components/project/operator_model.dart';
+
 class Site {
   final int? id;
   final String name;
-  final int operatorId;
+  final Operator operator;
   final String longitude;
   final String latitude;
   final String? responsible;
@@ -14,7 +16,7 @@ class Site {
   Site({
     this.id,
     required this.name,
-    required this.operatorId,
+    required this.operator,
     required this.longitude,
     required this.latitude,
     required this.responsible,
@@ -26,7 +28,7 @@ class Site {
   Site copyWith({
     int? id,
     String? name,
-    int? operatorId,
+    Operator? operator,
     String? longitude,
     String? latitude,
     String? responsible,
@@ -37,7 +39,7 @@ class Site {
     return Site(
       id: id ?? this.id,
       name: name ?? this.name,
-      operatorId: operatorId ?? this.operatorId,
+      operator: operator ?? this.operator,
       longitude: longitude ?? this.longitude,
       latitude: latitude ?? this.latitude,
       responsible: responsible ?? this.responsible,
@@ -51,7 +53,7 @@ class Site {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'operatorId': operatorId,
+      'operator': operator.id,
       'longitude': longitude,
       'latitude': latitude,
       'responsible': responsible,
@@ -65,7 +67,7 @@ class Site {
     return Site(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
-      operatorId: map['operatorId'] as int,
+      operator: Operator.fromMap(map['operator'] as Map<String, dynamic>),
       longitude: map['longitude'] as String,
       latitude: map['latitude'] as String,
       responsible:
@@ -84,7 +86,7 @@ class Site {
 
   @override
   String toString() {
-    return 'Site(id: $id, name: $name, operatorId: $operatorId, longitude: $longitude, latitude: $latitude, responsible: $responsible, phone: $phone, description: $description, create: $create)';
+    return 'Site(id: $id, name: $name, operator: $operator, longitude: $longitude, latitude: $latitude, responsible: $responsible, phone: $phone, description: $description, create: $create)';
   }
 
   @override
@@ -93,7 +95,7 @@ class Site {
 
     return other.id == id &&
         other.name == name &&
-        other.operatorId == operatorId &&
+        other.operator == operator &&
         other.longitude == longitude &&
         other.latitude == latitude &&
         other.responsible == responsible &&
@@ -106,7 +108,7 @@ class Site {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
-        operatorId.hashCode ^
+        operator.hashCode ^
         longitude.hashCode ^
         latitude.hashCode ^
         responsible.hashCode ^

@@ -22,8 +22,13 @@ class DbHelper {
   Future<Database> _init() async {
     Directory dir = await getApplicationDocumentsDirectory();
     String pathdb = join(dir.path, "telecom.db");
-    Database mydb = await openDatabase(pathdb, onCreate: _create, version: 1);
+    Database mydb = await openDatabase(pathdb,
+        onCreate: _create, version: 1, onConfigure: _onConfigure);
     return mydb;
+  }
+
+  static Future _onConfigure(Database db) async {
+    await db.execute('PRAGMA foreign_keys = ON');
   }
 
   /// create query tables in your database
@@ -33,6 +38,7 @@ class DbHelper {
 CREATE TABLE historiques(
   id INTEGER PRIMARY KEY,
   task TEXT NOT NULL,
+  detail TEXT ,
   date int
 )
 """);
@@ -43,13 +49,13 @@ CREATE TABLE historiques(
 CREATE TABLE operators(
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
-  logo TEXT 
+  image TEXT 
 )""");
 
     /// Table for Project Mobile in App
     /// inject query in db for project with logo in assest file:huawei , nokia, Nec ....
     await db.execute("""
-CREATE TABLE operators(
+CREATE TABLE projects(
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
   image TEXT 
@@ -64,21 +70,20 @@ CREATE TABLE equipements(
   ref TEXT NOT NULL
 )""");
 
-    /// Table for Sites Mobile in App Not ready
-    ///  ...modified soon
+    /// Table for Sites Mobile in App Done
     await db.execute("""
 CREATE TABLE sites(
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
-  operator TEXT NOT NULL,
-  urlOperator TEXT NOT NULL,
+  operator INTEGER NOT NULL,
   latitude TEXT NOT NULL,
   longitude TEXT NOT NULL,
   description TEXT,
   responsable TEXT,
   phone INTEGER,
   description TEXT,
-  create int
+  create int,
+  FOREIGN KEY (operator) REFERENCES operators(id)
 )
 """);
 
@@ -123,14 +128,16 @@ CREATE TABLE missions(
   id INTEGER PRIMARY KEY,
   started TEXT NOT NULL,
   finished TEXT,
+  deplacement INTEGER,
+  equipe INTEGER,
   bon INTEGER,
   status INTEGER,
-  depart REAL,
+  depart REAL ,
   arrive REAL,
   car TEXT NOT NULL,
   carburant REAL,
-  chef_equipe TEXT NOT NULL,
-  chef_projet TEXT,
+  chefequipe TEXT NOT NULL,
+  chefprojet TEXT,
   paege REAL,
   achat REAL
 )
@@ -138,37 +145,40 @@ CREATE TABLE missions(
     await db.execute("""
 CREATE TABLE tasks(
   id INTEGER PRIMARY KEY,
-  projet TEXT NOT NULL,
+  project int NOT NULL,
   url TEXT NOT NULL,
   time TEXT NOT NULL,
   description TEXT NOT NULL,
   location TEXT NOT NULL,
-  mission_id INTEGER,
-  FOREIGN KEY (mission_id) REFERENCES missions(id)
+  mission INTEGER,
+  site INTEGER,
+  FOREIGN KEY (site) REFERENCES sites(id),
+  FOREIGN KEY (project) REFERENCES projects(id),
+  FOREIGN KEY (mission) REFERENCES missions(id)
 )
 """);
 
     await db.transaction((txn) async {
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('nec','assets/NEC.png')
+INSERT INTO operators(name,image) VALUES('Ooredoo','assets/project/ooredoo.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('alcatel','assets/alcatel.png')
+INSERT INTO operators(name,image) VALUES('Orange','assets/project/orange.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('huawei','assets/huawei.png')
+INSERT INTO operators(name,image) VALUES('Telecom','assets/project/telecom.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('nokia','assets/nokia.png')
+INSERT INTO projects(nom,image) VALUES('Nokia','assets/project/nokia.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('orange','assets/orange.png')
+INSERT INTO projects(nom,image) VALUES('Nec',''assets/project/nec.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('ooredoo','assets/ooredoo.png')
+INSERT INTO projects(nom,image) VALUES('Alcatel','assets/project/alcatel.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,path) VALUES('telecom','assets/Telecom.png')
+INSERT INTO projects(nom,image) VALUES('Huawei','assets/project/huawei.png')
 """);
     }).then((_) {
       // ignore: avoid_print

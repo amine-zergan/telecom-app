@@ -2,15 +2,13 @@
 import 'dart:convert';
 
 import 'package:telecom/model/components/project/project_model.dart';
-import 'package:telecom/model/mission/mission_model.dart';
 
 class Task {
   final int? id;
   final String description;
-  final Mission mission;
+  final int mission;
   final Project project;
   final String region;
-
   final DateTime date;
   Task({
     this.id,
@@ -24,7 +22,7 @@ class Task {
   Task copyWith({
     int? id,
     String? description,
-    Mission? mission,
+    int? mission,
     Project? project,
     String? region,
     DateTime? date,
@@ -41,9 +39,8 @@ class Task {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'description': description,
-      'mission': mission.id,
+      'mission': id,
       'project': project.id,
       'region': region,
       'date': date.millisecondsSinceEpoch,
@@ -54,7 +51,7 @@ class Task {
     return Task(
       id: map['id'] != null ? map['id'] as int : null,
       description: map['description'] as String,
-      mission: Mission.fromMap(map['mission'] as Map<String, dynamic>),
+      mission: map['mission'] as int,
       project: Project.fromMap(map['project'] as Map<String, dynamic>),
       region: map['region'] as String,
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),

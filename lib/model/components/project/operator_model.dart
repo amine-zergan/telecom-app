@@ -4,22 +4,22 @@ import 'dart:convert';
 class Operator {
   final int? id;
   final String name;
-  final String logo;
+  final String image;
   Operator({
     this.id,
     required this.name,
-    required this.logo,
+    required this.image,
   });
 
   Operator copyWith({
     int? id,
     String? name,
-    String? logo,
+    String? image,
   }) {
     return Operator(
       id: id ?? this.id,
       name: name ?? this.name,
-      logo: logo ?? this.logo,
+      image: image ?? this.image,
     );
   }
 
@@ -27,7 +27,7 @@ class Operator {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'logo': logo,
+      'image': image,
     };
   }
 
@@ -35,7 +35,7 @@ class Operator {
     return Operator(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
-      logo: map['logo'] as String,
+      image: map['image'] as String,
     );
   }
 
@@ -45,15 +45,15 @@ class Operator {
       Operator.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Operator(id: $id, name: $name, logo: $logo)';
+  String toString() => 'Operator(id: $id, name: $name, image: $image)';
 
   @override
   bool operator ==(covariant Operator other) {
     if (identical(this, other)) return true;
 
-    return other.id == id && other.name == name && other.logo == logo;
+    return other.id == id && other.name == name && other.image == image;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ logo.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ image.hashCode;
 }
