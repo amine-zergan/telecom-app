@@ -1,13 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/components/project/project_model.dart';
+import 'package:telecom/utils/formater/time_format.dart';
 
 class Task {
   final int? id;
   final String description;
   final int mission;
   final Project project;
+  final Operator operator;
   final String region;
   final DateTime date;
   Task({
@@ -15,18 +18,19 @@ class Task {
     required this.description,
     required this.mission,
     required this.project,
+    required this.operator,
     required this.region,
     required this.date,
   });
 
-  Task copyWith({
-    int? id,
-    String? description,
-    int? mission,
-    Project? project,
-    String? region,
-    DateTime? date,
-  }) {
+  Task copyWith(
+      {int? id,
+      String? description,
+      int? mission,
+      Project? project,
+      String? region,
+      DateTime? date,
+      Operator? operator}) {
     return Task(
       id: id ?? this.id,
       description: description ?? this.description,
@@ -34,16 +38,19 @@ class Task {
       project: project ?? this.project,
       region: region ?? this.region,
       date: date ?? this.date,
+      operator: operator ?? this.operator,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'description': description,
-      'mission': id,
+      'mission': mission,
       'project': project.id,
+      'operator': operator.id,
       'region': region,
-      'date': date.millisecondsSinceEpoch,
+      'date': DateFormat.formDate(date),
     };
   }
 
@@ -53,8 +60,9 @@ class Task {
       description: map['description'] as String,
       mission: map['mission'] as int,
       project: Project.fromMap(map['project'] as Map<String, dynamic>),
+      operator: Operator.fromMap(map['operator'] as Map<String, dynamic>),
       region: map['region'] as String,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      date: DateFormat.toDate(map['date'] as String),
     );
   }
 

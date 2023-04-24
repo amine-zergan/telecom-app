@@ -5,7 +5,7 @@ class Contact {
   final int? id;
   final String name;
   final String post;
-  final int contact;
+  final String contact;
   Contact({
     this.id,
     required this.name,
@@ -17,7 +17,7 @@ class Contact {
     int? id,
     String? name,
     String? post,
-    int? contact,
+    String? contact,
   }) {
     return Contact(
       id: id ?? this.id,
@@ -41,7 +41,7 @@ class Contact {
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
       post: map['post'] as String,
-      contact: map['contact'] as int,
+      contact: map['contact'] as String,
     );
   }
 

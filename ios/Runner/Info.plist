@@ -41,8 +41,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<string>sms</string>
-  	<string>tel</string>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+       <string>sms</string>
+       <string>tel</string>
+    </array>
 	<key>NSCameraUsageDescription</key>
 	<string>To take user profile image</string>
 	<key>NSPhotoLibraryUsageDescription</key>

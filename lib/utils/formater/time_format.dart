@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
-class FormatTime {
-  FormatTime._();
+class DateFormat {
+  DateFormat._();
 
   /// Function return [String] for formating date :
   /// example : 2023-04-23
@@ -33,11 +33,5 @@ class FormatTime {
     final month = int.parse(format[1]);
     final date = int.parse(format[2]);
     return DateTime(year, month, date);
-  }
-
-  /// Function return [bool]
-  /// For camparing two DateTime input [start] and [finish]
-  static bool isGreat(DateTime start, DateTime finish) {
-    return start.compareTo(finish) == -1;
   }
 }

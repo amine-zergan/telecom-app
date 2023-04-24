@@ -6,16 +6,14 @@ class Entreprise {
   final String name;
   final String? taille;
   final String address;
-  final String? departement;
-  final String contract;
+  final String codepostal;
   final String? logo;
   Entreprise({
     this.id,
     required this.name,
     required this.taille,
     required this.address,
-    this.departement,
-    required this.contract,
+    required this.codepostal,
     this.logo,
   });
 
@@ -24,8 +22,7 @@ class Entreprise {
     String? name,
     String? taille,
     String? address,
-    String? departement,
-    String? contract,
+    String? codepostal,
     String? logo,
   }) {
     return Entreprise(
@@ -33,8 +30,7 @@ class Entreprise {
       name: name ?? this.name,
       taille: taille ?? this.taille,
       address: address ?? this.address,
-      departement: departement ?? this.departement,
-      contract: contract ?? this.contract,
+      codepostal: codepostal ?? this.codepostal,
       logo: logo ?? this.logo,
     );
   }
@@ -45,8 +41,7 @@ class Entreprise {
       'name': name,
       'taille': taille,
       'address': address,
-      'departement': departement,
-      'contract': contract,
+      'codepostal': codepostal,
       'logo': logo,
     };
   }
@@ -57,9 +52,7 @@ class Entreprise {
       name: map['name'] as String,
       taille: map['taille'] != null ? map['taille'] as String : null,
       address: map['address'] as String,
-      departement:
-          map['departement'] != null ? map['departement'] as String : null,
-      contract: map['contract'] as String,
+      codepostal: map['codepostal'] as String,
       logo: map['logo'] != null ? map['logo'] as String : null,
     );
   }
@@ -71,7 +64,7 @@ class Entreprise {
 
   @override
   String toString() {
-    return 'Entreprise(id: $id, name: $name, taille: $taille, address: $address, departement: $departement, contract: $contract, logo: $logo)';
+    return 'Entreprise(id: $id, name: $name, taille: $taille, address: $address, codepostal: $codepostal, logo: $logo)';
   }
 
   @override
@@ -82,8 +75,7 @@ class Entreprise {
         other.name == name &&
         other.taille == taille &&
         other.address == address &&
-        other.departement == departement &&
-        other.contract == contract &&
+        other.codepostal == codepostal &&
         other.logo == logo;
   }
 
@@ -93,8 +85,7 @@ class Entreprise {
         name.hashCode ^
         taille.hashCode ^
         address.hashCode ^
-        departement.hashCode ^
-        contract.hashCode ^
+        codepostal.hashCode ^
         logo.hashCode;
   }
 }

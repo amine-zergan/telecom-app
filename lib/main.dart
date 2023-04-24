@@ -8,9 +8,11 @@ import 'package:telecom/view/routes/routes_navigation.dart';
 import 'package:telecom/view/theme/theming_app.dart';
 
 void main() {
-  getIt.setup();
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  getIt
+      .setup(); // dependecy injection les classes bch tsirlhom initialise hne ;
+  WidgetsFlutterBinding.ensureInitialized(); //preparation pour bind les widgets
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp]); // orientation mt3 app
   runApp(const MyApp());
 }
 

@@ -1,0 +1,18 @@
+const List<String> tasks = [
+  "Swap B2B",
+  "Survey Site",
+  "Install client B2B",
+  "Install lien FH ",
+  "Install Radio",
+  "Swap IDU-ODU",
+  "Swap Antennes",
+  "Swap Upgrade capacité",
+  "Swap changement de configuration",
+  "Swap LTE",
+  "Swap RRU",
+  "Swap energie",
+  "Swap BBU",
+  "Install nouveau Site",
+  "Integration Site en deployement",
+  "Genie civile",
+];

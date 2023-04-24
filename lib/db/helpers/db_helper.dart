@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:telecom/db/helpers/constant_db.dart';
 
 class DbHelper {
   DbHelper._();
@@ -35,78 +36,76 @@ class DbHelper {
   Future<void> _create(Database db, int version) async {
     // table history for save action in App
     await db.execute("""
-CREATE TABLE historiques(
-  id INTEGER PRIMARY KEY,
-  task TEXT NOT NULL,
-  detail TEXT ,
-  date int
+CREATE TABLE $historiques(
+  $id INTEGER PRIMARY KEY,
+  $task TEXT NOT NULL,
+  $detail TEXT ,
+  $date int
 )
 """);
 
     /// Table for Operator Mobile in App
     /// inject query in db for operator with logo in assest file
     await db.execute("""
-CREATE TABLE operators(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  image TEXT 
+CREATE TABLE $operators(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $image TEXT 
 )""");
 
     /// Table for Project Mobile in App
     /// inject query in db for project with logo in assest file:huawei , nokia, Nec ....
     await db.execute("""
-CREATE TABLE projects(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  image TEXT 
+CREATE TABLE $projects(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $image TEXT 
 )""");
 
     /// Table for Equipements Mobile in App
     await db.execute("""
-CREATE TABLE equipements(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  type TEXT ,
-  ref TEXT NOT NULL
+CREATE TABLE $equipements(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $type TEXT ,
+  $ref TEXT NOT NULL
 )""");
 
     /// Table for Sites Mobile in App Done
     await db.execute("""
-CREATE TABLE sites(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  operator INTEGER NOT NULL,
-  latitude TEXT NOT NULL,
-  longitude TEXT NOT NULL,
-  description TEXT,
-  responsable TEXT,
-  phone INTEGER,
-  description TEXT,
-  create int,
+CREATE TABLE $site(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $operator INTEGER NOT NULL,
+  $latitude TEXT NOT NULL,
+  $longitude TEXT NOT NULL,
+  $description TEXT,
+  $responsable TEXT,
+  $phone INTEGER,
+  $create int,
   FOREIGN KEY (operator) REFERENCES operators(id)
 )
 """);
 
     /// Table for Entreprises Mobile in App Ok
     await db.execute("""
-CREATE TABLE entreprises(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  taille TEXT ,
-  address TEXT NOT NULL ,
-  departement TEXT,
-  contract TEXT,
-  logo TEXT
+CREATE TABLE $entreprises(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $taille TEXT ,
+  $address TEXT NOT NULL ,
+  $codepostal TEXT,
+  $logo TEXT
 )
 """);
 
     /// Table for Contact Mobile in App Ok
     await db.execute("""
-CREATE TABLE contacts(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  post TEXT NOT NULL,
-  contact INTEGER
+CREATE TABLE $contacts(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $post TEXT NOT NULL,
+  $contact INTEGER
 )
 """);
 
@@ -116,8 +115,13 @@ CREATE TABLE profile(
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
   address TEXT ,
-  post TEXT NOT NULL,
-  phone INTEGER,
+  codePoste TEXT ,
+  region TEXT,
+  post TEXT,
+  phone TEXT,
+  salaire TEXT,
+  niveau TEXT,
+  contract TEXT,
   createAt int,
   image TEXT
 )
@@ -146,13 +150,11 @@ CREATE TABLE missions(
 CREATE TABLE tasks(
   id INTEGER PRIMARY KEY,
   project int NOT NULL,
-  url TEXT NOT NULL,
-  time TEXT NOT NULL,
+  date TEXT NOT NULL,
   description TEXT NOT NULL,
-  location TEXT NOT NULL,
   mission INTEGER,
-  site INTEGER,
-  FOREIGN KEY (site) REFERENCES sites(id),
+  operator INTEGER,
+  FOREIGN KEY (operator) REFERENCES operators(id),
   FOREIGN KEY (project) REFERENCES projects(id),
   FOREIGN KEY (mission) REFERENCES missions(id)
 )

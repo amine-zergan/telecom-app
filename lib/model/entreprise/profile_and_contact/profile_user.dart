@@ -5,16 +5,26 @@ class Profile {
   final int? id;
   final String name;
   final String? address;
+  final String codePoste;
+  final String region;
   final String post;
-  final int phone;
+  final String phone;
+  final String salaire;
+  final String niveau;
+  final String contract;
   final DateTime createAt;
   final String? image;
   Profile({
     this.id,
     required this.name,
     this.address,
+    required this.codePoste,
+    required this.region,
     required this.post,
     required this.phone,
+    required this.salaire,
+    required this.niveau,
+    required this.contract,
     required this.createAt,
     this.image,
   });
@@ -23,8 +33,13 @@ class Profile {
     int? id,
     String? name,
     String? address,
+    String? codePoste,
+    String? region,
     String? post,
-    int? phone,
+    String? phone,
+    String? salaire,
+    String? niveau,
+    String? contract,
     DateTime? createAt,
     String? image,
   }) {
@@ -32,8 +47,13 @@ class Profile {
       id: id ?? this.id,
       name: name ?? this.name,
       address: address ?? this.address,
+      codePoste: codePoste ?? this.codePoste,
+      region: region ?? this.region,
       post: post ?? this.post,
       phone: phone ?? this.phone,
+      salaire: salaire ?? this.salaire,
+      niveau: niveau ?? this.niveau,
+      contract: contract ?? this.contract,
       createAt: createAt ?? this.createAt,
       image: image ?? this.image,
     );
@@ -44,8 +64,13 @@ class Profile {
       'id': id,
       'name': name,
       'address': address,
+      'codePoste': codePoste,
+      'region': region,
       'post': post,
       'phone': phone,
+      'salaire': salaire,
+      'niveau': niveau,
+      'contract': contract,
       'createAt': createAt.millisecondsSinceEpoch,
       'image': image,
     };
@@ -56,8 +81,13 @@ class Profile {
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
       address: map['address'] != null ? map['address'] as String : null,
+      codePoste: map['codePoste'] as String,
+      region: map['region'] as String,
       post: map['post'] as String,
-      phone: map['phone'] as int,
+      phone: map['phone'] as String,
+      salaire: map['salaire'] as String,
+      niveau: map['niveau'] as String,
+      contract: map['contract'] as String,
       createAt: DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int),
       image: map['image'] != null ? map['image'] as String : null,
     );
@@ -70,7 +100,7 @@ class Profile {
 
   @override
   String toString() {
-    return 'Profile(id: $id, name: $name, address: $address, post: $post, phone: $phone, createAt: $createAt, image: $image)';
+    return 'Profile(id: $id, name: $name, address: $address, codePoste: $codePoste, region: $region, post: $post, phone: $phone, salaire: $salaire, niveau: $niveau, contract: $contract, createAt: $createAt, image: $image)';
   }
 
   @override
@@ -80,8 +110,13 @@ class Profile {
     return other.id == id &&
         other.name == name &&
         other.address == address &&
+        other.codePoste == codePoste &&
+        other.region == region &&
         other.post == post &&
         other.phone == phone &&
+        other.salaire == salaire &&
+        other.niveau == niveau &&
+        other.contract == contract &&
         other.createAt == createAt &&
         other.image == image;
   }
@@ -91,8 +126,13 @@ class Profile {
     return id.hashCode ^
         name.hashCode ^
         address.hashCode ^
+        codePoste.hashCode ^
+        region.hashCode ^
         post.hashCode ^
         phone.hashCode ^
+        salaire.hashCode ^
+        niveau.hashCode ^
+        contract.hashCode ^
         createAt.hashCode ^
         image.hashCode;
   }
