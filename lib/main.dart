@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
-      initialRoute: RouteName.load,
+      initialRoute: RouteName.config,
       theme: ThemeApp.light,
       darkTheme: ThemeApp.dark,
       themeMode: ThemeMode.system,
