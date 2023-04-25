@@ -27,10 +27,10 @@ class MyApp extends StatelessWidget {
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
-      initialRoute: RouteName.config,
+      initialRoute: RouteName.load,
       theme: ThemeApp.light,
       darkTheme: ThemeApp.dark,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       //home: const MyHomePage(title: 'Telecom Application'),
     );
   }

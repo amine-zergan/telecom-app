@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:telecom/view/pages/onboard/data_onboard.dart';
-import 'package:telecom/view/theme/color_constants.dart';
 
 class TitleWidget extends StatelessWidget {
   const TitleWidget({
@@ -19,7 +18,7 @@ class TitleWidget extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
-            .copyWith(fontWeight: FontWeight.w700, color: textHeadlineSmall),
+            .copyWith(fontWeight: FontWeight.w700, color: Colors.white),
       ),
     );
   }

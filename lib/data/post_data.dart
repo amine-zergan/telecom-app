@@ -1,10 +1,12 @@
 const List<String> occupations = [
-  "chef projet",
+  "Chef projet",
   "Chef d'equipe",
   "Superviseur",
-  "administration",
+  "Administration",
   "Technicien",
-  "Stagier"
+  "Stagiere",
+  "Ingenieur",
+  "Etudiant"
 ];
 
 const List<String> contract = [
@@ -25,17 +27,17 @@ const List<String> etude = [
   "Primaire",
   "Secondaire",
   "Formations Professionnelles",
-  "BTS",
   "BTP",
+  "BTS",
   "Bac",
   "Bac +1",
   "Bac +2",
   "Bac +3",
+  "Licence",
   "Bac +4",
   "Bac +5",
   "Master",
   "Ingeniera",
-  "Master",
   "Doctora"
 ];
 

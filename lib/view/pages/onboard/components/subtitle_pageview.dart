@@ -18,7 +18,7 @@ class SubTitleWidget extends StatelessWidget {
         style: Theme.of(context).textTheme.titleMedium!.copyWith(
             letterSpacing: 0.7,
             fontWeight: FontWeight.w500,
-            color: Colors.black54),
+            color: Colors.grey.shade50),
       ),
     );
   }
