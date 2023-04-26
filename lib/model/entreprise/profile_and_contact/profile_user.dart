@@ -6,7 +6,6 @@ class Profile {
   final String name;
   final String? address;
   final String codePoste;
-  final String region;
   final String post;
   final String phone;
   final String salaire;
@@ -19,7 +18,6 @@ class Profile {
     required this.name,
     this.address,
     required this.codePoste,
-    required this.region,
     required this.post,
     required this.phone,
     required this.salaire,
@@ -34,7 +32,6 @@ class Profile {
     String? name,
     String? address,
     String? codePoste,
-    String? region,
     String? post,
     String? phone,
     String? salaire,
@@ -48,7 +45,6 @@ class Profile {
       name: name ?? this.name,
       address: address ?? this.address,
       codePoste: codePoste ?? this.codePoste,
-      region: region ?? this.region,
       post: post ?? this.post,
       phone: phone ?? this.phone,
       salaire: salaire ?? this.salaire,
@@ -65,7 +61,6 @@ class Profile {
       'name': name,
       'address': address,
       'codePoste': codePoste,
-      'region': region,
       'post': post,
       'phone': phone,
       'salaire': salaire,
@@ -82,7 +77,6 @@ class Profile {
       name: map['name'] as String,
       address: map['address'] != null ? map['address'] as String : null,
       codePoste: map['codePoste'] as String,
-      region: map['region'] as String,
       post: map['post'] as String,
       phone: map['phone'] as String,
       salaire: map['salaire'] as String,
@@ -100,7 +94,7 @@ class Profile {
 
   @override
   String toString() {
-    return 'Profile(id: $id, name: $name, address: $address, codePoste: $codePoste, region: $region, post: $post, phone: $phone, salaire: $salaire, niveau: $niveau, contract: $contract, createAt: $createAt, image: $image)';
+    return 'Profile(id: $id, name: $name, address: $address, codePoste: $codePoste, post: $post, phone: $phone, salaire: $salaire, niveau: $niveau, contract: $contract, createAt: $createAt, image: $image)';
   }
 
   @override
@@ -111,7 +105,6 @@ class Profile {
         other.name == name &&
         other.address == address &&
         other.codePoste == codePoste &&
-        other.region == region &&
         other.post == post &&
         other.phone == phone &&
         other.salaire == salaire &&
@@ -127,7 +120,6 @@ class Profile {
         name.hashCode ^
         address.hashCode ^
         codePoste.hashCode ^
-        region.hashCode ^
         post.hashCode ^
         phone.hashCode ^
         salaire.hashCode ^

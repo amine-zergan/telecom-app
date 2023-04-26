@@ -21,7 +21,8 @@
     "telecom.iml": true,
     ".vscode": true,
     "ios": true,
-    "android": true
+    "android": true,
+    "linearprogress": true
   },
   "yaml.schemas": {
     "https://json.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/aminemejri/Desktop/telecom/.github/workflows/ci.yaml"

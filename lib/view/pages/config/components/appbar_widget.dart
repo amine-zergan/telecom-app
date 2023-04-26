@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:linearprogress/linearprogress.dart';
 
-import '../../../theme/color_constants.dart';
-
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   const AppBarWidget({
     Key? key,
@@ -20,14 +18,15 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: Colors.transparent,
         title: LinearProgress(
           value: index,
-          curve: Curves.easeInExpo,
+          curve: Curves.linear,
           duration: const Duration(seconds: 1),
           background: Colors.grey.shade100,
           begin: Alignment.centerLeft,
           end: Alignment.bottomRight,
           gradients: const [
-            gradienColorEnd,
-            gradienColorBegin,
+            Colors.white,
+            Color.fromARGB(255, 113, 31, 255),
+            Color.fromARGB(255, 67, 0, 183),
           ],
         ));
   }

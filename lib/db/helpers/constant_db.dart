@@ -45,3 +45,16 @@ const String logo = "logo";
 const String contacts = "contacts";
 const String post = "post";
 const String contact = "contact";
+
+/// constants for Table [profile]
+///
+const String profile = "profile";
+const String codePoste = "codePoste";
+const String salaire = " salaire";
+const String niveau = "niveau";
+const String contract = "contract";
+const String creatAt = "createAt";
+
+
+/// constants for Table [mission]
+/// 

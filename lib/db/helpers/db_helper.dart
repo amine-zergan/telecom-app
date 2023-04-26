@@ -111,19 +111,18 @@ CREATE TABLE $contacts(
 
     /// Table for Profile Mobile in App Ok
     await db.execute("""
-CREATE TABLE profile(
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  address TEXT ,
-  codePoste TEXT ,
-  region TEXT,
-  post TEXT,
-  phone TEXT,
-  salaire TEXT,
-  niveau TEXT,
-  contract TEXT,
-  createAt int,
-  image TEXT
+CREATE TABLE $profile(
+  $id INTEGER PRIMARY KEY,
+  $name TEXT NOT NULL,
+  $address TEXT ,
+  $codePoste TEXT ,
+  $post TEXT,
+  $phone TEXT,
+  $salaire TEXT,
+  $niveau TEXT,
+  $contract TEXT,
+  $creatAt int,
+  $image TEXT
 )
 """);
 

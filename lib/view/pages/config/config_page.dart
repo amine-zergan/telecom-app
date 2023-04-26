@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:linearprogress/linearprogress.dart';
 import 'package:telecom/view/pages/config/components/appbar_widget.dart';
 import 'package:telecom/view/pages/config/contract_page.dart';
+import 'package:telecom/view/pages/config/entreprise_page.dart';
 import 'package:telecom/view/pages/config/post_page.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
+import 'package:telecom/view/pages/config/profil_page.dart';
 import 'package:telecom/view/pages/config/salaire_de_entreprise.dart';
+import 'package:telecom/view/pages/config/taille_entreprise.dart';
 
 class ConfigPage extends StatefulWidget {
   const ConfigPage({super.key});
@@ -57,6 +60,9 @@ class _ConfigPageState extends State<ConfigPage> {
                   PostPage(),
                   ContractPage(),
                   SalairePage(),
+                  TaillePage(),
+                  ProfilePage(),
+                  ProfileEntreprisePage(),
                 ],
               ),
             ),
@@ -67,9 +73,9 @@ class _ConfigPageState extends State<ConfigPage> {
         onPressed: () {
           setState(() {});
           _controller.animateToPage(_page + 1,
-              duration: const Duration(milliseconds: 600),
-              curve: Curves.easeIn);
-          value = value + 0.2;
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear);
+          value = value + 0.16;
         },
         icon: const Icon(Icons.arrow_circle_right),
         backgroundColor: Colors.white,

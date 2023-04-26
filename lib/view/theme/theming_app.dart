@@ -13,5 +13,13 @@ class ThemeApp {
       elevation: 0.0,
     ),
   );
-  static ThemeData dark = ThemeData.dark().copyWith();
+  static ThemeData dark = ThemeData.dark().copyWith(
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(),
+      enabledBorder: OutlineInputBorder(),
+      focusedErrorBorder: OutlineInputBorder(),
+      disabledBorder: OutlineInputBorder(),
+    ),
+  );
 }

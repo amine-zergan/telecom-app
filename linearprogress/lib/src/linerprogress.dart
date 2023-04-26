@@ -38,19 +38,19 @@ class LinearProgress extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height: 8,
+                height: 6,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(3),
                   color: background,
                 ),
               ),
               AnimatedContainer(
                 duration: duration,
                 curve: curve,
-                height: 8,
+                height: 6,
                 width: constraints.maxWidth * value,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(3),
                   gradient: LinearGradient(
                     colors: gradients,
                     begin: begin,
