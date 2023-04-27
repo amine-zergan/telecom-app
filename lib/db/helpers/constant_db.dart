@@ -1,8 +1,5 @@
 /// Constants for table name and  name columns
 ///
-
-// ignore_for_file: constant_identifier_names
-
 const String site = "sites";
 const String id = "id";
 const String name = "name";
@@ -55,6 +52,26 @@ const String niveau = "niveau";
 const String contract = "contract";
 const String creatAt = "createAt";
 
-
 /// constants for Table [mission]
-/// 
+///
+const String missions = "missions";
+const String started = "started";
+const String finished = "finished";
+const String deplacement = "deplacement";
+const String equipe = "equipe";
+const String bon = "bon";
+const String status = "status";
+const String depart = "depart";
+const String arrive = "arrive";
+const String car = "car";
+const String carburant = "carburant";
+const String chefequipe = "chefequipe";
+const String chefprojet = "chefprojet";
+const String peage = "peage";
+const String achat = "achat";
+
+/// constants for Table [Task]
+///
+const String tasks = "tasks";
+const String project = "project";
+const String mission = "mission";

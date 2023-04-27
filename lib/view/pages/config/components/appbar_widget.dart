@@ -19,7 +19,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
         title: LinearProgress(
           value: index,
           curve: Curves.linear,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 300),
           background: Colors.grey.shade100,
           begin: Alignment.centerLeft,
           end: Alignment.bottomRight,

@@ -16,8 +16,31 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print('state = $state');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +50,9 @@ class MyApp extends StatelessWidget {
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
-      initialRoute: RouteName.load,
+      initialRoute: RouteName.config,
       theme: ThemeApp.light,
-      darkTheme: ThemeApp.dark,
+      darkTheme: ThemeApp.darkTheme(context),
       themeMode: ThemeMode.dark,
       //home: const MyHomePage(title: 'Telecom Application'),
     );

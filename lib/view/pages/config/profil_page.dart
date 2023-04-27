@@ -14,10 +14,10 @@ class ProfilePage extends StatelessWidget {
           const TitleConfig(title: "Completer votre Profile"),
           Text(
             "Encore une seule etape pour configurer votre compte. Ajouter votre prenom, numero de telephone , image et votre address.",
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(color: Colors.grey.shade400),
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Colors.grey.shade400,
+                ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: padding10,

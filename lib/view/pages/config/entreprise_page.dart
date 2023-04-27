@@ -18,9 +18,10 @@ class ProfileEntreprisePage extends StatelessWidget {
                 .textTheme
                 .titleSmall!
                 .copyWith(color: Colors.grey.shade400),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: padding10,
+            height: 20,
           ),
           Stack(
             fit: StackFit.loose,

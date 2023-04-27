@@ -13,13 +13,42 @@ class ThemeApp {
       elevation: 0.0,
     ),
   );
-  static ThemeData dark = ThemeData.dark().copyWith(
-    inputDecorationTheme: const InputDecorationTheme(
-      border: OutlineInputBorder(),
-      focusedBorder: OutlineInputBorder(),
-      enabledBorder: OutlineInputBorder(),
-      focusedErrorBorder: OutlineInputBorder(),
-      disabledBorder: OutlineInputBorder(),
-    ),
-  );
+  static ThemeData ligthTheme(BuildContext context) {
+    return ThemeData.light().copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        border: const OutlineInputBorder(),
+        hintStyle: Theme.of(context).textTheme.labelMedium!.copyWith(),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        focusedBorder: const OutlineInputBorder(),
+        enabledBorder: const OutlineInputBorder(),
+        focusedErrorBorder: const OutlineInputBorder(),
+        disabledBorder: const OutlineInputBorder(),
+      ),
+    );
+  }
+
+  static ThemeData darkTheme(BuildContext context) {
+    return ThemeData.dark().copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        border: const OutlineInputBorder(),
+        hintStyle: Theme.of(context)
+            .textTheme
+            .bodyLarge!
+            .copyWith(color: Colors.grey.shade600),
+        labelStyle: Theme.of(context)
+            .textTheme
+            .labelLarge!
+            .copyWith(color: Colors.white),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        focusedBorder: const OutlineInputBorder(),
+        enabledBorder: const OutlineInputBorder(),
+        focusedErrorBorder: const OutlineInputBorder(),
+        disabledBorder: const OutlineInputBorder(),
+      ),
+    );
+  }
 }

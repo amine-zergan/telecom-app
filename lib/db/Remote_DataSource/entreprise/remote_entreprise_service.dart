@@ -1,24 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:sqflite/sqflite.dart';
+
+import 'package:telecom/db/Remote_DataSource/entreprise/abstract_entreprise_service.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
-import 'package:telecom/db/sources/entreprise_data_source/abstract_entreprise_service.dart';
+import 'package:telecom/db/helpers/db_helper.dart';
 import 'package:telecom/model/entreprise/entreprise_model.dart';
 
 class RemoteEntrepriseDataSourceImpl extends IrepositiryEntrepriseSource {
-  final Database db;
+  // ignore: unused_field
+  final Database _db;
+  DbHelper dbHelper;
   RemoteEntrepriseDataSourceImpl({
-    required this.db,
-  });
+    required Database db,
+    required this.dbHelper,
+  }) : _db = db;
   @override
   Future<int> delete(int id) async {
     final result =
-        await db.delete(entreprises, where: "id = ?", whereArgs: [id]);
+        await _db.delete(entreprises, where: "id = ?", whereArgs: [id]);
     return result;
   }
 
   @override
   Future<Entreprise?> fetch() async {
-    List<Map<String, Object?>> result = await db.query(entreprises);
+    List<Map<String, Object?>> result = await _db.query(entreprises);
     if (result.isEmpty) return null;
     final response = Entreprise.fromMap(result.first);
     return response;
@@ -26,7 +31,7 @@ class RemoteEntrepriseDataSourceImpl extends IrepositiryEntrepriseSource {
 
   @override
   Future<int> insert(Entreprise model) async {
-    return db.insert(
+    return _db.insert(
       entreprises,
       model.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
@@ -35,7 +40,7 @@ class RemoteEntrepriseDataSourceImpl extends IrepositiryEntrepriseSource {
 
   @override
   Future<int> update(Entreprise model, int id) async {
-    final result = await db
+    final result = await _db
         .update(entreprises, model.toMap(), where: "id = ?", whereArgs: [id]);
     return result;
   }

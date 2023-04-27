@@ -23,8 +23,12 @@ class DbHelper {
   Future<Database> _init() async {
     Directory dir = await getApplicationDocumentsDirectory();
     String pathdb = join(dir.path, "telecom.db");
-    Database mydb = await openDatabase(pathdb,
-        onCreate: _create, version: 1, onConfigure: _onConfigure);
+    Database mydb = await openDatabase(
+      pathdb,
+      onCreate: _create,
+      version: 1,
+      onConfigure: _onConfigure,
+    );
     return mydb;
   }
 
@@ -127,32 +131,32 @@ CREATE TABLE $profile(
 """);
 
     await db.execute("""
-CREATE TABLE missions(
-  id INTEGER PRIMARY KEY,
-  started TEXT NOT NULL,
-  finished TEXT,
-  deplacement INTEGER,
-  equipe INTEGER,
-  bon INTEGER,
-  status INTEGER,
-  depart REAL ,
-  arrive REAL,
-  car TEXT NOT NULL,
-  carburant REAL,
-  chefequipe TEXT NOT NULL,
-  chefprojet TEXT,
-  paege REAL,
-  achat REAL
+CREATE TABLE $missions(
+  $id INTEGER PRIMARY KEY,
+  $started TEXT NOT NULL,
+  $finished TEXT,
+  $deplacement INTEGER,
+  $equipe INTEGER,
+  $bon INTEGER,
+  $status INTEGER,
+  $depart REAL ,
+  $arrive REAL,
+  $car TEXT NOT NULL,
+  $carburant REAL,
+  $chefequipe TEXT NOT NULL,
+  $chefprojet TEXT,
+  $peage REAL,
+  $achat REAL
 )
 """);
     await db.execute("""
-CREATE TABLE tasks(
-  id INTEGER PRIMARY KEY,
-  project int NOT NULL,
-  date TEXT NOT NULL,
-  description TEXT NOT NULL,
-  mission INTEGER,
-  operator INTEGER,
+CREATE TABLE $tasks(
+  $id INTEGER PRIMARY KEY,
+  $project int NOT NULL,
+  $date TEXT NOT NULL,
+  $description TEXT NOT NULL,
+  $mission INTEGER,
+  $operator INTEGER,
   FOREIGN KEY (operator) REFERENCES operators(id),
   FOREIGN KEY (project) REFERENCES projects(id),
   FOREIGN KEY (mission) REFERENCES missions(id)
