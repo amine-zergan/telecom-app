@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+
     super.initState();
   }
 
@@ -44,13 +45,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
-    print("============ Material App ============");
     return GetMaterialApp(
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
-      initialRoute: RouteName.onboard,
+      initialRoute: RouteName.config,
       theme: ThemeApp.light,
       darkTheme: ThemeApp.darkTheme(context),
       themeMode: ThemeMode.dark,

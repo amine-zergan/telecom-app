@@ -2,7 +2,8 @@
 import 'package:get/get.dart';
 import 'package:linearprogress/linearprogress.dart';
 
-import 'package:telecom/view/pages/config/components/appbar_widget.dart';
+import 'package:telecom/view/pages/config/components/appbar_component.dart';
+import 'package:telecom/view/pages/config/components/float_button_config.dart';
 import 'package:telecom/view/pages/config/contract_page.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/entreprise_page.dart';
@@ -56,29 +57,6 @@ class ConfigPage extends StatelessWidget {
           floatingActionButton: FloatButton(controller: controller),
         );
       },
-    );
-  }
-}
-
-class FloatButton extends StatelessWidget {
-  const FloatButton({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final ConfigController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: controller.navigatePageController,
-      icon: controller.getLastPage()
-          ? const Icon(Icons.done_all)
-          : const Icon(Icons.arrow_circle_right),
-      backgroundColor: Colors.white,
-      label: Text(
-        controller.getLastPage() ? "Done" : "Next",
-      ),
     );
   }
 }

@@ -22,7 +22,8 @@
     ".vscode": true,
     "ios": true,
     "android": true,
-    "linearprogress": true
+    "linearprogress": true,
+    "lib/view/pages/onboard": true
   },
   "yaml.schemas": {
     "https://json.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/aminemejri/Desktop/telecom/.github/workflows/ci.yaml"

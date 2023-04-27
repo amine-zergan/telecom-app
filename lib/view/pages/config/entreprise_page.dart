@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:telecom/view/pages/config/components/Form_Fields/address_form_field.dart';
+import 'package:telecom/view/pages/config/components/Form_Fields/code_postal_form_field.dart';
+import 'package:telecom/view/pages/config/components/Form_Fields/nom_form_field.dart';
+import 'package:telecom/view/pages/config/components/sub_title_config.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
@@ -12,16 +16,12 @@ class ProfileEntreprisePage extends StatelessWidget {
       child: Column(
         children: [
           const TitleConfig(title: "Completer profile Entreprise"),
-          Text(
-            "Ajouter les coordonnées de l'entreprise nom , logo et address pour utiliser lors de creation de rapports.",
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(color: Colors.grey.shade400),
-            textAlign: TextAlign.center,
+          const SubtitleConfig(
+            title:
+                "Ajouter les coordonnées de l'entreprise nom , logo et address pour utiliser lors de creation de rapports.",
           ),
           const SizedBox(
-            height: 20,
+            height: padding10 * 2,
           ),
           Stack(
             fit: StackFit.loose,
@@ -44,45 +44,45 @@ class ProfileEntreprisePage extends StatelessWidget {
                     color: Colors.grey.shade700,
                   ),
                 ),
-              )
+              ),
             ],
           ),
+          const Text(
+            "error return by validator",
+            textAlign: TextAlign.center,
+          ),
           const SizedBox(
-            height: 50,
+            height: 5 * padding10,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Form(
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "nom ",
-                      labelText: "Saisi le nom de l'entreprise",
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                    ),
+                  NomFormField(
+                    onEditComplete: () {},
+                    controller: TextEditingController(),
+                    onSaved: (value) {},
+                    hintText: "nom ...",
+                    labelText: "Saisi le nom d'entreprise",
                   ),
                   const SizedBox(
                     height: padding10,
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "10-rue boulevard-Tunis",
-                      labelText: "Saisi l'address",
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      border: OutlineInputBorder(),
-                    ),
+                  AddressFormField(
+                    onEditComplete: () {},
+                    controller: TextEditingController(),
+                    onSaved: (value) {},
+                    labelText: "Saisi l'address",
                   ),
                   const SizedBox(
                     height: padding10,
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "xxxx",
-                      labelText: "Saisi code postale",
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      border: OutlineInputBorder(),
-                    ),
+                  CodePostalFormField(
+                    labelText: "Saisi code postale",
+                    onEditComplete: () {},
+                    controller: TextEditingController(),
+                    onSaved: (value) {},
                   ),
                 ],
               ),

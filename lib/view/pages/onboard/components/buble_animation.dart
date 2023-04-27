@@ -20,7 +20,7 @@ class Buble extends StatelessWidget {
       decoration: BoxDecoration(
         color: selectIndex == index
             ? Colors.white
-            : const Color.fromARGB(204, 68, 62, 164),
+            : const Color.fromARGB(204, 172, 166, 255),
         shape: BoxShape.circle,
         border: Border.all(),
       ),
