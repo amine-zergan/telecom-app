@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
-      initialRoute: RouteName.config,
+      initialRoute: RouteName.onboard,
       theme: ThemeApp.light,
       darkTheme: ThemeApp.darkTheme(context),
       themeMode: ThemeMode.dark,

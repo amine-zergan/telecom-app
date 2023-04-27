@@ -6,8 +6,6 @@ class OnboardPage extends StatelessWidget {
   const OnboardPage({super.key});
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
-    print("========= Onboard page ===========");
     return const Scaffold(
       body: BodyOnboard(),
     );
