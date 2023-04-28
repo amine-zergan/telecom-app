@@ -2,19 +2,17 @@
 // ignore_for_file: must_be_immutable, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:telecom/data/post_data.dart';
+import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 
-class NiveauPage extends StatefulWidget {
-  const NiveauPage({super.key});
+class NiveauPage extends StatelessWidget {
+  const NiveauPage({
+    Key? key,
+  }) : super(key: key);
 
-  @override
-  State<NiveauPage> createState() => _NiveauPageState();
-}
-
-class _NiveauPageState extends State<NiveauPage> {
-  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -25,17 +23,16 @@ class _NiveauPageState extends State<NiveauPage> {
         ),
         ...List.generate(etude.length, (index) {
           String niveau = etude[index];
-          return CardChoix(
-            index: index,
-            selectedIndex: selectedIndex,
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-                print(niveau);
-              });
-            },
-            title: niveau,
-          );
+          return GetBuilder<ConfigController>(builder: (controller) {
+            return CardChoix(
+              index: index,
+              selectedIndex: controller.selectNiveau,
+              onTap: () {
+                controller.updateNiveau(index, niveau);
+              },
+              title: niveau,
+            );
+          });
         }),
         const SizedBox(
           height: 150,

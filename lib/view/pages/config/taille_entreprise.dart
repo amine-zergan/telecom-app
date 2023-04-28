@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:telecom/data/entreprise_data.dart';
+import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 
-class TaillePage extends StatefulWidget {
+class TaillePage extends StatelessWidget {
   const TaillePage({super.key});
 
-  @override
-  State<TaillePage> createState() => _TaillePageState();
-}
-
-class _TaillePageState extends State<TaillePage> {
-  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -21,16 +17,16 @@ class _TaillePageState extends State<TaillePage> {
         ),
         ...List.generate(taille.length, (index) {
           String model = taille[index];
-          return CardChoix(
-            index: index,
-            selectedIndex: selectedIndex,
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-            title: model,
-          );
+          return GetBuilder<ConfigController>(builder: (controller) {
+            return CardChoix(
+              index: index,
+              selectedIndex: controller.selectTaille,
+              onTap: () {
+                controller.updateTailleEntreprise(index, model);
+              },
+              title: model,
+            );
+          });
         }),
         const SizedBox(
           height: 150,

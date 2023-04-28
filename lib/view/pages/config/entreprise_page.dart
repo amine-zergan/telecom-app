@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:telecom/view/pages/config/components/Form_Fields/address_form_field.dart';
-import 'package:telecom/view/pages/config/components/Form_Fields/code_postal_form_field.dart';
-import 'package:telecom/view/pages/config/components/Form_Fields/nom_form_field.dart';
+import 'package:telecom/view/components/Form_Fields/address_form_field.dart';
+import 'package:telecom/view/components/Form_Fields/code_postal_form_field.dart';
+import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
+import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
+import 'package:telecom/view/pages/config/components/image_config.dart';
 import 'package:telecom/view/pages/config/components/sub_title_config.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 import 'package:telecom/view/theme/size_constants.dart';
@@ -23,36 +25,13 @@ class ProfileEntreprisePage extends StatelessWidget {
           const SizedBox(
             height: padding10 * 2,
           ),
-          Stack(
-            fit: StackFit.loose,
-            alignment: Alignment.center,
-            children: [
-              const CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.white,
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: InkWell(
-                  onTap: () {
-                    // ignore: avoid_print
-                    print("active button");
-                  },
-                  child: Icon(
-                    Icons.image_search,
-                    size: 30,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const Text(
-            "error return by validator",
-            textAlign: TextAlign.center,
+          ConfigImage(
+            press: () {},
+            icon: Icons.maps_home_work_outlined,
+            error: "",
           ),
           const SizedBox(
-            height: 5 * padding10,
+            height: 3 * padding10,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -83,6 +62,15 @@ class ProfileEntreprisePage extends StatelessWidget {
                     onEditComplete: () {},
                     controller: TextEditingController(),
                     onSaved: (value) {},
+                  ),
+                  const SizedBox(
+                    height: padding10,
+                  ),
+                  PhoneFormField(
+                    onEditComplete: () {},
+                    controller: TextEditingController(),
+                    onSaved: (value) {},
+                    labelText: "Saisi contact Entreprise",
                   ),
                 ],
               ),

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class ConfigController extends GetxController {
   /// declare variable of pageController
   /// update methodes with getter;
-  late PageController _controller;
+  late PageController _controller; // initail in intState
   PageController get pageController => _controller;
   int _page = 0;
   int get currentPage => _page;
@@ -22,15 +22,22 @@ class ConfigController extends GetxController {
   ///
   /// and update value of progress Bar
   void navigatePageController() {
-    if (_page <= 5) {
+    if (_page <= 4) {
       _controller.animateToPage(
         _page + 1,
         duration: const Duration(milliseconds: 500),
         curve: Curves.linear,
       );
       value = value + 0.16;
-    } else {
+    } else if (_page == 5) {
+      //value = 1 - 0.16;
+
+      /// check validat form in _page =5
+    } else if (_page == 6) {
       value = 1.0;
+
+      /// check validat form in _page =5
+      // navigation vers page home
     }
     update();
   }
@@ -41,6 +48,89 @@ class ConfigController extends GetxController {
 
   /// progress bar value depend on fields page ...
   double value = 0.0;
+
+  ///  Configuration for Page [NiveauPage]
+  /// Variable and Logique for NiveauPage params [selectedIndex] int?
+  ///
+  /// update variable [String] wil insert in Profile database
+  int? selectNiveau;
+  String? niveau;
+
+  void updateNiveau(int index, String value) {
+    selectNiveau = index;
+    niveau = value;
+    // ignore: avoid_print
+    print(niveau);
+    update();
+  }
+
+  /// Configuration for [PostPage]
+  /// For this page we need to variable like NiveauPage
+  /// variable [poste] of Type String?
+  /// variable [selectePoste] of Type int?
+  ///
+  /// and we need to update them
+  int? selectPoste;
+  String? poste;
+
+  void updatePoste(int index, String value) {
+    selectPoste = index;
+    poste = value;
+    // ignore: avoid_print
+    print(poste);
+    update();
+  }
+
+  /// Configuration for [ContractPage]
+  /// For this page we need to variable like NiveauPage
+  /// variable [contrat] of Type String?
+  /// variable [selectContrat] of Type int?
+  ///
+  /// and we need to update them
+  int? selectContrat;
+  String? contrat;
+
+  void updateContrat(int index, String value) {
+    selectContrat = index;
+    contrat = value;
+    // ignore: avoid_print
+    print(contrat);
+    update();
+  }
+
+  /// Configuration for [SalairePAge]
+  /// For this page we need to variable like NiveauPage
+  /// variable [salaire] of Type String?
+  /// variable [selectSalaire] of Type int?
+  ///
+  /// and we need to update them
+  int? selectSalaire;
+  String? salaire;
+
+  void updateSalaire(int index, String value, bool selected) {
+    selectSalaire = selected ? index : null;
+    salaire = value;
+    // ignore: avoid_print
+    print(salaire);
+    update();
+  }
+
+  /// Configuration for [TaillePage]
+  /// For this page we need to variable like NiveauPage
+  /// variable [taille] of Type String?
+  /// variable [selectTaille] of Type int?
+  ///
+  /// and we need to update them
+  int? selectTaille;
+  String? taille;
+
+  void updateTailleEntreprise(int index, String value) {
+    selectTaille = index;
+    taille = value;
+    // ignore: avoid_print
+    print(taille);
+    update();
+  }
 
   @override
   void onInit() {

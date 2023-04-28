@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:telecom/data/post_data.dart';
+import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 
-class SalairePage extends StatefulWidget {
+class SalairePage extends StatelessWidget {
   const SalairePage({super.key});
-
-  @override
-  State<SalairePage> createState() => _SalairePageState();
-}
-
-class _SalairePageState extends State<SalairePage> {
-  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -25,22 +20,22 @@ class _SalairePageState extends State<SalairePage> {
             salaire.length,
             (int index) {
               final price = salaire[index];
-              return ChoiceChip(
-                label: Text(
-                  price,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                selected: selectedIndex == index,
-                selectedColor: Colors.grey.shade500,
-                autofocus: true,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
-                onSelected: (bool selected) {
-                  setState(() {
-                    selectedIndex = selected ? index : null;
-                  });
-                },
-              );
+              return GetBuilder<ConfigController>(builder: (controller) {
+                return ChoiceChip(
+                  label: Text(
+                    price,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  selected: controller.selectSalaire == index,
+                  selectedColor: Colors.grey.shade500,
+                  autofocus: true,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 10.0),
+                  onSelected: (bool selected) {
+                    controller.updateSalaire(index, price, selected);
+                  },
+                );
+              });
             },
           ).toList(),
         ),

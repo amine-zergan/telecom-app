@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:telecom/data/post_data.dart';
+import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 
-class ContractPage extends StatefulWidget {
+class ContractPage extends StatelessWidget {
   const ContractPage({super.key});
 
-  @override
-  State<ContractPage> createState() => _ContractPageState();
-}
-
-class _ContractPageState extends State<ContractPage> {
-  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -21,18 +17,16 @@ class _ContractPageState extends State<ContractPage> {
         ),
         ...List.generate(contract.length, (index) {
           String contrat = contract[index];
-          return CardChoix(
-            index: index,
-            selectedIndex: selectedIndex,
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-                // ignore: avoid_print
-                print(contrat);
-              });
-            },
-            title: contrat,
-          );
+          return GetBuilder<ConfigController>(builder: (controller) {
+            return CardChoix(
+              index: index,
+              selectedIndex: controller.selectContrat,
+              onTap: () {
+                controller.updateContrat(index, contrat);
+              },
+              title: contrat,
+            );
+          });
         }),
         const SizedBox(
           height: 150,

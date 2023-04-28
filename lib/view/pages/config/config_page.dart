@@ -38,6 +38,7 @@ class ConfigPage extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       onPageChanged: controller.updateCurrentPage,
+                      // replaced with setState: in stful widget ..
                       children: const [
                         NiveauPage(),
                         PostPage(),
