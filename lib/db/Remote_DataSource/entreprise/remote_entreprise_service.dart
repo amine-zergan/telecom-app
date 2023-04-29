@@ -3,17 +3,15 @@ import 'package:sqflite/sqflite.dart';
 
 import 'package:telecom/db/Remote_DataSource/entreprise/abstract_entreprise_service.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
-import 'package:telecom/db/helpers/db_helper.dart';
+
 import 'package:telecom/model/entreprise/entreprise_model.dart';
 
 class RemoteEntrepriseDataSourceImpl extends IrepositiryEntrepriseSource {
   // ignore: unused_field
   final Database _db;
-  DbHelper dbHelper;
-  RemoteEntrepriseDataSourceImpl({
-    required Database db,
-    required this.dbHelper,
-  }) : _db = db;
+  RemoteEntrepriseDataSourceImpl(
+    Database db,
+  ) : _db = db;
   @override
   Future<int> delete(int id) async {
     final result =

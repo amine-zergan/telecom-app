@@ -29,6 +29,7 @@ class ProfileEntreprisePage extends StatelessWidget {
             press: () {},
             icon: Icons.maps_home_work_outlined,
             error: "",
+            file: null,
           ),
           const SizedBox(
             height: 3 * padding10,

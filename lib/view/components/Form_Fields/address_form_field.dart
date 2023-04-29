@@ -24,7 +24,7 @@ class AddressFormField extends StatelessWidget {
       focusNode: focusNode,
       controller: controller,
       autocorrect: false,
-      validator: ValidatorProfile.validatorPhone,
+      validator: ValidatorProfile.validateAddress,
       inputFormatters: const [],
       onSaved: onSaved,
       onEditingComplete: onEditComplete,

@@ -29,11 +29,20 @@ class ConfigController extends GetxController {
         curve: Curves.linear,
       );
       value = value + 0.16;
-    } else if (_page == 5) {
+    } else if (_page == 5 && formProfile.currentState!.validate()) {
       //value = 1 - 0.16;
+      // ignore: avoid_print
+      print("activate form Profile");
+      _controller.animateToPage(
+        _page + 1,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.linear,
+      );
 
       /// check validat form in _page =5
     } else if (_page == 6) {
+      // ignore: avoid_print
+      print("activate form Profile");
       value = 1.0;
 
       /// check validat form in _page =5
@@ -132,15 +141,46 @@ class ConfigController extends GetxController {
     update();
   }
 
+  /// part of : [EntreprisePage] variable
+  /// Form need a GlobalKey<FormState> for validation of TextInputFormField
+  ///
+  /// also need FocusNode and TextEditcontroller [FocusNode] [TextEditController]
+  late TextEditingController nameControllerProfile;
+  late TextEditingController addressControllerProfile;
+  late TextEditingController codePostaleControllerProfile;
+  late TextEditingController phoneControllerProfile;
+  final GlobalKey<FormState> formProfile = GlobalKey<FormState>();
+
+  late FocusNode name;
+  late FocusNode address;
+  late FocusNode codePostale;
+  late FocusNode numero;
   @override
   void onInit() {
     _controller = PageController();
+    nameControllerProfile = TextEditingController();
+    addressControllerProfile = TextEditingController();
+    codePostaleControllerProfile = TextEditingController();
+    phoneControllerProfile = TextEditingController();
+
+    name = FocusNode();
+    address = FocusNode();
+    codePostale = FocusNode();
+    numero = FocusNode();
     super.onInit();
   }
 
   @override
   void onClose() {
     _controller.dispose();
+    nameControllerProfile.dispose();
+    addressControllerProfile.dispose();
+    codePostaleControllerProfile.dispose();
+    phoneControllerProfile.dispose();
+    name.dispose();
+    address.dispose();
+    codePostale.dispose();
+    numero.dispose();
     super.onClose();
   }
 }

@@ -34,4 +34,12 @@ class ValidatorProfile {
       return null;
     }
   }
+
+  static String? validatePoste(String? value) {
+    return null;
+  }
+
+  static String? validateAddress(String? value) {
+    return null;
+  }
 }
