@@ -33,6 +33,8 @@ class ThemeApp {
     return ThemeData.dark().copyWith(
       inputDecorationTheme: InputDecorationTheme(
         border: const OutlineInputBorder(),
+        errorStyle:
+            Theme.of(context).textTheme.labelLarge!.copyWith(color: errorColor),
         hintStyle: Theme.of(context)
             .textTheme
             .bodyLarge!
@@ -45,8 +47,17 @@ class ThemeApp {
           horizontal: 20,
         ),
         focusedBorder: const OutlineInputBorder(),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: errorColor,
+          ),
+        ),
         enabledBorder: const OutlineInputBorder(),
-        focusedErrorBorder: const OutlineInputBorder(),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: errorColor,
+          ),
+        ),
         disabledBorder: const OutlineInputBorder(),
       ),
     );

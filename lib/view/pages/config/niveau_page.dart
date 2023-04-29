@@ -55,6 +55,7 @@ class TitleConfig extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 15.0),
       child: Text(
         title,
+        textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               fontWeight: FontWeight.w500,
             ),

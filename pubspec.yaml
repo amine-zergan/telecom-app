@@ -17,7 +17,6 @@ dependencies:
   path: ^1.8.3
   sqflite: ^2.2.7
   flutter_svg: ^2.0.5
-  
   dartz: ^0.10.1
   equatable: ^2.0.5
   geocoding: ^2.1.0
@@ -31,6 +30,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   open_file: ^3.2.1
   lottie: ^2.3.2
+  keyboard_dismisser: ^3.0.0
   linearprogress: 
     path: linearprogress/
 

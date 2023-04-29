@@ -12,7 +12,10 @@ void main() {
       .setup(); // dependecy injection les classes bch tsirlhom initialise hne ;
   WidgetsFlutterBinding.ensureInitialized(); //preparation pour bind les widgets
   SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp]); // orientation mt3 app
+    [
+      DeviceOrientation.portraitUp,
+    ],
+  ); // orientation mt3 app
   runApp(const MyApp());
 }
 
@@ -27,7 +30,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-
     super.initState();
   }
 
@@ -49,7 +51,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
-      initialRoute: RouteName.onboard,
+      initialRoute: RouteName.config,
       theme: ThemeApp.light,
       darkTheme: ThemeApp.darkTheme(context),
       themeMode: ThemeMode.dark,

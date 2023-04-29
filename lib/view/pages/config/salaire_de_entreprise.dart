@@ -20,22 +20,24 @@ class SalairePage extends StatelessWidget {
             salaire.length,
             (int index) {
               final price = salaire[index];
-              return GetBuilder<ConfigController>(builder: (controller) {
-                return ChoiceChip(
-                  label: Text(
-                    price,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  selected: controller.selectSalaire == index,
-                  selectedColor: Colors.grey.shade500,
-                  autofocus: true,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 10.0),
-                  onSelected: (bool selected) {
-                    controller.updateSalaire(index, price, selected);
-                  },
-                );
-              });
+              return GetBuilder<ConfigController>(
+                builder: (controller) {
+                  return ChoiceChip(
+                    label: Text(
+                      price,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    selected: controller.selectSalaire == index,
+                    selectedColor: Colors.grey.shade500,
+                    autofocus: true,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10.0),
+                    onSelected: (bool selected) {
+                      controller.updateSalaire(index, price, selected);
+                    },
+                  );
+                },
+              );
             },
           ).toList(),
         ),

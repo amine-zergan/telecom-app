@@ -46,10 +46,13 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   children: [
                     NomFormField(
-                      onEditComplete: () {},
+                      onEditComplete: () {
+                        FocusScope.of(context).requestFocus(controller.address);
+                      },
                       focusNode: controller.name,
                       controller: controller.nameControllerProfile,
                       onSaved: (value) {},
+                      onChanged: (value) {},
                       hintText: "nom et prenom",
                       labelText: "Saisi votre nom",
                     ),
@@ -57,10 +60,14 @@ class ProfilePage extends StatelessWidget {
                       height: padding10,
                     ),
                     AddressFormField(
-                      onEditComplete: () {},
+                      onEditComplete: () {
+                        FocusScope.of(context)
+                            .requestFocus(controller.codePostale);
+                      },
                       controller: controller.addressControllerProfile,
                       focusNode: controller.address,
                       onSaved: (value) {},
+                      onChanged: (value) {},
                       labelText: "Saisi votre address",
                     ),
                     const SizedBox(
@@ -69,18 +76,24 @@ class ProfilePage extends StatelessWidget {
                     CodePostalFormField(
                       labelText: "Saisi votre code postale",
                       focusNode: controller.codePostale,
-                      onEditComplete: () {},
+                      onEditComplete: () {
+                        FocusScope.of(context).requestFocus(controller.numero);
+                      },
                       controller: controller.codePostaleControllerProfile,
                       onSaved: (value) {},
+                      onChanged: (value) {},
                     ),
                     const SizedBox(
                       height: padding10,
                     ),
                     PhoneFormField(
-                      onEditComplete: () {},
+                      onEditComplete: () {
+                        FocusScope.of(context).unfocus();
+                      },
                       controller: controller.phoneControllerProfile,
                       focusNode: controller.numero,
                       onSaved: (value) {},
+                      onChanged: (value) {},
                       labelText: "Saisi votre numero",
                     ),
                   ],

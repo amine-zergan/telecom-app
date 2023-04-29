@@ -14,10 +14,11 @@ class ProfileEntreprisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+      padding: const EdgeInsets.only(
+          left: padding10, right: padding10, top: 1.5 * padding10),
       child: Column(
         children: [
-          const TitleConfig(title: "Completer profile Entreprise"),
+          const TitleConfig(title: "Completer Coordonnées de L'entreprise"),
           const SubtitleConfig(
             title:
                 "Ajouter les coordonnées de l'entreprise nom , logo et address pour utiliser lors de creation de rapports.",

@@ -12,6 +12,7 @@ class NomFormField extends StatelessWidget {
     this.labelText,
     this.hintText,
     this.focusNode,
+    this.onChanged,
   }) : super(key: key);
   final TextEditingController controller;
   final Function(String? value)? onSaved;
@@ -19,6 +20,7 @@ class NomFormField extends StatelessWidget {
   final String? labelText;
   final String? hintText;
   final FocusNode? focusNode;
+  final Function(String? value)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -27,6 +29,7 @@ class NomFormField extends StatelessWidget {
       textCapitalization: TextCapitalization.words,
       inputFormatters: const [],
       onSaved: onSaved,
+      onChanged: onChanged,
       onEditingComplete: onEditComplete,
       validator: ValidatorProfile.validatorName,
       decoration: InputDecoration(

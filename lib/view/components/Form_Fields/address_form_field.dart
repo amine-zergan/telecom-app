@@ -11,18 +11,21 @@ class AddressFormField extends StatelessWidget {
     this.onEditComplete,
     this.labelText,
     this.focusNode,
+    this.onChanged,
   }) : super(key: key);
   final TextEditingController controller;
   final Function(String? value)? onSaved;
   final Function()? onEditComplete;
   final String? labelText;
   final FocusNode? focusNode;
+  final Function(String? value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: focusNode,
       controller: controller,
+      onChanged: onChanged,
       autocorrect: false,
       validator: ValidatorProfile.validateAddress,
       inputFormatters: const [],

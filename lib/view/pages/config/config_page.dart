@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:get/get.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:linearprogress/linearprogress.dart';
 
 import 'package:telecom/view/pages/config/components/appbar_component.dart';
@@ -20,44 +21,64 @@ class ConfigPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ConfigController>(
       builder: (controller) {
-        return Scaffold(
-          appBar: AppBarWidget(
-            index: controller.value,
-          ),
-          body: SafeArea(
-            bottom: false,
-            child: GetBuilder<ConfigController>(
-              builder: (controller) {
-                return SingleChildScrollView(
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: Get.height,
-                    child: PageView(
-                      controller: controller.pageController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      onPageChanged: controller.updateCurrentPage,
-                      // replaced with setState: in stful widget ..
-                      children: const [
-                        NiveauPage(),
-                        PostPage(),
-                        ContractPage(),
-                        SalairePage(),
-                        TaillePage(),
-                        ProfilePage(),
-                        ProfileEntreprisePage(),
-                      ],
-                    ),
-                  ),
-                );
-              },
+        return KeyboardDismisser(
+          gestures: const [
+            GestureType.onTap,
+            GestureType.onPanUpdateDownDirection,
+          ],
+          child: Scaffold(
+            appBar: AppBarWidget(
+              index: controller.value,
             ),
+            body: SafeArea(
+              bottom: false,
+              child: SingleChildScrollView(
+                child: GetBuilder<ConfigController>(builder: (controller) {
+                  return PageViewConfig(
+                    controller: controller,
+                  );
+                }),
+              ),
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatButton(controller: controller),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatButton(controller: controller),
         );
       },
+    );
+  }
+}
+
+class PageViewConfig extends StatelessWidget {
+  const PageViewConfig({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ConfigController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: Get.height,
+      child: PageView(
+        controller: controller.pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        onPageChanged: controller.updateCurrentPage,
+        // replaced with setState: in stful widget ..
+        children: const [
+          NiveauPage(),
+          PostPage(),
+          ContractPage(),
+          SalairePage(),
+          TaillePage(),
+          ProfilePage(),
+          ProfileEntreprisePage(),
+        ],
+      ),
     );
   }
 }

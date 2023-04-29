@@ -149,12 +149,15 @@ class ConfigController extends GetxController {
   late TextEditingController addressControllerProfile;
   late TextEditingController codePostaleControllerProfile;
   late TextEditingController phoneControllerProfile;
+
+  /// GlobalKey for Form Profile [formProfile] and Form Entreprise [formEntreprise]
   final GlobalKey<FormState> formProfile = GlobalKey<FormState>();
 
   late FocusNode name;
   late FocusNode address;
   late FocusNode codePostale;
   late FocusNode numero;
+
   @override
   void onInit() {
     _controller = PageController();
