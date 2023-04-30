@@ -33,11 +33,9 @@ class ConfigPage extends StatelessWidget {
             body: SafeArea(
               bottom: false,
               child: SingleChildScrollView(
-                child: GetBuilder<ConfigController>(builder: (controller) {
-                  return PageViewConfig(
-                    controller: controller,
-                  );
-                }),
+                child: PageViewConfig(
+                  controller: controller,
+                ),
               ),
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

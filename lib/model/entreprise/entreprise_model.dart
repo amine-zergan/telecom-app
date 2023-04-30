@@ -7,6 +7,8 @@ class Entreprise {
   final String? taille;
   final String address;
   final String codepostal;
+  final String phone;
+  final String fixe;
   final String? logo;
   Entreprise({
     this.id,
@@ -14,6 +16,8 @@ class Entreprise {
     required this.taille,
     required this.address,
     required this.codepostal,
+    required this.phone,
+    required this.fixe,
     this.logo,
   });
 
@@ -23,6 +27,8 @@ class Entreprise {
     String? taille,
     String? address,
     String? codepostal,
+    String? phone,
+    String? fixe,
     String? logo,
   }) {
     return Entreprise(
@@ -31,6 +37,8 @@ class Entreprise {
       taille: taille ?? this.taille,
       address: address ?? this.address,
       codepostal: codepostal ?? this.codepostal,
+      phone: phone ?? this.phone,
+      fixe: fixe ?? this.fixe,
       logo: logo ?? this.logo,
     );
   }
@@ -42,6 +50,8 @@ class Entreprise {
       'taille': taille,
       'address': address,
       'codepostal': codepostal,
+      'phone': phone,
+      'fixe': fixe,
       'logo': logo,
     };
   }
@@ -53,6 +63,8 @@ class Entreprise {
       taille: map['taille'] != null ? map['taille'] as String : null,
       address: map['address'] as String,
       codepostal: map['codepostal'] as String,
+      phone: map['phone'] as String,
+      fixe: map['fixe'] as String,
       logo: map['logo'] != null ? map['logo'] as String : null,
     );
   }
@@ -64,7 +76,7 @@ class Entreprise {
 
   @override
   String toString() {
-    return 'Entreprise(id: $id, name: $name, taille: $taille, address: $address, codepostal: $codepostal, logo: $logo)';
+    return 'Entreprise(id: $id, name: $name, taille: $taille, address: $address, codepostal: $codepostal, phone: $phone, fixe: $fixe, logo: $logo)';
   }
 
   @override
@@ -76,6 +88,8 @@ class Entreprise {
         other.taille == taille &&
         other.address == address &&
         other.codepostal == codepostal &&
+        other.phone == phone &&
+        other.fixe == fixe &&
         other.logo == logo;
   }
 
@@ -86,6 +100,8 @@ class Entreprise {
         taille.hashCode ^
         address.hashCode ^
         codepostal.hashCode ^
+        phone.hashCode ^
+        fixe.hashCode ^
         logo.hashCode;
   }
 }

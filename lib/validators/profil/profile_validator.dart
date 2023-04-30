@@ -34,6 +34,19 @@ class ValidatorProfile {
     }
   }
 
+  static String? validatorPhoneFix(String? value) {
+    final RegExp regExp = RegExp("[7][1-8][' '][0-9]{3}[' '][0-9]{3}");
+    if (value!.isEmpty) {
+      return null;
+    } else if (!regExp.hasMatch(value)) {
+      return "numero de telephone incorrect";
+    } else if (value.length > 10) {
+      return "numero de telephone ne depasse pas les 8 chiffres";
+    } else {
+      return null;
+    }
+  }
+
   // ------------ func for validate name ---------------- //
   static String? validatorName(String? value) {
     if (value!.isEmpty) {

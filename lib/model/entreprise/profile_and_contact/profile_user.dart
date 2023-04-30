@@ -6,11 +6,11 @@ class Profile {
   final String name;
   final String? address;
   final String codePoste;
-  final String post;
+  final String? post;
   final String phone;
-  final String salaire;
-  final String niveau;
-  final String contract;
+  final String? salaire;
+  final String? niveau;
+  final String? contract;
   final DateTime createAt;
   final String? image;
   Profile({

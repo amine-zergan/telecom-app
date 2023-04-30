@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
             ),
             ConfigImage(
               press: () {
-                showDialogueImagePicker(context, controller);
+                showDialogueImagePickerProfile(context, controller);
               },
               icon: Icons.person_add_alt_outlined,
               error: controller.errorPicker,
@@ -73,11 +73,7 @@ class ProfilePage extends StatelessWidget {
                       controller: controller.addressControllerProfile,
                       focusNode: controller.address,
                       onSaved: (value) {},
-                      onChanged: (value) {
-                        if (value!.length > 10) {
-                          controller.formProfile.currentState!.validate();
-                        }
-                      },
+                      onChanged: (value) {},
                       labelText: "Saisi votre address",
                     ),
                     const SizedBox(
@@ -91,11 +87,7 @@ class ProfilePage extends StatelessWidget {
                       },
                       controller: controller.codePostaleControllerProfile,
                       onSaved: (value) {},
-                      onChanged: (value) {
-                        if (value!.length > 3) {
-                          controller.formProfile.currentState!.validate();
-                        }
-                      },
+                      onChanged: (value) {},
                     ),
                     const SizedBox(
                       height: padding10,
@@ -107,11 +99,7 @@ class ProfilePage extends StatelessWidget {
                       controller: controller.phoneControllerProfile,
                       focusNode: controller.numero,
                       onSaved: (value) {},
-                      onChanged: (value) {
-                        if (value!.length > 5) {
-                          controller.formProfile.currentState!.validate();
-                        }
-                      },
+                      onChanged: (value) {},
                       labelText: "Saisi votre numero",
                     ),
                   ],

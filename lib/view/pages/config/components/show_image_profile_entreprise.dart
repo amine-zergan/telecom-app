@@ -1,11 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:linearprogress/linearprogress.dart';
-import 'package:telecom/view/pages/config/controller/config_controller.dart';
-
 import '../../../theme/size_constants.dart';
+import '../controller/config_controller.dart';
 
-Future<dynamic> showDialogueImagePickerProfile(
+Future<dynamic> showDialogueImagePickerProfileEntreprise(
     BuildContext context, ConfigController controller) {
   return showModalBottomSheet(
     context: context,
@@ -19,7 +18,7 @@ Future<dynamic> showDialogueImagePickerProfile(
           children: [
             ListTile(
               onTap: () {
-                controller.pickedImageCamera();
+                controller.pickedImageCameraEntreprise();
                 Get.back();
               },
               title: const Text(
@@ -28,7 +27,7 @@ Future<dynamic> showDialogueImagePickerProfile(
             ),
             ListTile(
               onTap: () {
-                controller.pickedImageGalerie();
+                controller.pickedImageGalerieEntreprise();
                 Get.back();
               },
               title: const Text(

@@ -12,7 +12,7 @@ class Site {
   final String? responsible;
   final String? phone;
   final String? description;
-  final DateTime create;
+
   Site({
     this.id,
     required this.name,
@@ -22,7 +22,6 @@ class Site {
     required this.responsible,
     required this.phone,
     required this.description,
-    required this.create,
   });
 
   Site copyWith({
@@ -34,7 +33,6 @@ class Site {
     String? responsible,
     String? phone,
     String? description,
-    DateTime? create,
   }) {
     return Site(
       id: id ?? this.id,
@@ -45,7 +43,6 @@ class Site {
       responsible: responsible ?? this.responsible,
       phone: phone ?? this.phone,
       description: description ?? this.description,
-      create: create ?? this.create,
     );
   }
 
@@ -53,13 +50,12 @@ class Site {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'operator': operator.id,
+      'operator': operator.toMap(),
       'longitude': longitude,
       'latitude': latitude,
       'responsible': responsible,
       'phone': phone,
       'description': description,
-      'create': create.millisecondsSinceEpoch,
     };
   }
 
@@ -75,7 +71,6 @@ class Site {
       phone: map['phone'] != null ? map['phone'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
-      create: DateTime.fromMillisecondsSinceEpoch(map['create'] as int),
     );
   }
 
@@ -86,7 +81,7 @@ class Site {
 
   @override
   String toString() {
-    return 'Site(id: $id, name: $name, operator: $operator, longitude: $longitude, latitude: $latitude, responsible: $responsible, phone: $phone, description: $description, create: $create)';
+    return 'Site(id: $id, name: $name, operator: $operator, longitude: $longitude, latitude: $latitude, responsible: $responsible, phone: $phone, description: $description)';
   }
 
   @override
@@ -100,8 +95,7 @@ class Site {
         other.latitude == latitude &&
         other.responsible == responsible &&
         other.phone == phone &&
-        other.description == description &&
-        other.create == create;
+        other.description == description;
   }
 
   @override
@@ -113,7 +107,6 @@ class Site {
         latitude.hashCode ^
         responsible.hashCode ^
         phone.hashCode ^
-        description.hashCode ^
-        create.hashCode;
+        description.hashCode;
   }
 }

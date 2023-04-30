@@ -9,7 +9,6 @@ const String longitude = "longitude";
 const String description = "description";
 const String responsable = "responsable";
 const String phone = "phone";
-const String create = "create";
 
 /// constant for Table [equipements]
 const String equipements = "equipements";
@@ -36,6 +35,7 @@ const String taille = "taille";
 const String address = "address";
 const String codepostal = "codepostal";
 const String logo = "logo";
+const String fixe = "fixe";
 
 /// constants for Table [contacts]
 ///

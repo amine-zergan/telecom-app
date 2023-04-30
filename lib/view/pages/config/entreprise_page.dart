@@ -5,11 +5,13 @@ import 'package:telecom/view/components/Form_Fields/code_postal_form_field.dart'
 import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/config/components/image_config.dart';
+import 'package:telecom/view/pages/config/components/show_image_profile_entreprise.dart';
 import 'package:telecom/view/pages/config/components/sub_title_config.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
-import 'package:telecom/view/pages/config/components/show_image_picker.dart';
 import 'package:telecom/view/theme/size_constants.dart';
+
+import '../../components/Form_Fields/phone_fixe_form_field.dart';
 
 class ProfileEntreprisePage extends StatelessWidget {
   const ProfileEntreprisePage({super.key});
@@ -35,11 +37,11 @@ class ProfileEntreprisePage extends StatelessWidget {
             ),
             ConfigImage(
               press: () {
-                showDialogueImagePicker(context, controller);
+                showDialogueImagePickerProfileEntreprise(context, controller);
               },
               icon: Icons.maps_home_work_outlined,
-              error: controller.errorPicker,
-              file: controller.fileImage,
+              error: controller.errorPickerentreprise,
+              file: controller.fileLogoEntreprise,
             ),
             const SizedBox(
               height: 3 * padding10,
@@ -47,11 +49,16 @@ class ProfileEntreprisePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
+                key: controller.formentreprise,
                 child: Column(
                   children: [
                     NomFormField(
-                      onEditComplete: () {},
-                      controller: TextEditingController(),
+                      onEditComplete: () {
+                        FocusScope.of(context)
+                            .requestFocus(controller.addressEntreprise);
+                      },
+                      controller: controller.nameControllerEntreprise,
+                      focusNode: controller.nameEntreprise,
                       onSaved: (value) {},
                       hintText: "nom ...",
                       labelText: "Saisi le nom d'entreprise",
@@ -60,8 +67,12 @@ class ProfileEntreprisePage extends StatelessWidget {
                       height: padding10,
                     ),
                     AddressFormField(
-                      onEditComplete: () {},
-                      controller: TextEditingController(),
+                      onEditComplete: () {
+                        FocusScope.of(context)
+                            .requestFocus(controller.codePostaleEntreprise);
+                      },
+                      focusNode: controller.addressEntreprise,
+                      controller: controller.addressControllerEntreprise,
                       onSaved: (value) {},
                       labelText: "Saisi l'address",
                     ),
@@ -70,18 +81,38 @@ class ProfileEntreprisePage extends StatelessWidget {
                     ),
                     CodePostalFormField(
                       labelText: "Saisi code postale",
-                      onEditComplete: () {},
-                      controller: TextEditingController(),
+                      onEditComplete: () {
+                        FocusScope.of(context)
+                            .requestFocus(controller.numeroEntreprise);
+                      },
+                      controller: controller.codePostaleControllerEntreprise,
+                      focusNode: controller.codePostaleEntreprise,
                       onSaved: (value) {},
                     ),
                     const SizedBox(
                       height: padding10,
                     ),
                     PhoneFormField(
-                      onEditComplete: () {},
-                      controller: TextEditingController(),
+                      onEditComplete: () {
+                        FocusScope.of(context)
+                            .requestFocus(controller.numeroFixEntreprise);
+                      },
+                      controller: controller.phoneControllerEntreprise,
+                      focusNode: controller.numeroEntreprise,
                       onSaved: (value) {},
-                      labelText: "Saisi contact Entreprise",
+                      labelText: "Saisi contact mobile Entreprise",
+                    ),
+                    const SizedBox(
+                      height: padding10,
+                    ),
+                    PhoneFixFormField(
+                      onEditComplete: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      controller: controller.phoneFixControllerEntreprise,
+                      focusNode: controller.numeroFixEntreprise,
+                      onSaved: (value) {},
+                      labelText: "Saisi contact Fixe Entreprise",
                     ),
                   ],
                 ),

@@ -29,6 +29,8 @@ class DbHelper {
       version: 1,
       onConfigure: _onConfigure,
     );
+    // ignore: avoid_print
+    print("=======Database ready for used ===========");
     return mydb;
   }
 
@@ -38,13 +40,12 @@ class DbHelper {
 
   /// create query tables in your database
   Future<void> _create(Database db, int version) async {
-    // table history for save action in App
     await db.execute("""
 CREATE TABLE $historiques(
   $id INTEGER PRIMARY KEY,
   $task TEXT NOT NULL,
   $detail TEXT ,
-  $date int
+  $date INTEGER
 )
 """);
 
@@ -86,7 +87,6 @@ CREATE TABLE $site(
   $description TEXT,
   $responsable TEXT,
   $phone INTEGER,
-  $create int,
   FOREIGN KEY (operator) REFERENCES operators(id)
 )
 """);
@@ -99,6 +99,8 @@ CREATE TABLE $entreprises(
   $taille TEXT ,
   $address TEXT NOT NULL ,
   $codepostal TEXT,
+  $phone TEXT,
+  $fixe TEXt,
   $logo TEXT
 )
 """);
@@ -125,7 +127,7 @@ CREATE TABLE $profile(
   $salaire TEXT,
   $niveau TEXT,
   $contract TEXT,
-  $creatAt int,
+  $creatAt INTEGER,
   $image TEXT
 )
 """);
@@ -162,6 +164,8 @@ CREATE TABLE $tasks(
   FOREIGN KEY (mission) REFERENCES missions(id)
 )
 """);
+// ignore: avoid_print
+    print("=======Database created with succes   ===========");
 
     await db.transaction((txn) async {
       await txn.rawInsert("""
@@ -174,16 +178,16 @@ INSERT INTO operators(name,image) VALUES('Orange','assets/project/orange.png')
 INSERT INTO operators(name,image) VALUES('Telecom','assets/project/telecom.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,image) VALUES('Nokia','assets/project/nokia.png')
+INSERT INTO projects(name,image) VALUES('Nokia','assets/project/nokia.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,image) VALUES('Nec',''assets/project/nec.png')
+INSERT INTO projects(name,image) VALUES('Nec','assets/project/nec.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,image) VALUES('Alcatel','assets/project/alcatel.png')
+INSERT INTO projects(name,image) VALUES('Alcatel','assets/project/alcatel.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(nom,image) VALUES('Huawei','assets/project/huawei.png')
+INSERT INTO projects(name,image) VALUES('Huawei','assets/project/huawei.png')
 """);
     }).then((_) {
       // ignore: avoid_print

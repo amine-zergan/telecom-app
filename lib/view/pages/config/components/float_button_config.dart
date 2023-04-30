@@ -7,19 +7,18 @@ class FloatButton extends StatelessWidget {
     Key? key,
     required this.controller,
   }) : super(key: key);
-
   final ConfigController controller;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: controller.navigatePageController,
-      icon: controller.getLastPage()
+      icon: controller.isLast
           ? const Icon(Icons.done_all)
-          : const Icon(Icons.arrow_circle_right),
+          : const Icon(Icons.arrow_circle_right_outlined),
       backgroundColor: Colors.white,
       label: Text(
-        controller.getLastPage() ? "Done" : "Next",
+        controller.textButton,
       ),
     );
   }

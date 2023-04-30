@@ -1,11 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:telecom/db/Remote_DataSource/entreprise/abstract_entreprise_service.dart';
+import 'package:telecom/db/Remote_DataSource/profile/abstract_profile_datasource.dart';
+import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
+import 'package:telecom/utils/converter/base64_encode.dart';
 import 'package:telecom/utils/formater/image_picker.dart';
 import 'package:telecom/validators/file_size_validator.dart';
 
 class ConfigController extends GetxController {
+  final IrepositoryEntrepriseSource repositoryEntreprise;
+  final IrepositroyProfileDataSource repositoryProfile;
+
+  ConfigController(
+      {required this.repositoryEntreprise, required this.repositoryProfile});
+
   /// declare variable of pageController
   /// update methodes with getter;
   late PageController _controller; // initail in intState
@@ -36,17 +48,21 @@ class ConfigController extends GetxController {
         duration: const Duration(milliseconds: 500),
         curve: Curves.linear,
       );
-      _file = null;
-      errorPicker = "";
-    } else if (_page == 6) {
-      _file = null;
+      getLastPage();
+
+      insertToDatabase();
+    } else if (_page == 6 && formentreprise.currentState!.validate()) {
       value = 1.0;
     }
     update();
   }
 
-  bool getLastPage() {
-    return _page == 6;
+  String textButton = "Next";
+  bool isLast = false;
+  void getLastPage() {
+    textButton = "Done";
+    isLast = true;
+    update();
   }
 
   /// progress bar value depend on fields page ...
@@ -131,6 +147,12 @@ class ConfigController extends GetxController {
   late TextEditingController codePostaleControllerProfile;
   late TextEditingController phoneControllerProfile;
 
+  late TextEditingController nameControllerEntreprise;
+  late TextEditingController addressControllerEntreprise;
+  late TextEditingController codePostaleControllerEntreprise;
+  late TextEditingController phoneControllerEntreprise;
+  late TextEditingController phoneFixControllerEntreprise;
+
   /// GlobalKey for Form Profile [formProfile] and Form Entreprise [formEntreprise]
   final GlobalKey<FormState> formProfile = GlobalKey<FormState>();
   final GlobalKey<FormState> formentreprise = GlobalKey<FormState>();
@@ -140,6 +162,12 @@ class ConfigController extends GetxController {
   late FocusNode codePostale;
   late FocusNode numero;
 
+  late FocusNode nameEntreprise;
+  late FocusNode addressEntreprise;
+  late FocusNode codePostaleEntreprise;
+  late FocusNode numeroEntreprise;
+  late FocusNode numeroFixEntreprise;
+
   /// Function for picked Image From Galerie and Camera
   /// we will use Validator file_size_validator in [SizeFile] and Convertor base64Encode and base64Encode [ImageConvert]
   /// upload file to database in [String] format using [ImageConvert]
@@ -148,18 +176,34 @@ class ConfigController extends GetxController {
   ///  for use to understund user why didn't work
   /// also Run Exception of Type [ValidatorError] or [platformException]
 
-  File? _file;
-  File? get fileImage => _file;
+  File? _fileprofile;
+  File? _fileprofileEntreprise;
+  File? get fileImage => _fileprofile;
+  File? get fileLogoEntreprise => _fileprofileEntreprise;
   String errorPicker = "";
+  String errorPickerentreprise = "";
 
   Future<void> pickedImageGalerie() async {
     try {
       File? file = await ImagePickerFile.getImageFromGalery();
       errorPicker = SizeFile.validatesize(file);
-      _file = file;
+      _fileprofile = file;
       update();
     } catch (e) {
-      errorPicker = e.toString();
+      errorPicker = "un erreur se produit, refaire choisir une autre image";
+      update();
+    }
+  }
+
+  Future<void> pickedImageGalerieEntreprise() async {
+    try {
+      File? file = await ImagePickerFile.getImageFromGalery();
+      errorPickerentreprise = SizeFile.validatesize(file);
+      _fileprofileEntreprise = file;
+      update();
+    } catch (e) {
+      errorPickerentreprise =
+          "un erreur se produit, refaire choisir une autre image";
       update();
     }
   }
@@ -168,10 +212,23 @@ class ConfigController extends GetxController {
     try {
       File? file = await ImagePickerFile.getImageFromImage();
       errorPicker = SizeFile.validatesize(file);
-      _file = file;
+      _fileprofile = file;
       update();
     } catch (e) {
       errorPicker = "un erreur se produit, refaire choisir une autre image";
+      update();
+    }
+  }
+
+  Future<void> pickedImageCameraEntreprise() async {
+    try {
+      File? file = await ImagePickerFile.getImageFromImage();
+      errorPickerentreprise = SizeFile.validatesize(file);
+      _fileprofileEntreprise = file;
+      update();
+    } catch (e) {
+      errorPickerentreprise =
+          "un erreur se produit, refaire choisir une autre image";
       update();
     }
   }
@@ -184,16 +241,34 @@ class ConfigController extends GetxController {
     codePostaleControllerProfile = TextEditingController();
     phoneControllerProfile = TextEditingController();
 
+    nameControllerEntreprise = TextEditingController();
+    addressControllerEntreprise = TextEditingController();
+    codePostaleControllerEntreprise = TextEditingController();
+    phoneControllerEntreprise = TextEditingController();
+    phoneFixControllerEntreprise = TextEditingController();
+
     name = FocusNode();
     address = FocusNode();
     codePostale = FocusNode();
     numero = FocusNode();
+
+    nameEntreprise = FocusNode();
+    addressEntreprise = FocusNode();
+    codePostaleEntreprise = FocusNode();
+    numeroEntreprise = FocusNode();
+    numeroFixEntreprise = FocusNode();
     super.onInit();
   }
 
   @override
   void onClose() {
     _controller.dispose();
+    nameControllerEntreprise.dispose();
+    addressControllerEntreprise.dispose();
+    codePostaleControllerEntreprise.dispose();
+    phoneControllerEntreprise.dispose();
+    phoneFixControllerEntreprise.dispose();
+
     nameControllerProfile.dispose();
     addressControllerProfile.dispose();
     codePostaleControllerProfile.dispose();
@@ -202,6 +277,36 @@ class ConfigController extends GetxController {
     address.dispose();
     codePostale.dispose();
     numero.dispose();
+    nameEntreprise.dispose();
+    addressEntreprise.dispose();
+    codePostaleEntreprise.dispose();
+    numeroEntreprise.dispose();
+    numeroFixEntreprise.dispose();
     super.onClose();
+  }
+
+  /// Func For insertion Data to Table in Database
+  ///
+  ///
+  Future<void> insertToDatabase() async {
+    try {
+      final model = Profile(
+          name: nameControllerProfile.text,
+          codePoste: codePostaleControllerProfile.text,
+          post: poste,
+          phone: phoneControllerProfile.text,
+          salaire: salaire,
+          niveau: niveau,
+          contract: contrat!,
+          createAt: DateTime.now(),
+          image: ImageConvert.base64convert(_fileprofile));
+      // ignore: unused_local_variable
+      final response = repositoryProfile.insert(model);
+      // ignore: avoid_print
+      print("======== response ok inserted To Databse");
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+    }
   }
 }
