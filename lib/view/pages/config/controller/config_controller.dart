@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:telecom/utils/formater/image_picker.dart';
+import 'package:telecom/validators/file_size_validator.dart';
 
 class ConfigController extends GetxController {
   /// declare variable of pageController
@@ -17,10 +21,7 @@ class ConfigController extends GetxController {
   }
 
   /// Func of Type [void] for navigate to next Page with methode animateToPage
-  ///
-  /// with params duration [500s] and curve [linear]
-  ///
-  /// and update value of progress Bar
+  /// with params duration [500s] and curve [linear] and update value of progress Bar
   void navigatePageController() {
     if (_page <= 4) {
       _controller.animateToPage(
@@ -30,23 +31,16 @@ class ConfigController extends GetxController {
       );
       value = value + 0.16;
     } else if (_page == 5 && formProfile.currentState!.validate()) {
-      //value = 1 - 0.16;
-      // ignore: avoid_print
-      print("activate form Profile");
       _controller.animateToPage(
         _page + 1,
         duration: const Duration(milliseconds: 500),
         curve: Curves.linear,
       );
-
-      /// check validat form in _page =5
+      _file = null;
+      errorPicker = "";
     } else if (_page == 6) {
-      // ignore: avoid_print
-      print("activate form Profile");
+      _file = null;
       value = 1.0;
-
-      /// check validat form in _page =5
-      // navigation vers page home
     }
     update();
   }
@@ -60,7 +54,6 @@ class ConfigController extends GetxController {
 
   ///  Configuration for Page [NiveauPage]
   /// Variable and Logique for NiveauPage params [selectedIndex] int?
-  ///
   /// update variable [String] wil insert in Profile database
   int? selectNiveau;
   String? niveau;
@@ -73,11 +66,8 @@ class ConfigController extends GetxController {
     update();
   }
 
-  /// Configuration for [PostPage]
-  /// For this page we need to variable like NiveauPage
-  /// variable [poste] of Type String?
-  /// variable [selectePoste] of Type int?
-  ///
+  /// Configuration for [PostPage] For this page we need to variable like NiveauPage
+  /// variable [poste] of Type String? variable [selectePoste] of Type int?
   /// and we need to update them
   int? selectPoste;
   String? poste;
@@ -91,11 +81,8 @@ class ConfigController extends GetxController {
   }
 
   /// Configuration for [ContractPage]
-  /// For this page we need to variable like NiveauPage
-  /// variable [contrat] of Type String?
-  /// variable [selectContrat] of Type int?
-  ///
-  /// and we need to update them
+  /// For this page we need to variable like NiveauPage variable [contrat] of Type String?
+  /// variable [selectContrat] of Type int? and we need to update them
   int? selectContrat;
   String? contrat;
 
@@ -107,12 +94,9 @@ class ConfigController extends GetxController {
     update();
   }
 
-  /// Configuration for [SalairePAge]
-  /// For this page we need to variable like NiveauPage
-  /// variable [salaire] of Type String?
-  /// variable [selectSalaire] of Type int?
-  ///
-  /// and we need to update them
+  /// Configuration for [SalairePage] For this page we need to variable like NiveauPage
+  /// variable [salaire] of Type String?, variable [selectSalaire] of Type int?
+  // and we need to update them
   int? selectSalaire;
   String? salaire;
 
@@ -124,11 +108,8 @@ class ConfigController extends GetxController {
     update();
   }
 
-  /// Configuration for [TaillePage]
-  /// For this page we need to variable like NiveauPage
-  /// variable [taille] of Type String?
-  /// variable [selectTaille] of Type int?
-  ///
+  /// Configuration for [TaillePage]. For this page we need to variable like NiveauPage
+  /// variable [taille] of Type String?, variable [selectTaille] of Type int?
   /// and we need to update them
   int? selectTaille;
   String? taille;
@@ -152,11 +133,48 @@ class ConfigController extends GetxController {
 
   /// GlobalKey for Form Profile [formProfile] and Form Entreprise [formEntreprise]
   final GlobalKey<FormState> formProfile = GlobalKey<FormState>();
+  final GlobalKey<FormState> formentreprise = GlobalKey<FormState>();
 
   late FocusNode name;
   late FocusNode address;
   late FocusNode codePostale;
   late FocusNode numero;
+
+  /// Function for picked Image From Galerie and Camera
+  /// we will use Validator file_size_validator in [SizeFile] and Convertor base64Encode and base64Encode [ImageConvert]
+  /// upload file to database in [String] format using [ImageConvert]
+  ///
+  /// return Erro of abstract [Failure] containt error String to see in Widget
+  ///  for use to understund user why didn't work
+  /// also Run Exception of Type [ValidatorError] or [platformException]
+
+  File? _file;
+  File? get fileImage => _file;
+  String errorPicker = "";
+
+  Future<void> pickedImageGalerie() async {
+    try {
+      File? file = await ImagePickerFile.getImageFromGalery();
+      errorPicker = SizeFile.validatesize(file);
+      _file = file;
+      update();
+    } catch (e) {
+      errorPicker = e.toString();
+      update();
+    }
+  }
+
+  Future<void> pickedImageCamera() async {
+    try {
+      File? file = await ImagePickerFile.getImageFromImage();
+      errorPicker = SizeFile.validatesize(file);
+      _file = file;
+      update();
+    } catch (e) {
+      errorPicker = "un erreur se produit, refaire choisir une autre image";
+      update();
+    }
+  }
 
   @override
   void onInit() {

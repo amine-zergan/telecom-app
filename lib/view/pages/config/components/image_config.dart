@@ -47,9 +47,16 @@ class ConfigImage extends StatelessWidget {
                           icon,
                           size: size.width * 0.1,
                         )
-                      : Image.file(
-                          file!,
-                          fit: BoxFit.contain,
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            size.height * 0.1,
+                          ),
+                          child: Image.file(
+                            file!,
+                            fit: BoxFit.cover,
+                            width: size.height * 0.13,
+                            height: size.height * 0.13,
+                          ),
                         ),
                 ),
                 Positioned(

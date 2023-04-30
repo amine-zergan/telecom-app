@@ -46,8 +46,10 @@ class TitleConfig extends StatelessWidget {
   const TitleConfig({
     Key? key,
     required this.title,
+    this.textAlign,
   }) : super(key: key);
   final String title;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +57,7 @@ class TitleConfig extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 15.0),
       child: Text(
         title,
-        textAlign: TextAlign.center,
+        textAlign: textAlign,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               fontWeight: FontWeight.w500,
             ),

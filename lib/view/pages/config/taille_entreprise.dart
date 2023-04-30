@@ -13,7 +13,7 @@ class TaillePage extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
       children: [
         const TitleConfig(
-          title: "Quel est la taille de l'entreprise ?",
+          title: "Quel est la taille de votre Entreprise ?",
         ),
         ...List.generate(taille.length, (index) {
           String model = taille[index];
