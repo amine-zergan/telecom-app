@@ -1,11 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 
 class PostPage extends StatelessWidget {
-  const PostPage({super.key});
+  const PostPage({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+  final ConfigController controller;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -16,16 +20,14 @@ class PostPage extends StatelessWidget {
         ),
         ...List.generate(occupations.length, (index) {
           String occupation = occupations[index];
-          return GetBuilder<ConfigController>(builder: (controller) {
-            return CardChoix(
-              index: index,
-              selectedIndex: controller.selectPoste,
-              onTap: () {
-                controller.updatePoste(index, occupation);
-              },
-              title: occupation,
-            );
-          });
+          return CardChoix(
+            index: index,
+            selectedIndex: controller.selectPoste,
+            onTap: () {
+              controller.updatePoste(index, occupation);
+            },
+            title: occupation,
+          );
         }),
         const SizedBox(
           height: 150,

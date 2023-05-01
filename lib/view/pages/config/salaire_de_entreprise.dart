@@ -1,11 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
 
 class SalairePage extends StatelessWidget {
-  const SalairePage({super.key});
+  const SalairePage({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+  final ConfigController controller;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -20,22 +24,18 @@ class SalairePage extends StatelessWidget {
             salaire.length,
             (int index) {
               final price = salaire[index];
-              return GetBuilder<ConfigController>(
-                builder: (controller) {
-                  return ChoiceChip(
-                    label: Text(
-                      price,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    selected: controller.selectSalaire == index,
-                    selectedColor: Colors.grey.shade500,
-                    autofocus: true,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10.0),
-                    onSelected: (bool selected) {
-                      controller.updateSalaire(index, price, selected);
-                    },
-                  );
+              return ChoiceChip(
+                label: Text(
+                  price,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                selected: controller.selectSalaire == index,
+                selectedColor: Colors.grey.shade500,
+                autofocus: true,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
+                onSelected: (bool selected) {
+                  controller.updateSalaire(index, price, selected);
                 },
               );
             },

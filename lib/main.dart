@@ -14,7 +14,7 @@ void main() {
     [
       DeviceOrientation.portraitUp,
     ],
-  ); // orientation mt3 app
+  );
   runApp(
     const MyApp(),
   );
@@ -22,7 +22,6 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -41,10 +40,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // ignore: avoid_print
-    print('state = $state');
-  }
+  void didChangeAppLifecycleState(AppLifecycleState state) {}
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +52,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: ThemeApp.light,
       darkTheme: ThemeApp.darkTheme(context),
       themeMode: ThemeMode.dark,
-      //home: const MyHomePage(title: 'Telecom Application'),
     );
   }
 }

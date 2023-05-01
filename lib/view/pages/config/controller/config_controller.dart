@@ -4,8 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:telecom/db/Remote_DataSource/entreprise/abstract_entreprise_service.dart';
-import 'package:telecom/db/Remote_DataSource/profile/abstract_profile_datasource.dart';
+import 'package:telecom/db/Remote_Data_Source/entreprise/abstract_entreprise_service.dart';
+import 'package:telecom/db/Remote_Data_Source/profile/abstract_profile_datasource.dart';
+import 'package:telecom/model/entreprise/entreprise_model.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/utils/converter/base64_encode.dart';
 import 'package:telecom/utils/formater/image_picker.dart';
@@ -49,10 +50,9 @@ class ConfigController extends GetxController {
         curve: Curves.linear,
       );
       getLastPage();
-
-      insertToDatabase();
     } else if (_page == 6 && formentreprise.currentState!.validate()) {
       value = 1.0;
+      insertToDatabase();
     }
     update();
   }
@@ -291,19 +291,31 @@ class ConfigController extends GetxController {
   Future<void> insertToDatabase() async {
     try {
       final model = Profile(
-          name: nameControllerProfile.text,
-          codePoste: codePostaleControllerProfile.text,
-          post: poste,
-          phone: phoneControllerProfile.text,
-          salaire: salaire,
-          niveau: niveau,
-          contract: contrat!,
-          createAt: DateTime.now(),
-          image: ImageConvert.base64convert(_fileprofile));
+        name: nameControllerProfile.text,
+        codePoste: codePostaleControllerProfile.text,
+        post: poste,
+        phone: phoneControllerProfile.text,
+        salaire: salaire,
+        niveau: niveau,
+        contract: contrat!,
+        createAt: DateTime.now(),
+        image: ImageConvert.base64convert(_fileprofile),
+      );
+      Entreprise entreprise = Entreprise(
+          name: nameControllerEntreprise.text,
+          taille: taille,
+          address: addressControllerEntreprise.text,
+          codepostal: codePostaleControllerEntreprise.text,
+          phone: phoneControllerEntreprise.text,
+          fixe: phoneFixControllerEntreprise.text);
       // ignore: unused_local_variable
-      final response = repositoryProfile.insert(model);
+      final response = await repositoryProfile.insert(model);
+      // ignore: unused_local_variable
+      final result = await repositoryEntreprise.insert(entreprise);
       // ignore: avoid_print
-      print("======== response ok inserted To Databse");
+      print("======== response $response ok inserted To Databse");
+      // ignore: avoid_print
+      print("======== response $result ok inserted To Databse");
     } catch (e) {
       // ignore: avoid_print
       print(e.toString());

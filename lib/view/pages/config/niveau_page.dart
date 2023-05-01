@@ -2,8 +2,6 @@
 // ignore_for_file: must_be_immutable, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/theme/color_constants.dart';
@@ -11,7 +9,9 @@ import 'package:telecom/view/theme/color_constants.dart';
 class NiveauPage extends StatelessWidget {
   const NiveauPage({
     Key? key,
+    required this.controller,
   }) : super(key: key);
+  final ConfigController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,14 @@ class NiveauPage extends StatelessWidget {
         ),
         ...List.generate(etude.length, (index) {
           String niveau = etude[index];
-          return GetBuilder<ConfigController>(builder: (controller) {
-            return CardChoix(
-              index: index,
-              selectedIndex: controller.selectNiveau,
-              onTap: () {
-                controller.updateNiveau(index, niveau);
-              },
-              title: niveau,
-            );
-          });
+          return CardChoix(
+            index: index,
+            selectedIndex: controller.selectNiveau,
+            onTap: () {
+              controller.updateNiveau(index, niveau);
+            },
+            title: niveau,
+          );
         }),
         const SizedBox(
           height: 150,

@@ -2,19 +2,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:telecom/view/components/Form_Fields/address_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/code_postal_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/config/components/image_config.dart';
+import 'package:telecom/view/pages/config/components/show_image_picker.dart';
 import 'package:telecom/view/pages/config/components/sub_title_config.dart';
 import 'package:telecom/view/pages/config/controller/config_controller.dart';
 import 'package:telecom/view/pages/config/niveau_page.dart';
-import 'package:telecom/view/pages/config/components/show_image_picker.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+  final ConfigController controller;
 
   @override
   Widget build(BuildContext context) {
