@@ -1,17 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:telecom/view/pages/onboard/components/buble_animation.dart';
 import 'package:telecom/view/pages/onboard/components/switch_widget.dart';
 
 import '../../../theme/size_constants.dart';
+import '../controller/onboard_controller.dart';
 import '../data_onboard.dart';
 
 class ButtomWidget extends StatelessWidget {
   const ButtomWidget({
-    super.key,
+    Key? key,
     required this.selectIndex,
-  });
+    required this.controller,
+  }) : super(key: key);
 
   final int selectIndex;
+  final OnBoardController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,10 @@ class ButtomWidget extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            SwitcheWidget(selectIndex: selectIndex)
+            SwitcheWidget(
+              selectIndex: selectIndex,
+              controller: controller,
+            )
           ],
         ),
       ),

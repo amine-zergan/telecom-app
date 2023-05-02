@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:telecom/di/get_it.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_controller.dart';
 
 class OnboardBind extends Bindings {
@@ -7,6 +8,10 @@ class OnboardBind extends Bindings {
   /// di ::
   @override
   void dependencies() {
-    Get.put(OnBoardController());
+    Get.put(
+      OnBoardController(
+        getItInstance(),
+      ),
+    );
   }
 }

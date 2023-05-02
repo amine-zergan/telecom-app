@@ -31,7 +31,10 @@ class BodyOnboard extends StatelessWidget {
           ),
           GetBuilder<OnBoardController>(
             builder: (controller) {
-              return ButtomWidget(selectIndex: controller.selectedIndex);
+              return ButtomWidget(
+                selectIndex: controller.selectedIndex,
+                controller: controller,
+              );
             },
           )
         ],

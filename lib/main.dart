@@ -7,14 +7,15 @@ import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/routes/routes_navigation.dart';
 import 'package:telecom/view/theme/theming_app.dart';
 
-void main() {
-  getIt.setup();
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await getIt.setup();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
     ],
   );
+
   runApp(
     const MyApp(),
   );

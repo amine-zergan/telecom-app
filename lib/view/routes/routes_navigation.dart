@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:telecom/di/get_it.dart';
 import 'package:telecom/view/pages/config/config_page.dart';
 import 'package:telecom/view/pages/config/controller/config_binding.dart';
 import 'package:telecom/view/pages/home/home_page.dart';
@@ -8,6 +9,7 @@ import 'package:telecom/view/pages/home/start/report/create_report.dart';
 import 'package:telecom/view/pages/home/start/site/create_site.dart';
 import 'package:telecom/view/pages/home/start/tasks/create_task.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
+import 'package:telecom/view/pages/onboard/middleware/onboard_middleware_config.dart';
 import 'package:telecom/view/routes/route_name.dart';
 
 import '../pages/onboard/page/onboard_page.dart';
@@ -16,10 +18,15 @@ class Routes {
   Routes._();
   static List<GetPage> routes = [
     GetPage(
-      name: RouteName.onboard,
-      page: () => const OnboardPage(),
-      binding: OnboardBind(),
-    ),
+        name: RouteName.onboard,
+        page: () => const OnboardPage(),
+        binding: OnboardBind(),
+        middlewares: [
+          WelcomeMiddleware(
+            repos: getItInstance(),
+            priority: 1,
+          ),
+        ]),
     GetPage(
       name: RouteName.config,
       page: () => const ConfigPage(),
