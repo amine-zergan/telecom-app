@@ -25,8 +25,6 @@ class SwitcheWidget extends StatelessWidget {
           ? StartedButton(
               press: () {
                 Get.offNamed(RouteName.config);
-                // ignore: avoid_print
-                print("======= navigation to config-page =========");
               },
             )
           : Container(

@@ -22,7 +22,7 @@ class Routes {
     ),
     GetPage(
       name: RouteName.home,
-      page: () => const HomePage(),
+      page: () => const MyHomePage(),
     )
   ];
 }

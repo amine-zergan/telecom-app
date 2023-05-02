@@ -4,7 +4,6 @@ class OnBoardController extends GetxController {
   /// Add index params to able update PageView.builder :
   /// variable : selectedIndex [int]
   ///
-
   int selectedIndex = 0;
 
   /// Func of Type [void] will update the widget PageView and

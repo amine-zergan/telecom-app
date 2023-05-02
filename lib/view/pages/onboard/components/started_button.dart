@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/color_constants.dart';
+
 class StartedButton extends StatelessWidget {
   const StartedButton({
     Key? key,
@@ -15,12 +17,12 @@ class StartedButton extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       onPressed: press,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      color: const Color.fromRGBO(47, 46, 64, 0.8),
+      color: colorButton,
       child: Text(
         "Commencer",
         style: Theme.of(context)
             .textTheme
-            .titleSmall!
+            .labelLarge!
             .copyWith(color: Colors.white),
       ),
     );

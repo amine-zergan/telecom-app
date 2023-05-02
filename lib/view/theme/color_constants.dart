@@ -8,3 +8,4 @@ const backgroundColor = Color.fromRGBO(248, 248, 255, 0.8);
 const gradienColorBegin = Color.fromRGBO(38, 33, 123, 1);
 const gradienColorEnd = Color.fromRGBO(97, 139, 255, 1);
 Color errorColor = Colors.red.shade200;
+const colorButton = Color.fromARGB(204, 126, 122, 202);
