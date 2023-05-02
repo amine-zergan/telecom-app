@@ -17,6 +17,8 @@ utilisateur commence d inserer les données concernant la nouvelle mission :
     * index de vehicule de depart
     * les sites correspondant
     * nom de vehicule
+    * operator
+    * project
     * chef projet
     * chef d'equipe
     * frais de deplacement

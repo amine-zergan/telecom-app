@@ -11,6 +11,7 @@ import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/utils/converter/base64_encode.dart';
 import 'package:telecom/utils/formater/image_picker.dart';
 import 'package:telecom/validators/file_size_validator.dart';
+import 'package:telecom/view/routes/route_name.dart';
 
 class ConfigController extends GetxController {
   final IrepositoryEntrepriseSource repositoryEntreprise;
@@ -53,6 +54,7 @@ class ConfigController extends GetxController {
     } else if (_page == 6 && formentreprise.currentState!.validate()) {
       value = 1.0;
       insertToDatabase();
+      Get.offAllNamed(RouteName.home);
     }
     update();
   }

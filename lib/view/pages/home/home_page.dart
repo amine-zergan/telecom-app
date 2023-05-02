@@ -1,6 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:telecom/view/pages/home/contact_page/contact_page.dart';
+import 'package:telecom/view/pages/home/dashbord/dashbord_page.dart';
+import 'package:telecom/view/pages/home/navigation/navigation_page.dart';
+import 'package:telecom/view/pages/home/settings/setting_page.dart';
 import 'package:telecom/view/pages/home/start/add_page.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 
@@ -26,6 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: const Drawer(
         elevation: 0,
       ),
+      appBar: AppBar(
+        title: const Text("Telecom App"),
+      ),
       body: SafeArea(
         bottom: false,
         top: false,
@@ -44,45 +51,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   curve: Curves.easeIn,
                   duration: const Duration(milliseconds: 100),
                   opacity: isdrag ? 0.7 : 1,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppBar(
-                          elevation: 0,
-                          title: const Text("Telecom App"),
-                          centerTitle: true,
-                        ),
-                        IndexedStack(
-                          index: selectedIndex,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: Get.size.height,
-                              color: Colors.grey,
-                              child: ListView(
-                                children: const [],
-                              ),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: Get.size.height,
-                              color: Colors.amber,
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: Get.size.height,
-                              color: Colors.red,
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: Get.size.height,
-                              color: Colors.blue,
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IndexedStack(
+                        index: selectedIndex,
+                        children: const [
+                          DashbordPage(),
+                          ContactPage(),
+                          NavigationPage(),
+                          SettingPage(),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -151,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       offset = const Offset(51.0, 70.7);
                     });
-                    Get.to<double>(() => const DetailsPage(),
+                    Get.to<double>(() => const CreateObjectPage(),
                             transition: Transition.fadeIn,
                             curve: Curves.elasticInOut,
                             duration: const Duration(milliseconds: 200))!
@@ -173,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     tooltip: "Ajouter",
                     onPressed: () async {
                       double? position = await Get.to<double>(
-                          () => const DetailsPage(),
+                          () => const CreateObjectPage(),
                           transition: Transition.fadeIn,
                           duration: const Duration(milliseconds: 200),
                           curve: Curves.elasticInOut);
@@ -225,7 +206,6 @@ class _NavigationBottomState extends State<NavigationBottom> {
       child: Opacity(
         opacity: widget.isdrag ? 0.6 : 1,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BottomNavigationItem(
               icon: Icons.add_chart_outlined,
@@ -241,6 +221,9 @@ class _NavigationBottomState extends State<NavigationBottom> {
               selectedColor: Colors.white,
               unselectedColor: Colors.black,
             ),
+            const SizedBox(
+              width: 20,
+            ),
             BottomNavigationItem(
               onTap: () {
                 setState(() {
@@ -249,14 +232,14 @@ class _NavigationBottomState extends State<NavigationBottom> {
               },
               onpress: widget.onpress,
               index: 1,
-              label: "History",
-              icon: Icons.history,
+              label: "paramatre",
+              icon: Icons.contact_page_outlined,
               select: widget.select == 1,
               selectedColor: Colors.white,
               unselectedColor: Colors.black,
             ),
             const SizedBox(
-              width: 10,
+              width: 50,
             ),
             BottomNavigationItem(
               onTap: () {
@@ -272,6 +255,9 @@ class _NavigationBottomState extends State<NavigationBottom> {
               selectedColor: Colors.white,
               unselectedColor: Colors.black,
             ),
+            const SizedBox(
+              width: 30,
+            ),
             BottomNavigationItem(
               onpress: widget.onpress,
               index: 3,
@@ -285,9 +271,6 @@ class _NavigationBottomState extends State<NavigationBottom> {
               icon: Icons.person_add_alt_1_outlined,
               selectedColor: Colors.white,
               unselectedColor: Colors.black,
-            ),
-            const SizedBox(
-              width: 5,
             ),
           ],
         ),

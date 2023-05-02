@@ -1,12 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:telecom/view/pages/home/start/components/float_back_button.dart';
 import 'package:telecom/view/pages/home/start/components/nav_button.dart';
+import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key});
+class CreateObjectPage extends StatelessWidget {
+  const CreateObjectPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +27,33 @@ class DetailsPage extends StatelessWidget {
             ),
             CreateNavButton(
               title: "Mission",
-              press: () {},
+              press: () {
+                Get.toNamed(RouteName.startMission);
+              },
             ),
             CreateNavButton(
               title: "Site",
-              press: () {},
+              press: () {
+                Get.toNamed(RouteName.startSite);
+              },
             ),
             CreateNavButton(
               title: "Rapport",
-              press: () {},
+              press: () {
+                Get.toNamed(RouteName.startReport);
+              },
             ),
             CreateNavButton(
               title: "Contact",
-              press: () {},
+              press: () {
+                Get.toNamed(RouteName.startContact);
+              },
             ),
             CreateNavButton(
-              title: "Navigation",
-              press: () {},
+              title: "Taches",
+              press: () {
+                Get.toNamed(RouteName.startTask);
+              },
             ),
             const Spacer(),
           ],

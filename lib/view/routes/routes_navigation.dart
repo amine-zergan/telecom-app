@@ -2,6 +2,11 @@ import 'package:get/get.dart';
 import 'package:telecom/view/pages/config/config_page.dart';
 import 'package:telecom/view/pages/config/controller/config_binding.dart';
 import 'package:telecom/view/pages/home/home_page.dart';
+import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
+import 'package:telecom/view/pages/home/start/mission/create_mission.dart';
+import 'package:telecom/view/pages/home/start/report/create_report.dart';
+import 'package:telecom/view/pages/home/start/site/create_site.dart';
+import 'package:telecom/view/pages/home/start/tasks/create_task.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
 import 'package:telecom/view/routes/route_name.dart';
 
@@ -23,6 +28,29 @@ class Routes {
     GetPage(
       name: RouteName.home,
       page: () => const MyHomePage(),
-    )
+    ),
+
+    /// add create pages : tasks -Missions -report -site- contact
+    ///
+    GetPage(
+      name: RouteName.startMission,
+      page: () => const StartMission(),
+    ),
+    GetPage(
+      name: RouteName.startContact,
+      page: () => const StartContact(),
+    ),
+    GetPage(
+      name: RouteName.startSite,
+      page: () => const StartSite(),
+    ),
+    GetPage(
+      name: RouteName.startReport,
+      page: () => const StartReport(),
+    ),
+    GetPage(
+      name: RouteName.startTask,
+      page: () => const StartTask(),
+    ),
   ];
 }

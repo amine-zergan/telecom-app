@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
       defaultTransition: Transition.fadeIn,
-      initialRoute: RouteName.home,
+      initialRoute: RouteName.onboard,
       theme: ThemeApp.light,
       darkTheme: ThemeApp.darkTheme(context),
       themeMode: ThemeMode.dark,
