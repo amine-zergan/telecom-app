@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:get/get.dart';
 import 'package:telecom/data/post_data.dart';
 
@@ -9,7 +9,7 @@ class ContactController extends GetxController {
   late FocusNode focusNom;
   late TextEditingController contact;
   late FocusNode focusContact;
-  GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey();
 
   /// For saving Post to contact for filtering and search in Database
   /// create variable [post] of type [String?] for groupvalue in RadioListeTile

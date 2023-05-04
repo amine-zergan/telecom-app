@@ -303,6 +303,8 @@ class ConfigController extends GetxController {
         createAt: DateTime.now(),
         image: ImageConvert.base64convert(_fileprofile),
       );
+      // ignore: avoid_print
+      print(phoneControllerProfile.text);
       Entreprise entreprise = Entreprise(
           name: nameControllerEntreprise.text,
           taille: taille,

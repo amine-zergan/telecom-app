@@ -21,7 +21,9 @@ class ValidatorProfile {
   /// with PhoneTextFormatter will champ the length of phone_number
   /// It will return Field emty if [String?] is null Or invalid Phone
   ///
-  static String? validatorPhone(String? value) {
+  static String? validatorPhone(
+    String? value,
+  ) {
     final RegExp regExp = RegExp("[2359][0-9][' '][0-9]{3}[' '][0-9]{3}");
     if (value!.isEmpty) {
       return "champ numero de tel obligatoire";

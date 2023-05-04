@@ -40,7 +40,7 @@ class PhoneFixFormField extends StatelessWidget {
       onSaved: onSaved,
       onEditingComplete: onEditComplete,
       decoration: InputDecoration(
-        hintText: "50 000 100",
+        hintText: "71 000 100",
         labelText: labelText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),

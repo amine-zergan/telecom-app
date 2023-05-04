@@ -86,7 +86,7 @@ CREATE TABLE $site(
   $longitude TEXT NOT NULL,
   $description TEXT,
   $responsable TEXT,
-  $phone INTEGER,
+  $phone TEXT,
   FOREIGN KEY (operator) REFERENCES operators(id)
 )
 """);
@@ -111,7 +111,7 @@ CREATE TABLE $contacts(
   $id INTEGER PRIMARY KEY,
   $name TEXT NOT NULL,
   $post TEXT NOT NULL,
-  $contact INTEGER
+  $contact TEXT
 )
 """);
 
