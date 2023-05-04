@@ -27,11 +27,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      //backgroundColor: Colors.grey.shade800,
       drawer: const Drawer(
         elevation: 0,
       ),
       appBar: AppBar(
         title: const Text("Telecom App"),
+        elevation: 0,
       ),
       body: SafeArea(
         bottom: false,
@@ -97,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ClipPath(
                         clipper: Background(offset: offset),
                         child: Container(
-                          color: colorButton,
+                          color: Colors.grey.shade800,
                           width: double.infinity,
                           height: size.height,
                         ),

@@ -50,7 +50,7 @@ class Site {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'operator': operator.toMap(),
+      'operator': operator.id,
       'longitude': longitude,
       'latitude': latitude,
       'responsible': responsible,

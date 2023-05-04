@@ -25,14 +25,12 @@ class PhoneFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
-    print("form Phone build with update");
     return TextFormField(
       focusNode: focusNode,
       controller: controller,
       autocorrect: false,
       onChanged: onChanged,
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.name,
       validator: ValidatorProfile.validatorPhone,
       inputFormatters: [
         PhoneFormatter(),

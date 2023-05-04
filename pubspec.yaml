@@ -47,6 +47,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/svg/
+    - assets/project/
     - assets/spinner.gif
     - assets/pylone.png
 

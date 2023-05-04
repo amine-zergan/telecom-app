@@ -6,7 +6,8 @@ const List<String> occupations = [
   "Technicien",
   "Stagiere",
   "Ingenieur",
-  "Etudiant"
+  "Etudiant",
+  "Maintenancier",
 ];
 
 const List<String> contract = [
