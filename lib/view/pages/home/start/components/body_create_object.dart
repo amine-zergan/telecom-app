@@ -48,6 +48,12 @@ class BodyCreateObject extends StatelessWidget {
               Get.toNamed(RouteName.startTask);
             },
           ),
+          CreateNavButton(
+            title: "Materials",
+            press: () {
+              Get.toNamed(RouteName.startMaterial);
+            },
+          ),
           const Spacer(),
         ],
       ),

@@ -38,6 +38,9 @@ class PostRadioTileCard extends StatelessWidget {
         ),
         value: model,
         groupValue: controller.post,
+        selectedTileColor: controller.selectValue == index
+            ? Colors.grey.shade800
+            : Colors.transparent,
         title: Text(
           model,
           style: Theme.of(context).textTheme.labelLarge!.copyWith(

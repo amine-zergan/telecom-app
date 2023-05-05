@@ -30,6 +30,7 @@ class NomFormField extends StatelessWidget {
       inputFormatters: const [],
       onSaved: onSaved,
       onChanged: onChanged,
+      controller: controller,
       onEditingComplete: onEditComplete,
       validator: ValidatorProfile.validatorName,
       decoration: InputDecoration(

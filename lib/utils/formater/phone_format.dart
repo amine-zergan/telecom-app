@@ -25,7 +25,7 @@ class PhoneFormat {
   /// value ="54948198"
   static String phoneNumber(String value) {
     String phone = "";
-    List<String> spliter = phone.split(" ");
+    List<String> spliter = value.split(" ");
     for (int i = 0; i < spliter.length; i++) {
       phone = phone + spliter[i];
     }

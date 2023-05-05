@@ -14,4 +14,5 @@ class RouteName {
   static const startSite = "/create-site";
   static const startContact = "/create-contact";
   static const startReport = "/create-report";
+  static const startMaterial = "/create-equipement";
 }

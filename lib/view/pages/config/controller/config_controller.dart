@@ -10,6 +10,8 @@ import 'package:telecom/model/entreprise/entreprise_model.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/utils/converter/base64_encode.dart';
 import 'package:telecom/utils/formater/image_picker.dart';
+import 'package:telecom/utils/formater/phone_format.dart';
+
 import 'package:telecom/validators/file_size_validator.dart';
 import 'package:telecom/view/routes/route_name.dart';
 
@@ -217,7 +219,7 @@ class ConfigController extends GetxController {
       _fileprofile = file;
       update();
     } catch (e) {
-      errorPicker = "un erreur se produit, refaire choisir une autre image";
+      errorPicker = "un erreur se produit, rechoisir une autre image";
       update();
     }
   }
@@ -303,8 +305,10 @@ class ConfigController extends GetxController {
         createAt: DateTime.now(),
         image: ImageConvert.base64convert(_fileprofile),
       );
+
+      String phone = PhoneFormat.phoneNumber(phoneControllerProfile.text);
       // ignore: avoid_print
-      print(phoneControllerProfile.text);
+      print(phone);
       Entreprise entreprise = Entreprise(
           name: nameControllerEntreprise.text,
           taille: taille,

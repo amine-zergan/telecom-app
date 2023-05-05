@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
+import 'package:telecom/db/Remote_Data_Source/contact/remote_contact_datasource.dart';
 
 import 'package:telecom/db/Remote_Data_Source/entreprise/abstract_entreprise_service.dart';
 import 'package:telecom/db/Remote_Data_Source/entreprise/remote_entreprise_service.dart';
@@ -30,5 +32,8 @@ Future<void> setup() async {
   );
   getItInstance.registerLazySingleton<IrepositroyProfileDataSource>(
     () => RemoteProfileDataSourceImpl(),
+  );
+  getItInstance.registerLazySingleton<IrepositoryContactDatasource>(
+    () => RemoteContactDataSource(),
   );
 }

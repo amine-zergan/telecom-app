@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telecom/view/pages/home/start/components/intro_title_page.dart';
 import 'package:telecom/view/pages/home/start/contact/components/post_radio_card.dart';
-
 import '../../../../../components/Form_Fields/nom_form_field.dart';
 import '../../../../../components/Form_Fields/phone_form_field.dart';
 import '../../../../../theme/size_constants.dart';
@@ -31,12 +30,14 @@ class BodyCreateContact extends StatelessWidget {
             const SizedBox(
               height: 2 * padding10,
             ),
-            const TitleComponent(title: "Contact et Info :"),
+            const TitleComponent(
+              title: "Contact et Info :",
+            ),
             const SizedBox(
               height: padding10,
             ),
             NomFormField(
-              controller: controller.nom,
+              controller: controller.nomContact,
               focusNode: controller.focusNom,
               onEditComplete: () {
                 FocusScope.of(context).requestFocus(controller.focusContact);
@@ -58,8 +59,20 @@ class BodyCreateContact extends StatelessWidget {
             const SizedBox(
               height: padding10,
             ),
-            const TitleComponent(
-              title: "Poste Occupée :",
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const TitleComponent(
+                  title: "Poste Occupée :",
+                ),
+                Text(
+                  controller.error,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.red.shade300),
+                ),
+              ],
             ),
             const SizedBox(
               height: padding10,

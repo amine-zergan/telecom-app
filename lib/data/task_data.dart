@@ -15,4 +15,14 @@ const List<String> tasks = [
   "Install nouveau Site",
   "Integration Site en deployement",
   "Genie civile",
+  "Demantage lien B2B",
+  "Demantage lien FH 0.3m",
+  "Demantage lien FH 0.6m",
+  "Demantage lien FH 1.0m",
+  "Demantage lien FH 1.2",
+  "Demantage lien FH 2.4",
+  "Install Shelter",
+  "Install DBS3900",
+  "Install Antenne TDD",
+  ""
 ];

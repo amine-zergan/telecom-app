@@ -9,14 +9,15 @@ class RemoteContactDataSource extends IrepositoryContactDatasource {
   @override
   Future<int> delete(int id) async {
     final db = await DbHelper.instance.db;
-    final response = await db.delete(contact, where: "id = ?", whereArgs: [id]);
+    final response =
+        await db.delete(contacts, where: "id = ?", whereArgs: [id]);
     return response;
   }
 
   @override
   Future<List<Contact>> fetchAll() async {
     final db = await DbHelper.instance.db;
-    final response = await db.query(contact);
+    final response = await db.query(contacts);
     if (response.isEmpty) {
       return [];
     } else {
@@ -33,7 +34,7 @@ class RemoteContactDataSource extends IrepositoryContactDatasource {
   @override
   Future<int> insert(Contact model) async {
     final db = await DbHelper.instance.db;
-    final response = await db.insert(contact, model.toMap(),
+    final response = await db.insert(contacts, model.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     return response;
   }
@@ -41,7 +42,7 @@ class RemoteContactDataSource extends IrepositoryContactDatasource {
   @override
   Future<int> update(int id, Contact model) async {
     final db = await DbHelper.instance.db;
-    final result = await db.update(contact, model.toMap(),
+    final result = await db.update(contacts, model.toMap(),
         where: "id=?",
         whereArgs: [id],
         conflictAlgorithm: ConflictAlgorithm.replace);
@@ -51,7 +52,7 @@ class RemoteContactDataSource extends IrepositoryContactDatasource {
   @override
   Future<bool> verifieExistance(String contact) async {
     final db = await DbHelper.instance.db;
-    final response = await db.query(contact,
+    final response = await db.query(contacts,
         where: "contact=?", whereArgs: [contact], limit: 1);
     return response.isEmpty;
   }

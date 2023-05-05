@@ -6,32 +6,29 @@ import 'package:telecom/view/pages/home/start/components/app_bar_view.dart';
 import 'package:telecom/view/pages/home/start/contact/components/body_create_contact.dart';
 import 'package:telecom/view/pages/home/start/contact/controller/contact_controller.dart';
 
-class StartContact extends StatefulWidget {
+class StartContact extends StatelessWidget {
   const StartContact({super.key});
-
-  @override
-  State<StartContact> createState() => _StartContactState();
-}
-
-class _StartContactState extends State<StartContact> {
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
+      // respansable sur disparition de clavier
       gestures: const [
         GestureType.onTap,
         GestureType.onPanUpdateDownDirection,
       ],
-      child: GetBuilder<ContactController>(builder: (controller) {
-        return Scaffold(
-          appBar: AppBarCreate(
-            title: "Nouveau Contact",
-            validate: controller.verifieAndValidate,
-          ),
-          body: BodyCreateContact(
-            controller: controller,
-          ),
-        );
-      }),
+      child: GetBuilder<ContactController>(
+        builder: (controller) {
+          return Scaffold(
+            appBar: AppBarCreate(
+              title: "Nouveau Contact",
+              validate: controller.verifieAndValidate,
+            ),
+            body: BodyCreateContact(
+              controller: controller,
+            ),
+          );
+        },
+      ),
     );
   }
 }
