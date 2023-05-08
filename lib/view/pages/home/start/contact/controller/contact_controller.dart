@@ -8,10 +8,10 @@ import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart'
 /// class Controller :responsable for saving [contact] To database
 /// contient all variable needed in View [StartContact]
 ///
-class ContactController extends GetxController {
+class CreateContactController extends GetxController {
   final IrepositoryContactDatasource repository;
 
-  ContactController(this.repository);
+  CreateContactController(this.repository);
 
   /// Create essential variable for saving data contact
   late TextEditingController nomContact;

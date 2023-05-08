@@ -13,7 +13,7 @@ class PostRadioTileCard extends StatelessWidget {
   }) : super(key: key);
 
   final String model;
-  final ContactController controller;
+  final CreateContactController controller;
   final int index;
 
   @override

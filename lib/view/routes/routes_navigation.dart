@@ -5,6 +5,7 @@ import 'package:telecom/view/pages/config/controller/config_binding.dart';
 import 'package:telecom/view/pages/home/controller/home_binding.dart';
 import 'package:telecom/view/pages/home/home_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
+import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
 import 'package:telecom/view/pages/home/start/equipements/create_equipements.dart';
 import 'package:telecom/view/pages/home/start/mission/create_mission.dart';
 import 'package:telecom/view/pages/home/start/site/controller/create_site_binding.dart';
@@ -64,6 +65,7 @@ class Routes {
     GetPage(
       name: RouteName.startMaterial,
       page: () => const StartMaterial(),
+      binding: CreateEquipementBinding(),
     ),
   ];
 }

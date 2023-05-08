@@ -23,6 +23,16 @@ class DateFormat {
     return dateforme;
   }
 
+  /// Function return [String] to format DateTime :
+  /// to format : 13/12/2017 09:54
+
+  static String formDateWithTime() {
+    DateTime date = DateTime.now();
+    String day = formDate(date);
+    String time = "${date.hour}:${date.minute}";
+    return "$day $time";
+  }
+
   /// Function return [DateTime] from String value
   /// add check and validate value injected in to [toDate] params
   /// reformat code

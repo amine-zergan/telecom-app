@@ -6,7 +6,7 @@ class Contactbinding extends Bindings {
   @override
   void dependencies() {
     Get.put(
-      ContactController(
+      CreateContactController(
         getItInstance(),
       ),
     );

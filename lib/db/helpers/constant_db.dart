@@ -14,6 +14,7 @@ const String phone = "phone";
 const String equipements = "equipements";
 const String type = "type";
 const String ref = "ref";
+const String position = "position";
 
 /// constant for Table [projects]
 const String projects = "projects";

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:telecom/db/Remote_Data_Source/articles/abstract_material_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/contact/remote_contact_datasource.dart';
 
@@ -8,6 +9,7 @@ import 'package:telecom/db/Remote_Data_Source/entreprise/remote_entreprise_servi
 import 'package:telecom/db/Remote_Data_Source/profile/abstract_profile_datasource.dart';
 import 'package:telecom/db/services/remote_data_service/load_page_init/Remote_load_config.dart';
 
+import '../db/Remote_Data_Source/articles/remote_material_datasource.dart';
 import '../db/Remote_Data_Source/profile/remote_profile_datasource.dart';
 import '../db/services/remote_data_service/load_page_init/remote_load_data_source.dart';
 
@@ -29,6 +31,9 @@ Future<void> setup() async {
   );
   getItInstance.registerLazySingleton<IrepositoryEntrepriseSource>(
     () => RemoteEntrepriseDataSourceImpl(),
+  );
+  getItInstance.registerLazySingleton<IrepositoryMaterialDataSource>(
+    () => RemoteMaterialDataSourceImpl(),
   );
   getItInstance.registerLazySingleton<IrepositroyProfileDataSource>(
     () => RemoteProfileDataSourceImpl(),

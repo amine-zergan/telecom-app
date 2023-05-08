@@ -12,7 +12,7 @@ class BodyCreateContact extends StatelessWidget {
     Key? key,
     required this.controller,
   }) : super(key: key);
-  final ContactController controller;
+  final CreateContactController controller;
 
   @override
   Widget build(BuildContext context) {

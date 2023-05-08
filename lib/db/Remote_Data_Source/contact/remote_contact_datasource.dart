@@ -54,6 +54,6 @@ class RemoteContactDataSource extends IrepositoryContactDatasource {
     final db = await DbHelper.instance.db;
     final response = await db.query(contacts,
         where: "contact=?", whereArgs: [contact], limit: 1);
-    return response.isEmpty;
+    return response.isNotEmpty;
   }
 }

@@ -52,9 +52,9 @@ class ValidatorProfile {
   // ------------ func for validate name ---------------- //
   static String? validatorName(String? value) {
     if (value!.isEmpty) {
-      return "champ nom est obligatoire";
+      return "champ est obligatoire";
     } else if (value.length < 4) {
-      return "votre nom doit etre plus que 4 caractere";
+      return "nom doit etre plus que 4 caractere";
     } else {
       return null;
     }

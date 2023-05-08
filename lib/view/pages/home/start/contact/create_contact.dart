@@ -16,7 +16,7 @@ class StartContact extends StatelessWidget {
         GestureType.onTap,
         GestureType.onPanUpdateDownDirection,
       ],
-      child: GetBuilder<ContactController>(
+      child: GetBuilder<CreateContactController>(
         builder: (controller) {
           return Scaffold(
             appBar: AppBarCreate(

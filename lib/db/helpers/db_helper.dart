@@ -13,6 +13,8 @@ class DbHelper {
 
   Future<Database> get db async {
     if (_db != null) {
+      // ignore: avoid_print
+      print("=======Database initialise for used ===========");
       return _db!;
     } else {
       _db = await _init();
@@ -73,7 +75,10 @@ CREATE TABLE $equipements(
   $id INTEGER PRIMARY KEY,
   $name TEXT NOT NULL,
   $type TEXT ,
-  $ref TEXT NOT NULL
+  $description TEXT,
+  $ref TEXT NOT NULL,
+  $project INTEGER NOT NULL,
+  FOREIGN KEY (project) REFERENCES projects(id)
 )""");
 
     /// Table for Sites Mobile in App Done

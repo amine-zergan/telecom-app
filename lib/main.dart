@@ -15,7 +15,6 @@ void main() async {
       DeviceOrientation.portraitUp,
     ],
   );
-
   runApp(
     const MyApp(),
   );
