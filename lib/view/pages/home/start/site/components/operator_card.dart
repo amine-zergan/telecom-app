@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:telecom/view/pages/home/start/site/data/class_operator_model.dart';
-
+import 'package:telecom/model/components/project/operator_model.dart';
 import '../../../../../theme/size_constants.dart';
 
 class OperatorCard extends StatelessWidget {
@@ -13,7 +12,7 @@ class OperatorCard extends StatelessWidget {
   }) : super(key: key);
 
   final int? selectedIndex;
-  final OperatorEntity model;
+  final Operator model;
   final int index;
   final VoidCallback onTap;
   @override

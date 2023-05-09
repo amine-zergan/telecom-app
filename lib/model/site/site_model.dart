@@ -9,7 +9,7 @@ class Site {
   final Operator operator;
   final String longitude;
   final String latitude;
-  final String? responsible;
+  final String? responsable;
   final String? phone;
   final String? description;
 
@@ -19,7 +19,7 @@ class Site {
     required this.operator,
     required this.longitude,
     required this.latitude,
-    required this.responsible,
+    required this.responsable,
     required this.phone,
     required this.description,
   });
@@ -30,7 +30,7 @@ class Site {
     Operator? operator,
     String? longitude,
     String? latitude,
-    String? responsible,
+    String? responsable,
     String? phone,
     String? description,
   }) {
@@ -40,7 +40,7 @@ class Site {
       operator: operator ?? this.operator,
       longitude: longitude ?? this.longitude,
       latitude: latitude ?? this.latitude,
-      responsible: responsible ?? this.responsible,
+      responsable: responsable ?? this.responsable,
       phone: phone ?? this.phone,
       description: description ?? this.description,
     );
@@ -53,7 +53,7 @@ class Site {
       'operator': operator.id,
       'longitude': longitude,
       'latitude': latitude,
-      'responsible': responsible,
+      'responsable': responsable,
       'phone': phone,
       'description': description,
     };
@@ -66,8 +66,8 @@ class Site {
       operator: Operator.fromMap(map['operator'] as Map<String, dynamic>),
       longitude: map['longitude'] as String,
       latitude: map['latitude'] as String,
-      responsible:
-          map['responsible'] != null ? map['responsible'] as String : null,
+      responsable:
+          map['responsable'] != null ? map['responsable'] as String : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
@@ -81,7 +81,7 @@ class Site {
 
   @override
   String toString() {
-    return 'Site(id: $id, name: $name, operator: $operator, longitude: $longitude, latitude: $latitude, responsible: $responsible, phone: $phone, description: $description)';
+    return 'Site(id: $id, name: $name, operator: $operator, longitude: $longitude, latitude: $latitude, responsable: $responsable, phone: $phone, description: $description)';
   }
 
   @override
@@ -93,7 +93,7 @@ class Site {
         other.operator == operator &&
         other.longitude == longitude &&
         other.latitude == latitude &&
-        other.responsible == responsible &&
+        other.responsable == responsable &&
         other.phone == phone &&
         other.description == description;
   }
@@ -105,7 +105,7 @@ class Site {
         operator.hashCode ^
         longitude.hashCode ^
         latitude.hashCode ^
-        responsible.hashCode ^
+        responsable.hashCode ^
         phone.hashCode ^
         description.hashCode;
   }

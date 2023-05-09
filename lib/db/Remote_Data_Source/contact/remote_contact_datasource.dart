@@ -5,7 +5,7 @@ import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart'
 
 import '../../helpers/db_helper.dart';
 
-class RemoteContactDataSource extends IrepositoryContactDatasource {
+class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
   @override
   Future<int> delete(int id) async {
     final db = await DbHelper.instance.db;

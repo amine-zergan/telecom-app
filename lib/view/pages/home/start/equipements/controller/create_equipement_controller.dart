@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:telecom/db/Remote_Data_Source/project/abstract_project_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/model/components/project/project_model.dart';
 
@@ -10,7 +11,8 @@ import '../../../../../../model/components/article/material_model.dart';
 
 class CreateEquipementController extends GetxController {
   final IrepositoryMaterialDataSource repository;
-  CreateEquipementController(this.repository);
+  final IrepositoryProjectDatasource repositoryProject;
+  CreateEquipementController(this.repository, this.repositoryProject);
 
   late TextEditingController fieldsNom;
   late FocusNode nom;
@@ -27,6 +29,8 @@ class CreateEquipementController extends GetxController {
   Project? project;
 
   List<Project> dataProject = dataProjects;
+
+  List<Project> dataFromDb = [];
 
   /// Function of Type [void] to update value in ListRadioTile
   /// for update value of Type Qualification Equipement
@@ -86,9 +90,29 @@ class CreateEquipementController extends GetxController {
     return response;
   }
 
+  /// Function for fetching List project from Database
+  /// will return [List<Project>]
+  ///
+
+  void fetchDataFromDb() async {
+    try {
+      final List<Project> response = await repositoryProject.queryOperators();
+// ignore: avoid_function_literals_in_foreach_calls
+      response.map((project) {
+        dataFromDb.add(project);
+      }).toList();
+    } catch (e) {
+      // ignore: avoid_print
+      print("============= error ${e.toString()}");
+      dataFromDb = [];
+    }
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();
+    fetchDataFromDb();
     fieldsNom = TextEditingController();
     fieldsReference = TextEditingController();
     fieldsDescription = TextEditingController();
