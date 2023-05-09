@@ -5,7 +5,8 @@ class ValidatorCoordonnee {
     final RegExp regExp2 = RegExp("[1][0-1].[0-9]{8}");
     if (value!.isEmpty) {
       return "code site necessite longitude";
-    } else if ((regExp2.hasMatch(value) || regExp1.hasMatch(value))) {
+    } else if (((regExp2.hasMatch(value) || regExp1.hasMatch(value))) ==
+        false) {
       return "coordonne  non valide ";
     } else if (value.length > 12) {
       return "coordonne de longitude icorrect";

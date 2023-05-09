@@ -7,6 +7,7 @@ import 'package:telecom/view/pages/home/home_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
 import 'package:telecom/view/pages/home/start/equipements/create_equipements.dart';
+import 'package:telecom/view/pages/home/start/mission/controller/create_mission_binding.dart';
 import 'package:telecom/view/pages/home/start/mission/create_mission.dart';
 import 'package:telecom/view/pages/home/start/site/controller/create_site_binding.dart';
 import 'package:telecom/view/pages/home/start/site/create_site.dart';
@@ -14,7 +15,6 @@ import 'package:telecom/view/pages/home/start/tasks/create_task.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
 import 'package:telecom/view/pages/onboard/middleware/onboard_middleware_config.dart';
 import 'package:telecom/view/routes/route_name.dart';
-
 import '../pages/home/start/contact/controller/contact_binding.dart';
 import '../pages/onboard/page/onboard_page.dart';
 
@@ -47,6 +47,7 @@ class Routes {
     GetPage(
       name: RouteName.startMission,
       page: () => const StartMission(),
+      binding: CreateMissionBinding(),
     ),
     GetPage(
       name: RouteName.startContact,
