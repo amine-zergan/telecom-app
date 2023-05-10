@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/data/task_data.dart';
+import 'package:telecom/view/components/loading/loading_components.dart';
 
 import 'package:telecom/view/pages/home/start/components/intro_title_page.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
@@ -12,28 +13,8 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 import '../components/app_bar_view.dart';
 
-class StartTask extends StatefulWidget {
+class StartTask extends GetWidget<CreateTaskController> {
   const StartTask({super.key});
-
-  @override
-  State<StartTask> createState() => _StartTaskState();
-}
-
-class _StartTaskState extends State<StartTask> {
-  late TextEditingController description;
-
-  @override
-  void initState() {
-    description = TextEditingController();
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    description.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,17 +45,40 @@ class _StartTaskState extends State<StartTask> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SubTitleComponent(
-                  title: "Date de Realisation :",
+                Row(
+                  children: [
+                    const SubTitleComponent(
+                      title: "Date de Realisation :",
+                    ),
+                    const SizedBox(
+                      width: padding10,
+                    ),
+                    GetBuilder<CreateTaskController>(
+                      builder: (controller) {
+                        return Text(controller.dateTask);
+                      },
+                    ),
+                  ],
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: LottieBuilder.asset(
-                    "assets/animations/calender.json",
-                    width: 30,
+                InkWell(
+                  onTap: () async {
+                    controller.updateDateTask(context);
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: LottieBuilder.asset(
+                      "assets/animations/calender.json",
+                      width: 30,
+                    ),
                   ),
                 )
               ],
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
+            const SubTitleComponent(
+              title: "Type d'action :",
             ),
             const SizedBox(
               height: padding10,
@@ -113,29 +117,80 @@ class _StartTaskState extends State<StartTask> {
             const SizedBox(
               height: padding10,
             ),
+            GetBuilder<CreateTaskController>(
+              builder: (controller) {
+                return controller.dataFromDb.isEmpty
+                    ? const LoadingWidget()
+                    : DropdownButtonHideUnderline(
+                        child: DropdownMenu(
+                          hintText: "choisir le projet ",
+                          width: size.width * 0.8,
+                          menuStyle: MenuStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                              Colors.grey.shade800,
+                            ),
+                          ),
+                          //controller: taskfields,
+                          leadingIcon: const Icon(
+                            Icons.add_home_work,
+                          ),
+                          enableFilter: true,
+                          onSelected: controller.updateProject,
+                          dropdownMenuEntries: controller.dataFromDb
+                              .map(
+                                (element) => DropdownMenuEntry(
+                                  value: element,
+                                  label: element.name,
+                                  leadingIcon: Image.asset(
+                                    element.image,
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      );
+              },
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
+            const SubTitleComponent(
+              title: "Operateur :",
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
             GetBuilder<CreateTaskController>(builder: (controller) {
-              return controller.dataFromDb.isEmpty
+              return controller.dataOperators.isEmpty
                   ? Container()
                   : DropdownButtonHideUnderline(
                       child: DropdownMenu(
-                        hintText: "choisir le projet ",
+                        hintText: "choisir l'operator ",
                         width: size.width * 0.8,
                         menuStyle: MenuStyle(
                           backgroundColor: MaterialStatePropertyAll(
                             Colors.grey.shade800,
                           ),
+                          elevation: const MaterialStatePropertyAll(10),
                         ),
                         //controller: taskfields,
                         leadingIcon: const Icon(
-                          Icons.add_home_work,
+                          Icons.network_check_outlined,
                         ),
                         enableFilter: true,
-                        onSelected: (value) {},
-                        dropdownMenuEntries: controller.dataFromDb
+                        onSelected: controller.updateOperator,
+                        dropdownMenuEntries: controller.dataOperators
                             .map(
                               (element) => DropdownMenuEntry(
                                 value: element,
                                 label: element.name,
+                                leadingIcon: Image.asset(
+                                  element.image,
+                                  width: 20,
+                                  height: 20,
+                                ),
                               ),
                             )
                             .toList(),
@@ -162,10 +217,10 @@ class _StartTaskState extends State<StartTask> {
                 ),
                 //controller: taskfields,
                 leadingIcon: const Icon(
-                  Icons.home_work_outlined,
+                  Icons.place,
                 ),
                 enableFilter: true,
-                onSelected: (value) {},
+                onSelected: controller.updateRegion,
                 dropdownMenuEntries: region
                     .map(
                       (element) => DropdownMenuEntry(
@@ -186,7 +241,7 @@ class _StartTaskState extends State<StartTask> {
               height: padding10,
             ),
             TextFormField(
-              controller: description,
+              controller: controller.description,
               autocorrect: false,
               maxLines: 4,
               decoration: const InputDecoration(

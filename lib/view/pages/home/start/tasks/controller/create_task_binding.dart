@@ -8,6 +8,7 @@ class CreateTaskBinding extends Bindings {
     Get.put(
       CreateTaskController(
         getItInstance(),
+        getItInstance(),
       ),
     );
   }

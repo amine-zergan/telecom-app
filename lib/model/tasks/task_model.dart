@@ -8,7 +8,7 @@ import 'package:telecom/utils/formater/time_format.dart';
 class Task {
   final int? id;
   final String description;
-  final int mission;
+  final int? mission;
   final Project project;
   final Operator operator;
   final String region;
