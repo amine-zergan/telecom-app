@@ -1,4 +1,4 @@
-const List<String> tasks = [
+const List<String> tasksData = [
   "Swap B2B",
   "Survey Site",
   "Install client B2B",
@@ -15,6 +15,7 @@ const List<String> tasks = [
   "Install nouveau Site",
   "Integration Site en deployement",
   "Genie civile",
+  "Deplacement",
   "Demantage lien B2B",
   "Demantage lien FH 0.3m",
   "Demantage lien FH 0.6m",

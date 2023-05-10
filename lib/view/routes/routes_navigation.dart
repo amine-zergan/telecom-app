@@ -11,6 +11,7 @@ import 'package:telecom/view/pages/home/start/mission/controller/create_mission_
 import 'package:telecom/view/pages/home/start/mission/create_mission.dart';
 import 'package:telecom/view/pages/home/start/site/controller/create_site_binding.dart';
 import 'package:telecom/view/pages/home/start/site/create_site.dart';
+import 'package:telecom/view/pages/home/start/tasks/controller/create_task_binding.dart';
 import 'package:telecom/view/pages/home/start/tasks/create_task.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
 import 'package:telecom/view/pages/onboard/middleware/onboard_middleware_config.dart';
@@ -62,6 +63,7 @@ class Routes {
     GetPage(
       name: RouteName.startTask,
       page: () => const StartTask(),
+      binding: CreateTaskBinding(),
     ),
     GetPage(
       name: RouteName.startMaterial,

@@ -1,3 +1,5 @@
 import 'package:get/get.dart';
 
-class CreateMissionController extends GetxController {}
+class CreateMissionController extends GetxController {
+  CreateMissionController();
+}
