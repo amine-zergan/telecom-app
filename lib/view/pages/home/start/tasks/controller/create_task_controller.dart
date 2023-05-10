@@ -1,20 +1,20 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, duplicate_ignore
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/project/abstract_operator_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/project/abstract_project_datasource.dart';
-import 'package:telecom/db/helpers/constant_db.dart';
+import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dart';
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/components/project/project_model.dart';
+import 'package:telecom/model/tasks/task_model.dart';
 import 'package:telecom/utils/formater/time_format.dart';
 
 class CreateTaskController extends GetxController {
   final IrepositoryProjectDatasource repo;
   final IrepositoryOperatorDatasource repositoryOperator;
-  CreateTaskController(
-    this.repo,
-    this.repositoryOperator,
-  );
+  final IrepositoryTaskDatasource repositoryTask;
+  CreateTaskController(this.repo, this.repositoryOperator, this.repositoryTask);
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   List<Project> dataFromDb = [];
 
@@ -23,6 +23,8 @@ class CreateTaskController extends GetxController {
   Project? currentProject;
   Operator? currentOperator;
   String? currentRegion;
+  String error = "";
+  int? mission;
 
   String _dateTask = DateFormat.formDate(
     DateTime.now(),
@@ -52,22 +54,16 @@ class CreateTaskController extends GetxController {
   ///
   void updateOperator(Operator? value) {
     currentOperator = value;
-    // ignore: avoid_print
-    print("============= update currentOperator $currentOperator");
     update();
   }
 
   void updateRegion(String? value) {
     currentRegion = value;
-    // ignore: avoid_print
-    print("============= update currentOperator $currentRegion");
     update();
   }
 
   void updateProject(Project? value) {
     currentProject = value;
-    // ignore: avoid_print
-    print("============= update currentProject $currentProject");
     update();
   }
 
@@ -103,7 +99,48 @@ class CreateTaskController extends GetxController {
 
   /// Function return void Type to insert model [Task] to database and assigned to [mission],
   ///
-  void insertTaskToDb() {}
+  void insertTaskToDb() async {
+    try {
+      if (formKey.currentState!.validate() &&
+          currentOperator != null &&
+          currentProject != null) {
+        if ((await verfieExistTask()) == false) {
+          final Task model = Task(
+            description: description.text,
+            mission: mission,
+            project: currentProject!,
+            operator: currentOperator!,
+            region: currentRegion!,
+            date: DateFormat.toDate(_dateTask),
+          );
+          final result = await repositoryTask.insert(model);
+          // ignore: avoid_print
+          print("======== data with insert with success");
+          // ignore: unnecessary_brace_in_string_interps
+          print("============ task ${result} ==========");
+          error = "";
+        } else {
+          // ignore: avoid_print
+          print("============= error task already exist");
+          error = "error task already exist";
+        }
+      } else {
+        // ignore: avoid_print
+        print("============= error form invalide ");
+        error = "form invalid";
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print("============= error ${e.toString()}");
+      error = "";
+    }
+    update();
+  }
+
+  Future<bool> verfieExistTask() async {
+    final response = await repositoryTask.isExist(_dateTask);
+    return response;
+  }
 
   late TextEditingController description;
 

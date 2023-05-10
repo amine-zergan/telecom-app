@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
 import 'package:telecom/view/pages/home/start/site/components/add_button.dart';
 
-class AppBarCreate extends StatelessWidget with PreferredSizeWidget {
+class AppBarCreate extends StatelessWidget implements PreferredSizeWidget {
   const AppBarCreate({
     Key? key,
     required this.title,

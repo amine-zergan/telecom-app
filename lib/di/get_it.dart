@@ -12,6 +12,8 @@ import 'package:telecom/db/Remote_Data_Source/project/remote_operator_datasource
 import 'package:telecom/db/Remote_Data_Source/project/remote_project_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/site/abstract_contact_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/site/remote_contact_datasource.dart';
+import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dart';
+import 'package:telecom/db/Remote_Data_Source/tasks/remote_task_datasource.dart';
 import 'package:telecom/db/services/remote_data_service/load_page_init/Remote_load_config.dart';
 import '../db/Remote_Data_Source/articles/remote_material_datasource.dart';
 import '../db/Remote_Data_Source/profile/remote_profile_datasource.dart';
@@ -54,5 +56,9 @@ Future<void> setup() async {
   );
   getItInstance.registerLazySingleton<IrepositoryContactDatasource>(
     () => RemoteContactDataSourceImpl(),
+  );
+
+  getItInstance.registerLazySingleton<IrepositoryTaskDatasource>(
+    () => RemoteTaskDataSourceImpl(),
   );
 }

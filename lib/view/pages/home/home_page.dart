@@ -201,13 +201,12 @@ class _NavigationBottomState extends State<NavigationBottom> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
       transform: Matrix4.translationValues(0, 30, 0),
-      padding: const EdgeInsets.only(
-        left: 20,
-      ),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       curve: Curves.easeInOut,
       child: Opacity(
         opacity: widget.isdrag ? 0.6 : 1,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BottomNavigationItem(
               icon: Icons.add_chart_outlined,

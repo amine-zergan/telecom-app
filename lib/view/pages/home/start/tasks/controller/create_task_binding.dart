@@ -9,6 +9,7 @@ class CreateTaskBinding extends Bindings {
       CreateTaskController(
         getItInstance(),
         getItInstance(),
+        getItInstance(),
       ),
     );
   }

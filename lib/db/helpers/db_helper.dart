@@ -161,6 +161,7 @@ CREATE TABLE $tasks(
   $id INTEGER PRIMARY KEY,
   $project int NOT NULL,
   $date TEXT NOT NULL,
+  region TEXT NOT NULL,
   $description TEXT NOT NULL,
   $mission INTEGER,
   $operator INTEGER,

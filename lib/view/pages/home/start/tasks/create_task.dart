@@ -23,7 +23,9 @@ class StartTask extends GetWidget<CreateTaskController> {
     return Scaffold(
       appBar: AppBarCreate(
         title: "Ajouter une Tachée",
-        validate: () {},
+        validate: () {
+          controller.insertTaskToDb();
+        },
       ),
       body: SafeArea(
         child: ListView(
@@ -240,17 +242,20 @@ class StartTask extends GetWidget<CreateTaskController> {
             const SizedBox(
               height: padding10,
             ),
-            TextFormField(
-              controller: controller.description,
-              autocorrect: false,
-              maxLines: 4,
-              decoration: const InputDecoration(
-                  hintText:
-                      "description detaillees de Tache et ajouter code sites ...",
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  )),
+            Form(
+              key: controller.formKey,
+              child: TextFormField(
+                controller: controller.description,
+                autocorrect: false,
+                maxLines: 4,
+                decoration: const InputDecoration(
+                    hintText:
+                        "description detaillees de Tache et ajouter code sites ...",
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    )),
+              ),
             ),
           ],
         ),
