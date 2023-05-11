@@ -118,10 +118,22 @@ class CreateTaskController extends GetxController {
           print("======== data with insert with success");
           // ignore: unnecessary_brace_in_string_interps
           print("============ task ${result} ==========");
+          Get.snackbar(
+            "Notification",
+            "Tâche crée avec succes",
+            backgroundColor: Colors.green.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
           error = "";
         } else {
           // ignore: avoid_print
           print("============= error task already exist");
+          Get.snackbar(
+            "Notification",
+            "Tâche deja crée...",
+            backgroundColor: Colors.red.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
           error = "error task already exist";
         }
       } else {

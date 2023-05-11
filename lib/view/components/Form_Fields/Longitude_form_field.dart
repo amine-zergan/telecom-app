@@ -22,7 +22,7 @@ class LongitudeFormField extends StatelessWidget {
     return TextFormField(
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
-        LengthLimitingTextInputFormatter(9),
+        LengthLimitingTextInputFormatter(10),
         CoordonationLongitude(),
       ],
       autocorrect: false,

@@ -1,16 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:telecom/data/post_data.dart';
-import 'package:telecom/data/task_data.dart';
 import 'package:telecom/view/components/loading/loading_components.dart';
-
 import 'package:telecom/view/pages/home/start/components/intro_title_page.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
+import 'package:telecom/view/pages/home/start/tasks/components/description_form.dart';
+import 'package:telecom/view/pages/home/start/tasks/components/dropdown_operator_menu.dart';
+import 'package:telecom/view/pages/home/start/tasks/components/dropdown_project_menu.dart';
+import 'package:telecom/view/pages/home/start/tasks/components/dropdown_region_with_controller.dart';
+import 'package:telecom/view/pages/home/start/tasks/components/dropdown_task_menu.dart';
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
 import 'package:telecom/view/theme/size_constants.dart';
-
 import '../components/app_bar_view.dart';
 
 class StartTask extends GetWidget<CreateTaskController> {
@@ -85,31 +87,7 @@ class StartTask extends GetWidget<CreateTaskController> {
             const SizedBox(
               height: padding10,
             ),
-            DropdownButtonHideUnderline(
-              child: DropdownMenu(
-                hintText: "type de tache :",
-                menuStyle: MenuStyle(
-                  backgroundColor: MaterialStatePropertyAll(
-                    Colors.grey.shade800,
-                  ),
-                ),
-                //controller: taskfields,
-                leadingIcon: const Icon(
-                  Icons.work_outline,
-                ),
-                enableFilter: true,
-                width: size.width * 0.8,
-                onSelected: (value) {},
-                dropdownMenuEntries: tasksData
-                    .map(
-                      (element) => DropdownMenuEntry(
-                        value: element,
-                        label: element,
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
+            DropdownTaskMenu(size: size, controller: controller),
             const SizedBox(
               height: padding10,
             ),
@@ -123,35 +101,9 @@ class StartTask extends GetWidget<CreateTaskController> {
               builder: (controller) {
                 return controller.dataFromDb.isEmpty
                     ? const LoadingWidget()
-                    : DropdownButtonHideUnderline(
-                        child: DropdownMenu(
-                          hintText: "choisir le projet ",
-                          width: size.width * 0.8,
-                          menuStyle: MenuStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                              Colors.grey.shade800,
-                            ),
-                          ),
-                          //controller: taskfields,
-                          leadingIcon: const Icon(
-                            Icons.add_home_work,
-                          ),
-                          enableFilter: true,
-                          onSelected: controller.updateProject,
-                          dropdownMenuEntries: controller.dataFromDb
-                              .map(
-                                (element) => DropdownMenuEntry(
-                                  value: element,
-                                  label: element.name,
-                                  leadingIcon: Image.asset(
-                                    element.image,
-                                    width: 20,
-                                    height: 20,
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
+                    : DropdownProjectMenu(
+                        size: size,
+                        controller: controller,
                       );
               },
             ),
@@ -164,98 +116,28 @@ class StartTask extends GetWidget<CreateTaskController> {
             const SizedBox(
               height: padding10,
             ),
-            GetBuilder<CreateTaskController>(builder: (controller) {
-              return controller.dataOperators.isEmpty
-                  ? Container()
-                  : DropdownButtonHideUnderline(
-                      child: DropdownMenu(
-                        hintText: "choisir l'operator ",
-                        width: size.width * 0.8,
-                        menuStyle: MenuStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                            Colors.grey.shade800,
-                          ),
-                          elevation: const MaterialStatePropertyAll(10),
-                        ),
-                        //controller: taskfields,
-                        leadingIcon: const Icon(
-                          Icons.network_check_outlined,
-                        ),
-                        enableFilter: true,
-                        onSelected: controller.updateOperator,
-                        dropdownMenuEntries: controller.dataOperators
-                            .map(
-                              (element) => DropdownMenuEntry(
-                                value: element,
-                                label: element.name,
-                                leadingIcon: Image.asset(
-                                  element.image,
-                                  width: 20,
-                                  height: 20,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    );
-            }),
-            const SizedBox(
-              height: padding10,
+            GetBuilder<CreateTaskController>(
+              builder: (controller) {
+                return controller.dataOperators.isEmpty
+                    ? const LoadingWidget()
+                    : DropdownOperatorWithController(
+                        size: size,
+                        controller: controller,
+                      );
+              },
             ),
-            const SubTitleComponent(
-              title: "Region :",
+            DropDownRegionWithcontroller(
+              controller: controller,
+              size: size,
             ),
             const SizedBox(
               height: padding10,
             ),
-            DropdownButtonHideUnderline(
-              child: DropdownMenu(
-                hintText: "choisir la region ",
-                width: size.width * 0.8,
-                menuStyle: MenuStyle(
-                  backgroundColor: MaterialStatePropertyAll(
-                    Colors.grey.shade800,
-                  ),
-                ),
-                //controller: taskfields,
-                leadingIcon: const Icon(
-                  Icons.place,
-                ),
-                enableFilter: true,
-                onSelected: controller.updateRegion,
-                dropdownMenuEntries: region
-                    .map(
-                      (element) => DropdownMenuEntry(
-                        value: element,
-                        label: element,
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
             const SizedBox(
               height: padding10,
             ),
-            const SubTitleComponent(
-              title: "Details et description de Tâche :",
-            ),
-            const SizedBox(
-              height: padding10,
-            ),
-            Form(
-              key: controller.formKey,
-              child: TextFormField(
-                controller: controller.description,
-                autocorrect: false,
-                maxLines: 4,
-                decoration: const InputDecoration(
-                    hintText:
-                        "description detaillees de Tache et ajouter code sites ...",
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
-                    )),
-              ),
+            DescriptionFormWithTile(
+              controller: controller,
             ),
           ],
         ),

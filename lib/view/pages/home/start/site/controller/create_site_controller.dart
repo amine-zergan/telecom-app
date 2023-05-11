@@ -122,7 +122,13 @@ class CreateSiteController extends GetxController {
     try {
       if (formKey.currentState!.validate() == true) {
         if (await isExistSite()) {
-          error = "Site existe deja";
+          //error = "Site existe deja";
+          Get.snackbar(
+            "Notification",
+            "Site existe deja...",
+            backgroundColor: Colors.red.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
         } else {
           final Site model = Site(
             name: fieldNom.text,
@@ -138,6 +144,12 @@ class CreateSiteController extends GetxController {
           final result = await repositorySite.insert(model);
           // ignore: avoid_print
           print("============== result $result ============");
+          Get.snackbar(
+            "Notification",
+            "Site crée avec succes",
+            backgroundColor: Colors.green.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
           clearController();
         }
       }
