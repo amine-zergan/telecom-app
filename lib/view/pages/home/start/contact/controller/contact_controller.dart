@@ -64,7 +64,7 @@ class CreateContactController extends GetxController {
   Future<void> verifieAndValidate() async {
     try {
       if ((formKey.currentState!.validate() == true) && (selectValue != null)) {
-        if (await isExist(contact.text)) {
+        if ((await isExist(contact.text)) == false) {
           error = "";
           final model = Contact(
             name: nomContact.text,
@@ -83,10 +83,10 @@ class CreateContactController extends GetxController {
       } else if ((formKey.currentState!.validate() == false) &&
           (selectValue == null)) {
         // ignore: avoid_print
-        error = "contact must have  post";
+        error = "contact doit choisir le post";
       } else if (selectValue == null) {
         // ignore: avoid_print
-        error = "contact must have  post";
+        error = "ontact doit choisir le post";
       }
     } catch (e) {
       // ignore: avoid_print

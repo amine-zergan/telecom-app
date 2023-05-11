@@ -23,7 +23,15 @@
     "linearprogress": true,
     "test": true,
     "lib/view/pages/onboard": true,
-    "android": true
+    "android": true,
+    "build 2": true,
+    "build 3": true,
+    "build": true,
+    ".dart_tool 3": true,
+    ".dart_tool 2": true,
+    "ios": true,
+    ".flutter-plugins 2": true,
+    ".flutter-plugins-dependencies 2": true
   },
   "yaml.schemas": {
     "https://json.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/aminemejri/Desktop/telecom/.github/workflows/ci.yaml"
