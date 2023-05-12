@@ -22,11 +22,13 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
       return [];
     } else {
       final List<Contact> result = [];
-      response.map(
-        (element) => result.add(
-          Contact.fromMap(element),
-        ),
-      );
+      response
+          .map(
+            (element) => result.add(
+              Contact.fromMap(element),
+            ),
+          )
+          .toList();
       return result;
     }
   }

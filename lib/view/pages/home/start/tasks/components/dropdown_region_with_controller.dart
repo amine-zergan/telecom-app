@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
@@ -9,14 +11,19 @@ class DropDownRegionWithcontroller extends StatelessWidget {
     Key? key,
     required this.size,
     required this.controller,
+    this.textEditController,
   }) : super(key: key);
   final Size size;
   final CreateTaskController controller;
-
+  final TextEditingController? textEditController;
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: padding10,
+        ),
         const SubTitleComponent(
           title: "Region :",
         ),
@@ -32,11 +39,12 @@ class DropDownRegionWithcontroller extends StatelessWidget {
                 Colors.grey.shade800,
               ),
             ),
-            //controller: taskfields,
+            controller: textEditController,
             leadingIcon: const Icon(
               Icons.place,
             ),
             enableFilter: true,
+            enableSearch: true,
             onSelected: controller.updateRegion,
             dropdownMenuEntries: region
                 .map(
@@ -48,6 +56,20 @@ class DropDownRegionWithcontroller extends StatelessWidget {
                 .toList(),
           ),
         ),
+        controller.errorRegion == ""
+            ? Container()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: padding10,
+                  ),
+                  Text(
+                    controller.errorRegion,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
+              ),
       ],
     );
   }

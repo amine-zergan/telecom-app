@@ -17,10 +17,6 @@ class RemoteMaterialDataSourceImpl extends IrepositoryMaterialDataSource {
     final db = await DbHelper.instance.db;
     final response = await db.query("equipements",
         where: "ref=?", whereArgs: [ref], limit: 1);
-    // ignore: avoid_print
-    print("============= response query==========");
-    // ignore: avoid_print
-    print(response);
     return response.isNotEmpty;
   }
 }

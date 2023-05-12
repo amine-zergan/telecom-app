@@ -30,8 +30,11 @@ class StartTask extends GetWidget<CreateTaskController> {
         },
       ),
       body: SafeArea(
+        bottom: false,
         child: ListView(
-          padding: const EdgeInsets.all(padding10 * 1.5),
+          padding: const EdgeInsets.all(
+            padding10 * 1.5,
+          ),
           children: [
             const Introtitle(
               title:
@@ -126,9 +129,14 @@ class StartTask extends GetWidget<CreateTaskController> {
                       );
               },
             ),
-            DropDownRegionWithcontroller(
-              controller: controller,
-              size: size,
+            GetBuilder<CreateTaskController>(
+              builder: (controller) {
+                return DropDownRegionWithcontroller(
+                  controller: controller,
+                  textEditController: controller.regionController,
+                  size: size,
+                );
+              },
             ),
             const SizedBox(
               height: padding10,

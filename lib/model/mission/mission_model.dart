@@ -2,14 +2,13 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-
 import '../../utils/converter/enum/status_mission.dart';
 import '../tasks/task_model.dart';
 
 class Mission {
   final int? id;
-  final DateTime started;
-  final DateTime? finished;
+  final String started;
+  final String? finished;
   final bool deplacement;
   final bool equipe;
   final bool depense;
@@ -47,8 +46,8 @@ class Mission {
 
   Mission copyWith({
     int? id,
-    DateTime? started,
-    DateTime? finished,
+    String? started,
+    String? finished,
     bool? deplacement,
     bool? equipe,
     bool? depense,
@@ -88,8 +87,8 @@ class Mission {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'started': started.millisecondsSinceEpoch,
-      'finished': finished?.millisecondsSinceEpoch,
+      'started': started,
+      'finished': finished,
       'deplacement': deplacement,
       'equipe': equipe,
       'depense': depense,
@@ -109,10 +108,8 @@ class Mission {
   factory Mission.fromMap(Map<String, dynamic> map) {
     return Mission(
       id: map['id'] != null ? map['id'] as int : null,
-      started: DateTime.fromMillisecondsSinceEpoch(map['started'] as int),
-      finished: map['finished'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['finished'] as int)
-          : null,
+      started: map['started'] as String,
+      finished: map['finished'] != null ? map['finished'] as String : null,
       deplacement: map['deplacement'] as bool,
       equipe: map['equipe'] as bool,
       depense: map['depense'] as bool,

@@ -14,6 +14,7 @@ class DescriptionFormWithTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SubTitleComponent(
           title: "Details et description de Tâche :",

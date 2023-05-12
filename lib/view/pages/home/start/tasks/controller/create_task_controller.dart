@@ -13,7 +13,11 @@ class CreateTaskController extends GetxController {
   final IrepositoryProjectDatasource repo;
   final IrepositoryOperatorDatasource repositoryOperator;
   final IrepositoryTaskDatasource repositoryTask;
-  CreateTaskController(this.repo, this.repositoryOperator, this.repositoryTask);
+  CreateTaskController(
+    this.repo,
+    this.repositoryOperator,
+    this.repositoryTask,
+  );
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   List<Project> dataFromDb = [];
@@ -24,6 +28,7 @@ class CreateTaskController extends GetxController {
   Operator? currentOperator;
   String? currentRegion;
   String error = "";
+  String errorRegion = "";
   int? mission;
 
   String _dateTask = DateFormat.formDate(
@@ -34,7 +39,6 @@ class CreateTaskController extends GetxController {
 
   /// Function of type [void] to update _dataTask
   ///
-
   Future<void> updateDateTask(BuildContext context) async {
     // ignore: no_leading_underscores_for_local_identifiers
     final DateTime? _date = await showDatePicker(
@@ -59,6 +63,7 @@ class CreateTaskController extends GetxController {
 
   void updateRegion(String? value) {
     currentRegion = value;
+    errorRegion = "";
     update();
   }
 
@@ -138,8 +143,13 @@ class CreateTaskController extends GetxController {
         }
       } else {
         // ignore: avoid_print
-        print("============= error form invalide ");
+
         error = "form invalid";
+        if (currentRegion == null) {
+          errorRegion = "region required...";
+          print("============= region required ======");
+          update();
+        }
       }
     } catch (e) {
       // ignore: avoid_print
@@ -155,18 +165,22 @@ class CreateTaskController extends GetxController {
   }
 
   late TextEditingController description;
+  late TextEditingController regionController;
 
   @override
   void onInit() {
     queryProjectFromDatabase();
     queryOperatorFromDatabase();
     description = TextEditingController();
+    regionController = TextEditingController();
+
     super.onInit();
   }
 
   @override
   void onClose() {
     description.dispose();
+    regionController.dispose();
     super.onClose();
   }
 }
