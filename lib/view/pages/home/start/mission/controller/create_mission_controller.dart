@@ -7,7 +7,7 @@ class CreateMissionController extends GetxController {
   final IrepositoryMissionDatasource repository;
   CreateMissionController(this.repository);
 
-  String nombreJour = "une semaine";
+  int nombreJour = 1;
 
   bool isEquipe = false;
   bool isDeplacement = false;
@@ -16,7 +16,10 @@ class CreateMissionController extends GetxController {
 
   int carburanat = 1;
   int jourdeplacement = 1;
-  String dateDepart = DateFormat.formDate(DateTime.now());
+  String errorExisteMembre = "";
+  String dateDepart = DateFormat.formDate(
+    DateTime.now(),
+  );
   List<String> jourMission = [
     "un jour",
     "deux jours",
@@ -46,8 +49,10 @@ class CreateMissionController extends GetxController {
 
   /// Function onchangeJour return a [void] type to update nombreJour
   ///
-  void onChangeJour(String? value) {
+  void onChangeJour(int? value) {
     nombreJour = value!;
+    // ignore: avoid_print
+    print("=========== duree de mission $nombreJour ======");
     update();
   }
 
@@ -80,7 +85,8 @@ class CreateMissionController extends GetxController {
   /// update ListView : nombreEquipe :
   ///
   void updateNombreEquipeAdd() {
-    if (fieldsEquipe.text.isNotEmpty) {
+    if (fieldsEquipe.text.isNotEmpty &&
+        !membreEquipe.contains(fieldsEquipe.text)) {
       membreEquipe.add(fieldsEquipe.text);
       fieldsEquipe.clear();
       // ignore: avoid_print
@@ -117,8 +123,8 @@ class CreateMissionController extends GetxController {
   ///
   void updateNombreSiteAdd() {
     if (fieldsNomCodeSite.text.isNotEmpty) {
-      codeSite.add(fieldsNomCodeSite.text);
-      fieldsEquipe.clear();
+      codeSite.add(fieldsNomCodeSite.text.toUpperCase());
+      fieldsNomCodeSite.clear();
     }
     update();
   }
