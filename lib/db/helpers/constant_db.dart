@@ -9,6 +9,7 @@ const String longitude = "longitude";
 const String description = "description";
 const String responsable = "responsable";
 const String phone = "phone";
+const String region = "region";
 
 /// constant for Table [equipements]
 const String equipements = "equipements";

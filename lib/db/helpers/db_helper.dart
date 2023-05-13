@@ -6,15 +6,12 @@ import 'package:sqflite/sqflite.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 
 class DbHelper {
-  DbHelper._();
-  static DbHelper instance = DbHelper._();
-
   Database? _db;
 
   Future<Database> get db async {
     if (_db != null) {
       // ignore: avoid_print
-      print("=======Database initialise for used ===========");
+      print("=======get instance for Database To used ===========");
       return _db!;
     } else {
       _db = await _init();
@@ -73,7 +70,7 @@ CREATE TABLE $projects(
     await db.execute("""
 CREATE TABLE $equipements(
   $id INTEGER PRIMARY KEY,
-  $name TEXT NOT NULL,
+  $name TEXT NOT NULL, 
   $type TEXT ,
   $description TEXT,
   $ref TEXT NOT NULL,
@@ -90,6 +87,7 @@ CREATE TABLE $site(
   $latitude TEXT NOT NULL,
   $longitude TEXT NOT NULL,
   $description TEXT,
+  $region TEXT,
   $responsable TEXT,
   $phone TEXT,
   FOREIGN KEY (operator) REFERENCES operators(id)
@@ -203,10 +201,8 @@ INSERT INTO projects(name,image) VALUES('Huawei','assets/project/huawei.png')
 
   /// close database
   Future close() async {
-    final db = await instance.db;
-    db.close().then((_) {
-      // ignore:, avoid_print
-      print("===== database was cloased with succcess =======");
-    });
+    await _db!.close();
+    // ignore:, avoid_print
+    print("===== database was cloased with succcess =======");
   }
 }

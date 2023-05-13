@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/db/Remote_Data_Source/project/abstract_operator_datasource.dart';
-import 'package:telecom/db/Remote_Data_Source/site/abstract_contact_datasource.dart';
+import 'package:telecom/db/Remote_Data_Source/site/abstract_site_datasource.dart';
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/site/site_model.dart';
 
@@ -26,6 +26,7 @@ class CreateSiteController extends GetxController {
   String error = "";
   int? selectedRegion;
   int? selectedOperator;
+  String currentRegion = "";
 
   bool activeCheckBox = false;
 
@@ -132,6 +133,7 @@ class CreateSiteController extends GetxController {
         } else {
           final Site model = Site(
             name: fieldNom.text,
+            region: currentRegion,
             operator: _operator!,
             longitude: fieldLongitude.text,
             latitude: fieldLatitude.text,
@@ -169,10 +171,17 @@ class CreateSiteController extends GetxController {
   }
 
   void selectRegioniWithNomField() {
-    String search = fieldNom.text.substring(0, 3);
-    selectedRegion = region.indexWhere(
-      (element) => element.startsWith(search),
-    );
+    if (fieldNom.text.isNotEmpty) {
+      String search = fieldNom.text.substring(0, 3);
+      selectedRegion = region.indexWhere(
+        (element) => element.startsWith(search),
+      );
+      if (selectedRegion != null) {
+        currentRegion = region[selectedRegion!];
+      } else {
+        currentRegion = "";
+      }
+    }
     update();
   }
 

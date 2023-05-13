@@ -22,7 +22,7 @@ class Mission {
   final String chefprojet;
   final double? peage;
   final double? achat;
-  final List<Task> tasks;
+  final List<Task>? tasks;
 
   Mission({
     this.id,
@@ -41,7 +41,7 @@ class Mission {
     required this.chefprojet,
     this.peage,
     this.achat,
-    required this.tasks,
+    this.tasks,
   });
 
   Mission copyWith({

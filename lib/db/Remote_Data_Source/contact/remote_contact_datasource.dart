@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:sqflite/sqflite.dart';
+
 import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart';
@@ -6,9 +8,13 @@ import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart'
 import '../../helpers/db_helper.dart';
 
 class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
+  final DbHelper hepler;
+  RemoteContactDataSourceImpl({
+    required this.hepler,
+  });
   @override
   Future<int> delete(int id) async {
-    final db = await DbHelper.instance.db;
+    final db = await hepler.db;
     final response =
         await db.delete(contacts, where: "id = ?", whereArgs: [id]);
     return response;
@@ -16,7 +22,7 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
 
   @override
   Future<List<Contact>> fetchAll() async {
-    final db = await DbHelper.instance.db;
+    final db = await hepler.db;
     final response = await db.query(contacts);
     if (response.isEmpty) {
       return [];
@@ -35,7 +41,7 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
 
   @override
   Future<int> insert(Contact model) async {
-    final db = await DbHelper.instance.db;
+    final db = await hepler.db;
     final response = await db.insert(contacts, model.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     return response;
@@ -43,7 +49,7 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
 
   @override
   Future<int> update(int id, Contact model) async {
-    final db = await DbHelper.instance.db;
+    final db = await hepler.db;
     final result = await db.update(contacts, model.toMap(),
         where: "id=?",
         whereArgs: [id],
@@ -53,7 +59,7 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
 
   @override
   Future<bool> verifieExistance(String contact) async {
-    final db = await DbHelper.instance.db;
+    final db = await hepler.db;
     final response = await db.query(contacts,
         where: "contact=?", whereArgs: [contact], limit: 1);
     return response.isNotEmpty;

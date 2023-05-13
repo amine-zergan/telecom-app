@@ -1,13 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:sqflite/sqflite.dart';
+
 import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/db/helpers/db_helper.dart';
 import 'package:telecom/model/tasks/task_model.dart';
 
 class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
+  final DbHelper helper;
+  RemoteTaskDataSourceImpl({
+    required this.helper,
+  });
   @override
   Future<int> insert(Task model) async {
-    final db = await DbHelper.instance.db;
+    final db = await helper.db;
     final response = await db.insert(
       tasks,
       model.toMap(),
@@ -18,7 +24,7 @@ class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
 
   @override
   Future<bool> isExist(String date) async {
-    final db = await DbHelper.instance.db;
+    final db = await helper.db;
     final response = await db.query(
       tasks,
       where: "date=?",

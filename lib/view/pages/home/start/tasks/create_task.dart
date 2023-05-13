@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
 import 'package:telecom/view/components/loading/loading_components.dart';
 import 'package:telecom/view/pages/home/start/components/intro_title_page.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
@@ -13,6 +14,7 @@ import 'package:telecom/view/pages/home/start/tasks/components/dropdown_region_w
 import 'package:telecom/view/pages/home/start/tasks/components/dropdown_task_menu.dart';
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
 import 'package:telecom/view/theme/size_constants.dart';
+
 import '../components/app_bar_view.dart';
 
 class StartTask extends GetWidget<CreateTaskController> {
@@ -67,18 +69,11 @@ class StartTask extends GetWidget<CreateTaskController> {
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () async {
+                IconDateWidget(
+                  onTap: () {
                     controller.updateDateTask(context);
                   },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: LottieBuilder.asset(
-                      "assets/animations/calender.json",
-                      width: 30,
-                    ),
-                  ),
-                )
+                ),
               ],
             ),
             const SizedBox(
@@ -148,6 +143,29 @@ class StartTask extends GetWidget<CreateTaskController> {
               controller: controller,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class IconDateWidget extends StatelessWidget {
+  const IconDateWidget({
+    Key? key,
+    this.onTap,
+  }) : super(key: key);
+
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: LottieBuilder.asset(
+          "assets/animations/calender.json",
+          width: 30,
         ),
       ),
     );
