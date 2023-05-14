@@ -18,6 +18,7 @@ class StartMission extends GetWidget<CreateMissionController> {
         validate: () async {
           // ignore: avoid_print
           print("============= rebuild with appbar ==============");
+          controller.insertMissionToDb();
         },
       ),
       body: const BodyCreateMission(),

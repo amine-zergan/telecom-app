@@ -1,7 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_cast
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:telecom/utils/converter/bool_integer.dart';
 import '../../utils/converter/enum/status_mission.dart';
 import '../tasks/task_model.dart';
 
@@ -89,9 +90,9 @@ class Mission {
       'id': id,
       'started': started,
       'finished': finished,
-      'deplacement': deplacement,
-      'equipe': equipe,
-      'depense': depense,
+      'deplacement': BoolConverter.integerFromBool(deplacement),
+      'equipe': BoolConverter.integerFromBool(equipe),
+      'depense': BoolConverter.integerFromBool(depense),
       'bon': bon,
       'status': status.value(),
       'depart': depart,
@@ -110,9 +111,9 @@ class Mission {
       id: map['id'] != null ? map['id'] as int : null,
       started: map['started'] as String,
       finished: map['finished'] != null ? map['finished'] as String : null,
-      deplacement: map['deplacement'] as bool,
-      equipe: map['equipe'] as bool,
-      depense: map['depense'] as bool,
+      deplacement: BoolConverter.boolFromInt(map['deplacement'] as int) as bool,
+      equipe: BoolConverter.boolFromInt(map['equipe'] as int) as bool,
+      depense: BoolConverter.boolFromInt(map['depense'] as int) as bool,
       bon: map['bon'] as int,
       status: EnumParse.fromString(map['status'] as String),
       depart: map['depart'] as double,

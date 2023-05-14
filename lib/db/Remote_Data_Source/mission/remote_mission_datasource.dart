@@ -77,6 +77,8 @@ class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
       model.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    // ignore: avoid_print
+    print("============ response from Database $response =======");
     return response;
   }
 
@@ -98,13 +100,12 @@ class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
 
     final query = await _db.rawQuery(
       """
-SELECT * FROM missions WHERE started=? AND finished=? 
+SELECT * FROM missions  WHERE   status=? ORDER BY started ASC
 """,
-      [
-        started,
-        finished,
-      ],
+      ["pending"],
     );
+    // ignore: avoid_print
+    print("============ exist mission  $query =======");
     return query.isNotEmpty;
   }
 

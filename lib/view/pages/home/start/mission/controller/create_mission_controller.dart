@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
+import 'package:telecom/model/mission/mission_model.dart';
+
+import 'package:telecom/utils/converter/enum/status_mission.dart';
 import 'package:telecom/utils/formater/time_format.dart';
 
 class CreateMissionController extends GetxController {
@@ -15,7 +18,7 @@ class CreateMissionController extends GetxController {
   List<String> codeSite = [];
   List<String> membreEquipe = [];
 
-  int carburanat = 1;
+  int carburant = 1;
   int jourdeplacement = 1;
   String errorExisteMembre = "";
   String dateDepart = DateFormat.formDate(
@@ -58,8 +61,6 @@ class CreateMissionController extends GetxController {
     finished = DateFormat.formDate(
       DateFormat.addDuration(dateDepart, nombreJour),
     );
-    // ignore: avoid_print
-    print("=========== finished $finished =========");
     update();
   }
 
@@ -151,13 +152,13 @@ class CreateMissionController extends GetxController {
   /// increment or decremeenet for minimum 1 carburant must add to mission
   ///
   void updateIncrementCarburant() {
-    carburanat++;
+    carburant++;
     update();
   }
 
   void updateDecrementCarburant() {
-    if (carburanat > 1) {
-      carburanat--;
+    if (carburant > 1) {
+      carburant--;
     }
     update();
   }
@@ -172,6 +173,40 @@ class CreateMissionController extends GetxController {
     return response;
   }
 
+  Future<void> insertMissionToDb() async {
+    try {
+      if (transportKey.currentState!.validate() &&
+          ((await isExistMission()) == false)) {
+        final Mission model = Mission(
+          started: dateDepart,
+          finished: finished,
+          deplacement: isDeplacement,
+          equipe: isEquipe,
+          depense: false,
+          bon: carburant,
+          carburant: 0,
+          status: Status.pending,
+          depart: 0,
+          car: fieldsVehicule.text,
+          chefequipe: fieldsSupervisseur.text,
+          chefprojet: fieldsChefProjet.text,
+          peage: 0,
+          achat: 0,
+        );
+        final response = await repository.insert(model);
+        // ignore: avoid_print
+        print("===== succes formating mission $response==========");
+      } else {
+        // ignore: avoid_print
+        print(
+            "===== invalid : mission ouvert deja merci de cloturer vos missions ==========");
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print("===================== error :${e.toString()} =========");
+    }
+  }
+
   /// Variables for TextEditingController :
   ///
   late TextEditingController fieldsEquipe;
@@ -179,6 +214,10 @@ class CreateMissionController extends GetxController {
   late TextEditingController fieldsNomCodeSite;
   late TextEditingController fieldsIndexDepart;
   late TextEditingController fieldsVehicule;
+  late TextEditingController fieldsChefProjet;
+  late TextEditingController fieldsSupervisseur;
+  GlobalKey<FormState> transportKey = GlobalKey();
+  GlobalKey<FormState> deplacementKey = GlobalKey();
 
   @override
   void onInit() {
@@ -187,6 +226,8 @@ class CreateMissionController extends GetxController {
     fieldsNomCodeSite = TextEditingController();
     fieldsIndexDepart = TextEditingController();
     fieldsVehicule = TextEditingController();
+    fieldsChefProjet = TextEditingController();
+    fieldsSupervisseur = TextEditingController();
     super.onInit();
   }
 
@@ -197,6 +238,8 @@ class CreateMissionController extends GetxController {
     fieldsIndexDepart.dispose();
     fieldsNomCodeSite.dispose();
     fieldsVehicule.dispose();
+    fieldsChefProjet.dispose();
+    fieldsSupervisseur.dispose();
     super.onClose();
   }
 }

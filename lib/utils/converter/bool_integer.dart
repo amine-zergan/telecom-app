@@ -4,7 +4,6 @@ class BoolConverter {
   /// Function return [bool] converted from type int
   ///
   static bool boolFromInt(int value) {
-    assert(value.isNaN);
     int result = value.clamp(0, 1);
     return result == 0;
   }
@@ -13,9 +12,9 @@ class BoolConverter {
   ///
   static int integerFromBool(bool value) {
     if (value == true) {
-      return 0;
-    } else {
       return 1;
+    } else {
+      return 0;
     }
   }
 }
