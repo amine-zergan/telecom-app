@@ -59,6 +59,7 @@ const String creatAt = "createAt";
 const String missions = "missions";
 const String started = "started";
 const String finished = "finished";
+const String depense = "depense";
 const String deplacement = "deplacement";
 const String equipe = "equipe";
 const String bon = "bon";

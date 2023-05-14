@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
+import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/utils/formater/time_format.dart';
 
 class CreateMissionController extends GetxController {
@@ -20,6 +21,9 @@ class CreateMissionController extends GetxController {
   String dateDepart = DateFormat.formDate(
     DateTime.now(),
   );
+
+  String? finished;
+
   List<String> jourMission = [
     "un jour",
     "deux jours",
@@ -51,8 +55,11 @@ class CreateMissionController extends GetxController {
   ///
   void onChangeJour(int? value) {
     nombreJour = value!;
+    finished = DateFormat.formDate(
+      DateFormat.addDuration(dateDepart, nombreJour),
+    );
     // ignore: avoid_print
-    print("=========== duree de mission $nombreJour ======");
+    print("=========== finished $finished =========");
     update();
   }
 
@@ -89,10 +96,15 @@ class CreateMissionController extends GetxController {
         !membreEquipe.contains(fieldsEquipe.text)) {
       membreEquipe.add(fieldsEquipe.text);
       fieldsEquipe.clear();
+      errorExisteMembre = "";
       // ignore: avoid_print
       print("======= activate function ${membreEquipe.length}========");
-      update();
+    } else if (fieldsEquipe.text.isEmpty) {
+      errorExisteMembre = "champ vide";
+    } else {
+      errorExisteMembre = "membre deja ajouter...";
     }
+    update();
   }
 
   void updateNombreEquipeRemove(int index) {
@@ -122,7 +134,8 @@ class CreateMissionController extends GetxController {
   /// remouve from site list
   ///
   void updateNombreSiteAdd() {
-    if (fieldsNomCodeSite.text.isNotEmpty) {
+    if (fieldsNomCodeSite.text.isNotEmpty &&
+        !codeSite.contains(fieldsNomCodeSite.text)) {
       codeSite.add(fieldsNomCodeSite.text.toUpperCase());
       fieldsNomCodeSite.clear();
     }
@@ -147,6 +160,16 @@ class CreateMissionController extends GetxController {
       carburanat--;
     }
     update();
+  }
+
+  /// verify Existance of Mission opened yet in Database :
+  /// date started with estimation date means :
+  /// in periode of [started]-[finished] date in query database
+  ///
+
+  Future<bool> isExistMission() async {
+    final response = await repository.verifieExistance(dateDepart, finished);
+    return response;
   }
 
   /// Variables for TextEditingController :

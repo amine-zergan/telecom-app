@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/db/helpers/db_helper.dart';
-import 'package:telecom/db/services/core/constants_config.dart';
+
 import 'package:telecom/model/mission/mission_model.dart';
 
 class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
@@ -92,11 +92,20 @@ class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
 
   /// Write Query for verify existance mission in database
   @override
-  Future<bool> verifieExistance(String started, Status status) async {
-    final db = await helper.db;
-    final response = await db.query(missions,
-        where: "started=?", whereArgs: [started], limit: 1);
-    return response.isNotEmpty;
+  Future<bool> verifieExistance(String started, String? finished) async {
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _db = await helper.db;
+
+    final query = await _db.rawQuery(
+      """
+SELECT * FROM missions WHERE started=? AND finished=? 
+""",
+      [
+        started,
+        finished,
+      ],
+    );
+    return query.isNotEmpty;
   }
 
   @override

@@ -44,4 +44,13 @@ class DateFormat {
     final date = int.parse(format[2]);
     return DateTime(year, month, date);
   }
+
+  /// Function of Type [DateTime] to add duration of days to value and Type DateTime
+  static DateTime addDuration(String value, int day) {
+    // ignore: no_leading_underscores_for_local_identifiers
+    DateTime _date = toDate(value).add(
+      Duration(days: day),
+    );
+    return _date;
+  }
 }

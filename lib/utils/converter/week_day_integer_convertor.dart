@@ -1,4 +1,6 @@
 class JourConvertor {
+  const JourConvertor._();
+
   /// class of type convertor : used to convert ot switch between
   ///
   /// day duration of mission of type string to integer value to add to start mission
