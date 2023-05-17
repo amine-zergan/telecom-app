@@ -15,8 +15,8 @@ class Mission {
   final bool depense;
   final int bon;
   final Status status;
-  final double depart;
-  final double? arrive;
+  final int depart;
+  final int? arrive;
   final String car;
   final double? carburant;
   final String chefequipe;
@@ -54,8 +54,8 @@ class Mission {
     bool? depense,
     int? bon,
     Status? status,
-    double? depart,
-    double? arrive,
+    int? depart,
+    int? arrive,
     String? car,
     double? carburant,
     String? chefequipe,
@@ -116,8 +116,8 @@ class Mission {
       depense: BoolConverter.boolFromInt(map['depense'] as int) as bool,
       bon: map['bon'] as int,
       status: EnumParse.fromString(map['status'] as String),
-      depart: map['depart'] as double,
-      arrive: map['arrive'] != null ? map['arrive'] as double : null,
+      depart: map['depart'] as int,
+      arrive: map['arrive'] != null ? map['arrive'] as int : null,
       car: map['car'] as String,
       carburant: map['carburant'] != null ? map['carburant'] as double : null,
       chefequipe: map['chefequipe'] as String,

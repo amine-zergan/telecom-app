@@ -85,7 +85,7 @@ class StartMaterial extends GetWidget<CreateEquipementController> {
                           maxLine: 1,
                           keyboardType: TextInputType.text,
                           labelText: "Reference ",
-                          hintText: "00000340",
+                          hintText: "340",
                           validator: ValidatorEquipement.validatorReference,
                           onEditComplete: () {
                             FocusScope.of(context)

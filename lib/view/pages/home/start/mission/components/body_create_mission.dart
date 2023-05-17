@@ -227,6 +227,9 @@ class BodyCreateMission extends StatelessWidget {
                               labelText: "montant de deplacement",
                               hintText: "tarif total de deplacement en dinar",
                               controller: controller.fieldsFraisDeplacement,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
                             ),
                           ),
                         ],

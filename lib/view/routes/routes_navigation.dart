@@ -3,7 +3,7 @@ import 'package:telecom/di/get_it.dart';
 import 'package:telecom/view/pages/config/config_page.dart';
 import 'package:telecom/view/pages/config/controller/config_binding.dart';
 import 'package:telecom/view/pages/home/controller/home_binding.dart';
-import 'package:telecom/view/pages/home/home_page.dart';
+import 'package:telecom/view/pages/home/new_home_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
 import 'package:telecom/view/pages/home/start/equipements/create_equipements.dart';
@@ -39,7 +39,7 @@ class Routes {
     ),
     GetPage(
       name: RouteName.home,
-      page: () => const MyHomePage(),
+      page: () => const HomeNewPage(),
       binding: HomeBinding(),
     ),
 

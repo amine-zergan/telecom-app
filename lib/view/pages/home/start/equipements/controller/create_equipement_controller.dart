@@ -62,13 +62,20 @@ class CreateEquipementController extends GetxController {
         } else {
           final model = Equipement(
             name: fieldsNom.text.toUpperCase(),
-            ref: fieldsReference.text,
+            ref: "00000${fieldsReference.text}",
             description: fieldsDescription.text.toUpperCase(),
             type: groupValuePosition,
             project: project!,
           );
           final result = await repository.insert(model);
           error = "";
+          clearField();
+          Get.snackbar(
+            "Notification",
+            "Reference Ajoutee avec succes",
+            backgroundColor: Colors.green.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
           // ignore: avoid_print
           print(
               "=========== equipement insert with  succes $result ===========");
@@ -79,6 +86,17 @@ class CreateEquipementController extends GetxController {
       print("=========== error ${e.toString()}===========");
       error = "Equipement n'est pas enregistrer !";
     }
+    update();
+  }
+
+  /// Function for clear fields and selectedFornisseur :
+  ///
+  void clearField() {
+    fieldsDescription.clear();
+    fieldsReference.clear();
+    fieldsNom.clear();
+    selectedProject = null;
+    project = null;
     update();
   }
 

@@ -52,9 +52,9 @@ class ConfigController extends GetxController {
         duration: const Duration(milliseconds: 500),
         curve: Curves.linear,
       );
+      value = 1.0;
       getLastPage();
     } else if (_page == 6 && formentreprise.currentState!.validate()) {
-      value = 1.0;
       insertToDatabase();
       Get.offAllNamed(RouteName.home);
     }

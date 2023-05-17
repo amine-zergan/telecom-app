@@ -29,7 +29,7 @@ class LatitudeFormField extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       onEditingComplete: onEditCompleted,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.name,
       validator: ValidatorCoordonnee.latitudevalidator,
       decoration: const InputDecoration(
         hintText: "30.23333333",

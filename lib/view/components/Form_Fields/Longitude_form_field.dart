@@ -29,7 +29,7 @@ class LongitudeFormField extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       onEditingComplete: onEditCompleted,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.name,
       validator: ValidatorCoordonnee.longitudevalidator,
       decoration: const InputDecoration(
         hintText: "9.23333333",

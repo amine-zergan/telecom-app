@@ -31,10 +31,14 @@ class RemoteSiteDataSourceImpl extends IrepositorySiteDatasource {
   @override
   Future<bool> isExist(String name, int operatorId) async {
     final db = await helper.db;
+
     final result = await db.rawQuery(
-      'SELECT * FROM sites WHERE sites.name=? AND sites.operator=?   ',
+      'SELECT * FROM sites WHERE sites.name=? AND sites.operator=?  ',
       [name, operatorId],
     );
+
+    print("============ result from db $result ========");
+
     return result.isNotEmpty;
   }
 

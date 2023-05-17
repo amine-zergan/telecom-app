@@ -22,7 +22,7 @@ class PostRadioTileCard extends StatelessWidget {
       elevation: 0,
       color: controller.selectValue == index
           ? Colors.grey.shade800
-          : Colors.transparent,
+          : Colors.black12,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           padding10 / 2,

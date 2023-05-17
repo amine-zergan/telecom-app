@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
@@ -20,7 +21,6 @@ class CreateMissionController extends GetxController {
 
   int carburant = 1;
   int jourdeplacement = 1;
-  String errorExisteMembre = "";
   String dateDepart = DateFormat.formDate(
     DateTime.now(),
   );
@@ -97,14 +97,8 @@ class CreateMissionController extends GetxController {
         !membreEquipe.contains(fieldsEquipe.text)) {
       membreEquipe.add(fieldsEquipe.text);
       fieldsEquipe.clear();
-      errorExisteMembre = "";
-      // ignore: avoid_print
-      print("======= activate function ${membreEquipe.length}========");
-    } else if (fieldsEquipe.text.isEmpty) {
-      errorExisteMembre = "champ vide";
-    } else {
-      errorExisteMembre = "membre deja ajouter...";
     }
+
     update();
   }
 
@@ -136,7 +130,7 @@ class CreateMissionController extends GetxController {
   ///
   void updateNombreSiteAdd() {
     if (fieldsNomCodeSite.text.isNotEmpty &&
-        !codeSite.contains(fieldsNomCodeSite.text)) {
+        !codeSite.contains(fieldsNomCodeSite.text.toUpperCase())) {
       codeSite.add(fieldsNomCodeSite.text.toUpperCase());
       fieldsNomCodeSite.clear();
     }
@@ -175,34 +169,53 @@ class CreateMissionController extends GetxController {
 
   Future<void> insertMissionToDb() async {
     try {
-      if (transportKey.currentState!.validate() &&
-          ((await isExistMission()) == false)) {
-        final Mission model = Mission(
-          started: dateDepart,
-          finished: finished,
-          deplacement: isDeplacement,
-          equipe: isEquipe,
-          depense: false,
-          bon: carburant,
-          carburant: 0,
-          status: Status.pending,
-          depart: 0,
-          car: fieldsVehicule.text,
-          chefequipe: fieldsSupervisseur.text,
-          chefprojet: fieldsChefProjet.text,
-          peage: 0,
-          achat: 0,
-        );
-        final response = await repository.insert(model);
-        // ignore: avoid_print
-        print("===== succes formating mission $response==========");
+      if (transportKey.currentState!.validate() && codeSite.isNotEmpty) {
+        if ((await isExistMission()) == false) {
+          final Mission model = Mission(
+            started: dateDepart,
+            finished: finished,
+            deplacement: isDeplacement,
+            equipe: isEquipe,
+            depense: false,
+            bon: carburant,
+            carburant: 0,
+            status: Status.pending,
+            depart: int.parse(fieldsIndexDepart.text),
+            car: fieldsVehicule.text,
+            chefequipe: fieldsSupervisseur.text,
+            chefprojet: fieldsChefProjet.text,
+            peage: 0,
+            achat: 0,
+          );
+          final response = await repository.insert(model);
+
+          print("===== succes formating mission $response==========");
+          Get.snackbar(
+            "Notification",
+            "Mission crée avec succes",
+            backgroundColor: Colors.green.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
+        } else {
+          print("===== code site  est obligatoire ==========");
+          Get.snackbar(
+            "Notification",
+            "Il y a une Mission ouvert deja. essaier de cloturer pour creer une nouvelle. ",
+            backgroundColor: Colors.red.shade200,
+            snackPosition: SnackPosition.TOP,
+          );
+        }
       } else {
-        // ignore: avoid_print
+        Get.snackbar(
+          "Notification",
+          "Il n'y a aucune site . merci d'ajouter les sites de destinations ",
+          backgroundColor: Colors.red.shade200,
+          snackPosition: SnackPosition.TOP,
+        );
         print(
             "===== invalid : mission ouvert deja merci de cloturer vos missions ==========");
       }
     } catch (e) {
-      // ignore: avoid_print
       print("===================== error :${e.toString()} =========");
     }
   }

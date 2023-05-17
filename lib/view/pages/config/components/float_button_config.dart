@@ -13,6 +13,7 @@ class FloatButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: controller.navigatePageController,
+      heroTag: null,
       icon: controller.isLast
           ? const Icon(Icons.done_all)
           : const Icon(Icons.arrow_circle_right_outlined),

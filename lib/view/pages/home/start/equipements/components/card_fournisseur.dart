@@ -21,9 +21,7 @@ class CardFournisseur extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
-        color: selectedProject == index
-            ? Colors.grey.shade300
-            : Colors.grey.shade900,
+        color: selectedProject == index ? Colors.grey.shade600 : Colors.black12,
         borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.all(5),

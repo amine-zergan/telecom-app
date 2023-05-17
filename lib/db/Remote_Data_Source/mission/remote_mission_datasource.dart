@@ -98,14 +98,11 @@ class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
     // ignore: no_leading_underscores_for_local_identifiers
     final _db = await helper.db;
 
-    final query = await _db.rawQuery(
-      """
-SELECT * FROM missions  WHERE   status=? ORDER BY started ASC
-""",
-      ["pending"],
-    );
+    final query = await _db.rawQuery("""
+SELECT * FROM missions WHERE  status=? 
+""", ["pending"]);
     // ignore: avoid_print
-    print("============ exist mission  $query =======");
+    print("============ exist mission $query =======");
     return query.isNotEmpty;
   }
 

@@ -11,13 +11,11 @@ class ValidatorEquipement {
   }
 
   static String? validatorReference(String? value) {
-    RegExp regExp = RegExp("[0]{5}");
+    //RegExp regExp = RegExp("[0]{5}");
     if (value == null || value.isEmpty) {
       return "champ obligatoire";
-    } else if (!regExp.hasMatch(value)) {
-      return " code reference commence par 00000";
-    } else if (value.length > 8) {
-      return "reference ne depasse pas les 8 chiffres";
+    } else if (value.length > 5) {
+      return "reference ne depasse pas les 5 chiffres";
     } else {
       return null;
     }
