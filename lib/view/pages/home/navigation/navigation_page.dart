@@ -90,12 +90,8 @@ class _NavigationPageState extends State<NavigationPage> {
                   ],
                 ),
                 expandedTitleScale: 1.5,
-                title: Text(
+                title: const Text(
                   "Navigation",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall!
-                      .copyWith(fontWeight: FontWeight.w500),
                 ),
                 titlePadding: const EdgeInsets.only(
                   bottom: padding10,
@@ -105,9 +101,54 @@ class _NavigationPageState extends State<NavigationPage> {
                 collapseMode: CollapseMode.pin,
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 700,
+            const EmptyNavigationView(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyNavigationView extends StatelessWidget {
+  const EmptyNavigationView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: padding10,
+            ),
+            const Icon(
+              Icons.add_road_rounded,
+              size: 100,
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
+            Text(
+              "Aucune Site trouvé",
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: padding10 * 1.5,
+              ),
+              child: Text(
+                "Mettre les coordonnées de site ou destination souhaitée. Créer et Ajouter les sites des Operateurs.",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      color: Colors.grey.shade500,
+                    ),
               ),
             ),
           ],

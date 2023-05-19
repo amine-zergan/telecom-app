@@ -29,6 +29,7 @@ class DescriptionFormWithTile extends StatelessWidget {
             validator: TaskValidator.descriptionTaskValidate,
             autocorrect: false,
             maxLines: 4,
+            keyboardType: TextInputType.name,
             decoration: const InputDecoration(
               hintText:
                   "description detaillees de Tache et ajouter code sites ...",

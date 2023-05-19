@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
 
-class DropdownProjectMenu extends StatelessWidget {
+class DropdownProjectMenu extends StatefulWidget {
   const DropdownProjectMenu({
     Key? key,
     required this.size,
@@ -12,11 +12,16 @@ class DropdownProjectMenu extends StatelessWidget {
   final CreateTaskController controller;
 
   @override
+  State<DropdownProjectMenu> createState() => _DropdownProjectMenuState();
+}
+
+class _DropdownProjectMenuState extends State<DropdownProjectMenu> {
+  @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownMenu(
         hintText: "choisir le projet ",
-        width: size.width * 0.8,
+        width: widget.size.width * 0.8,
         menuStyle: MenuStyle(
           backgroundColor: MaterialStatePropertyAll(
             Colors.grey.shade800,
@@ -27,8 +32,10 @@ class DropdownProjectMenu extends StatelessWidget {
           Icons.add_home_work,
         ),
         enableFilter: true,
-        onSelected: controller.updateProject,
-        dropdownMenuEntries: controller.dataFromDb
+        enableSearch: true,
+        enabled: true,
+        onSelected: widget.controller.updateProject,
+        dropdownMenuEntries: widget.controller.dataFromDb
             .map(
               (element) => DropdownMenuEntry(
                 value: element,

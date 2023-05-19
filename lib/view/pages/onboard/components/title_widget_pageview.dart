@@ -15,10 +15,9 @@ class TitleWidget extends StatelessWidget {
       child: Text(
         onbard.title,
         textAlign: TextAlign.center,
-        style: Theme.of(context)
-            .textTheme
-            .headlineSmall!
-            .copyWith(fontWeight: FontWeight.w700, color: Colors.white),
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
       ),
     );
   }

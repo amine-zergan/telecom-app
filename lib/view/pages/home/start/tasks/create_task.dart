@@ -24,6 +24,7 @@ class StartTask extends GetWidget<CreateTaskController> {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBarCreate(
         title: "Ajouter une Tachée",

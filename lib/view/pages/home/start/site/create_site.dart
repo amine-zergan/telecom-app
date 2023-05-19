@@ -17,7 +17,7 @@ class StartSite extends GetWidget<CreateSiteController> {
         GestureType.onPanUpdateDownDirection,
       ],
       child: Scaffold(
-        backgroundColor: Colors.grey.shade800,
+        //backgroundColor: Colors.grey.shade800,
         appBar: AppBarCreate(
           title: "Nouveau Site",
           validate: () {

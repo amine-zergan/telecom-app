@@ -40,7 +40,7 @@ class _HomeNewPageState extends State<HomeNewPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        elevation: 20,
+        elevation: 10,
         onPressed: () {
           Get.to<double>(() => const CreateObjectPage(),
               transition: Transition.fadeIn,
@@ -59,8 +59,8 @@ class _HomeNewPageState extends State<HomeNewPage> {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         //surfaceTintColor: Colors.transparent,
-        notchMargin: 8.0,
-        shadowColor: Colors.grey.shade800,
+        notchMargin: 5.0,
+        //shadowColor: Colors.grey.shade800,
         color: Colors.grey.shade800,
         elevation: 20,
         padding: const EdgeInsets.only(

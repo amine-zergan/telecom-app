@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +17,7 @@ class ContactPage extends StatefulWidget {
 
 class _ContactPageState extends State<ContactPage> {
   double slider = 2.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +28,7 @@ class _ContactPageState extends State<ContactPage> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              expandedHeight: 300,
-              pinned: true,
+              pinned: false,
               elevation: 0,
               floating: true,
               snap: true,
@@ -69,7 +69,6 @@ class _ContactPageState extends State<ContactPage> {
                   width: padding10,
                 )
               ],
-              //backgroundColor: Colors.grey.shade400,
               flexibleSpace: FlexibleSpaceBar(
                 expandedTitleScale: 1.4,
                 titlePadding: const EdgeInsets.only(
@@ -87,10 +86,48 @@ class _ContactPageState extends State<ContactPage> {
                 collapseMode: CollapseMode.none,
               ),
             ),
-            SliverToBoxAdapter(
-              child: Container(
-                height: 700,
-              ),
+            const EmptyContactCard(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyContactCard extends StatelessWidget {
+  const EmptyContactCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: Get.height * 0.7,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.emoji_people_rounded,
+              size: 150,
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
+            Text(
+              "Repertoire vide",
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: padding10,
+            ),
+            Text(
+              "Commencer d'ajouter votre Contacts.\nOrganiser selon leur post occupée ",
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
@@ -143,10 +180,9 @@ class _FilterViewState extends State<FilterView> {
               ),
               Text(
                 slider.toInt().toString(),
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
               )
             ],
           ),

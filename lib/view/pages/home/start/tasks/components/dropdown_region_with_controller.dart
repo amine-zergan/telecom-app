@@ -6,7 +6,7 @@ import 'package:telecom/view/pages/home/start/site/components/title_component.da
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
-class DropDownRegionWithcontroller extends StatelessWidget {
+class DropDownRegionWithcontroller extends StatefulWidget {
   const DropDownRegionWithcontroller({
     Key? key,
     required this.size,
@@ -16,6 +16,14 @@ class DropDownRegionWithcontroller extends StatelessWidget {
   final Size size;
   final CreateTaskController controller;
   final TextEditingController? textEditController;
+
+  @override
+  State<DropDownRegionWithcontroller> createState() =>
+      _DropDownRegionWithcontrollerState();
+}
+
+class _DropDownRegionWithcontrollerState
+    extends State<DropDownRegionWithcontroller> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,19 +41,20 @@ class DropDownRegionWithcontroller extends StatelessWidget {
         DropdownButtonHideUnderline(
           child: DropdownMenu(
             hintText: "choisir la region ",
-            width: size.width * 0.8,
+            width: widget.size.width * 0.8,
             menuStyle: MenuStyle(
               backgroundColor: MaterialStatePropertyAll(
                 Colors.grey.shade800,
               ),
             ),
-            controller: textEditController,
+            controller: widget.textEditController,
             leadingIcon: const Icon(
               Icons.place,
             ),
             enableFilter: true,
             enableSearch: true,
-            onSelected: controller.updateRegion,
+            enabled: true,
+            onSelected: widget.controller.updateRegion,
             dropdownMenuEntries: region
                 .map(
                   (element) => DropdownMenuEntry(
@@ -56,7 +65,7 @@ class DropDownRegionWithcontroller extends StatelessWidget {
                 .toList(),
           ),
         ),
-        controller.errorRegion == ""
+        widget.controller.errorRegion == ""
             ? Container()
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +74,7 @@ class DropDownRegionWithcontroller extends StatelessWidget {
                     height: padding10,
                   ),
                   Text(
-                    controller.errorRegion,
+                    widget.controller.errorRegion,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],
