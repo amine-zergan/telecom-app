@@ -69,18 +69,15 @@ class _ContactPageState extends State<ContactPage> {
                   width: padding10,
                 )
               ],
-              flexibleSpace: FlexibleSpaceBar(
+              flexibleSpace: const FlexibleSpaceBar(
                 expandedTitleScale: 1.4,
-                titlePadding: const EdgeInsets.only(
+                titlePadding: EdgeInsets.only(
                   bottom: padding10,
                   left: padding10,
                 ),
                 title: Text(
                   "Repertoire de contact",
                   textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
                 ),
                 centerTitle: false,
                 collapseMode: CollapseMode.none,

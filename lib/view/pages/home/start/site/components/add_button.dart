@@ -1,11 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class AddButton extends StatelessWidget {
-  const AddButton({
-    Key? key,
-    required this.press,
-  }) : super(key: key);
+  AddButton({Key? key, required this.press, this.icon = Icons.check})
+      : super(key: key);
   final VoidCallback press;
+  IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,8 @@ class AddButton extends StatelessWidget {
       onPressed: press,
       splashColor: Colors.transparent,
       splashRadius: 20,
-      icon: const Icon(
-        Icons.check,
+      icon: Icon(
+        icon,
       ),
     );
   }

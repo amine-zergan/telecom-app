@@ -3,6 +3,8 @@ import 'package:telecom/di/get_it.dart';
 import 'package:telecom/view/pages/config/config_page.dart';
 import 'package:telecom/view/pages/config/controller/config_binding.dart';
 import 'package:telecom/view/pages/home/controller/home_binding.dart';
+import 'package:telecom/view/pages/home/dashbord/sound/notification_page.dart';
+import 'package:telecom/view/pages/home/dashbord/tasks/history_view/history_page.dart';
 import 'package:telecom/view/pages/home/new_home_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
@@ -38,9 +40,17 @@ class Routes {
       binding: ConfigBind(),
     ),
     GetPage(
-      name: RouteName.home,
-      page: () => const HomeNewPage(),
-      binding: HomeBinding(),
+        name: RouteName.home,
+        page: () => const HomeNewPage(),
+        binding: HomeBinding(),
+        children: const []),
+    GetPage(
+      name: RouteName.history,
+      page: () => const HistoryPage(),
+    ),
+    GetPage(
+      name: RouteName.notification,
+      page: () => const NotificationPage(),
     ),
 
     /// add create pages : tasks -Missions -report -site- contact

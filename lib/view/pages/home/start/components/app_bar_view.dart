@@ -1,17 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
 
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
 import 'package:telecom/view/pages/home/start/site/components/add_button.dart';
 
 class AppBarCreate extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarCreate({
-    Key? key,
-    required this.title,
-    required this.validate,
-  }) : super(key: key);
+  AppBarCreate(
+      {Key? key,
+      required this.title,
+      required this.validate,
+      this.icon = Icons.check})
+      : super(key: key);
   final String title;
   final VoidCallback validate;
+  IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class AppBarCreate extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         AddButton(
           press: validate,
+          icon: icon,
         ),
       ],
     );

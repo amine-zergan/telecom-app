@@ -1,8 +1,12 @@
-// ignore_for_file: avoid_unnecessary_containers
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: avoid_unnecessary_containers, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
+import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
+import 'package:telecom/view/theme/size_constants.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -11,22 +15,140 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        //color: Colors.white54,
         width: double.infinity,
         height: Get.size.height,
         child: CustomScrollView(
           physics: const ClampingScrollPhysics(),
           slivers: [
-            SliverPersistentHeader(
-              delegate: ProfilePersistHeader(),
-              pinned: true,
-              floating: false,
+            SliverAppBar(
+              expandedHeight: 350,
+              title: Text(
+                "Profile",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              centerTitle: false,
+              floating: true,
+              pinned: false,
+              flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.parallax,
+                titlePadding: const EdgeInsets.symmetric(
+                  horizontal: padding10,
+                  vertical: padding10,
+                ),
+                background: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Spacer(
+                      flex: 3,
+                    ),
+                    ClipRRect(
+                      child: LottieBuilder.asset(
+                        "assets/animations/profil.json",
+                        fit: BoxFit.cover,
+                        width: 250,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: padding10,
+                    ),
+                    const Text(
+                      "Nom et Prenom",
+                    ),
+                    const SizedBox(
+                      height: padding10,
+                    ),
+                    const Text(
+                      "Poste Actuel dans Entreprise",
+                    ),
+                    const SizedBox(
+                      height: padding10,
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: padding10 * 1.5,
+                      right: padding10 * 1.5,
+                      top: padding10,
+                    ),
+                    child: TitleComponent(
+                      title: "Information general :",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: padding10,
+                  ),
+                  CardSetting(
+                    title: "Societé",
+                    subtitle: "Nom de entreprise ",
+                    logo: const FlutterLogo(
+                      style: FlutterLogoStyle.markOnly,
+                    ),
+                    onPressed: () {},
+                  ),
+                  CardSetting(
+                    title: "Address",
+                    subtitle: "Nom de entreprise ",
+                    logo: const Icon(
+                      Icons.home_outlined,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: padding10 * 1.5,
+                      right: padding10 * 1.5,
+                      top: padding10,
+                    ),
+                    child: TitleComponent(
+                      title: "Parametre:",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: padding10,
+                  ),
+                  ParametreCard(
+                    title: "Notifications",
+                    icons: Icons.edit_notifications_outlined,
+                    onTap: () {},
+                  ),
+                  ParametreCard(
+                    title: "Settings",
+                    icons: Icons.settings_applications_outlined,
+                    onTap: () {},
+                  ),
+                  ParametreCard(
+                    title: "A propos",
+                    icons: Icons.read_more_sharp,
+                    onTap: () {},
+                  ),
+                  ParametreCard(
+                    title: "licence ",
+                    icons: Icons.library_add_check_outlined,
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 700,
+                height: 50,
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -34,44 +156,78 @@ class SettingPage extends StatelessWidget {
   }
 }
 
-const maxHeigth = 400.0;
-const minHeigth = 100.0;
+class ParametreCard extends StatelessWidget {
+  const ParametreCard({
+    Key? key,
+    required this.title,
+    required this.onTap,
+    required this.icons,
+  }) : super(key: key);
+  final String title;
+  final VoidCallback onTap;
+  final IconData icons;
 
-class ProfilePersistHeader extends SliverPersistentHeaderDelegate {
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final value = shrinkOffset / maxHeigth;
-    // ignore: avoid_print
-    print(-30 * value);
-    return Container(
-      color: Colors.grey,
-      child: Stack(
-        fit: StackFit.loose,
-        alignment: Alignment.bottomCenter,
-        children: [
-          Positioned(
-            bottom: (-100 * (0.8 * (0.8 - value))) - 30 * value,
-            left: 50 - 50 * value,
-            width: 70 + 200 * (1 - value),
-            height: 70 + 200 * (1 - value),
-            child: LottieBuilder.asset(
-              "assets/animations/profil.json",
-            ),
-          ),
-        ],
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      color: Colors.black12,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(padding10 / 2),
+      ),
+      margin: const EdgeInsets.symmetric(
+        horizontal: padding10 / 2,
+        vertical: padding10 / 5,
+      ),
+      child: ListTile(
+        title: Text(title),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(padding10 / 2),
+        ),
+        horizontalTitleGap: 0.0,
+        onTap: onTap,
+        leading: Icon(icons),
       ),
     );
   }
+}
+
+class CardSetting extends StatelessWidget {
+  const CardSetting({
+    Key? key,
+    required this.title,
+    this.subtitle,
+    required this.logo,
+    required this.onPressed,
+  }) : super(key: key);
+  final String title;
+  final String? subtitle;
+  final Widget logo;
+  final VoidCallback onPressed;
 
   @override
-  double get maxExtent => maxHeigth;
-
-  @override
-  double get minExtent => minHeigth;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      color: Colors.black12,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(padding10 / 2),
+      ),
+      margin: const EdgeInsets.symmetric(
+        horizontal: padding10 / 2,
+        vertical: padding10 / 5,
+      ),
+      child: ListTile(
+        horizontalTitleGap: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(padding10 / 2),
+        ),
+        leading: logo,
+        title: Text(title),
+        subtitle: Text(
+          subtitle ?? "",
+        ),
+      ),
+    );
   }
 }

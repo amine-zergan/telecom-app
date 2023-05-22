@@ -6,7 +6,7 @@ class ThemeApp {
   static ThemeData light = ThemeData.light().copyWith(
     primaryColor: primaryColor,
     primaryColorLight: primaryColor,
-    colorScheme: const ColorScheme.light(
+    colorScheme: ColorScheme.light(
       primary: primaryColor,
     ),
     appBarTheme: const AppBarTheme(

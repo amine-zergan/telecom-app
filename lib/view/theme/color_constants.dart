@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Colors.amber;
+Color primaryColor = colorButton.withOpacity(0.4);
 const textHeadlineSmall = Color.fromRGBO(47, 46, 64, 0.8);
 const beginColor = Color.fromRGBO(255, 215, 128, 1);
 const endColor = Color.fromRGBO(198, 96, 0, 1);
