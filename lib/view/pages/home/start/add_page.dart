@@ -7,9 +7,9 @@ class CreateObjectPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade800,
-      body: const BodyCreateObject(),
+    return const Scaffold(
+      //backgroundColor: Colors.grey.shade800,
+      body: BodyCreateObject(),
     );
   }
 }

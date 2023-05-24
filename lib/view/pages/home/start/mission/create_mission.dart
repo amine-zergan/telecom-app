@@ -10,14 +10,10 @@ class StartMission extends GetWidget<CreateMissionController> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
-    print("============= rebuild ==============");
     return Scaffold(
       appBar: AppBarCreate(
         title: "Creation Mission",
         validate: () async {
-          // ignore: avoid_print
-          print("============= rebuild with appbar ==============");
           controller.insertMissionToDb();
         },
       ),

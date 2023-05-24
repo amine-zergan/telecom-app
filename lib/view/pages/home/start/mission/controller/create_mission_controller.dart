@@ -133,8 +133,8 @@ class CreateMissionController extends GetxController {
         !codeSite.contains(fieldsNomCodeSite.text.toUpperCase())) {
       codeSite.add(fieldsNomCodeSite.text.toUpperCase());
       fieldsNomCodeSite.clear();
+      update();
     }
-    update();
   }
 
   void updateNombreSiteRemove(int index) {
@@ -169,7 +169,7 @@ class CreateMissionController extends GetxController {
 
   Future<void> insertMissionToDb() async {
     try {
-      if (transportKey.currentState!.validate() && codeSite.isNotEmpty) {
+      if (transportKey.currentState!.validate() || codeSite.isNotEmpty) {
         if ((await isExistMission()) == false) {
           final Mission model = Mission(
             started: dateDepart,

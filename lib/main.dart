@@ -47,9 +47,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return GetMaterialApp(
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
-      navigatorObservers: [
-        NavigatorObserver(),
-      ],
       getPages: Routes.routes,
       defaultTransition: Transition.fadeIn,
       initialRoute: RouteName.onboard,

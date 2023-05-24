@@ -122,8 +122,8 @@ class SettingPage extends StatelessWidget {
                     height: padding10,
                   ),
                   ParametreCard(
-                    title: "Notifications",
-                    icons: Icons.edit_notifications_outlined,
+                    title: "Rapports",
+                    icons: Icons.bookmark_add_outlined,
                     onTap: () {},
                   ),
                   ParametreCard(
