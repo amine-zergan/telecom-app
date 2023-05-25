@@ -20,4 +20,7 @@ class RouteName {
   static const startContact = "/create-contact";
   static const startReport = "/create-report";
   static const startMaterial = "/create-equipement";
+
+  /// ---- Setting edit list ----------- ///
+  static const editSetting = "/edit";
 }

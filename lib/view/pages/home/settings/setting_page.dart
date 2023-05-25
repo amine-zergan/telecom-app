@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
+import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
 class SettingPage extends StatelessWidget {
@@ -127,9 +128,11 @@ class SettingPage extends StatelessWidget {
                     onTap: () {},
                   ),
                   ParametreCard(
-                    title: "Settings",
-                    icons: Icons.settings_applications_outlined,
-                    onTap: () {},
+                    title: "General",
+                    icons: Icons.edit_square,
+                    onTap: () {
+                      Get.toNamed(RouteName.editSetting);
+                    },
                   ),
                   ParametreCard(
                     title: "A propos",
