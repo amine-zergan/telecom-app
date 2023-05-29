@@ -32,6 +32,7 @@ dependencies:
   open_file: ^3.2.1
   lottie: ^2.3.2
   keyboard_dismisser: ^3.0.0
+  flutter_dotenv: ^5.0.2
   linearprogress: 
     path: linearprogress/
 

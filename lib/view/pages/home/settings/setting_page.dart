@@ -96,7 +96,7 @@ class SettingPage extends StatelessWidget {
                   ),
                   CardSetting(
                     title: "Address",
-                    subtitle: "Nom de entreprise ",
+                    subtitle: "10-rue egypte borj elamri",
                     logo: const Icon(
                       Icons.home_outlined,
                     ),

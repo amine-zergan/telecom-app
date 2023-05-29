@@ -23,4 +23,7 @@ class RouteName {
 
   /// ---- Setting edit list ----------- ///
   static const editSetting = "/edit";
+
+  static const editProfil = "/edit-profil";
+  static const editEntreprise = "/edit-entreprise";
 }

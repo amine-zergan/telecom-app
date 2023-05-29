@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
+import 'package:telecom/view/routes/route_name.dart';
 
 import 'package:telecom/view/theme/size_constants.dart';
 
@@ -12,6 +14,7 @@ class EditSetting extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         top: false,
+        bottom: false,
         child: CustomScrollView(
           slivers: [
             const SliverAppBar(
@@ -28,11 +31,19 @@ class EditSetting extends StatelessWidget {
               padding: EdgeInsets.only(top: padding10),
             ),
             CardTitleView(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(
+                  RouteName.editProfil,
+                );
+              },
               title: "Edit Profile",
             ),
             CardTitleView(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(
+                  RouteName.editEntreprise,
+                );
+              },
               title: "Edit Entreprise",
             ),
             const SliverToBoxAdapter(
@@ -53,6 +64,14 @@ class EditSetting extends StatelessWidget {
             CardTitleView(
               onTap: () {},
               title: "Frais de Deplacement",
+            ),
+            CardTitleView(
+              onTap: () {},
+              title: "Operateur",
+            ),
+            CardTitleView(
+              onTap: () {},
+              title: "Projet",
             ),
           ],
         ),
@@ -79,7 +98,7 @@ class CardTitleView extends StatelessWidget {
         ),
         child: Card(
           elevation: 0,
-          color: Colors.grey.shade800,
+          color: Colors.black26,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(padding10 * 0.5)),
           child: ListTile(
@@ -89,7 +108,10 @@ class CardTitleView extends StatelessWidget {
             ),
             title: Text(
               title,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(fontWeight: FontWeight.w600),
             ),
             trailing: const Icon(
               Icons.arrow_forward_ios_rounded,

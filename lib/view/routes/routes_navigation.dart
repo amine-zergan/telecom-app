@@ -6,6 +6,8 @@ import 'package:telecom/view/pages/home/controller/home_binding.dart';
 import 'package:telecom/view/pages/home/dashbord/sound/notification_page.dart';
 import 'package:telecom/view/pages/home/dashbord/tasks/history_view/history_page.dart';
 import 'package:telecom/view/pages/home/new_home_page.dart';
+import 'package:telecom/view/pages/home/settings/edit_settings/edit_profil_entreprise/edit_profil_entreprise.dart';
+import 'package:telecom/view/pages/home/settings/edit_settings/edit_profil_user/edit_profil.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_settings_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
@@ -56,6 +58,14 @@ class Routes {
     GetPage(
       name: RouteName.editSetting,
       page: () => const EditSetting(),
+    ),
+    GetPage(
+      name: RouteName.editProfil,
+      page: () => const EditProfilUser(),
+    ),
+    GetPage(
+      name: RouteName.editEntreprise,
+      page: () => const EditProfilEntreprise(),
     ),
 
     /// add create pages : tasks -Missions -report -site- contact
