@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:telecom/di/get_it.dart';
 import 'package:telecom/view/pages/config/config_page.dart';
@@ -9,6 +10,7 @@ import 'package:telecom/view/pages/home/new_home_page.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_profil_entreprise/edit_profil_entreprise.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_profil_user/edit_profil.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_settings_page.dart';
+import 'package:telecom/view/pages/home/start/add_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
 import 'package:telecom/view/pages/home/start/equipements/create_equipements.dart';
@@ -70,6 +72,12 @@ class Routes {
 
     /// add create pages : tasks -Missions -report -site- contact
     ///
+    GetPage(
+      name: RouteName.createPage,
+      page: () => const CreateObjectPage(),
+      transition: Transition.fadeIn,
+      curve: Curves.elasticInOut,
+    ),
     GetPage(
       name: RouteName.startMission,
       page: () => const StartMission(),

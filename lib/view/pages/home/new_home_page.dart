@@ -6,10 +6,9 @@ import 'package:telecom/view/pages/home/contact_page/contact_page.dart';
 import 'package:telecom/view/pages/home/dashbord/dashbord_page.dart';
 import 'package:telecom/view/pages/home/navigation/navigation_page.dart';
 import 'package:telecom/view/pages/home/settings/setting_page.dart';
+import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 import 'package:telecom/view/theme/size_constants.dart';
-
-import 'start/add_page.dart';
 
 class HomeNewPage extends StatefulWidget {
   const HomeNewPage({super.key});
@@ -42,10 +41,7 @@ class _HomeNewPageState extends State<HomeNewPage> {
       floatingActionButton: FloatingActionButton(
         elevation: 10,
         onPressed: () {
-          Get.to<double>(() => const CreateObjectPage(),
-              transition: Transition.fadeIn,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.elasticInOut);
+          Get.toNamed(RouteName.createPage);
         },
         backgroundColor: colorButton.withOpacity(1),
         child: const Icon(
