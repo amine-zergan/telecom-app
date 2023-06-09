@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'dart:math' as math;
 import 'package:telecom/view/components/Form_Fields/Longitude_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/latitude_form_field.dart';
+import 'package:telecom/view/pages/home/navigation/components/search_delegate.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
@@ -36,27 +37,18 @@ class _NavigationPageState extends State<NavigationPage> {
               floating: true,
               snap: true,
               actions: [
+                const NavigatorIconButton(),
                 IconButton(
                   onPressed: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return const SearchComponent();
-                        });
+                    showSearch(
+                      context: context,
+                      delegate: NavigationSearch(),
+                    );
                   },
-                  splashRadius: 20,
-                  icon: Transform.rotate(
-                    angle: math.pi / 6.0,
-                    child: const Icon(
-                      Icons.navigation_outlined,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
                   splashRadius: 20,
                   icon: const Icon(
                     Icons.search_outlined,
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -103,6 +95,33 @@ class _NavigationPageState extends State<NavigationPage> {
             ),
             const EmptyNavigationView(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class NavigatorIconButton extends StatelessWidget {
+  const NavigatorIconButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return const SearchComponent();
+            });
+      },
+      splashRadius: 20,
+      icon: Transform.rotate(
+        angle: math.pi / 6.0,
+        child: const Icon(
+          Icons.navigation_outlined,
+          color: Colors.black,
         ),
       ),
     );

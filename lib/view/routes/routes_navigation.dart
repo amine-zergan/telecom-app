@@ -70,7 +70,7 @@ class Routes {
       page: () => const EditProfilEntreprise(),
     ),
 
-    /// add create pages : tasks -Missions -report -site- contact
+    /// add create pages : tasks -Missions -report -site- contact ///
     ///
     GetPage(
       name: RouteName.createPage,

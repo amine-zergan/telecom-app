@@ -10,7 +10,6 @@ import 'package:telecom/view/theme/theming_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getIt.setup();
-
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,

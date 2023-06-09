@@ -22,8 +22,6 @@ class _HomeNewPageState extends State<HomeNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
-    print("========== rebuild home =============");
     return Scaffold(
       backgroundColor: null,
       body: SafeArea(
@@ -43,20 +41,18 @@ class _HomeNewPageState extends State<HomeNewPage> {
         onPressed: () {
           Get.toNamed(RouteName.createPage);
         },
-        backgroundColor: colorButton.withOpacity(1),
+        backgroundColor: colorButton,
         child: const Icon(
           Icons.add,
           size: 25,
           color: Colors.white,
         ),
       ),
-      drawer: const Drawer(),
+      //drawer: const Drawer(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        //surfaceTintColor: Colors.transparent,
         notchMargin: 5.0,
-        //shadowColor: Colors.grey.shade800,
         color: Colors.grey.shade800,
         elevation: 20,
         padding: const EdgeInsets.only(
