@@ -32,3 +32,14 @@ class PhoneFormat {
     return phone;
   }
 }
+
+extension Replace on String {
+  String phoneNumber(String value) {
+    String phone = "";
+    List<String> spliter = value.split(" ");
+    for (int i = 0; i < spliter.length; i++) {
+      phone = phone + spliter[i];
+    }
+    return phone;
+  }
+}
