@@ -7,11 +7,12 @@ class AproposApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-          child: Center(
-        child: Text(
-          "Apropos application",
+        child: Center(
+          child: Text(
+            "Apropos application",
+          ),
         ),
-      )),
+      ),
     );
   }
 }

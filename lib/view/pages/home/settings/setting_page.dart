@@ -140,7 +140,7 @@ class SettingPage extends StatelessWidget {
                     onTap: () {},
                   ),
                   ParametreCard(
-                    title: "licence ",
+                    title: "Licence ",
                     icons: Icons.library_add_check_outlined,
                     onTap: () {},
                   ),
