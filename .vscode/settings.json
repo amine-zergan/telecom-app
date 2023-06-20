@@ -27,7 +27,6 @@
     "build": true,
     ".dart_tool 3": true,
     ".dart_tool 2": true,
-    "ios": true,
     ".flutter-plugins 2": true,
     ".flutter-plugins-dependencies 2": true,
     "lib/view/pages/onboard": true,

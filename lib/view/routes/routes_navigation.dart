@@ -45,10 +45,10 @@ class Routes {
       binding: ConfigBind(),
     ),
     GetPage(
-        name: RouteName.home,
-        page: () => const HomeNewPage(),
-        binding: HomeBinding(),
-        children: const []),
+      name: RouteName.home,
+      page: () => const HomeNewPage(),
+      binding: HomeBinding(),
+    ),
     GetPage(
       name: RouteName.history,
       page: () => const HistoryPage(),

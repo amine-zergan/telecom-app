@@ -8,6 +8,7 @@ on:
   pull_request:
 jobs:
   build-on-mac:
+    name: "build mac"
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3

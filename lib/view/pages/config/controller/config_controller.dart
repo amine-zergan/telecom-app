@@ -19,8 +19,10 @@ class ConfigController extends GetxController {
   final IrepositoryEntrepriseSource repositoryEntreprise;
   final IrepositroyProfileDataSource repositoryProfile;
 
-  ConfigController(
-      {required this.repositoryEntreprise, required this.repositoryProfile});
+  ConfigController({
+    required this.repositoryEntreprise,
+    required this.repositoryProfile,
+  });
 
   /// declare variable of pageController
   /// update methodes with getter;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:telecom/view/routes/route_name.dart';
+import 'package:telecom/view/pages/home/dashbord/components/dashbord_app_bar.dart';
 
 class DashbordPage extends StatelessWidget {
   const DashbordPage({super.key});
@@ -17,40 +17,7 @@ class DashbordPage extends StatelessWidget {
           child: CustomScrollView(
             physics: const ClampingScrollPhysics(),
             slivers: [
-              SliverAppBar(
-                // expandedHeight: 300,
-                elevation: 0,
-                // collapsedHeight: 70,
-                title: const Text("Dashborad"),
-                pinned: false,
-                floating: true,
-                stretch: true,
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      Get.toNamed(
-                        RouteName.notification,
-                      );
-                    },
-                    splashRadius: 20,
-                    icon: const Icon(
-                      Icons.notification_important_outlined,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Get.toNamed(
-                        RouteName.history,
-                      );
-                    },
-                    splashRadius: 20,
-                    splashColor: Colors.transparent,
-                    icon: const Icon(
-                      Icons.manage_history_outlined,
-                    ),
-                  ),
-                ],
-              ),
+              const DashboardAppBar(),
               SliverToBoxAdapter(
                 // ignore: sized_box_for_whitespace
                 child: Container(

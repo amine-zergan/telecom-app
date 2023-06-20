@@ -10,6 +10,7 @@ class RouteName {
   /// ============= Dashboard view ============= ///
   static const history = "/history";
   static const notification = "/home/notification";
+  static const dashbord = '/home/dashbord';
 
   /// part for starting :
   ///   Task - Mission - Contact - Site - Report ....
@@ -23,7 +24,6 @@ class RouteName {
 
   /// ---- Setting edit list ----------- ///
   static const editSetting = "/edit";
-
   static const editProfil = "/edit-profil";
   static const editEntreprise = "/edit-entreprise";
 }

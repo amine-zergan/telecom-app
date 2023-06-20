@@ -23,16 +23,15 @@ class _HomeNewPageState extends State<HomeNewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: null,
       body: SafeArea(
         top: false,
         child: IndexedStack(
           index: currentIndex,
-          children: const [
-            DashbordPage(),
-            ContactPage(),
-            NavigationPage(),
-            SettingPage(),
+          children: [
+            const DashbordPage(),
+            const ContactPage(),
+            const NavigationPage(),
+            const SettingPage(),
           ],
         ),
       ),
