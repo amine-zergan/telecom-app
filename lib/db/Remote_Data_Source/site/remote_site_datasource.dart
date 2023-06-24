@@ -65,4 +65,10 @@ SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.id operator
   Future<List<Site>> queryByOperator(int operator) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<int> deleteSite(int id) {
+    // TODO: implement deleteSite
+    throw UnimplementedError();
+  }
 }

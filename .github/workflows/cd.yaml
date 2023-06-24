@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - dev
+      - main
 jobs:
-  deployDev:
+  deploy:
     name: "Dev"
     if: github.event.ref == 'ref/heads/dev'
     runs-on: ubuntu-latest

@@ -31,7 +31,6 @@ class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
       whereArgs: [date],
       limit: 1,
     );
-
     return response.isNotEmpty;
   }
 
