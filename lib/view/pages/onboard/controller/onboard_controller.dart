@@ -18,7 +18,7 @@ class OnBoardController extends GetxController {
   }
 
   void initialLoad() async {
-    await repository.saveParamsConfig(init);
+    await repository.saveParamsConfig(init, config);
     // ignore: avoid_print
     print("=========== initial load page saved ==============");
   }

@@ -74,13 +74,11 @@ class DashbordPage extends StatelessWidget {
                       "charts with Statistique",
                     ),
                   ),
-                  //color: Colors.amber,
                 ),
               ),
               SliverToBoxAdapter(
                 child: Container(
                   height: size.height * 0.05,
-                  //color: Colors.amber,
                 ),
               )
             ],

@@ -27,11 +27,11 @@ class _HomeNewPageState extends State<HomeNewPage> {
         top: false,
         child: IndexedStack(
           index: currentIndex,
-          children: [
-            const DashbordPage(),
-            const ContactPage(),
-            const NavigationPage(),
-            const SettingPage(),
+          children: const [
+            DashbordPage(),
+            ContactPage(),
+            NavigationPage(),
+            SettingPage(),
           ],
         ),
       ),

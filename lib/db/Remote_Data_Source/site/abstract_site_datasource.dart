@@ -5,4 +5,5 @@ abstract class IrepositorySiteDatasource {
   Future<bool> isExist(String name, int operatorId);
   Future<List<Site>> queryall();
   Future<List<Site>> queryByOperator(int operator);
+  Future<int> deleteSite(int id);
 }

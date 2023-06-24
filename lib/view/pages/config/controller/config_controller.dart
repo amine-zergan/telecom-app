@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 
 import 'package:telecom/db/Remote_Data_Source/entreprise/abstract_entreprise_service.dart';
 import 'package:telecom/db/Remote_Data_Source/profile/abstract_profile_datasource.dart';
+import 'package:telecom/db/services/core/constants_config.dart';
+import 'package:telecom/db/services/remote_data_service/load_page_init/Remote_load_config.dart';
 import 'package:telecom/model/entreprise/entreprise_model.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/utils/converter/base64_encode.dart';
@@ -18,11 +20,12 @@ import 'package:telecom/view/routes/route_name.dart';
 class ConfigController extends GetxController {
   final IrepositoryEntrepriseSource repositoryEntreprise;
   final IrepositroyProfileDataSource repositoryProfile;
+  final IrepositoryConfigPageInit repos;
 
-  ConfigController({
-    required this.repositoryEntreprise,
-    required this.repositoryProfile,
-  });
+  ConfigController(
+      {required this.repositoryEntreprise,
+      required this.repositoryProfile,
+      required this.repos});
 
   /// declare variable of pageController
   /// update methodes with getter;
@@ -58,6 +61,7 @@ class ConfigController extends GetxController {
       getLastPage();
     } else if (_page == 6 && formentreprise.currentState!.validate()) {
       insertToDatabase();
+      repos.saveParamsConfig("config", home);
       Get.offAllNamed(RouteName.home);
     }
     update();

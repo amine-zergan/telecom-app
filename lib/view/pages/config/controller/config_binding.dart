@@ -9,6 +9,7 @@ class ConfigBind extends Bindings {
       ConfigController(
         repositoryEntreprise: getItInstance(),
         repositoryProfile: getItInstance(),
+        repos: getItInstance(),
       ),
     );
   }

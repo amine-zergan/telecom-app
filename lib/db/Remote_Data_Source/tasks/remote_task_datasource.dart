@@ -31,10 +31,12 @@ class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
       whereArgs: [date],
       limit: 1,
     );
-    // ignore: avoid_print
-    print("============= response query==========");
-    // ignore: avoid_print
-    print(response);
+
     return response.isNotEmpty;
+  }
+
+  @override
+  Future<List<Task>> fetchForMission(String started, String finished) {
+    throw UnimplementedError();
   }
 }

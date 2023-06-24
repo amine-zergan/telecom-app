@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:telecom/di/get_it.dart';
 import 'package:telecom/view/pages/config/config_page.dart';
 import 'package:telecom/view/pages/config/controller/config_binding.dart';
+import 'package:telecom/view/pages/config/middleware/config_middleware.dart';
 import 'package:telecom/view/pages/home/controller/home_binding.dart';
 import 'package:telecom/view/pages/home/dashbord/sound/notification_page.dart';
 import 'package:telecom/view/pages/home/dashbord/tasks/history_view/history_page.dart';
@@ -40,10 +41,15 @@ class Routes {
           ),
         ]),
     GetPage(
-      name: RouteName.config,
-      page: () => const ConfigPage(),
-      binding: ConfigBind(),
-    ),
+        name: RouteName.config,
+        page: () => const ConfigPage(),
+        binding: ConfigBind(),
+        middlewares: [
+          ConfigMiddleware(
+            repos: getItInstance(),
+            priority: 1,
+          ),
+        ]),
     GetPage(
       name: RouteName.home,
       page: () => const HomeNewPage(),
