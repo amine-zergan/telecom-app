@@ -48,7 +48,7 @@ class Task {
       'description': description,
       'mission': mission,
       'project': project.id,
-      'operator': operator.id,
+      'operator': operator.idOperator,
       'region': region,
       'date': DateFormat.formDate(date),
     };

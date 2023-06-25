@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_brace_in_string_interps
 // ignore_for_file: avoid_print
 
 import 'dart:async';
@@ -45,18 +45,19 @@ class RemoteSiteDataSourceImpl extends IrepositorySiteDatasource {
   @override
   Future<List<Site>> queryall() async {
     final db = await helper.db;
+
     final response = await db.rawQuery("""
-SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.id operator ASC
+SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.idOperator  
 """);
+
     if (response.isEmpty) {
       return [];
     } else {
       final List<Site> result = [];
       response.map((element) {
-        print(element);
+        result.add(Site.fromMap(element));
       }).toList();
-
-      print("============ result from db $result ========");
+      print("============ result transaction ${result} ========");
       return result;
     }
   }
@@ -68,7 +69,6 @@ SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.id operator
 
   @override
   Future<int> deleteSite(int id) {
-    // TODO: implement deleteSite
     throw UnimplementedError();
   }
 }

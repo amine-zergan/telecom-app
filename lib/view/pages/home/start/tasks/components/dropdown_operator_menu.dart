@@ -45,7 +45,7 @@ class _DropdownOperatorWithControllerState
               .map(
                 (element) => DropdownMenuEntry(
                   value: element,
-                  label: element.name,
+                  label: element.operator,
                   enabled: true,
                   leadingIcon: Image.asset(
                     element.image,

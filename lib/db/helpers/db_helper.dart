@@ -52,8 +52,8 @@ CREATE TABLE $historiques(
     /// inject query in db for operator with logo in assest file
     await db.execute("""
 CREATE TABLE $operators(
-  $id INTEGER PRIMARY KEY,
-  $name TEXT NOT NULL,
+  idOperator INTEGER PRIMARY KEY,
+  operator TEXT NOT NULL,
   $image TEXT 
 )""");
 
@@ -90,7 +90,7 @@ CREATE TABLE $site(
   $region TEXT,
   $responsable TEXT,
   $phone TEXT,
-  FOREIGN KEY (operator) REFERENCES operators(id)
+  FOREIGN KEY (operator) REFERENCES operators(idOperator)
 )
 """);
 
@@ -164,7 +164,7 @@ CREATE TABLE $tasks(
   $description TEXT NOT NULL,
   $mission INTEGER,
   $operator INTEGER,
-  FOREIGN KEY (operator) REFERENCES operators(id),
+  FOREIGN KEY (operator) REFERENCES operators(idOperator),
   FOREIGN KEY (project) REFERENCES projects(id),
   FOREIGN KEY (mission) REFERENCES missions(id)
 )
@@ -174,13 +174,13 @@ CREATE TABLE $tasks(
 
     await db.transaction((txn) async {
       await txn.rawInsert("""
-INSERT INTO operators(name,image) VALUES('Ooredoo','assets/project/ooredoo.png')
+INSERT INTO operators(operator,image) VALUES('Ooredoo','assets/project/ooredoo.png')
 """);
       await txn.rawInsert("""
-INSERT INTO operators(name,image) VALUES('Orange','assets/project/orange.png')
+INSERT INTO operators(operator,image) VALUES('Orange','assets/project/orange.png')
 """);
       await txn.rawInsert("""
-INSERT INTO operators(name,image) VALUES('Telecom','assets/project/telecom.png')
+INSERT INTO operators(operator,image) VALUES('Telecom','assets/project/telecom.png')
 """);
       await txn.rawInsert("""
 INSERT INTO projects(name,image) VALUES('Nokia','assets/project/nokia.png')

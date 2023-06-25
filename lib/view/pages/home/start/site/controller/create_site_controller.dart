@@ -142,10 +142,9 @@ class CreateSiteController extends GetxController {
             description: fieldDescription.text,
           );
           // ignore: avoid_print
-          print(model);
-          final result = await repositorySite.insert(model);
-          // ignore: avoid_print
-          print("============== result $result ============");
+
+          await repositorySite.insert(model);
+
           Get.snackbar(
             "Notification",
             "Site crée avec succes",
@@ -166,7 +165,7 @@ class CreateSiteController extends GetxController {
   /// Function for insert [Site] to Table [sites]
   Future<bool> isExistSite() async {
     final bool response =
-        await repositorySite.isExist(fieldNom.text, _operator!.id!);
+        await repositorySite.isExist(fieldNom.text, _operator!.idOperator!);
     return response;
   }
 

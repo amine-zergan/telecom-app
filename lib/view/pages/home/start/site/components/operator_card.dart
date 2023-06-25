@@ -41,7 +41,7 @@ class OperatorCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    model.name,
+                    model.operator,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         fontWeight: FontWeight.w700,
                         color: selectedIndex == index

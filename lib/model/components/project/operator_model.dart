@@ -2,39 +2,39 @@
 import 'dart:convert';
 
 class Operator {
-  final int? id;
-  final String name;
+  final int? idOperator;
+  final String operator;
   final String image;
   Operator({
-    this.id,
-    required this.name,
+    this.idOperator,
+    required this.operator,
     required this.image,
   });
 
   Operator copyWith({
-    int? id,
-    String? name,
+    int? idOperator,
+    String? operator,
     String? image,
   }) {
     return Operator(
-      id: id ?? this.id,
-      name: name ?? this.name,
+      idOperator: idOperator ?? this.idOperator,
+      operator: operator ?? this.operator,
       image: image ?? this.image,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'name': name,
+      'idOperator': idOperator,
+      'operator': operator,
       'image': image,
     };
   }
 
   factory Operator.fromMap(Map<String, dynamic> map) {
     return Operator(
-      id: map['id'] != null ? map['id'] as int : null,
-      name: map['name'] as String,
+      idOperator: map['idOperator'] != null ? map['idOperator'] as int : null,
+      operator: map['operator'] as String,
       image: map['image'] as String,
     );
   }
@@ -45,15 +45,18 @@ class Operator {
       Operator.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Operator(id: $id, name: $name, image: $image)';
+  String toString() =>
+      'Operator(id: $idOperator, operator: $operator, image: $image)';
 
   @override
   bool operator ==(covariant Operator other) {
     if (identical(this, other)) return true;
 
-    return other.id == id && other.name == name && other.image == image;
+    return other.idOperator == idOperator &&
+        other.operator == operator &&
+        other.image == image;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ image.hashCode;
+  int get hashCode => idOperator.hashCode ^ operator.hashCode ^ image.hashCode;
 }

@@ -53,7 +53,7 @@ class Site {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'operator': operator.id,
+      'operator': operator.idOperator,
       'longitude': longitude,
       'latitude': latitude,
       'responsable': responsable,
@@ -67,7 +67,11 @@ class Site {
     return Site(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
-      operator: Operator.fromMap(map['operator'] as Map<String, dynamic>),
+      operator: Operator(
+        idOperator: map['idOperator'],
+        image: map['image'],
+        operator: map['operator'],
+      ),
       longitude: map['longitude'] as String,
       latitude: map['latitude'] as String,
       region: map['region'] as String,
