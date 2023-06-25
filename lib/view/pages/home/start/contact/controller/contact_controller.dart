@@ -72,6 +72,12 @@ class CreateContactController extends GetxController {
             contact: contact.text,
           );
           final result = await repository.insert(model);
+          Get.snackbar(
+            "Notification",
+            "Contact crée avec succes",
+            backgroundColor: Colors.green.shade300,
+            snackPosition: SnackPosition.TOP,
+          );
 
           // ignore: avoid_print
           print(result);

@@ -193,7 +193,7 @@ class CreateMissionController extends GetxController {
           Get.snackbar(
             "Notification",
             "Mission crée avec succes",
-            backgroundColor: Colors.green.shade200,
+            backgroundColor: Colors.green.shade300,
             snackPosition: SnackPosition.TOP,
           );
         } else {
