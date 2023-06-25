@@ -13,62 +13,62 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   get_it: ^7.2.0
-  lottie: ^2.3.2
   path_provider: ^2.0.14
-  path: ^1.8.2
-  sqflite: ^2.2.6
+  path: ^1.8.3
+  sqflite: ^2.2.7
   flutter_svg: ^2.0.5
-  awesome_notifications: ^0.7.4+1
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  geocoding: ^2.1.0
+  url_launcher: ^6.1.10
+  intl: ^0.18.0
+  table_calendar: ^3.0.9
+  geolocator: ^9.0.2
+  shared_preferences: ^2.1.1
+  fl_chart: ^0.62.0
+  pdf: ^3.10.1
+  image_picker: ^0.8.7+4
+  flutter_bloc: ^8.1.2
+  open_file: ^3.2.1
+  lottie: ^2.3.2
+  keyboard_dismisser: ^3.0.0
+  flutter_dotenv: ^5.0.2
+  linearprogress: 
+    path: linearprogress/
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-  
-  
-  
-  
   
   flutter_lints: ^2.0.0
-
+  flutter_launcher_icons: "^0.13.1"
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true 
+  image_path: "assets/pylone.png"
+  min_sdk_android: 21  
+  web:
+    generate: true
+    image_path: "assets/pylone.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/pylone.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/pylone.png"
 
 
 
 
 flutter:
-
-  
-  
-  
   uses-material-design: true
+  assets:
+    - assets/animations/
+    - assets/svg/
+    - assets/project/
+    - assets/spinner.gif
+    - assets/pylone.png
+    - .env
 
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

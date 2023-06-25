@@ -1,0 +1,41 @@
+File file = await LivraisonReport.generatePdf(
+  title: "Demande preparation Materials",
+  articles: [
+    Article(
+      ref: "0000390",
+      name: "Ipaso 200(1+0,200MB) M1 UP 200 MB",
+      fournisseur: "NEC CORP",
+      quantite: 2,
+    ),
+    Article(
+      ref: "00000494",
+      name: "TRP-23G-1E, LOW",
+      fournisseur: "NEC CORP",
+      quantite: 2,
+    ),
+    Article(
+      ref: "000003209",
+      name: "Ipaso VR 2",
+      fournisseur: "NEC CORP",
+      quantite: 1,
+    ),
+    Article(
+      ref: "00000260",
+      name: "ANTENNE 23GHZ-120CM,MONOPOLAR INTEGREE NEC ",
+      fournisseur: "NEC CORP",
+      quantite: 2,
+    ),
+    Article(
+      ref: "00000340",
+      name: "IF CABLE 1/4\"(1 METER) ",
+      fournisseur: "NEC CORP",
+      quantite: 2,
+    ),
+  ],
+  operator: "Orange Tunisie",
+  destination: "depot orange",
+  ref: "DRM1702680",
+  demandeur: "Amine mejri",
+  nom_pdf: "DRM-1702680",
+);
+OpenFile.open(file.path);

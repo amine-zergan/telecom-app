@@ -1,0 +1,25 @@
+name: CD
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: "Dev"
+    if: github.event.ref == 'ref/heads/dev'
+    runs-on: ubuntu-latest
+    environment:  
+      name: development
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+      - run: flutter --version
+      - run: flutter upgrade
+      - run: flutter pub get 
+      - run: echo "task deploy dev finished with succes"
