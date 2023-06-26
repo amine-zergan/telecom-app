@@ -24,4 +24,7 @@ class NavigagtionController extends GetxController {
     print("======== query of all site ============");
     update();
   }
+
+  // pour naviguer suite une coordonnee longitude et latitude
+  void navigateToSite() {}
 }
