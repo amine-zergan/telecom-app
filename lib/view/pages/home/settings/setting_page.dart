@@ -53,13 +53,13 @@ class SettingPage extends StatelessWidget {
                       height: padding10,
                     ),
                     const Text(
-                      "Nom et Prenom",
+                      "Nom et Prenom : ",
                     ),
                     const SizedBox(
                       height: padding10,
                     ),
                     const Text(
-                      "Poste Actuel dans Entreprise",
+                      "Poste Actuel : ",
                     ),
                     const SizedBox(
                       height: padding10,

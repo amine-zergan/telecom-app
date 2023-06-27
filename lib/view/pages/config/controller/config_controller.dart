@@ -305,6 +305,7 @@ class ConfigController extends GetxController {
         codePoste: codePostaleControllerProfile.text,
         post: poste,
         phone: phoneControllerProfile.text,
+        address: addressControllerProfile.text,
         salaire: salaire,
         niveau: niveau,
         contract: contrat!,
@@ -316,12 +317,16 @@ class ConfigController extends GetxController {
       // ignore: avoid_print
       print(phone);
       Entreprise entreprise = Entreprise(
-          name: nameControllerEntreprise.text,
-          taille: taille,
-          address: addressControllerEntreprise.text,
-          codepostal: codePostaleControllerEntreprise.text,
-          phone: phoneControllerEntreprise.text,
-          fixe: phoneFixControllerEntreprise.text);
+        name: nameControllerEntreprise.text,
+        taille: taille,
+        address: addressControllerEntreprise.text,
+        codepostal: codePostaleControllerEntreprise.text,
+        phone: phoneControllerEntreprise.text,
+        fixe: phoneFixControllerEntreprise.text,
+        logo: ImageConvert.base64convert(
+          _fileprofileEntreprise,
+        ),
+      );
       // ignore: unused_local_variable
       final response = await repositoryProfile.insert(model);
       // ignore: unused_local_variable

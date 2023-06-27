@@ -13,7 +13,6 @@ class RemoteEntrepriseDataSourceImpl extends IrepositoryEntrepriseSource {
   });
   @override
   Future<int> delete(int id) async {
-    // ignore: no_leading_underscores_for_local_identifiers
     final db = await helper.db;
     final result =
         await db.delete(entreprises, where: "id = ?", whereArgs: [id]);
