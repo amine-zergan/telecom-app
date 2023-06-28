@@ -63,12 +63,40 @@ SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.idOperator
   }
 
   @override
-  Future<List<Site>> queryByOperator(int operator) {
-    throw UnimplementedError();
+  Future<List<Site>> queryByOperator(int operator) async {
+    final db = await helper.db;
+    final response = await db.query(
+      site,
+      where: "operator=?",
+      whereArgs: [operator],
+    );
+    if (response.isEmpty) {
+      return [];
+    } else {
+      List<Site> sites = [];
+      response.map((e) {
+        sites.add(Site.fromMap(e));
+      }).toList();
+      print("============ result querysite by operator ${sites} ========");
+      return sites;
+    }
   }
 
   @override
-  Future<int> deleteSite(int id) {
-    throw UnimplementedError();
+  Future<int> deleteSite(int id) async {
+    final db = await helper.db;
+    final result = await db.delete(site, where: "id=?", whereArgs: [id]);
+    print("============ result delete site  ${result} ========");
+    return result;
+  }
+
+  @override
+  Future<void> deleteAll() async {
+    final db = await helper.db;
+    final batch = db.batch();
+    batch.delete(site);
+    await batch.commit(
+      noResult: true,
+    );
   }
 }

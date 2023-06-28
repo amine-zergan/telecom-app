@@ -6,4 +6,5 @@ abstract class IrepositorySiteDatasource {
   Future<List<Site>> queryall();
   Future<List<Site>> queryByOperator(int operator);
   Future<int> deleteSite(int id);
+  Future<void> deleteAll();
 }

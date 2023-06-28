@@ -1,10 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison
 import 'package:sqflite/sqflite.dart';
-
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/db/helpers/db_helper.dart';
-
 import 'package:telecom/model/mission/mission_model.dart';
 
 class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
@@ -98,9 +96,12 @@ class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
     // ignore: no_leading_underscores_for_local_identifiers
     final _db = await helper.db;
 
-    final query = await _db.rawQuery("""
+    final query = await _db.rawQuery(
+      """
 SELECT * FROM missions WHERE  status=? 
-""", ["pending"]);
+""",
+      ["pending"],
+    );
     // ignore: avoid_print
     print("============ exist mission $query =======");
     return query.isNotEmpty;
@@ -115,7 +116,7 @@ SELECT * FROM missions WHERE id=? INNER JOIN tasks ON missions.id = tasks.missio
 """,
       [id],
     );
-    // ignore: unnecessary_null_comparison
+
     if (response == null) {
       return null;
     } else {

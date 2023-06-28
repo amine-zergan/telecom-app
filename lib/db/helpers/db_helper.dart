@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 
 class DbHelper {
-  Database? _db;
+  Database? _db; // obligation add getter to private variable
 
   Future<Database> get db async {
     if (_db != null) {
@@ -19,6 +19,7 @@ class DbHelper {
     }
   }
 
+  /// creation of database:
   Future<Database> _init() async {
     Directory dir = await getApplicationDocumentsDirectory();
     String pathdb = join(dir.path, "telecom.db");

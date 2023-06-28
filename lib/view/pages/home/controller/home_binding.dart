@@ -10,10 +10,14 @@ class HomeBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(HomeController());
-    Get.put(ContactController(getItInstance()));
     Get.put(
-      NavigagtionController(
+      ContactController(
         getItInstance(),
+      ),
+    );
+    Get.put(
+      NavigationController(
+        repository: getItInstance(),
       ),
     );
     Get.put(
@@ -22,6 +26,8 @@ class HomeBinding extends Bindings {
         reposProfile: getItInstance(),
       ),
     );
-    Get.put(DashboardController());
+    Get.put(
+      DashboardController(),
+    );
   }
 }

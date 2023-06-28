@@ -15,6 +15,7 @@ class ContactController extends GetxController {
     final listContact = await repos.fetchAll();
     listContact.map((e) => contacts.add(e)).toList();
     print("========= contact controller $contacts ");
+
     update();
   }
 
