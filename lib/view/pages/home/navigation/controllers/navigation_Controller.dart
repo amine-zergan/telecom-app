@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/site/abstract_site_datasource.dart';
 import 'package:telecom/model/site/site_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationController extends GetxController {
   final IrepositorySiteDatasource repository;
@@ -11,14 +12,6 @@ class NavigationController extends GetxController {
 
   List<Site> allSite = [];
 
-  /// filter by operator exemple 2 : dioclient (post-get put search ,)- repository : fetchallproduct /.....
-  /// dbhelper -> creation database inclut tables
-  /// -> abstract class all function necessite
-  /// -> remote->(injection dbherlper) contient tous logique des functions herite depuis abstract
-  /// -> controller(injection:repository,s)try-catch : exception , related between ui and logique
-  /// -> creation de controller : injection binding
-  /// selon besoin : parametre
-
   @override
   void onInit() {
     fetchAllSite();
@@ -26,13 +19,28 @@ class NavigationController extends GetxController {
   }
 
   void fetchAllSite() async {
-    List<Site> response = await repository.queryall();
-    response.map((e) => allSite.add(e)).toList();
-    // ignore: avoid_print
-    print("======== query of all site ============ $response");
-    update();
+    try {
+      List<Site> response = await repository.queryall();
+      response.map((e) => allSite.add(e)).toList();
+      // ignore: avoid_print
+      print("======== query of all site ============ $response");
+      update();
+    } catch (e) {
+      allSite = [];
+      update();
+    }
   }
 
   // pour naviguer suite une coordonnee longitude et latitude
-  void navigateToSite() {}
+  void navigateTosite(String lat, String long) async {
+    final Uri url = Uri.parse(
+      "https://www.google.com/maps?q=$lat,$long",
+    );
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
 }

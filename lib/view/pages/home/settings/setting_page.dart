@@ -125,7 +125,9 @@ class SettingPage extends StatelessWidget {
                   ParametreCard(
                     title: "Rapports",
                     icons: Icons.bookmark_add_outlined,
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(RouteName.reports);
+                    },
                   ),
                   ParametreCard(
                     title: "General",

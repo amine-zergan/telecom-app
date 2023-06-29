@@ -27,6 +27,7 @@ class CreateTaskController extends GetxController {
   Project? currentProject;
   Operator? currentOperator;
   String? currentRegion;
+  String? currentTask;
   String error = "";
   String errorRegion = "";
   int? mission;
@@ -64,6 +65,11 @@ class CreateTaskController extends GetxController {
   void updateRegion(String? value) {
     currentRegion = value;
     errorRegion = "";
+    update();
+  }
+
+  void updateTask(String? value) {
+    currentTask = value;
     update();
   }
 
@@ -118,17 +124,15 @@ class CreateTaskController extends GetxController {
             region: currentRegion!,
             date: DateFormat.toDate(_dateTask),
           );
-          final result = await repositoryTask.insert(model);
-          // ignore: avoid_print
-          print("======== data with insert with success");
-          // ignore: unnecessary_brace_in_string_interps
-          print("============ task ${result} ==========");
+          await repositoryTask.insert(model);
           Get.snackbar(
             "Notification",
             "Tâche crée avec succes",
             backgroundColor: Colors.green.shade200,
             snackPosition: SnackPosition.TOP,
           );
+
+          description.clear();
           error = "";
         } else {
           // ignore: avoid_print

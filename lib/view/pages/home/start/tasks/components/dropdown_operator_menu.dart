@@ -37,7 +37,7 @@ class _DropdownOperatorWithControllerState
           leadingIcon: const Icon(
             Icons.network_check_outlined,
           ),
-          enableFilter: true,
+
           enableSearch: true,
 
           onSelected: widget.controller.updateOperator,

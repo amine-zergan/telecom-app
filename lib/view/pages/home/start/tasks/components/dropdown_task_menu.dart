@@ -2,23 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:telecom/data/task_data.dart';
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
 
-class DropdownTaskMenu extends StatefulWidget {
-  const DropdownTaskMenu({
-    super.key,
-    required this.size,
-    required this.controller,
-  });
-
-  final Size size;
+class DropdownTaskMenu extends StatelessWidget {
   final CreateTaskController controller;
 
-  @override
-  State<DropdownTaskMenu> createState() => _DropdownTaskMenuState();
-}
+  const DropdownTaskMenu({super.key, required this.controller});
 
-class _DropdownTaskMenuState extends State<DropdownTaskMenu> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return DropdownButtonHideUnderline(
       child: DropdownMenu(
         hintText: "type de tache :",
@@ -30,11 +21,10 @@ class _DropdownTaskMenuState extends State<DropdownTaskMenu> {
         leadingIcon: const Icon(
           Icons.work_outline,
         ),
-        enableFilter: true,
         enableSearch: true,
         enabled: true,
-        width: widget.size.width * 0.8,
-        onSelected: widget.controller.updateRegion,
+        width: size.width * 0.8,
+        onSelected: controller.updateTask,
         dropdownMenuEntries: tasksData
             .map(
               (element) => DropdownMenuEntry(

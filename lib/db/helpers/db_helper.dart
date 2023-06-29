@@ -158,7 +158,7 @@ CREATE TABLE $missions(
 """);
     await db.execute("""
 CREATE TABLE $tasks(
-  $id INTEGER PRIMARY KEY,
+  idTask INTEGER PRIMARY KEY,
   $project int NOT NULL,
   $date TEXT NOT NULL,
   region TEXT NOT NULL,

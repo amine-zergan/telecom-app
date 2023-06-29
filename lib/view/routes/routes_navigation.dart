@@ -11,6 +11,7 @@ import 'package:telecom/view/pages/home/new_home_page.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_profil_entreprise/edit_profil_entreprise.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_profil_user/edit_profil.dart';
 import 'package:telecom/view/pages/home/settings/edit_settings/edit_settings_page.dart';
+import 'package:telecom/view/pages/home/settings/reports/generate_rapports.dart';
 import 'package:telecom/view/pages/home/start/add_page.dart';
 import 'package:telecom/view/pages/home/start/contact/create_contact.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_binding.dart';
@@ -58,6 +59,10 @@ class Routes {
     GetPage(
       name: RouteName.history,
       page: () => const HistoryPage(),
+    ),
+    GetPage(
+      name: RouteName.reports,
+      page: () => const GenerateRapport(),
     ),
     GetPage(
       name: RouteName.notification,

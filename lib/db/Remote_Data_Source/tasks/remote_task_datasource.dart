@@ -35,7 +35,23 @@ class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
   }
 
   @override
-  Future<List<Task>> fetchForMission(String started, String finished) {
-    throw UnimplementedError();
+  Future<List<Task>> fetchForMission(String started, String finished) async {
+    final db = await helper.db;
+    final response = await db.rawQuery("""
+    SELECT * FROM tasks WHERE tasks.date BETWEEN  started=? AND finished=?
+""", [started, finished]);
+    if (response.isEmpty) {
+      return [];
+    } else {
+      List<Task> tasks = [];
+      response
+          .map(
+            (e) => tasks.add(
+              Task.fromMap(e),
+            ),
+          )
+          .toList();
+      return tasks;
+    }
   }
 }
