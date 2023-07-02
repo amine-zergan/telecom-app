@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'dart:math' as math;
 import 'package:telecom/view/components/Form_Fields/Longitude_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/latitude_form_field.dart';
-import 'package:telecom/view/pages/home/navigation/components/search_delegate.dart';
+import 'package:telecom/view/pages/home/views/navigation/components/search_delegate.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 

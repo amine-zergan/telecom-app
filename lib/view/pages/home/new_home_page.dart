@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:telecom/view/pages/home/contact_page/contact_page.dart';
-import 'package:telecom/view/pages/home/dashbord/dashbord_page.dart';
-import 'package:telecom/view/pages/home/navigation/navigation_page.dart';
-import 'package:telecom/view/pages/home/settings/setting_page.dart';
+import 'package:telecom/view/pages/home/views/contact_page/contact_page.dart';
+import 'package:telecom/view/pages/home/views/navigation/dashbord/dashbord_page.dart';
+import 'package:telecom/view/pages/home/views/navigation/navigation_page.dart';
+import 'package:telecom/view/pages/home/views/settings/setting_page.dart';
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 import 'package:telecom/view/theme/size_constants.dart';
