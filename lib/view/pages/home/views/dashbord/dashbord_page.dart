@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:telecom/view/pages/home/views/navigation/dashbord/components/dashbord_app_bar.dart';
+import 'package:telecom/view/pages/home/views/dashbord/components/dashbord_app_bar.dart';
 
 class DashbordPage extends StatelessWidget {
   const DashbordPage({super.key});

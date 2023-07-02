@@ -107,11 +107,6 @@ class CreateMissionController extends GetxController {
     update();
   }
 
-  /// update jour deplacement :
-  /// increment jourdeplacement
-  /// decrement jour deplacement
-  ///
-
   void updateIncrementJourDeplacement() {
     jourdeplacement++;
     update();
@@ -180,7 +175,7 @@ class CreateMissionController extends GetxController {
             bon: carburant,
             carburant: 0,
             status: Status.pending,
-            depart: int.parse(fieldsIndexDepart.text),
+            depart: double.parse(fieldsIndexDepart.text),
             car: fieldsVehicule.text,
             chefequipe: fieldsSupervisseur.text,
             chefprojet: fieldsChefProjet.text,

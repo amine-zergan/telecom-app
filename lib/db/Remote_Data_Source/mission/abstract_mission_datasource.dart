@@ -8,4 +8,5 @@ abstract class IrepositoryMissionDatasource {
   Future<int> update(int id, Mission model);
   Future<bool> verifieExistance(String started, String? finished);
   Future<int> delete(int id);
+  Future<Mission?> fetchCurrentMission();
 }

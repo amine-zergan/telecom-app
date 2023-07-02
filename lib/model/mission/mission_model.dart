@@ -15,8 +15,8 @@ class Mission {
   final bool depense;
   final int bon;
   final Status status;
-  final int depart;
-  final int? arrive;
+  final double depart;
+  final double? arrive;
   final String car;
   final double? carburant;
   final String chefequipe;
@@ -54,8 +54,8 @@ class Mission {
     bool? depense,
     int? bon,
     Status? status,
-    int? depart,
-    int? arrive,
+    double? depart,
+    double? arrive,
     String? car,
     double? carburant,
     String? chefequipe,
@@ -113,22 +113,19 @@ class Mission {
       finished: map['finished'] != null ? map['finished'] as String : null,
       deplacement: BoolConverter.boolFromInt(map['deplacement'] as int) as bool,
       equipe: BoolConverter.boolFromInt(map['equipe'] as int) as bool,
-      depense: BoolConverter.boolFromInt(map['depense'] as int) as bool,
-      bon: map['bon'] as int,
-      status: EnumParse.fromString(map['status'] as String),
-      depart: map['depart'] as int,
-      arrive: map['arrive'] != null ? map['arrive'] as int : null,
-      car: map['car'] as String,
+      depense:
+          BoolConverter.boolFromInt((map['depense'] as double).toInt()) as bool,
+      bon: 0,
+      status: EnumParse.fromString(map['status']),
+      depart: map['depart'] as double,
+      arrive: map['arrive'] != null ? map['arrive'] as double : null,
+      car: map['car'],
       carburant: map['carburant'] != null ? map['carburant'] as double : null,
       chefequipe: map['chefequipe'] as String,
       chefprojet: map['chefprojet'] as String,
       peage: map['peage'] != null ? map['peage'] as double : null,
       achat: map['achat'] != null ? map['achat'] as double : null,
-      tasks: List<Task>.from(
-        (map['tasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      tasks: [],
     );
   }
 

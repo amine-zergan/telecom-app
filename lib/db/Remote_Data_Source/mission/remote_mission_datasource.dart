@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison, avoid_print
 import 'package:sqflite/sqflite.dart';
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
@@ -75,7 +75,7 @@ class RemoteMissionDataSourceImpl extends IrepositoryMissionDatasource {
       model.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    // ignore: avoid_print
+
     print("============ response from Database $response =======");
     return response;
   }
@@ -102,7 +102,7 @@ SELECT * FROM missions WHERE  status=?
 """,
       ["pending"],
     );
-    // ignore: avoid_print
+
     print("============ exist mission $query =======");
     return query.isNotEmpty;
   }
@@ -123,5 +123,19 @@ SELECT * FROM missions WHERE id=? INNER JOIN tasks ON missions.id = tasks.missio
       final mission = Mission.fromMap(response.first);
       return mission;
     }
+  }
+
+  @override
+  Future<Mission?> fetchCurrentMission() async {
+    final db = await helper.db;
+    final response = await db.rawQuery("""
+SELECT * FROM missions WHERE started IN ((SELECT started FROM missions WHERE status=?) )
+""", ["pending"]);
+    if (response.isNotEmpty) {
+      final mission = Mission.fromMap(response.first);
+      print("================ query fetchCurrentMission $mission ===========");
+      return mission;
+    }
+    return null;
   }
 }

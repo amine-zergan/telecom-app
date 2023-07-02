@@ -7,6 +7,8 @@ extension EnumParse on Status {
   }
 
   static Status fromString(String type) {
+    // ignore: avoid_print
+    print("============ convert done $type ========");
     return Status.values.firstWhere((element) => element.value() == type);
   }
 }

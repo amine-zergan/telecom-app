@@ -144,7 +144,7 @@ CREATE TABLE $missions(
   $deplacement INTEGER,
   $equipe INTEGER,
   $bon INTEGER,
-  $depense REAL,
+  $depense INTEGER,
   $status TEXT,
   $depart REAL ,
   $arrive REAL,
