@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:telecom/view/pages/home/views/contact_page/contact_page.dart';
 import 'package:telecom/view/pages/home/views/dashbord/dashbord_page.dart';
 import 'package:telecom/view/pages/home/views/navigation/navigation_page.dart';
 import 'package:telecom/view/pages/home/views/settings/setting_page.dart';
@@ -60,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         index: selectedIndex,
                         children: const [
                           DashbordPage(),
-                          ContactPage(),
+                          //ContactPage(),
                           NavigationPage(),
                           SettingPage(),
                         ],

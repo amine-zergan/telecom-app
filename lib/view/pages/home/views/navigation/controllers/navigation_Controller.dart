@@ -23,7 +23,7 @@ class NavigationController extends GetxController {
       List<Site> response = await repository.queryall();
       response.map((e) => allSite.add(e)).toList();
       // ignore: avoid_print
-      print("======== query of all site ============ $response");
+
       update();
     } catch (e) {
       allSite = [];

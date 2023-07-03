@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides, avoid_print
+// ignore_for_file: unnecessary_overrides, avoid_print, unused_local_variable
 
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/mission/abstract_mission_datasource.dart';
@@ -14,7 +14,6 @@ class DashboardController extends GetxController {
   fetchCurrentMission() async {
     try {
       final value = await missionRepository.fetchIncomplited();
-      print("========== mission incomplit with succes $value ===========");
     } catch (e) {
       print("======== error from db ${e.toString()} ===========");
     }

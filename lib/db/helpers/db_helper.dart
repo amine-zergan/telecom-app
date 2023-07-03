@@ -11,7 +11,7 @@ class DbHelper {
   Future<Database> get db async {
     if (_db != null) {
       // ignore: avoid_print
-      print("=======get instance for Database To used ===========");
+//print("=======get instance for Database To used ===========");
       return _db!;
     } else {
       _db = await _init();
@@ -30,7 +30,7 @@ class DbHelper {
       onConfigure: _onConfigure,
     );
     // ignore: avoid_print
-    print("=======Database ready for used ===========");
+    // print("=======Database ready for used ===========");
     return mydb;
   }
 

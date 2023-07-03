@@ -27,7 +27,7 @@ class SettingController extends GetxController {
   void fetchProfileUser() async {
     Profile? profil = await reposProfile.fetch();
     profile = profil;
-    print("============== profile fetched from db $profile");
+    //print("============== profile fetched from db $profile");
 
     update();
   }
@@ -35,7 +35,7 @@ class SettingController extends GetxController {
   void fetchEntreprise() async {
     Entreprise? model = await reposEntreprise.fetch();
     entreprise = model;
-    print("============== entreprise fetched from db $entreprise");
+    //print("============== entreprise fetched from db $entreprise");
     update();
   }
 }
