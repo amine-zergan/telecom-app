@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
@@ -8,10 +10,13 @@ import 'package:telecom/view/pages/home/views/contact_page/controllers/radio_ord
 
 class ContactController extends GetxController with StateMixin {
   final IrepositoryContactDatasource repos;
-
   ContactController(this.repos);
 
   List<Contact> contacts = [];
+  StreamController<Contact?> streamController =
+      StreamController<Contact?>.broadcast();
+
+  late StreamSubscription streamSubscription;
 
   bool loading = false;
 
@@ -70,7 +75,30 @@ class ContactController extends GetxController with StateMixin {
 
   @override
   void onInit() {
+    streamSubscription = streamController.stream.listen(
+        (event) {
+          print(
+            "================= event on streamcontact: $event ================",
+          );
+          contacts.add(event!);
+          print(
+            "=========== contacts length are ${contacts.length} ==========",
+          );
+          update();
+        },
+        onDone: () => print(
+              "======= subscription of stream contacts is Done =============",
+            ),
+        onError: (error) {
+          print("========== error stream founded =======");
+        });
     fetchAllContact();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    streamSubscription.cancel();
+    super.onClose();
   }
 }

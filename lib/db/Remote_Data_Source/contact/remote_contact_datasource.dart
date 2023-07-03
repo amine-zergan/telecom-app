@@ -40,11 +40,18 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
   }
 
   @override
-  Future<int> insert(Contact model) async {
+  Future<Contact?> insert(Contact model) async {
     final db = await hepler.db;
     final response = await db.insert(contacts, model.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
-    return response;
+    final result = await db.query(contacts,
+        where: "contact=?", whereArgs: [model.contact], limit: 1);
+    if (result.isNotEmpty && response != 0) {
+      Contact contact = Contact.fromMap(result.first);
+      return contact;
+    } else {
+      return null;
+    }
   }
 
   @override

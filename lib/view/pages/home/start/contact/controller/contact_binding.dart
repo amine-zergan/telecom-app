@@ -8,6 +8,7 @@ class Contactbinding extends Bindings {
     Get.put(
       CreateContactController(
         getItInstance(),
+        Get.find(),
       ),
     );
   }

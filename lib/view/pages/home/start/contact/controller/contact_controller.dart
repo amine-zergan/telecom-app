@@ -1,17 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart';
+import 'package:telecom/view/pages/home/views/contact_page/controllers/contact_controller.dart';
 
 /// class Controller :responsable for saving [contact] To database
 /// contient all variable needed in View [StartContact]
 ///
 class CreateContactController extends GetxController {
   final IrepositoryContactDatasource repository;
+  final ContactController contactController;
 
-  CreateContactController(this.repository);
+  CreateContactController(
+    this.repository,
+    this.contactController,
+  );
 
   /// Create essential variable for saving data contact
   late TextEditingController nomContact;
@@ -72,6 +78,7 @@ class CreateContactController extends GetxController {
             contact: contact.text,
           );
           final result = await repository.insert(model);
+          contactController.streamController.sink.add(result);
           Get.snackbar(
             "Notification",
             "Contact crée avec succes",
