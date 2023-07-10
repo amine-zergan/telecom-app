@@ -13,6 +13,7 @@ class LoadingWidget extends StatelessWidget {
         width: size.width * 0.25,
         height: size.width * 0.25,
         repeat: true,
+        alignment: Alignment.topCenter,
       ),
     );
   }

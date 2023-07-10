@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart';
+import 'package:telecom/model/entreprise/profile_and_contact/filter_model.dart';
 
 import '../../helpers/db_helper.dart';
 
@@ -21,9 +22,12 @@ class RemoteContactDataSourceImpl extends IrepositoryContactDatasource {
   }
 
   @override
-  Future<List<Contact>> fetchAll() async {
+  Future<List<Contact>> fetchAll(FilterContact? model) async {
     final db = await hepler.db;
-    final response = await db.query(contacts);
+
+    final response = await db.query(contacts,
+        orderBy: model?.contact ?? "name",
+        limit: model?.slider == null ? 30 : model?.slider!.toInt());
     if (response.isEmpty) {
       return [];
     } else {

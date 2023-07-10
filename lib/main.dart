@@ -51,7 +51,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       defaultTransition: Transition.fadeIn,
       initialRoute: RouteName.onboard,
       theme: ThemeApp.light,
-      darkTheme: ThemeApp.darkTheme(context),
+      darkTheme: ThemeApp.darkTheme(
+        context,
+      ),
       themeMode: ThemeMode.dark,
     );
   }

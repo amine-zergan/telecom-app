@@ -17,6 +17,7 @@ import 'package:telecom/db/Remote_Data_Source/site/remote_site_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/tasks/remote_task_datasource.dart';
 import 'package:telecom/db/helpers/db_helper.dart';
+import 'package:telecom/db/services/cache/filter/filter_service.dart';
 import 'package:telecom/db/services/remote_data_service/load_page_init/Remote_load_config.dart';
 import '../db/Remote_Data_Source/articles/remote_material_datasource.dart';
 import '../db/Remote_Data_Source/profile/remote_profile_datasource.dart';
@@ -35,6 +36,11 @@ Future<void> setup() async {
   getItInstance.registerLazySingleton<IrepositoryConfigPageInit>(
     () => RemoteConfigPageInit(
       getItInstance(),
+    ),
+  );
+  getItInstance.registerLazySingleton<FilterServiceRepository>(
+    () => RemoteImplFilterServiceRepository(
+      preferences: getItInstance(),
     ),
   );
   getItInstance.registerLazySingleton<IrepositoryEntrepriseSource>(

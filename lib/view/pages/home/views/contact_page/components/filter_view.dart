@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telecom/utils/converter/enum/order_post.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
 import 'package:telecom/view/pages/home/views/contact_page/controllers/contact_controller.dart';
@@ -23,7 +24,7 @@ class FilterView extends StatelessWidget {
         left: padding10 * 1.5,
         right: padding10 * 1.5,
       ),
-      height: size.height * 0.75,
+      height: size.height * 0.77,
       child: ListView(
         children: [
           const TitleComponent(
@@ -56,18 +57,18 @@ class FilterView extends StatelessWidget {
             divisions: 10,
             activeColor: colorButton,
             inactiveColor: Colors.black12,
-            min: 5,
-            max: 50,
+            min: 1,
+            max: controller.maxLength,
             onChanged: controller.onChangedSlider,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "min : 5",
+              const Text(
+                "min : 1",
               ),
               Text(
-                "max : 50",
+                "max : ${controller.maxLength.toInt()}",
               ),
             ],
           ),
@@ -123,7 +124,10 @@ class FilterView extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: padding10,
+          ),
         ],
       ),
     );

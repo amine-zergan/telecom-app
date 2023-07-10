@@ -9,9 +9,12 @@ import 'package:telecom/view/pages/home/views/settings/controller/setting_contro
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(HomeController());
+    Get.put(
+      HomeController(),
+    );
     Get.put(
       ContactController(
+        getItInstance(),
         getItInstance(),
       ),
     );
