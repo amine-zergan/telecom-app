@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
+import 'package:telecom/view/pages/home/views/settings/controller/setting_controller.dart';
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
@@ -42,28 +43,71 @@ class SettingPage extends StatelessWidget {
                     const Spacer(
                       flex: 3,
                     ),
-                    ClipRRect(
-                      child: LottieBuilder.asset(
-                        "assets/animations/profil.json",
-                        fit: BoxFit.cover,
-                        width: 250,
-                      ),
-                    ),
+                    GetBuilder<SettingController>(builder: (controller) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          50,
+                        ),
+                        child: controller.imageProfile == null
+                            ? LottieBuilder.asset(
+                                "assets/animations/profil.json",
+                                fit: BoxFit.cover,
+                                width: 250,
+                              )
+                            : Container(
+                                width: Get.size.width * 0.37,
+                                padding: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: Colors.grey)),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                    Get.size.width * 0.17,
+                                  ),
+                                  child: Image.memory(
+                                    controller.imageProfile!,
+                                    width: Get.size.width * 0.35,
+                                  ),
+                                ),
+                              ),
+                      );
+                    }),
                     const SizedBox(
-                      height: padding10,
+                      height: padding10 * 1.5,
                     ),
-                    const Text(
-                      "Nom et Prenom : ",
-                    ),
+                    GetBuilder<SettingController>(builder: (controller) {
+                      return controller.profile == null
+                          ? const Text(
+                              "Nom et Prenom : ",
+                            )
+                          : Text(
+                              controller.profile!.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            );
+                    }),
                     const SizedBox(
-                      height: padding10,
+                      height: padding10 / 2,
                     ),
-                    const Text(
-                      "Poste Actuel : ",
-                    ),
-                    const SizedBox(
-                      height: padding10,
-                    ),
+                    GetBuilder<SettingController>(builder: (controller) {
+                      return controller.profile == null
+                          ? const Text(
+                              "Poste Actuel : ",
+                            )
+                          : Text(
+                              controller.profile!.post!,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            );
+                    }),
                     const Spacer(),
                   ],
                 ),
@@ -86,22 +130,38 @@ class SettingPage extends StatelessWidget {
                   const SizedBox(
                     height: padding10,
                   ),
-                  CardSetting(
-                    title: "Societé",
-                    subtitle: "Nom de entreprise ",
-                    logo: const FlutterLogo(
-                      style: FlutterLogoStyle.markOnly,
-                    ),
-                    onPressed: () {},
-                  ),
-                  CardSetting(
-                    title: "Address",
-                    subtitle: "10-rue egypte borj elamri",
-                    logo: const Icon(
-                      Icons.home_outlined,
-                    ),
-                    onPressed: () {},
-                  ),
+                  GetBuilder<SettingController>(builder: (controller) {
+                    return CardSetting(
+                      title: "Societé",
+                      subtitle: controller.entreprise == null
+                          ? "Nom de entreprise "
+                          : controller.entreprise!.name,
+                      logo: controller.imageEntreprise == null
+                          ? const Icon(Icons.home_work)
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                30,
+                              ),
+                              child: Image.memory(
+                                controller.imageEntreprise!,
+                                width: 50,
+                                height: 80,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                      onPressed: () {},
+                    );
+                  }),
+                  GetBuilder<SettingController>(builder: (controller) {
+                    return CardSetting(
+                      title: "Address",
+                      subtitle: controller.profile == null
+                          ? " "
+                          : controller.profile!.address,
+                      logo: const SizedBox.shrink(),
+                      onPressed: () {},
+                    );
+                  }),
                 ],
               ),
             ),
@@ -202,12 +262,12 @@ class CardSetting extends StatelessWidget {
     Key? key,
     required this.title,
     this.subtitle,
-    required this.logo,
+    this.logo,
     required this.onPressed,
   }) : super(key: key);
   final String title;
   final String? subtitle;
-  final Widget logo;
+  final Widget? logo;
   final VoidCallback onPressed;
 
   @override
@@ -224,6 +284,7 @@ class CardSetting extends StatelessWidget {
       ),
       child: ListTile(
         horizontalTitleGap: 0.0,
+        contentPadding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(padding10 / 2),
         ),

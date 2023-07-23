@@ -32,7 +32,6 @@
     "android": true,
     "lib/view/pages/onboard": true,
     "lib/view/pages/config": true,
-    "lib/utils": true,
     "lib/validators": true,
     "lib/view/pages/home/views/contact_page": true
   },

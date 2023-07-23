@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +16,11 @@ class NavigationController extends GetxController {
 
   List<Site> allSite = [];
 
+  removeSiteFromList(Site site) {
+    allSite.remove(site);
+    update();
+  }
+
   @override
   void onInit() {
     fetchAllSite();
@@ -28,8 +33,6 @@ class NavigationController extends GetxController {
     try {
       List<Site> response = await repository.queryall();
       response.map((e) => allSite.add(e)).toList();
-      // ignore: avoid_print
-
       update();
     } catch (e) {
       allSite = [];
@@ -40,15 +43,28 @@ class NavigationController extends GetxController {
   // pour naviguer suite une coordonnee longitude et latitude
   void navigateTosite() async {
     if (form.currentState!.validate()) {
-      final Uri url = Uri.parse(
-        "https://www.google.com/maps?q=${fieldLatitude.text},${fieldLongitude.text}",
-      );
-      if (!await launchUrl(
-        url,
-        mode: LaunchMode.externalApplication,
-      )) {
-        throw 'Could not launch $url';
+      try {
+        final Uri url = Uri.parse(
+          "https://www.google.com/maps?q=${fieldLatitude.text},${fieldLongitude.text}",
+        );
+        if (!await launchUrl(
+          url,
+          mode: LaunchMode.externalApplication,
+        )) {
+          throw 'Could not launch $url';
+        }
+      } catch (e) {
+        print("======= error from urlauncher $e =========");
       }
+    }
+  }
+
+  makeCallMaintenancier(String phone) async {
+    try {
+      final Uri appel = Uri(scheme: 'tel', path: phone);
+      await launchUrl(appel);
+    } catch (e) {
+      print("======== error from call maintenancier $e======");
     }
   }
 

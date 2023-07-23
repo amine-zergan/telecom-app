@@ -15,7 +15,7 @@ class DashboardController extends GetxController {
     try {
       final value = await missionRepository.fetchIncomplited();
     } catch (e) {
-      print("======== error from db ${e.toString()} ===========");
+      print("======== error mission from db ${e.toString()} ===========");
     }
   }
 

@@ -47,7 +47,7 @@ class RemoteSiteDataSourceImpl extends IrepositorySiteDatasource {
     final db = await helper.db;
 
     final response = await db.rawQuery("""
-SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.idOperator  
+SELECT * FROM sites INNER JOIN operators ON sites.operator=operators.idOperator  ORDER BY operators.operator
 """);
 
     if (response.isEmpty) {

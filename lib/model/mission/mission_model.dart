@@ -114,7 +114,7 @@ class Mission {
       deplacement: BoolConverter.boolFromInt(map['deplacement'] as int) as bool,
       equipe: BoolConverter.boolFromInt(map['equipe'] as int) as bool,
       depense:
-          BoolConverter.boolFromInt((map['depense'] as double).toInt()) as bool,
+          BoolConverter.boolFromInt((map['depense'] as int).toInt()) as bool,
       bon: 0,
       status: EnumParse.fromString(map['status']),
       depart: map['depart'] as double,

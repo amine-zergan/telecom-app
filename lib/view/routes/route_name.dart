@@ -27,4 +27,5 @@ class RouteName {
   static const editProfil = "/edit-profil";
   static const editEntreprise = "/edit-entreprise";
   static const reports = "/reports";
+  static const detailSite = "/detail-site";
 }
