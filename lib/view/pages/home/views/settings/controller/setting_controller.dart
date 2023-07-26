@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, unused_catch_clause
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -43,14 +43,11 @@ class SettingController extends GetxController {
 
   void fetchProfileUser() async {
     try {
-      StatusData.loaded;
       Profile? profil = await reposProfile.fetch();
       profile = profil;
       imageFromProfile(profile);
-      print("============== profile fetched from db $profile");
       update();
     } on Exception catch (error) {
-      print("========= $error from controller for profile  ========");
       profile = null;
     }
     update();
@@ -61,10 +58,8 @@ class SettingController extends GetxController {
       Entreprise? model = await reposEntreprise.fetch();
       entreprise = model;
       imageFromEntreprise(entreprise);
-      //print("============== entreprise fetched from db $entreprise");
       update();
     } on Exception catch (error) {
-      print("========= $error from controller for entreprise  ========");
       entreprise = null;
     }
     update();
