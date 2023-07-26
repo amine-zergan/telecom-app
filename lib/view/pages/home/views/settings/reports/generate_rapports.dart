@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
 
 class GenerateRapport extends StatelessWidget {
@@ -18,163 +20,83 @@ class GenerateRapport extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-          bottom: false,
-          child: SizedBox(
-            width: size.width,
-            height: size.height,
-            child: ListView(
-              padding: const EdgeInsets.only(
-                right: 15.0,
-                left: 15.0,
-                top: 15.0,
-              ),
-              children: [
-                Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  child: ListTile(
-                    onTap: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                    title: const Text(
-                      "Ouverture Mission",
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 15,
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  child: ListTile(
-                    onTap: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                    title: const Text(
-                      "Cloture Mission",
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 15,
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  child: ListTile(
-                    onTap: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                    title: const Text(
-                      "Demande Preparation materials ",
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 15,
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  child: ListTile(
-                    onTap: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                    title: const Text(
-                      "Creer Demande Retour Materials",
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 15,
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  child: ListTile(
-                    onTap: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                    title: const Text(
-                      "Rapport Qualité ",
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 15,
-                    ),
-                  ),
-                ),
-                Card(
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  child: ListTile(
-                    onTap: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                    title: const Text(
-                      "Survey Site ",
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 15,
-                    ),
-                  ),
-                ),
-              ],
+        bottom: false,
+        child: SizedBox(
+          width: size.width,
+          height: size.height,
+          child: ListView(
+            padding: const EdgeInsets.only(
+              right: 15.0,
+              left: 15.0,
+              top: 15.0,
             ),
-          )),
+            children: [
+              CardTitle(
+                title: "Ouverture Mission",
+                press: () {},
+              ),
+              CardTitle(
+                title: "Cloture Mission",
+                press: () {},
+              ),
+              CardTitle(
+                title: "Demande Preparation materials ",
+                press: () {},
+              ),
+              CardTitle(
+                title: "Creer Demande Retour Materials",
+                press: () {},
+              ),
+              CardTitle(
+                title: "Rapport Qualité ",
+                press: () {},
+              ),
+              CardTitle(
+                title: "Survey Site ",
+                press: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CardTitle extends StatelessWidget {
+  const CardTitle({
+    Key? key,
+    required this.press,
+    required this.title,
+  }) : super(key: key);
+  final VoidCallback press;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      margin: const EdgeInsets.only(bottom: 5.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          10,
+        ),
+      ),
+      child: ListTile(
+        onTap: press,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            10,
+          ),
+        ),
+        title: Text(
+          title,
+        ),
+        trailing: const Icon(
+          Icons.arrow_forward_ios_outlined,
+          size: 15,
+        ),
+      ),
     );
   }
 }
