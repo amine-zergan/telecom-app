@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
 import 'package:telecom/view/pages/home/views/settings/controller/setting_controller.dart';
 import 'package:telecom/view/routes/route_name.dart';
@@ -43,35 +42,37 @@ class SettingPage extends StatelessWidget {
                     const Spacer(
                       flex: 3,
                     ),
-                    GetBuilder<SettingController>(builder: (controller) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                        child: controller.imageProfile == null
-                            ? LottieBuilder.asset(
-                                "assets/animations/profil.json",
-                                fit: BoxFit.cover,
-                                width: 250,
-                              )
-                            : Container(
-                                width: Get.size.width * 0.37,
-                                padding: const EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.grey)),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                    Get.size.width * 0.17,
-                                  ),
-                                  child: Image.memory(
-                                    controller.imageProfile!,
-                                    width: Get.size.width * 0.35,
+                    GetBuilder<SettingController>(
+                      builder: (controller) {
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                          child: controller.imageProfile == null
+                              ? LottieBuilder.asset(
+                                  "assets/animations/profil.json",
+                                  fit: BoxFit.cover,
+                                  width: 250,
+                                )
+                              : Container(
+                                  width: Get.size.width * 0.37,
+                                  padding: const EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.grey)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                      Get.size.width * 0.17,
+                                    ),
+                                    child: Image.memory(
+                                      controller.imageProfile!,
+                                      width: Get.size.width * 0.3,
+                                    ),
                                   ),
                                 ),
-                              ),
-                      );
-                    }),
+                        );
+                      },
+                    ),
                     const SizedBox(
                       height: padding10 * 1.5,
                     ),
@@ -158,7 +159,13 @@ class SettingPage extends StatelessWidget {
                       subtitle: controller.profile == null
                           ? " "
                           : controller.profile!.address,
-                      logo: const SizedBox.shrink(),
+                      logo: const Padding(
+                        padding: EdgeInsets.only(left: 15.0),
+                        child: Icon(
+                          Icons.home,
+                          size: 28,
+                        ),
+                      ),
                       onPressed: () {},
                     );
                   }),
@@ -283,7 +290,7 @@ class CardSetting extends StatelessWidget {
         vertical: padding10 / 5,
       ),
       child: ListTile(
-        horizontalTitleGap: 0.0,
+        horizontalTitleGap: 10.0,
         contentPadding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(padding10 / 2),

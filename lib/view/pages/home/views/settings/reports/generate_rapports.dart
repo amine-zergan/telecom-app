@@ -32,8 +32,18 @@ class GenerateRapport extends StatelessWidget {
                 Card(
                   elevation: 0,
                   margin: const EdgeInsets.only(bottom: 5.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   child: ListTile(
                     onTap: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
                     title: const Text(
                       "Ouverture Mission",
                     ),
@@ -46,8 +56,18 @@ class GenerateRapport extends StatelessWidget {
                 Card(
                   elevation: 0,
                   margin: const EdgeInsets.only(bottom: 5.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   child: ListTile(
                     onTap: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
                     title: const Text(
                       "Cloture Mission",
                     ),
@@ -60,8 +80,18 @@ class GenerateRapport extends StatelessWidget {
                 Card(
                   elevation: 0,
                   margin: const EdgeInsets.only(bottom: 5.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   child: ListTile(
                     onTap: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
                     title: const Text(
                       "Demande Preparation materials ",
                     ),
@@ -74,8 +104,18 @@ class GenerateRapport extends StatelessWidget {
                 Card(
                   elevation: 0,
                   margin: const EdgeInsets.only(bottom: 5.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   child: ListTile(
                     onTap: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
                     title: const Text(
                       "Creer Demande Retour Materials",
                     ),
@@ -87,9 +127,19 @@ class GenerateRapport extends StatelessWidget {
                 ),
                 Card(
                   elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   margin: const EdgeInsets.only(bottom: 5.0),
                   child: ListTile(
                     onTap: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
                     title: const Text(
                       "Rapport Qualité ",
                     ),
@@ -101,8 +151,18 @@ class GenerateRapport extends StatelessWidget {
                 ),
                 Card(
                   margin: const EdgeInsets.only(bottom: 5.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   child: ListTile(
                     onTap: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
                     title: const Text(
                       "Survey Site ",
                     ),
