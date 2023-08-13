@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 
 class GenerateRapport extends StatelessWidget {
   const GenerateRapport({super.key});
@@ -32,10 +34,6 @@ class GenerateRapport extends StatelessWidget {
             ),
             children: [
               CardTitle(
-                title: "Ouverture Mission",
-                press: () {},
-              ),
-              CardTitle(
                 title: "Cloture Mission",
                 press: () {},
               ),
@@ -49,10 +47,14 @@ class GenerateRapport extends StatelessWidget {
               ),
               CardTitle(
                 title: "Rapport Qualité ",
-                press: () {},
+                press: () {
+                  Get.to(
+                    () => const QualiteRapportPage(),
+                  );
+                },
               ),
               CardTitle(
-                title: "Survey Site ",
+                title: "Site Survey",
                 press: () {},
               ),
             ],

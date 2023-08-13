@@ -46,7 +46,7 @@ class PdfApi {
                 ]),
                 SizedBox(width: 2 * PdfPageFormat.cm),
                 Row(children: [
-                  Text("Chef Projez:"),
+                  Text("Chef Projet:"),
                   Text(" Aribi Jomaa"),
                 ])
               ]),
