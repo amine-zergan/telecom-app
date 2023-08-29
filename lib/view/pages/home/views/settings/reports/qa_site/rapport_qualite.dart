@@ -1,12 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
-
 import 'package:telecom/report/qa.dart';
-
 import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
 
 class QualiteRapportPage extends StatefulWidget {
