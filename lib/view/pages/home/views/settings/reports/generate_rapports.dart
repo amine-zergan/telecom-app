@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_material.dart';
 
 class GenerateRapport extends StatelessWidget {
   const GenerateRapport({super.key});
@@ -43,7 +44,11 @@ class GenerateRapport extends StatelessWidget {
               ),
               CardTitle(
                 title: "Creer Demande Retour Materials",
-                press: () {},
+                press: () {
+                  Get.to(
+                    () => const RetourMaterial(),
+                  );
+                },
               ),
               CardTitle(
                 title: "Rapport Qualité ",
