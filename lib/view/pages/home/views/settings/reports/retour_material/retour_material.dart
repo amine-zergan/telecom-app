@@ -9,11 +9,13 @@ class RetourMaterial extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text("Demande Retour Material"),
+        title: const Text(
+          "Demande Retour Material",
+        ),
       ),
       body: SafeArea(
         bottom: false,
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: Get.height,
           child: ListView(
