@@ -181,13 +181,13 @@ INSERT INTO operators(operator,image) VALUES('Ooredoo','assets/project/ooredoo.p
 INSERT INTO operators(operator,image) VALUES('Orange','assets/project/orange.png')
 """);
       await txn.rawInsert("""
-INSERT INTO operators(operator,image) VALUES('Telecom','assets/project/telecom.png')
+INSERT INTO operators(operator,image) VALUES('Telecom','assets/project/Telecom.png')
 """);
       await txn.rawInsert("""
 INSERT INTO projects(name,image) VALUES('Nokia','assets/project/nokia.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(name,image) VALUES('Nec','assets/project/nec.png')
+INSERT INTO projects(name,image) VALUES('Nec','assets/project/NEC.png')
 """);
       await txn.rawInsert("""
 INSERT INTO projects(name,image) VALUES('Alcatel','assets/project/alcatel.png')

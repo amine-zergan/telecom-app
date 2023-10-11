@@ -33,7 +33,6 @@
     "lib/view/pages/onboard": true,
     "lib/view/pages/config": true,
     "lib/validators": true,
-    "lib/view/pages/home/views/contact_page": true,
     "ios": true
   },
   "yaml.schemas": {

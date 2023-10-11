@@ -51,22 +51,27 @@ class SettingPage extends StatelessWidget {
                           child: controller.imageProfile == null
                               ? LottieBuilder.asset(
                                   "assets/animations/profil.json",
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
                                   width: 250,
                                 )
                               : Container(
                                   width: Get.size.width * 0.37,
                                   padding: const EdgeInsets.all(3),
                                   decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.grey)),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(
-                                      Get.size.width * 0.17,
+                                      Get.size.width * 0.2,
                                     ),
                                     child: Image.memory(
                                       controller.imageProfile!,
-                                      width: Get.size.width * 0.3,
+                                      width: 120,
+                                      height: 150,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                 ),
