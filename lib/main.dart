@@ -1,7 +1,8 @@
+// ignore_for_file: library_prefixes
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-// ignore: library_prefixes
 import 'package:telecom/di/get_it.dart' as getIt;
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/routes/routes_navigation.dart';
