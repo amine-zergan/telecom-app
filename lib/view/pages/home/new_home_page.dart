@@ -38,6 +38,9 @@ class _HomeNewPageState extends State<HomeNewPage> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
         onPressed: () {
           Get.toNamed(RouteName.createPage);
         },
@@ -55,11 +58,9 @@ class _HomeNewPageState extends State<HomeNewPage> {
         notchMargin: 5.0,
         color: Colors.grey.shade800,
         elevation: 20,
+        height: 65,
         padding: const EdgeInsets.only(
-          left: padding10,
-          top: padding10 / 2,
-          right: padding10,
-        ),
+            left: padding10, top: padding10 / 2, right: padding10, bottom: 5.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -156,7 +157,7 @@ class BottomNavItem extends StatelessWidget {
           padding: const EdgeInsets.only(top: 8.0),
           child: Text(
             label,
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: currentIndex == index ? Colors.white : Colors.grey,
                   fontWeight:
                       currentIndex == index ? FontWeight.w700 : FontWeight.w700,

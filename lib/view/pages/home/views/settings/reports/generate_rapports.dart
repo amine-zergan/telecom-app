@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:open_file/open_file.dart';
+import 'package:telecom/report/pv_install.dart';
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_material.dart';
@@ -60,6 +61,25 @@ class GenerateRapport extends StatelessWidget {
               ),
               CardTitle(
                 title: "Site Survey",
+                press: () {},
+              ),
+              CardTitle(
+                title: "Pv de Reception B2B",
+                press: () async {
+                  final file = await PvInstall.generatePdf(
+                    technicien: "Amine Mejri ",
+                    contact: "54 948 198",
+                    b2b: "AIR Liquide",
+                    address: "10 rue egypte tounes",
+                    responsable: "Amine mejri",
+                    contactClient: "54 948 198 - 71 542 198",
+                    debit: 200,
+                  );
+                  await OpenFile.open(file.path);
+                },
+              ),
+              CardTitle(
+                title: "Pv de Demontage B2B",
                 press: () {},
               ),
             ],

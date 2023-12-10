@@ -33,7 +33,9 @@ class _QualiteRapportPageState extends State<QualiteRapportPage> {
                   nom_pdf: "rapport-qualite-sfa-0245",
                   //file: image,
                 );
-                OpenFile.open(file.path);
+                await OpenFile.open(file.path);
+                // ignore: avoid_print
+                print("afficher dossier ????????");
               },
               child: const Icon(
                 Icons.document_scanner_outlined,
