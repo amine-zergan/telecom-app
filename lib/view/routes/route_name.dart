@@ -28,4 +28,8 @@ class RouteName {
   static const editEntreprise = "/edit-entreprise";
   static const reports = "/reports";
   static const detailSite = "/detail-site";
+
+  /// ------ Rapport Pages -----///
+
+  static const pvReception = "/pv-reception";
 }

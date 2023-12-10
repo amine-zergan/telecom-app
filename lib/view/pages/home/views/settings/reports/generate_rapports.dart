@@ -1,11 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
-import 'package:telecom/report/pv_install.dart';
+//import 'package:telecom/report/pv_install.dart';
+//import 'package:open_file/open_file.dart';
+//import 'package:telecom/report/pv_install.dart';
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
+//import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_material.dart';
+import 'package:telecom/view/routes/route_name.dart';
 
 class GenerateRapport extends StatelessWidget {
   const GenerateRapport({super.key});
@@ -66,16 +69,10 @@ class GenerateRapport extends StatelessWidget {
               CardTitle(
                 title: "Pv de Reception B2B",
                 press: () async {
-                  final file = await PvInstall.generatePdf(
-                    technicien: "Amine Mejri ",
-                    contact: "54 948 198",
-                    b2b: "AIR Liquide",
-                    address: "10 rue egypte tounes",
-                    responsable: "Amine mejri",
-                    contactClient: "54 948 198 - 71 542 198",
-                    debit: 200,
-                  );
-                  await OpenFile.open(file.path);
+                  Get.toNamed(RouteName.pvReception);
+                  // Get.to(
+                  //   () => const PvReceptionPage(),
+                  // );
                 },
               ),
               CardTitle(
@@ -103,6 +100,7 @@ class CardTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
+      color: Colors.black12,
       margin: const EdgeInsets.only(bottom: 5.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
@@ -111,6 +109,7 @@ class CardTitle extends StatelessWidget {
       ),
       child: ListTile(
         onTap: press,
+        selectedColor: Colors.black26,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             10,

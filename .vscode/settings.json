@@ -32,7 +32,6 @@
     "android": true,
     "lib/view/pages/onboard": true,
     "lib/view/pages/config": true,
-    "lib/validators": true,
     "ios": true
   },
   "yaml.schemas": {
