@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 //import 'package:telecom/report/pv_install.dart';
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
 //import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
-import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_material.dart';
 import 'package:telecom/view/routes/route_name.dart';
 
@@ -57,9 +56,7 @@ class GenerateRapport extends StatelessWidget {
               CardTitle(
                 title: "Rapport Qualité ",
                 press: () {
-                  Get.to(
-                    () => const QualiteRapportPage(),
-                  );
+                  Get.toNamed(RouteName.reportQualite);
                 },
               ),
               CardTitle(

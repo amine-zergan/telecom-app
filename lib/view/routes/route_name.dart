@@ -32,4 +32,5 @@ class RouteName {
   /// ------ Rapport Pages -----///
 
   static const pvReception = "/pv-reception";
+  static const reportQualite = "/quality";
 }

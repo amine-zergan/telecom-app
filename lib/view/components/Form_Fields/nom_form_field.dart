@@ -51,6 +51,15 @@ class NomFormField extends StatelessWidget {
         hintText: hintText,
         labelText: labelText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        labelStyle: Theme.of(context).textTheme.bodyMedium,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        enabledBorder: const OutlineInputBorder(),
+        focusedBorder: const OutlineInputBorder(),
+        errorBorder: const OutlineInputBorder(),
+        focusedErrorBorder: const OutlineInputBorder(),
+        disabledBorder: const OutlineInputBorder(),
       ),
     );
   }

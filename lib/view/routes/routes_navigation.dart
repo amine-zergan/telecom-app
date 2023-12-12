@@ -25,6 +25,8 @@ import 'package:telecom/view/pages/home/start/tasks/controller/create_task_bindi
 import 'package:telecom/view/pages/home/start/tasks/create_task.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_binding.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qa_binding.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
 import 'package:telecom/view/pages/onboard/middleware/onboard_middleware_config.dart';
 import 'package:telecom/view/routes/route_name.dart';
@@ -92,6 +94,12 @@ class Routes {
       name: RouteName.pvReception,
       page: () => const PvReceptionPage(),
       binding: PvReceptionBinding(),
+    ),
+
+    GetPage(
+      name: RouteName.reportQualite,
+      page: () => const QualiteRapportPage(),
+      binding: RapportQaBinding(),
     ),
 
     /// add create pages : tasks -Missions -report -site- contact ///
