@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:telecom/validators/profil/profile_validator.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_controller.dart';
 

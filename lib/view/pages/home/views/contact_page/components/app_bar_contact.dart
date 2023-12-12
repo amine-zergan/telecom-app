@@ -14,6 +14,7 @@ class AppBarContact extends StatelessWidget {
     return SliverAppBar(
       pinned: false,
       elevation: 0,
+      backgroundColor: Colors.grey.shade100,
       floating: true,
       snap: true,
       actions: [
@@ -57,15 +58,16 @@ class AppBarContact extends StatelessWidget {
           width: padding10,
         )
       ],
-      flexibleSpace: const FlexibleSpaceBar(
+      flexibleSpace: FlexibleSpaceBar(
         expandedTitleScale: 1.4,
-        titlePadding: EdgeInsets.only(
+        titlePadding: const EdgeInsets.only(
           bottom: padding10,
           left: padding10,
         ),
         title: Text(
           "Repertoire de contact",
           textAlign: TextAlign.left,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         centerTitle: false,
         collapseMode: CollapseMode.none,
