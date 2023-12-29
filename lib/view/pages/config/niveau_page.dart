@@ -81,7 +81,8 @@ class CardChoix extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: index == selectedIndex ? 2 : 0,
-      color: index == selectedIndex ? Colors.grey.shade500 : Colors.black45,
+      color:
+          index == selectedIndex ? Colors.grey.shade600 : Colors.grey.shade300,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),

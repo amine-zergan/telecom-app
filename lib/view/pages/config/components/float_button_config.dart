@@ -17,7 +17,7 @@ class FloatButton extends StatelessWidget {
       icon: controller.isLast
           ? const Icon(Icons.done_all)
           : const Icon(Icons.arrow_circle_right_outlined),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black87,
       label: Text(
         controller.textButton,
       ),

@@ -26,13 +26,11 @@ class QualiteRapportPage extends GetWidget<QaController> {
             child: GestureDetector(
               onTap: () async {
                 final file = await QaReport.generatePdf(
-                  site: "SFA_0245",
+                  site: controller.nomSiteField.text.toUpperCase(),
                   nom_pdf: "rapport-qualite-sfa-0245",
                   //file: image,
                 );
                 await OpenFile.open(file.path);
-                // ignore: avoid_print
-                print("afficher dossier ????????");
               },
               child: const Icon(
                 Icons.document_scanner_outlined,
@@ -61,7 +59,9 @@ class QualiteRapportPage extends GetWidget<QaController> {
                 focusNode: controller.nomSite,
                 hintText: "Site_0001",
                 labelText: "Nom Site",
-                onEditComplete: () {},
+                onEditComplete: () {
+                  FocusScope.of(context).unfocus();
+                },
               ),
               const SizedBox(
                 height: 15.0,

@@ -43,6 +43,14 @@ class PhoneFixFormField extends StatelessWidget {
         hintText: "71 000 100",
         labelText: labelText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        enabledBorder: const OutlineInputBorder(),
+        focusedBorder: const OutlineInputBorder(),
+        errorBorder: const OutlineInputBorder(),
+        focusedErrorBorder: const OutlineInputBorder(),
+        disabledBorder: const OutlineInputBorder(),
       ),
     );
   }
