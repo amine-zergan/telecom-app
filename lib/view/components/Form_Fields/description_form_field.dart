@@ -28,6 +28,11 @@ class DescriptionFormField extends StatelessWidget {
           vertical: 10,
           horizontal: 20,
         ),
+        enabledBorder: const OutlineInputBorder(),
+        focusedBorder: const OutlineInputBorder(),
+        errorBorder: const OutlineInputBorder(),
+        focusedErrorBorder: const OutlineInputBorder(),
+        disabledBorder: const OutlineInputBorder(),
       ),
     );
   }

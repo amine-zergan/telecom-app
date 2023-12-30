@@ -21,10 +21,12 @@ class BackgroundAppBar extends StatelessWidget {
           const BlurEffectIamge(),
         ],
       ),
-      expandedTitleScale: 1.5,
-      title: const Text(
-        "Navigation",
-      ),
+      expandedTitleScale: 1.4,
+      title: Text("Navigation",
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge
+              ?.copyWith(color: Colors.white)),
       titlePadding: const EdgeInsets.only(
         bottom: padding10,
         left: padding10,

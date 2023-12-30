@@ -23,6 +23,7 @@ class NavigationController extends GetxController {
 
   @override
   void onInit() {
+    print("========= call navigation controller onInit=======");
     fetchAllSite();
     fieldLatitude = TextEditingController();
     fieldLongitude = TextEditingController();
@@ -72,6 +73,7 @@ class NavigationController extends GetxController {
   void onClose() {
     fieldLatitude.dispose();
     fieldLongitude.dispose();
+    print("P====== onclose controller navigation ==============");
     super.onClose();
   }
 }

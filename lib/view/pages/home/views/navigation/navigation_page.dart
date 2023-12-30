@@ -38,44 +38,16 @@ class NavigationPage extends StatelessWidget {
                                 crossAxisCount: 1, mainAxisExtent: 100),
                         itemBuilder: (context, index) {
                           Site site = controller.allSite[index];
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Dismissible(
-                              key: ValueKey(site.id), // identifier fel
-                              behavior: HitTestBehavior.translucent,
-                              crossAxisEndOffset: 0.0,
-                              onDismissed: (direction) {
-                                print(
-                                    "on dismissed function ${direction.name}");
-                                controller.removeSiteFromList(site);
-                              },
-                              onUpdate: (details) {
-                                print("on update function ${details.progress}");
-                              },
-                              onResize: () {
-                                print("resize fonction");
-                              },
-                              background: Container(
-                                margin: const EdgeInsets.only(
-                                  bottom: 5.0,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade800,
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  Icons.delete_outline_outlined,
-                                  size: 30,
-                                ),
-                              ),
+                          return Card(
+                            elevation: 2,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
                               child: Container(
-                                margin: const EdgeInsets.only(
-                                  bottom: 5.0,
-                                ),
+                                // margin: const EdgeInsets.only(
+                                //  bottom: 5.0,
+                                //  ),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade800,
+                                  //color: Colors.grey.shade800,
                                   borderRadius: BorderRadius.circular(
                                     15,
                                   ),
@@ -85,26 +57,17 @@ class NavigationPage extends StatelessWidget {
                                     Expanded(
                                       flex: 2,
                                       child: Padding(
-                                        padding: const EdgeInsets.all(
-                                          8.0,
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            10,
-                                          ),
-                                          child: Image.asset(
-                                            site.operator.image,
-                                            width: 50,
-                                            height: 50,
-                                            fit: BoxFit.contain,
-                                          ),
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                          site.operator.image,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                     ),
                                     Expanded(
                                       flex: 7,
                                       child: Container(
-                                        color: Colors.black12,
+                                        //color: Colors.black12,
                                         padding: const EdgeInsets.symmetric(
                                           vertical: 10.0,
                                           horizontal: 5.0,
@@ -151,7 +114,7 @@ class NavigationPage extends StatelessWidget {
                                               ),
                                             ),
                                             Expanded(
-                                              flex: 4,
+                                              flex: 3,
                                               child: ListTile(
                                                 minLeadingWidth: 0,
                                                 horizontalTitleGap: 0,

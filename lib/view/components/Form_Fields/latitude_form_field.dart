@@ -35,6 +35,14 @@ class LatitudeFormField extends StatelessWidget {
         hintText: "30.23333333",
         labelText: "Latitude de site",
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        enabledBorder: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(),
+        errorBorder: OutlineInputBorder(),
+        focusedErrorBorder: OutlineInputBorder(),
+        disabledBorder: OutlineInputBorder(),
       ),
     );
   }

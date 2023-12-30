@@ -35,6 +35,14 @@ class LongitudeFormField extends StatelessWidget {
         hintText: "9.23333333",
         labelText: "Longitude de site",
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        enabledBorder: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(),
+        errorBorder: OutlineInputBorder(),
+        focusedErrorBorder: OutlineInputBorder(),
+        disabledBorder: OutlineInputBorder(),
       ),
     );
   }
