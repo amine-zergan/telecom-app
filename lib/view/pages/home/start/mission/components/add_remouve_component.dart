@@ -30,7 +30,7 @@ class AddandRemouveComponent extends StatelessWidget {
               onPressed: decrease,
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
-                  Colors.grey.shade800,
+                  Colors.grey.shade200,
                 ),
               ),
               child: const Icon(
@@ -52,7 +52,7 @@ class AddandRemouveComponent extends StatelessWidget {
               onPressed: increase,
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
-                  Colors.grey.shade800,
+                  Colors.grey.shade200,
                 ),
               ),
               child: const Icon(

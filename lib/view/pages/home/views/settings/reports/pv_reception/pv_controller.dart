@@ -30,36 +30,6 @@ class PvReceptionController extends GetxController {
 
   Profile? user;
 
-  String? validateEntreprise(String? value) {
-    if (value == null || value.isEmpty) {
-      return "merci de saisi le nom de client";
-    } else if (value.length < 4) {
-      return "nom invalide";
-    } else {
-      return null;
-    }
-  }
-
-  String? validateAddress(String? value) {
-    if (value == null || value.isEmpty) {
-      return "merci de saisi l'address";
-    } else if (value.length < 4) {
-      return "address invalide";
-    } else {
-      return null;
-    }
-  }
-
-  String? validateResponsable(String? value) {
-    if (value == null || value.isEmpty) {
-      return "merci de saisi le nom de responsable";
-    } else if (value.length < 4) {
-      return "nom invalide";
-    } else {
-      return null;
-    }
-  }
-
   String? validateDebit(String? value) {
     if (value == null || value.isEmpty) {
       return "merci de mettre le debit";

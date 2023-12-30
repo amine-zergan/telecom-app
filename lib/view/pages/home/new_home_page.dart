@@ -60,7 +60,11 @@ class _HomeNewPageState extends State<HomeNewPage> {
         elevation: 20,
         height: 65,
         padding: const EdgeInsets.only(
-            left: padding10, top: padding10 / 2, right: padding10, bottom: 5.0),
+          left: padding10,
+          top: padding10 / 2,
+          right: padding10,
+          bottom: 5.0,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.end,

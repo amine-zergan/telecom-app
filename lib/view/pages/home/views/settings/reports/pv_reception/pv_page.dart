@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:telecom/validators/client_validator.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_controller.dart';
 
@@ -11,12 +12,8 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Creation Pv Reception B2B",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        centerTitle: true,
+      appBar: const AppBarPvReceptionOrDemontage(
+        title: "Creation Pv Reception B2B",
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -41,11 +38,7 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Card(
-                  child: ListTile(
-                    title: Text("information de Client :"),
-                  ),
-                ),
+                const CardTitleClientInfo(),
                 Form(
                   key: controller.formvalidation,
                   child: Column(
@@ -61,7 +54,7 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
                           FocusScope.of(context)
                               .requestFocus(controller.address);
                         },
-                        validator: controller.validateEntreprise,
+                        validator: ClientValidator.validateEntreprise,
                       ),
                       const SizedBox(
                         height: 10,
@@ -74,7 +67,7 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
                           FocusScope.of(context)
                               .requestFocus(controller.responsable);
                         },
-                        validator: controller.validateAddress,
+                        validator: ClientValidator.validateAddress,
                       ),
                       const SizedBox(
                         height: 10,
@@ -87,7 +80,7 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
                           FocusScope.of(context)
                               .requestFocus(controller.contact);
                         },
-                        validator: controller.validateResponsable,
+                        validator: ClientValidator.validateResponsable,
                       ),
                       const SizedBox(
                         height: 10,
@@ -136,6 +129,44 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
       ),
     );
   }
+}
+
+class CardTitleClientInfo extends StatelessWidget {
+  const CardTitleClientInfo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Card(
+      child: ListTile(
+        title: Text("information de Client :"),
+      ),
+    );
+  }
+}
+
+class AppBarPvReceptionOrDemontage extends StatelessWidget
+    implements PreferredSizeWidget {
+  const AppBarPvReceptionOrDemontage({
+    super.key,
+    required this.title,
+  });
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      centerTitle: true,
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(70);
 }
 
 // ignore: must_be_immutable

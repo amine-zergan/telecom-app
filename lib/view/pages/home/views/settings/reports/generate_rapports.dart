@@ -74,7 +74,9 @@ class GenerateRapport extends StatelessWidget {
               ),
               CardTitle(
                 title: "Pv de Demontage B2B",
-                press: () {},
+                press: () {
+                  Get.toNamed(RouteName.pvDemontage);
+                },
               ),
             ],
           ),
