@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:telecom/validators/client_validator.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/pv_demontage/pv_demontage_controller.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 
-class PvDemontagePage extends StatelessWidget {
+class PvDemontagePage extends GetWidget<PvDemontageController> {
   const PvDemontagePage({super.key});
 
   @override
@@ -14,7 +16,9 @@ class PvDemontagePage extends StatelessWidget {
         title: "Pv de recuperation de materiels",
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {},
+        onPressed: () async {
+          await controller.generatePvReception();
+        },
         elevation: 10,
         backgroundColor: Colors.grey,
         child: const Icon(

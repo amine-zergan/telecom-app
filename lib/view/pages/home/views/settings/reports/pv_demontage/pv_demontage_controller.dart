@@ -1,3 +1,23 @@
-import 'package:get/get.dart';
+// ignore_for_file: avoid_print
 
-class PvDemontageController extends GetxController {}
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:telecom/report/pv_desinstall.dart';
+
+class PvDemontageController extends GetxController {
+  Future<void> generatePvReception() async {
+    try {
+      final file = await PvDesInstall.generatePdf(
+          technicien: "Amine Mejri",
+          contact: "54 948 198",
+          b2b: "cometel",
+          address: "cite jardin de carthage",
+          responsable: "Mokhtar Abidi",
+          contactClient: "20350350",
+          materiels: []);
+      await OpenFile.open(file.path);
+    } catch (e) {
+      print("erreur : impossible de generer le PDF ");
+    }
+  }
+}
