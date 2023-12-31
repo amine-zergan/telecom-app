@@ -92,7 +92,6 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                           FocusScope.of(context)
                               .requestFocus(controller.antenne);
                         },
-                        validator: (value) {},
                       ),
                       FormFieldTextB2B(
                         controller: controller.antenneField,
@@ -102,7 +101,6 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                           FocusScope.of(context)
                               .requestFocus(controller.coaxial);
                         },
-                        validator: (value) {},
                       ),
                       FormFieldTextB2B(
                         controller: controller.coaxialField,
@@ -111,7 +109,6 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                         onEditingComplete: () {
                           FocusScope.of(context).requestFocus(controller.idu);
                         },
-                        validator: (value) {},
                       ),
                       FormFieldTextB2B(
                         controller: controller.iduField,
@@ -120,7 +117,6 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                         onEditingComplete: () {
                           FocusScope.of(context).requestFocus(controller.radio);
                         },
-                        validator: (value) {},
                       ),
                       FormFieldTextB2B(
                         controller: controller.radioField,
@@ -129,7 +125,6 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                         onEditingComplete: () {
                           FocusScope.of(context).requestFocus(FocusNode());
                         },
-                        validator: (value) {},
                       ),
                       const SizedBox(
                         height: 300,

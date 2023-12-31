@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -16,6 +17,9 @@ class PvInstall {
     required double debit,
   }) async {
     final pdf = Document();
+    final file = (await rootBundle.load("assets/project/orange.png"))
+        .buffer
+        .asUint8List();
     pdf.addPage(
       MultiPage(
         orientation: PageOrientation.portrait,
@@ -26,12 +30,25 @@ class PvInstall {
             margin: const EdgeInsets.only(
               top: 0.1 * PdfPageFormat.cm,
             ),
-            child: Text(
-              "Fiche de Mise en Service d'un \nHertizien (FH)",
-              style: TextStyle(
-                fontSize: 16,
-                fontBold: Font.courier(),
-              ),
+            child: Row(
+              children: [
+                Image(
+                  MemoryImage(file),
+                  width: 2.5 * PdfPageFormat.cm,
+                  height: 2.5 * PdfPageFormat.cm,
+                ),
+                SizedBox(
+                  width: 3.5 * PdfPageFormat.cm,
+                ),
+                Text(
+                  "Fiche de Mise en Service d'un \nFaiseau Hertizien (FH)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontBold: Font.courier(),
+                  ),
+                ),
+              ],
             ),
           );
         },
@@ -76,7 +93,7 @@ class PvInstall {
           ),
           Container(
             width: double.infinity,
-            height: 5.0 * PdfPageFormat.cm,
+            height: 4.0 * PdfPageFormat.cm,
             padding: const EdgeInsets.all(
               0.1 * PdfPageFormat.cm,
             ),
@@ -90,7 +107,7 @@ class PvInstall {
                 Expanded(
                   child: Container(
                     width: double.infinity / 2,
-                    height: 4.9 * PdfPageFormat.cm,
+                    height: 3.9 * PdfPageFormat.cm,
                     padding: const EdgeInsets.all(
                       0.1 * PdfPageFormat.cm,
                     ),
@@ -105,7 +122,7 @@ class PvInstall {
                 Expanded(
                   child: Container(
                     width: double.infinity / 2,
-                    height: 4.9 * PdfPageFormat.cm,
+                    height: 3.9 * PdfPageFormat.cm,
                     padding: const EdgeInsets.all(
                       0.1 * PdfPageFormat.cm,
                     ),

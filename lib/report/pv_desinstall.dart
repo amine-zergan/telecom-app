@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -15,6 +16,9 @@ class PvDesInstall {
     required List<String> materiels,
   }) async {
     final pdf = Document();
+    final file = (await rootBundle.load("assets/project/orange.png"))
+        .buffer
+        .asUint8List();
     pdf.addPage(
       MultiPage(
         orientation: PageOrientation.portrait,
@@ -25,13 +29,25 @@ class PvDesInstall {
             margin: const EdgeInsets.only(
               top: 0.03 * PdfPageFormat.cm,
             ),
-            child: Text(
-              "PV De Recuperation De Materiels Suite\n Demontage FH",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                fontBold: Font.courier(),
-              ),
+            child: Row(
+              children: [
+                Image(
+                  MemoryImage(file),
+                  width: 3 * PdfPageFormat.cm,
+                  height: 2.5 * PdfPageFormat.cm,
+                ),
+                SizedBox(
+                  width: 2.5 * PdfPageFormat.cm,
+                ),
+                Text(
+                  "PV De Recuperation De Materiels Suite\n Demontage FH",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontBold: Font.courier(),
+                  ),
+                ),
+              ],
             ),
           );
         },
