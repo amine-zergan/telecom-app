@@ -10,6 +10,19 @@ class QaReport {
   static Future<File> generatePdf({
     required String site,
     required String nom_pdf,
+    Uint8List? cleanUp,
+    Uint8List? antennePosition,
+    Uint8List? etiquetageAntenneIf,
+    Uint8List? oduFile,
+    Uint8List? braconAntenne,
+    Uint8List? etiquetageCoax,
+    Uint8List? graisseSupportAntenne,
+    Uint8List? iduDansRack,
+    Uint8List? energie,
+    Uint8List? etiquetageIdu,
+    Uint8List? etiquetageFo,
+    Uint8List? etiquetageIduGenerale,
+    Uint8List? etiquetageTerre,
   }) async {
     final pdf = Document();
     final file = (await rootBundle.load("assets/project/quality.png"))
@@ -68,8 +81,8 @@ class QaReport {
             height: 0.35 * PdfPageFormat.cm,
           ),
           RowComponent(
-            file,
-            file,
+            antennePosition,
+            etiquetageAntenneIf,
             "Positionnement de l'antenne dans le pylone",
             "Etiquetage de l'antenne/Cable IF ",
           ),
@@ -77,17 +90,17 @@ class QaReport {
             height: 0.35 * PdfPageFormat.cm,
           ),
           RowComponent(
-            file,
-            file,
-            "IF Connector",
-            "Presence de graisse sur les vis de reglage d'antenne ",
+            oduFile,
+            braconAntenne,
+            "Connecteur ODU et Antenne",
+            "Fixation et le positionnement du bracon si présence",
           ),
           SizedBox(
             height: 0.35 * PdfPageFormat.cm,
           ),
           RowComponent(
-            file,
-            file,
+            etiquetageCoax,
+            graisseSupportAntenne,
             "IF Connector",
             "Presence de graisse sur les vis de reglage d'antenne ",
           ),
@@ -107,8 +120,8 @@ class QaReport {
             height: 0.5 * PdfPageFormat.cm,
           ),
           RowComponent(
-            file,
-            file,
+            iduDansRack,
+            energie,
             "Emplacement de l'IDU dans le rack",
             "Presence et fonctionnement des disjoncteur -48v avec etiquetage",
           ),
@@ -116,8 +129,8 @@ class QaReport {
             height: 0.35 * PdfPageFormat.cm,
           ),
           RowComponent(
-            file,
-            file,
+            etiquetageIdu,
+            etiquetageFo,
             "Etiquetage de IDU",
             "Cablage et etiquetage des accés GE au mini repartiteur optique",
           ),
@@ -125,15 +138,15 @@ class QaReport {
             height: 0.35 * PdfPageFormat.cm,
           ),
           RowComponent(
-            file,
-            file,
+            etiquetageIduGenerale,
+            etiquetageTerre,
             "Etiquetage de IDU",
             "Cablage de cables terre V/j sur IDU et raccordement a la barette de BTS",
           ),
           SizedBox(
             height: 0.35 * PdfPageFormat.cm,
           ),
-          ImageComponent(file, "Photo generale(clean up site)"),
+          ImageComponent(cleanUp, "Photo generale(clean up site)"),
         ],
       ),
     );
@@ -143,7 +156,7 @@ class QaReport {
     );
   }
 
-  static Row RowComponent(Uint8List file, Uint8List file2, title1, title2) {
+  static Row RowComponent(Uint8List? file, Uint8List? file2, title1, title2) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -156,7 +169,7 @@ class QaReport {
     );
   }
 
-  static Container ImageComponent(Uint8List file, String title) {
+  static Container ImageComponent(Uint8List? file, String title) {
     return Container(
       width: 200,
       height: 130,
@@ -170,11 +183,27 @@ class QaReport {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image(
-            MemoryImage(file),
-            width: 200,
-            height: 100,
-          ),
+          file == null
+              ? Container(
+                  width: 200,
+                  height: 100,
+                  child: Center(
+                    child: Text(
+                      "NA",
+                      style: const TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                )
+              : Image(
+                  MemoryImage(
+                    file,
+                  ),
+                  width: 196,
+                  height: 96,
+                  fit: BoxFit.fill,
+                ),
           Container(
             height: 30,
             width: 200,

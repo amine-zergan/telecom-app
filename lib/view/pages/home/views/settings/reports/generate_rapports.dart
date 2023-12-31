@@ -1,6 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:telecom/report/survey_excel.dart';
 //import 'package:telecom/report/pv_install.dart';
 //import 'package:open_file/open_file.dart';
 //import 'package:telecom/report/pv_install.dart';
@@ -38,15 +40,11 @@ class GenerateRapport extends StatelessWidget {
             ),
             children: [
               CardTitle(
-                title: "Cloture Mission",
+                title: "Rapport Hebdomadaire",
                 press: () {},
               ),
               CardTitle(
-                title: "Demande Preparation materials ",
-                press: () {},
-              ),
-              CardTitle(
-                title: "Creer Demande Retour Materials",
+                title: "Demande Retour Materials",
                 press: () {
                   Get.to(
                     () => const RetourMaterial(),
@@ -60,8 +58,12 @@ class GenerateRapport extends StatelessWidget {
                 },
               ),
               CardTitle(
-                title: "Site Survey",
-                press: () {},
+                title: "Rapport RFI",
+                press: () async {
+                  final file = await SurveyExcel.createExcel();
+                  await OpenFile.open(file.path);
+                  print("file $file");
+                },
               ),
               CardTitle(
                 title: "Pv de Reception B2B",

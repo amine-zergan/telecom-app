@@ -9,6 +9,7 @@ class NomFormField extends StatelessWidget {
       {Key? key,
       required this.controller,
       this.onSaved,
+      this.suffix,
       this.onEditComplete,
       this.labelText,
       this.hintText,
@@ -29,6 +30,7 @@ class NomFormField extends StatelessWidget {
   final Function(String? value)? onChanged;
   int? maxLine;
   final int? maxlength;
+  Widget? suffix;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   String? Function(String?)? validator;
@@ -49,6 +51,7 @@ class NomFormField extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
+        suffixIcon: suffix,
         labelText: labelText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         labelStyle: Theme.of(context).textTheme.bodyMedium,
