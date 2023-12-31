@@ -36,44 +36,48 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                   title: "information de Client :",
                 ),
                 Form(
-                  key: GlobalKey(),
+                  key: controller.formvalidation,
                   child: Column(
                     children: [
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.societeField,
+                        focusNode: controller.societe,
                         labelText: "Nom de l'entreprise",
                         onEditingComplete: () {
-                          FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context)
+                              .requestFocus(controller.address);
                         },
                         validator: ClientValidator.validateEntreprise,
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.addressField,
+                        focusNode: controller.address,
                         labelText: "Address de l'entreprise",
                         onEditingComplete: () {
-                          FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context)
+                              .requestFocus(controller.responsable);
                         },
                         validator: ClientValidator.validateAddress,
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.responsableField,
+                        focusNode: controller.responsable,
                         labelText: "Responsable ",
                         onEditingComplete: () {
-                          FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context)
+                              .requestFocus(controller.contact);
                         },
                         validator: ClientValidator.validateResponsable,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: PhoneFormField(
-                          controller: TextEditingController(),
-                          focusNode: FocusNode(),
+                          controller: controller.contactField,
+                          focusNode: controller.contact,
                           labelText: "Contact Responsable",
                           onEditComplete: () {
-                            FocusScope.of(context).requestFocus(FocusNode());
+                            FocusScope.of(context)
+                                .requestFocus(controller.routeur);
                           },
                         ),
                       ),
@@ -81,51 +85,53 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                         title: "List de Materiels A recuperer",
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.routeurField,
+                        focusNode: controller.routeur,
                         labelText: "Routeur LBB",
                         onEditingComplete: () {
-                          //FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context)
+                              .requestFocus(controller.antenne);
                         },
                         validator: (value) {},
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.antenneField,
+                        focusNode: controller.antenne,
                         labelText: "Antenne ",
                         onEditingComplete: () {
-                          //FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context)
+                              .requestFocus(controller.coaxial);
                         },
                         validator: (value) {},
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.coaxialField,
+                        focusNode: controller.coaxial,
                         labelText: "Longueur cable Coaxial",
                         onEditingComplete: () {
-                          //FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context).requestFocus(controller.idu);
                         },
                         validator: (value) {},
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
+                        controller: controller.iduField,
+                        focusNode: controller.idu,
                         labelText: "Type d'idu",
                         onEditingComplete: () {
-                          //FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context).requestFocus(controller.radio);
                         },
                         validator: (value) {},
                       ),
                       FormFieldTextB2B(
-                        controller: TextEditingController(),
-                        focusNode: null,
+                        controller: controller.radioField,
+                        focusNode: controller.radio,
                         labelText: "Type de Radio",
                         onEditingComplete: () {
-                          //FocusScope.of(context).requestFocus(FocusNode());
+                          FocusScope.of(context).requestFocus(FocusNode());
                         },
                         validator: (value) {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 300,
                       )
                     ],

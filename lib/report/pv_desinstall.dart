@@ -46,13 +46,6 @@ class PvDesInstall {
           SizedBox(
             height: 0.3 * PdfPageFormat.cm,
           ),
-          contactOrange(
-            technicien: technicien,
-            phone: contact,
-          ),
-          SizedBox(
-            height: 0.05 * PdfPageFormat.cm,
-          ),
           clientComponent(
             b2b: b2b,
             address: address,
@@ -60,9 +53,16 @@ class PvDesInstall {
             contact: contactClient,
           ),
           SizedBox(
+            height: 0.05 * PdfPageFormat.cm,
+          ),
+          contactOrange(
+            technicien: technicien,
+            phone: contact,
+          ),
+          SizedBox(
             height: 0.1 * PdfPageFormat.cm,
           ),
-          retoruMateriels(materiels: []),
+          retoruMateriels(materiels: materiels),
           Container(
             width: double.infinity,
             height: 2.7 * PdfPageFormat.cm,
@@ -142,20 +142,13 @@ class PvDesInstall {
           SizedBox(
             height: 0.4 * PdfPageFormat.cm,
           ),
-          Bullet(bulletColor: PdfColors.black, text: "Antenne 0.3m 38Ghz"),
-          Bullet(
-            bulletColor: PdfColors.black,
-            text: "idu Neo-Standard 2PLAN",
-          ),
-          Bullet(
-            bulletColor: PdfColors.black,
-            text: "idu Neo-Standard 2PLAN",
-          ),
-          Bullet(bulletColor: PdfColors.black, text: "Radio 38Ghz 3B Low"),
-          Bullet(bulletColor: PdfColors.black, text: "Redresseur -48V"),
-          Bullet(
-              bulletColor: PdfColors.black,
-              text: "Routeur LBB141 s/n: S1748006385102212")
+          ...materiels.map(((e) {
+            if (e == "") {
+              return Container();
+            } else {
+              return Bullet(bulletColor: PdfColors.black, text: e);
+            }
+          })).toList(),
         ],
       ),
     );
