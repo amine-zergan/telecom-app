@@ -5,6 +5,14 @@ import 'package:open_file/open_file.dart';
 import 'package:telecom/report/pv_desinstall.dart';
 
 class PvDemontageController extends GetxController {
+// injection of Service class :
+
+// generate constructor
+
+// declaration of variables
+
+// methodes and implementations
+
   Future<void> generatePvReception() async {
     try {
       final file = await PvDesInstall.generatePdf(
@@ -19,5 +27,15 @@ class PvDemontageController extends GetxController {
     } catch (e) {
       print("erreur : impossible de generer le PDF ");
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
   }
 }

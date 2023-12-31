@@ -32,7 +32,9 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const CardTitleClientInfo(),
+                const CardTitleClientInfo(
+                  title: "information de Client :",
+                ),
                 Form(
                   key: GlobalKey(),
                   child: Column(
@@ -75,6 +77,57 @@ class PvDemontagePage extends GetWidget<PvDemontageController> {
                           },
                         ),
                       ),
+                      const CardTitleClientInfo(
+                        title: "List de Materiels A recuperer",
+                      ),
+                      FormFieldTextB2B(
+                        controller: TextEditingController(),
+                        focusNode: FocusNode(),
+                        labelText: "Routeur LBB",
+                        onEditingComplete: () {
+                          //FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        validator: (value) {},
+                      ),
+                      FormFieldTextB2B(
+                        controller: TextEditingController(),
+                        focusNode: FocusNode(),
+                        labelText: "Antenne ",
+                        onEditingComplete: () {
+                          //FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        validator: (value) {},
+                      ),
+                      FormFieldTextB2B(
+                        controller: TextEditingController(),
+                        focusNode: FocusNode(),
+                        labelText: "Longueur cable Coaxial",
+                        onEditingComplete: () {
+                          //FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        validator: (value) {},
+                      ),
+                      FormFieldTextB2B(
+                        controller: TextEditingController(),
+                        focusNode: FocusNode(),
+                        labelText: "Type d'idu",
+                        onEditingComplete: () {
+                          //FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        validator: (value) {},
+                      ),
+                      FormFieldTextB2B(
+                        controller: TextEditingController(),
+                        focusNode: null,
+                        labelText: "Type de Radio",
+                        onEditingComplete: () {
+                          //FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        validator: (value) {},
+                      ),
+                      SizedBox(
+                        height: 300,
+                      )
                     ],
                   ),
                 ),

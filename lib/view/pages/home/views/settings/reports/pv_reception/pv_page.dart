@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:telecom/validators/client_validator.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_controller.dart';
@@ -38,7 +39,9 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const CardTitleClientInfo(),
+                const CardTitleClientInfo(
+                  title: "information de Client :",
+                ),
                 Form(
                   key: controller.formvalidation,
                   child: Column(
@@ -133,14 +136,16 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
 
 class CardTitleClientInfo extends StatelessWidget {
   const CardTitleClientInfo({
-    super.key,
-  });
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
       child: ListTile(
-        title: Text("information de Client :"),
+        title: Text(title),
       ),
     );
   }

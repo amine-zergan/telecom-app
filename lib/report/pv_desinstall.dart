@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
-
 import '../utils/formater/time_format.dart';
 
 class PvDesInstall {
@@ -63,7 +62,7 @@ class PvDesInstall {
           SizedBox(
             height: 0.1 * PdfPageFormat.cm,
           ),
-          RetoruMateriels(materiels: []),
+          retoruMateriels(materiels: []),
           Container(
             width: double.infinity,
             height: 2.7 * PdfPageFormat.cm,
@@ -124,7 +123,7 @@ class PvDesInstall {
     );
   }
 
-  static Container RetoruMateriels({required List<String> materiels}) {
+  static Container retoruMateriels({required List<String> materiels}) {
     return Container(
       width: double.infinity,
       height: 7.0 * PdfPageFormat.cm,
@@ -143,6 +142,20 @@ class PvDesInstall {
           SizedBox(
             height: 0.4 * PdfPageFormat.cm,
           ),
+          Bullet(bulletColor: PdfColors.black, text: "Antenne 0.3m 38Ghz"),
+          Bullet(
+            bulletColor: PdfColors.black,
+            text: "idu Neo-Standard 2PLAN",
+          ),
+          Bullet(
+            bulletColor: PdfColors.black,
+            text: "idu Neo-Standard 2PLAN",
+          ),
+          Bullet(bulletColor: PdfColors.black, text: "Radio 38Ghz 3B Low"),
+          Bullet(bulletColor: PdfColors.black, text: "Redresseur -48V"),
+          Bullet(
+              bulletColor: PdfColors.black,
+              text: "Routeur LBB141 s/n: S1748006385102212")
         ],
       ),
     );
