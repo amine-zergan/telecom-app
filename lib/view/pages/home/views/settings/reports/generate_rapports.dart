@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
-import 'package:telecom/report/survey_excel.dart';
+import 'package:telecom/report/rfi_excel.dart';
 //import 'package:telecom/report/pv_install.dart';
 //import 'package:open_file/open_file.dart';
 //import 'package:telecom/report/pv_install.dart';
@@ -60,7 +60,7 @@ class GenerateRapport extends StatelessWidget {
               CardTitle(
                 title: "Rapport RFI",
                 press: () async {
-                  final file = await SurveyExcel.createExcel();
+                  final file = await SurveyRfiExcel.createExcel();
                   await OpenFile.open(file.path);
                   print("file $file");
                 },
