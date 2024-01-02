@@ -18,21 +18,7 @@ class SurveyRfiExcel {
     // Enable calculation for worksheet.
     sheet.enableSheetCalculations();
 
-    //Set data in the worksheet.
-
-    sheet.getRangeByName('D4:E4').setText("RFI SURVEY SHEET");
-    sheet.getRangeByName('D4:E4').cellStyle.fontSize = 9;
-    sheet.getRangeByName('D4:E4').merge();
-    sheet.getRangeByName('D4:E4').cellStyle.hAlign = HAlignType.justify;
-    sheet.getRangeByName('D4:E4').cellStyle.borders.all.lineStyle =
-        LineStyle.thin;
-
-    sheet.getRangeByName('F4:G4').setText("OUTDOOR");
-    sheet.getRangeByName('F4:G4').merge();
-    sheet.getRangeByName('F4:G4').cellStyle.borders.all.lineStyle =
-        LineStyle.thin;
-    sheet.getRangeByName('F4:G4').cellStyle.hAlign = HAlignType.center;
-    sheet.getRangeByName('F4:G4').cellStyle.fontSize = 9;
+    sheet.showGridlines = true;
 
     sheet.getRangeByName('A1:C1').setText('Rapport Survey Site');
     sheet.getRangeByName('A1:C1').merge();
@@ -41,14 +27,15 @@ class SurveyRfiExcel {
     sheet.getRangeByName('A1:C1').cellStyle.borders.all.lineStyle =
         LineStyle.thick;
 
-    sheet.getRangeByName('A5').setText('Projet');
-    sheet.getRangeByName('A5').cellStyle.fontSize = 9;
-    sheet.getRangeByName('A5').cellStyle.bold = false;
-    sheet.getRangeByName('A5').cellStyle.borders.all.lineStyle = LineStyle.thin;
+    //Set data in the worksheet.
 
-    sheet.getRangeByName('B5').setText('ORANGE');
-    sheet.getRangeByName('B5').cellStyle.fontSize = 9;
-    sheet.getRangeByName('B5').cellStyle.borders.all.lineStyle = LineStyle.thin;
+    numeroFh(sheet, 'F4:G4', "OUTDOOR");
+    numeroFh(sheet, 'D4:E4', "RFI SURVEY SHEET");
+    numeroFh(sheet, 'M4:N4', "RFI SURVEY SHEET");
+    numeroFh(sheet, 'O4:P4', "OUTDOOR");
+
+    numeroFh(sheet, 'A5', 'Projet');
+    numeroFh(sheet, 'B5', 'ORANGE');
 
     sheet.getRangeByName('C5:D5').setText('Date :');
     sheet.getRangeByName('C5:D5').merge();
@@ -72,22 +59,9 @@ class SurveyRfiExcel {
         '[\$-x-sysdate]dddd, mmmm dd, yyyy';
     sheet.getRangeByName('E5:H5').cellStyle.fontSize = 12;
 
-    sheet.getRangeByName('A6').setText('Nom de Site');
-    sheet.getRangeByName('A6').cellStyle.fontSize = 9;
-    sheet.getRangeByName('A6').cellStyle.borders.all.lineStyle = LineStyle.thin;
-    sheet.getRangeByName('B6:E6').setText('BIZ_0145');
-    sheet.getRangeByName('B6:E6').merge();
-    sheet.getRangeByName('B6:E6').cellStyle.hAlign = HAlignType.center;
-    sheet.getRangeByName('B6:E6').cellStyle.fontSize = 9;
-    sheet.getRangeByName('B6:E6').cellStyle.borders.all.lineStyle =
-        LineStyle.thin;
-
-    sheet.getRangeByName('F6:H6').setText('Type de Site');
-    sheet.getRangeByName('F6:H6').merge();
-    sheet.getRangeByName('F6:H6').cellStyle.hAlign = HAlignType.center;
-    sheet.getRangeByName('F6:H6').cellStyle.fontSize = 9;
-    sheet.getRangeByName('F6:H6').cellStyle.borders.all.lineStyle =
-        LineStyle.thin;
+    numeroFh(sheet, 'A6', 'Nom de Site');
+    numeroFh(sheet, 'B6:E6', 'BIZ_0145');
+    numeroFh(sheet, 'F6:H6', 'Type de Site');
 
     numeroFh(sheet, 'A7', 'Code Site');
     numeroFh(sheet, 'B7:E7', 'BIZ_0145');
@@ -95,10 +69,53 @@ class SurveyRfiExcel {
     numeroFh(sheet, 'G7', 'Agg');
     numeroFh(sheet, 'H7', 'Terminale');
     numeroFh(sheet, 'A9:A14', 'N°');
+    numeroFh(sheet, 'J9:K9', 'ITEM');
     numeroFh(sheet, 'B9:C9', 'ITEM');
-    numeroFh(sheet, 'B10:B12', 'Pylone');
-    numeroFh(sheet, 'C10:C12', '');
     numeroFh(sheet, 'D9:H9', 'COMMENTAIRE');
+    numeroFh(sheet, 'L9:Q9', 'COMMENTAIRE');
+    numeroFh(sheet, 'B10:B12', 'Pylone');
+    numeroFh(sheet, 'J10:K10', 'SHELTER');
+    numeroFh(sheet, 'L10:Q10', '');
+    numeroFh(sheet, 'J11:K11', 'Chemin de cable');
+    numeroFh(sheet, 'L11:Q11', '');
+    numeroFh(sheet, 'J12:K12', 'Rack espace');
+    numeroFh(sheet, 'L12:Q12', '');
+    numeroFh(sheet, 'J13:K13', 'DC');
+    numeroFh(sheet, 'L13:Q13', '');
+
+    numeroFh(sheet, 'J14:K15', 'Disjoncteur');
+    numeroFh(sheet, 'L14:M14', 'Nbr DISJ');
+    numeroFh(sheet, 'N14:O14', 'Capacite Disj(A)');
+    numeroFh(sheet, 'P14:Q14', 'Commentaire');
+    numeroFh(sheet, 'L15:M15', ' ');
+    numeroFh(sheet, 'N15:O15', ' ');
+    numeroFh(sheet, 'P15:Q15', ' ');
+    numeroFh(sheet, 'J16:K16', 'AC');
+    numeroFh(sheet, 'J17:K17', 'GND');
+    numeroFh(sheet, 'J18:K18', 'CLIM');
+    numeroFh(sheet, 'J19:K19', 'GENERATEUR');
+    numeroFh(sheet, 'L16:Q16', '');
+    numeroFh(sheet, 'L17:Q17', '');
+    numeroFh(sheet, 'L18:Q18', '');
+    numeroFh(sheet, 'L19:Q19', '');
+    numeroRFICommentaire(sheet, 'J20:Q32', """ 
+    # BIZ_0145
+    * Position antenne: NN (fixation direct)
+    * position energie (-48) ok 1m
+    * longueur cable DC: 1.2m
+    * longueur cable LAN: 1,2m
+    * longueur cable VJ: 8m
+    * longueur fibre LcLc : 1m
+    * clamps: 23pcs
+    * IF: 37m
+    * kits de masse: 3 pcs
+    N_B : BTS nn installé
+    site electrifié
+
+    """);
+    numeroFh(sheet, 'k34:L34', ' Representant NEC ');
+    numeroFh(sheet, 'M34:N34', ' Amine Mejri  ');
+    numeroFh(sheet, 'C10:C12', '');
 
     numeroFh(sheet, 'D10:H12', '');
 
@@ -245,6 +262,21 @@ class SurveyRfiExcel {
     workbook.dispose();
     //Save and launch file.
     return file;
+  }
+
+  static void numeroRFICommentaire(
+    Worksheet sheet,
+    String numero,
+    String valeur,
+  ) {
+    sheet.getRangeByName(numero).setText(valeur);
+    sheet.getRangeByName(numero).merge();
+    sheet.getRangeByName(numero).cellStyle.fontSize = 12;
+    sheet.getRangeByName(numero).cellStyle.wrapText = true;
+    sheet.getRangeByName(numero).cellStyle.hAlign = HAlignType.left;
+    sheet.getRangeByName(numero).cellStyle.vAlign = VAlignType.top;
+    sheet.getRangeByName(numero).cellStyle.borders.all.lineStyle =
+        LineStyle.thin;
   }
 
   static void numeroFh(

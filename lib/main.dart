@@ -7,9 +7,11 @@ import 'package:telecom/di/get_it.dart' as getIt;
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/routes/routes_navigation.dart';
 import 'package:telecom/view/theme/theming_app.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await getIt.setup();
   SystemChrome.setPreferredOrientations(
     [
