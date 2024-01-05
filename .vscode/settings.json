@@ -30,9 +30,8 @@
     ".flutter-plugins 2": true,
     ".flutter-plugins-dependencies 2": true,
     "android": true,
-    "ios": true,
     "lib/view/pages/config": true,
-    "lib/view/pages/onboard": true
+    "ios": true
   },
   "yaml.schemas": {
     "https://json.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/aminemejri/Desktop/telecom/.github/workflows/ci.yaml"

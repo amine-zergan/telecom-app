@@ -1,3 +1,4 @@
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/services/core/constants_config.dart';
 import 'package:telecom/db/services/remote_data_service/load_page_init/Remote_load_config.dart';
@@ -21,5 +22,11 @@ class OnBoardController extends GetxController {
     await repository.saveParamsConfig(init, config);
     // ignore: avoid_print
     print("=========== initial load page saved ==============");
+  }
+
+  @override
+  void onInit() {
+    FlutterNativeSplash.remove();
+    super.onInit();
   }
 }

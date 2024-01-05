@@ -32,6 +32,10 @@ class HomeBinding extends Bindings {
     Get.put(
       DashboardController(
         missionRepository: getItInstance(),
+        taskDatasource: getItInstance(),
+        operatorDatasource: getItInstance(),
+        profileDataSource: getItInstance(),
+        projectDatasource: getItInstance(),
       ),
     );
   }

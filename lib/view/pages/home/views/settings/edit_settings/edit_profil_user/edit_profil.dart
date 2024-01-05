@@ -4,7 +4,6 @@ import 'package:telecom/view/components/Form_Fields/code_postal_form_field.dart'
 import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/config/components/image_config.dart';
-
 import 'package:telecom/view/pages/home/start/components/app_bar_view.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
@@ -28,7 +27,7 @@ class EditProfilUser extends StatelessWidget {
             ),
             ConfigImage(
               press: () {
-                ///showDialogueImagePickerProfile(context, controller);
+                //showDialogueImagePickerProfile(context, controller);
               },
               icon: Icons.person_add_alt_outlined,
               error: "",

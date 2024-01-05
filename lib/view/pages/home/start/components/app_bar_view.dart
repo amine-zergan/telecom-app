@@ -18,10 +18,13 @@ class AppBarCreate extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
       //backgroundColor: Colors.grey.shade800,
       elevation: 1,
-      centerTitle: true,
+      centerTitle: false,
       leading: const GetBackButton(),
       actions: [
         AddButton(
