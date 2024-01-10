@@ -29,6 +29,8 @@ import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_b
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qa_binding.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site_binding.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
 import 'package:telecom/view/pages/onboard/middleware/onboard_middleware_config.dart';
 import 'package:telecom/view/routes/route_name.dart';
@@ -102,6 +104,12 @@ class Routes {
       name: RouteName.pvDemontage,
       page: () => const PvDemontagePage(),
       binding: PvDemontageBinding(),
+    ),
+
+    GetPage(
+      name: RouteName.surveySite,
+      page: () => const SurveySitePage(),
+      binding: SurveySiteBinding(),
     ),
 
     GetPage(

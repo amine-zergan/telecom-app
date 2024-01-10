@@ -24,30 +24,36 @@ class DashboardAppBar extends StatelessWidget {
         stretch: true,
         centerTitle: false,
         actions: [
-          IconButton(
-            onPressed: () {
+          InkWell(
+            onTap: () {
               Get.toNamed(
                 RouteName.notification,
               );
             },
-            splashRadius: 20,
-            icon: const Icon(
+            child: const Icon(
               Icons.notification_important_outlined,
             ),
           ),
-          IconButton(
-            onPressed: () {
-              Get.toNamed(
-                RouteName.history,
-              );
-            },
-            splashRadius: 20,
-            splashColor: Colors.transparent,
-            icon: user == null
+          InkWell(
+            child: user == null
                 ? Container()
                 : (user.image == null
                     ? const Icon(Icons.person)
-                    : Image.memory(ImageConvert.decode(user.image)!)),
+                    : Container(
+                        padding: const EdgeInsets.all(1),
+                        margin: const EdgeInsets.only(right: 10, left: 5),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey, width: 1)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.memory(
+                            ImageConvert.decode(user.image)!,
+                            width: 30,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      )),
           ),
         ],
       );

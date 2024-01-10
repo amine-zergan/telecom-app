@@ -35,7 +35,9 @@ class NavigationPage extends StatelessWidget {
                         itemCount: controller.allSite.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1, mainAxisExtent: 100),
+                          crossAxisCount: 1,
+                          mainAxisExtent: 100,
+                        ),
                         itemBuilder: (context, index) {
                           Site site = controller.allSite[index];
                           return Card(

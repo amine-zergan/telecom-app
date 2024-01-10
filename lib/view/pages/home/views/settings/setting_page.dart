@@ -188,9 +188,9 @@ class AppBarSetting extends StatelessWidget {
       ),
       centerTitle: false,
       floating: true,
-      pinned: false,
+      pinned: true,
       flexibleSpace: FlexibleSpaceBar(
-        collapseMode: CollapseMode.parallax,
+        collapseMode: CollapseMode.pin,
         titlePadding: const EdgeInsets.symmetric(
           horizontal: padding10,
           vertical: padding10,
@@ -229,7 +229,7 @@ class AppBarSetting extends StatelessWidget {
                             child: Image.memory(
                               controller.imageProfile!,
                               width: 120,
-                              height: 150,
+                              height: 120,
                               fit: BoxFit.fill,
                             ),
                           ),

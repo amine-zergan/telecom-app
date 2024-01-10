@@ -24,6 +24,7 @@ class _HomeNewPageState extends State<HomeNewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.grey.shade800,
       body: SafeArea(
         top: false,
         child: IndexedStack(

@@ -1,7 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qa_controller.dart';
 
@@ -37,41 +38,13 @@ class QualiteRapportPage extends GetWidget<QaController> {
               child: ListView(
                 padding: const EdgeInsets.all(15.0),
                 children: [
-                  Text(
-                    "Ajouter Code Site :",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  Form(
-                    key: controller.formvalidation,
-                    child: NomFormField(
+                  FormSiteComponent(
                       controller: controller.nomSiteField,
+                      formStateKey: controller.formvalidation,
                       focusNode: controller.nomSite,
-                      hintText: "Site_0001",
-                      labelText: "Nom Site",
-                      onEditComplete: () {
-                        FocusScope.of(context).unfocus();
-                      },
-                      suffix: InkWell(
-                        onTap: () {
-                          controller.nomSiteField.clear();
-                        },
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      validator: (String? value) {
-                        if (value == null || value.length < 3) {
-                          return "merci de saisi le nom de Site";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
+                      onTap: () {
+                        controller.nomSiteField.clear();
+                      }),
                   const SizedBox(
                     height: 15.0,
                   ),
@@ -207,6 +180,62 @@ class QualiteRapportPage extends GetWidget<QaController> {
           },
         ),
       ),
+    );
+  }
+}
+
+class FormSiteComponent extends StatelessWidget {
+  FormSiteComponent({
+    Key? key,
+    required this.controller,
+    required this.focusNode,
+    required this.formStateKey,
+    this.onTap,
+  }) : super(key: key);
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  void Function()? onTap;
+  final Key formStateKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Ajouter Code Site :",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(
+          height: 15.0,
+        ),
+        Form(
+          key: formStateKey,
+          child: NomFormField(
+            controller: controller,
+            focusNode: focusNode,
+            hintText: "Site_0001",
+            labelText: "Nom Site",
+            onEditComplete: () {
+              FocusScope.of(context).unfocus();
+            },
+            suffix: InkWell(
+              onTap: onTap,
+              child: const Icon(
+                Icons.delete,
+                color: Colors.grey,
+              ),
+            ),
+            validator: (String? value) {
+              if (value == null || value.length < 3) {
+                return "merci de saisi le nom de Site";
+              } else {
+                return null;
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 }
