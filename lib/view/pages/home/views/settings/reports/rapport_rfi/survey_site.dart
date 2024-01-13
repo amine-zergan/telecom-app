@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/site_type.dart';
+import 'package:telecom/view/theme/color_constants.dart';
+import '../../../../../../../report/rfi_excel.dart';
 
-enum Site { nodal, agg, ter }
-
-class SurveySitePage extends StatelessWidget {
+class SurveySitePage extends StatefulWidget {
   const SurveySitePage({super.key});
 
-  final Site site = Site.nodal;
+  @override
+  State<SurveySitePage> createState() => _SurveySitePageState();
+}
+
+class _SurveySitePageState extends State<SurveySitePage> {
+  final SiteType site = SiteType.nodal;
+
+  bool bracon = false;
+
+  void updatebutton(bool value) {
+    setState(() {
+      bracon = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          //await controller.generateQaRapport();
+          final file = await SurveyRfiExcel.createExcel();
+          await OpenFile.open(file.path);
         },
         elevation: 10,
         backgroundColor: Colors.black,
@@ -69,21 +85,21 @@ class SurveySitePage extends StatelessWidget {
                 value: site,
                 title: const Text("Site Nodal"),
                 contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: Site.nodal,
+                groupValue: SiteType.nodal,
                 onChanged: (value) {},
               ),
               RadioListTile(
                 value: site,
                 title: const Text("Site Agg"),
                 contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: Site.agg,
+                groupValue: SiteType.agg,
                 onChanged: (value) {},
               ),
               RadioListTile(
                 value: site,
                 title: const Text("Site Terminal"),
                 contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: Site.ter,
+                groupValue: SiteType.ter,
                 onChanged: (value) {},
               ),
               const Padding(
@@ -92,12 +108,391 @@ class SurveySitePage extends StatelessWidget {
                   title: "Survey OutDoor :",
                 ),
               ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("metrage de pylone"),
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        decoration: const InputDecoration(hintText: "45 m"),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                // color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Support Antenne"),
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        decoration:
+                            const InputDecoration(hintText: "commentaire"),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Support bracon si existe :"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Baterre de Terre No_01 :"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Tremie :"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Chemin de cable V :"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Chemin de cable H:"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              TitleComponentTask(
+                title: "Selectionnez les images outdoor",
+                isActive: false,
+                onTap: () {},
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                 child: CardTitleClientInfo(
                   title: "Survey InDoor :",
                 ),
               ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("BTS:"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Chemin de cable :"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("Rack espace:"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("DC:"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("AC:"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("GND:"),
+                    ),
+                    Expanded(
+                      child: Switch(
+                        value: bracon,
+                        inactiveThumbColor: primaryColor,
+                        thumbIcon: const MaterialStatePropertyAll(
+                          Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                        onChanged: updatebutton,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(left: 15),
+                //color: Colors.amber,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text("CLIM:"),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Checkbox(
+                        value: bracon,
+                        onChanged: (value) {
+                          updatebutton(value!);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: TextFormField(
+                  minLines: 1,
+                  maxLines: 20,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(),
+                    errorBorder: OutlineInputBorder(),
+                    hintText: "Ajouter les details RFI...",
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              TitleComponentTask(
+                title: "Selectionnez les images indoor",
+                isActive: false,
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 80,
+              )
             ],
           ),
         ),
