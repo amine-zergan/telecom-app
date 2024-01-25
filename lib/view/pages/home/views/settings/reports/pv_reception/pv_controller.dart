@@ -44,7 +44,7 @@ class PvReceptionController extends GetxController {
     try {
       final file = await PvInstall.generatePdf(
         technicien: user?.name ?? "",
-        contact: user?.contract ?? "",
+        contact: user?.phone ?? "",
         b2b: societeField.text,
         address: addressField.text,
         responsable: responsableField.text,

@@ -15,13 +15,20 @@ class SurveySitePage extends StatefulWidget {
 }
 
 class _SurveySitePageState extends State<SurveySitePage> {
-  final SiteType site = SiteType.nodal;
+  SiteType site = SiteType.nodal;
 
   bool bracon = false;
 
   void updatebutton(bool value) {
     setState(() {
       bracon = value;
+    });
+  }
+
+  void updateTypeSite(SiteType? value) {
+    setState(() {
+      site = value!;
+      print("la type de site $site est change");
     });
   }
 
@@ -82,25 +89,25 @@ class _SurveySitePageState extends State<SurveySitePage> {
                 ),
               ),
               RadioListTile(
-                value: site,
+                value: SiteType.nodal,
                 title: const Text("Site Nodal"),
                 contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: SiteType.nodal,
-                onChanged: (value) {},
+                groupValue: site,
+                onChanged: updateTypeSite,
               ),
               RadioListTile(
-                value: site,
+                value: SiteType.agg,
                 title: const Text("Site Agg"),
                 contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: SiteType.agg,
-                onChanged: (value) {},
+                groupValue: site,
+                onChanged: updateTypeSite,
               ),
               RadioListTile(
-                value: site,
+                value: SiteType.ter,
                 title: const Text("Site Terminal"),
                 contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: SiteType.ter,
-                onChanged: (value) {},
+                groupValue: site,
+                onChanged: updateTypeSite,
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
