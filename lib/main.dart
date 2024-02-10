@@ -42,7 +42,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {}
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if(state==AppLifecycleState.inactive){
+//At least one view of the application is visible, but none have input focus.
+// The application is otherwise running normally.
+    }else if(state==AppLifecycleState.resumed){
+      //On all platforms, this state indicates that the
+      // application is in the default 
+      //running mode for a running application that 
+      //has input focus and is visible.
+    }else{
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

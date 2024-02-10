@@ -1,10 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
+
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/site_type.dart';
 import 'package:telecom/view/theme/color_constants.dart';
+
 import '../../../../../../../report/rfi_excel.dart';
 
 class SurveySitePage extends StatefulWidget {
@@ -153,135 +156,30 @@ class _SurveySitePageState extends State<SurveySitePage> {
                   ],
                 ),
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Support bracon si existe :"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Support bracon si existe :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Baterre de Terre No_01 :"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Baterre de Terre No_01 :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Tremie :"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Tremie :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Chemin de cable V :"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Chemin de cable V :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Chemin de cable H:"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Chemin de cable H:",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
               TitleComponentTask(
                 title: "Selectionnez les images outdoor",
@@ -294,184 +192,40 @@ class _SurveySitePageState extends State<SurveySitePage> {
                   title: "Survey InDoor :",
                 ),
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("BTS:"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "BTS:",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Chemin de cable :"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Chemin de cable :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("Rack espace:"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Rack espace:",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("DC:"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "DC :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("AC:"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "AC :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("GND:"),
-                    ),
-                    Expanded(
-                      child: Switch(
-                        value: bracon,
-                        inactiveThumbColor: primaryColor,
-                        thumbIcon: const MaterialStatePropertyAll(
-                          Icon(
-                            Icons.comment,
-                          ),
-                        ),
-                        onChanged: updatebutton,
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "GND :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text("CLIM:"),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Checkbox(
-                        value: bracon,
-                        onChanged: (value) {
-                          updatebutton(value!);
-                        },
-                      ),
-                    )
-                  ],
-                ),
+              ComponentItem(
+                title: "Clim :",
+                isExist: bracon,
+                onChanged: (value) {},
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -499,10 +253,67 @@ class _SurveySitePageState extends State<SurveySitePage> {
               ),
               const SizedBox(
                 height: 80,
-              )
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ComponentItem extends StatelessWidget {
+  const ComponentItem({
+    Key? key,
+    required this.title,
+    required this.isExist,
+    this.onChanged,
+  }) : super(key: key);
+  final String title;
+  final bool isExist;
+  final void Function(bool value)? onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      margin: const EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(left: 15),
+      //color: Colors.amber,
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              title,
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                const Text("Non"),
+                const SizedBox(
+                  width: 5,
+                ),
+                Switch(
+                  value: isExist,
+                  activeTrackColor: Colors.grey.shade300,
+                  inactiveThumbColor: primaryColor,
+                  thumbColor: MaterialStatePropertyAll(
+                    primaryColor,
+                  ),
+                  onChanged: onChanged,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                const Text(
+                  "oui",
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
