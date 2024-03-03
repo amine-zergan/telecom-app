@@ -16,9 +16,9 @@ class DropdownProjectMenu extends StatelessWidget {
       child: DropdownMenu(
         hintText: "choisir le projet ",
         width: size.width * 0.8,
-        menuStyle: MenuStyle(
+        menuStyle: const MenuStyle(
           backgroundColor: MaterialStatePropertyAll(
-            Colors.grey.shade800,
+            Colors.white,
           ),
         ),
         //controller: taskfields,

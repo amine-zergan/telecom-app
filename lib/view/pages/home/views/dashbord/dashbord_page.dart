@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:telecom/view/pages/home/views/dashbord/components/dashbord_app_bar.dart';
 
 class DashbordPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class DashbordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         top: false,
         child: SizedBox(
@@ -22,24 +24,63 @@ class DashbordPage extends StatelessWidget {
                 // ignore: sized_box_for_whitespace
                 child: Container(
                   height: size.height * 0.2,
-                  child: const Center(
-                    child: Text(
-                      "welcome Component + User Component",
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10,
                     ),
+                    color: Colors.white,
                   ),
-                  //color: Colors.amber,
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: size.height * 0.15,
-                  color: Colors.black12,
-                  child: const Center(
-                    child: Text(
-                      "Categories Components",
-                    ),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
                   ),
-                  //color: Colors.amber,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        right: -50,
+                        top: 10,
+                        bottom: 10,
+                        child: LottieBuilder.asset(
+                          "assets/animations/home.json",
+                          height: 70,
+                          repeat: false,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Positioned(
+                        left: 10,
+                        top: 30,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Bienvenue ",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Amine Mejri",
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Commencer votre \nMission de cette Semaine ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color: Colors.black54,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SliverToBoxAdapter(

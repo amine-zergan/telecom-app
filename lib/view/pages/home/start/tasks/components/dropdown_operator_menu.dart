@@ -27,11 +27,11 @@ class _DropdownOperatorWithControllerState
           hintText: "choisir l'operator ",
           width: widget.size.width * 0.8,
           enabled: true,
-          menuStyle: MenuStyle(
+          menuStyle: const MenuStyle(
             backgroundColor: MaterialStatePropertyAll(
-              Colors.grey.shade800,
+              Colors.white,
             ),
-            elevation: const MaterialStatePropertyAll(10),
+            elevation: MaterialStatePropertyAll(10),
           ),
           //controller: taskfields,
           leadingIcon: const Icon(

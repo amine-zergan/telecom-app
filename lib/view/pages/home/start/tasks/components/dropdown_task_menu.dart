@@ -13,9 +13,9 @@ class DropdownTaskMenu extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: DropdownMenu(
         hintText: "type de tache :",
-        menuStyle: MenuStyle(
+        menuStyle: const MenuStyle(
           backgroundColor: MaterialStatePropertyAll(
-            Colors.grey.shade800,
+            Colors.white,
           ),
         ),
         leadingIcon: const Icon(

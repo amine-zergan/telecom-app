@@ -8,6 +8,7 @@ import 'package:telecom/db/Remote_Data_Source/project/abstract_project_datasourc
 import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/model/mission/mission_model.dart';
+import 'package:telecom/model/components/project/operator_model.dart';
 
 class DashboardController extends GetxController {
   final IrepositoryMissionDatasource missionRepository;
@@ -25,6 +26,7 @@ class DashboardController extends GetxController {
 
   Mission? mission;
   Profile? user;
+  List<Operator> dataOperators = [];
 
   fetchCurrentMission() async {
     try {
@@ -33,6 +35,22 @@ class DashboardController extends GetxController {
     } catch (e) {
       print("======== error mission from db ${e.toString()} ===========");
     }
+  }
+
+  Future<void> queryOperatorFromDatabase() async {
+    try {
+      final List<Operator> response = await operatorDatasource.queryOperators();
+// ignore: avoid_function_literals_in_foreach_calls
+      response.map((operator) {
+        dataOperators.add(operator);
+      }).toList();
+      print(
+          "============= succes fetch operator dashbord controller ${dataOperators.length}");
+    } catch (e) {
+      print("============= error ${e.toString()}");
+      dataOperators = [];
+    }
+    update();
   }
 
   void getUser() async {
@@ -44,6 +62,7 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() {
+    queryOperatorFromDatabase();
     fetchCurrentMission();
     getUser();
     super.onInit();

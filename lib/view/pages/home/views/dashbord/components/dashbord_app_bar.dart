@@ -18,6 +18,7 @@ class DashboardAppBar extends StatelessWidget {
       Profile? user = controller.user;
       return SliverAppBar(
         elevation: 0,
+        backgroundColor: Colors.grey.shade100,
         title: const Text("Dashborad"),
         pinned: false,
         floating: true,
