@@ -43,6 +43,7 @@ class Entreprise {
     );
   }
 
+// fonction qui retourner un type map
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
@@ -56,6 +57,7 @@ class Entreprise {
     };
   }
 
+  /// factory constructor
   factory Entreprise.fromMap(Map<String, dynamic> map) {
     return Entreprise(
       id: map['id'] != null ? map['id'] as int : null,
