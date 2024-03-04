@@ -35,6 +35,9 @@ class DashboardAppBar extends StatelessWidget {
               Icons.notification_important_outlined,
             ),
           ),
+          const SizedBox(
+            width: 5,
+          ),
           InkWell(
             child: user == null
                 ? Container()
