@@ -1,7 +1,6 @@
-import 'dart:math';
+// ignore_for_file: unused_element
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:telecom/view/pages/home/views/dashbord/components/dashbord_app_bar.dart';
@@ -117,7 +116,6 @@ class BackGroundContainer extends CustomPainter {
       ..strokeWidth = 12
       ..style = PaintingStyle.stroke
       ..color = Colors.grey;
-    Rect rect = Rect.fromLTRB(0, 0, 0, 0);
     Paint paint1 = Paint()
       ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.square

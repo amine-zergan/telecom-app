@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, unnecessary_overrides
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 
@@ -17,9 +18,43 @@ class SurveySitePage extends StatefulWidget {
   State<SurveySitePage> createState() => _SurveySitePageState();
 }
 
-class _SurveySitePageState extends State<SurveySitePage> {
-  SiteType site = SiteType.nodal;
+class _SurveySitePageState extends State<SurveySitePage>
+    with TickerProviderStateMixin {
+  /// ------- animation has two steps :
+  /// controller : forward- cancel  - repeat - reverse
+  /// animation : TweenAnimation : color - double integer - begin w end
+  /// TickerProviderStateMexin vsync This
 
+  late AnimationController controller;
+  late Animation animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 2,
+      ),
+    );
+    animation = Tween<double>(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.linear,
+      ),
+    )..addListener(() {});
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  SiteType site = SiteType.nodal;
+  double slider = 50.0;
   bool bracon = false;
 
   void updatebutton(bool value) {
@@ -37,6 +72,7 @@ class _SurveySitePageState extends State<SurveySitePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -91,26 +127,22 @@ class _SurveySitePageState extends State<SurveySitePage> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-              RadioListTile(
-                value: SiteType.nodal,
-                title: const Text("Site Nodal"),
-                contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: site,
-                onChanged: updateTypeSite,
-              ),
-              RadioListTile(
-                value: SiteType.agg,
-                title: const Text("Site Agg"),
-                contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: site,
-                onChanged: updateTypeSite,
-              ),
-              RadioListTile(
-                value: SiteType.ter,
-                title: const Text("Site Terminal"),
-                contentPadding: const EdgeInsets.only(left: 15.0),
-                groupValue: site,
-                onChanged: updateTypeSite,
+              const Wrap(
+                spacing: 10,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Chip(
+                    label: Text("Nodal"),
+                  ),
+                  Chip(
+                    label: Text("Agg"),
+                  ),
+                  Chip(
+                    label: Text("Terminal"),
+                  ),
+                ],
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
@@ -120,37 +152,106 @@ class _SurveySitePageState extends State<SurveySitePage> {
               ),
               Container(
                 width: double.infinity,
-                height: 50,
-                padding: const EdgeInsets.only(left: 15),
+                height: 100,
+
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  top: 15,
+                ),
                 //color: Colors.amber,
                 child: Row(
                   children: [
-                    const Expanded(
-                      child: Text("metrage de pylone"),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Metrage de Pylone",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: AnimatedBuilder(
+                                animation: controller,
+                                builder: (context, child) {
+                                  return Transform(
+                                    transform: Matrix4.translationValues(
+                                      0,
+                                      size.height * animation.value,
+                                      0,
+                                    ),
+                                    child: Slider(
+                                      value: slider,
+                                      allowedInteraction:
+                                          SliderInteraction.tapOnly,
+                                      divisions: 2,
+                                      min: 2,
+                                      max: 110.0,
+                                      label: "${slider.toInt()}",
+                                      onChanged: (value) {
+                                        setState(() {
+                                          slider = value;
+                                        });
+                                      },
+                                    ),
+                                  );
+                                }),
+                          ),
+                        ],
+                      ),
                     ),
                     Expanded(
-                      child: TextFormField(
-                        decoration: const InputDecoration(hintText: "45 m"),
+                      child: Container(
+                        height: 60,
+                        margin: const EdgeInsets.only(
+                          right: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(
+                            10,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${slider.toInt()} m",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
               Container(
                 width: double.infinity,
-                height: 50,
+                height: 90,
                 margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 15),
                 // color: Colors.amber,
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Expanded(
-                      child: Text("Support Antenne"),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        "Support Antenne",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
                     ),
                     Expanded(
-                      child: TextFormField(
-                        decoration:
-                            const InputDecoration(hintText: "commentaire"),
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: "commentaire",
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
                       ),
                     )
                   ],
