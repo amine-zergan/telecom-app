@@ -108,7 +108,7 @@ class Routes {
 
     GetPage(
       name: RouteName.surveySite,
-      page: () => const SurveySitePage(),
+      page: () => SurveySitePage(),
       binding: SurveySiteBinding(),
     ),
 

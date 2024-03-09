@@ -1,83 +1,25 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, unnecessary_overrides
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
 
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:linearprogress/linearprogress.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
-import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/site_type.dart';
-import 'package:telecom/view/theme/color_constants.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site_controller.dart';
 
-import '../../../../../../../report/rfi_excel.dart';
+// ignore: must_be_immutable
+class SurveySitePage extends GetWidget<SurveySiteController> {
+  SurveySitePage({super.key});
 
-class SurveySitePage extends StatefulWidget {
-  const SurveySitePage({super.key});
-
-  @override
-  State<SurveySitePage> createState() => _SurveySitePageState();
-}
-
-class _SurveySitePageState extends State<SurveySitePage>
-    with TickerProviderStateMixin {
-  /// ------- animation has two steps :
-  /// controller : forward- cancel  - repeat - reverse
-  /// animation : TweenAnimation : color - double integer - begin w end
-  /// TickerProviderStateMexin vsync This
-
-  late AnimationController controller;
-  late Animation animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        seconds: 2,
-      ),
-    );
-    animation = Tween<double>(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: Curves.linear,
-      ),
-    )..addListener(() {});
-    controller.forward();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  SiteType site = SiteType.nodal;
-  double slider = 50.0;
   bool bracon = false;
-
-  void updatebutton(bool value) {
-    setState(() {
-      bracon = value;
-    });
-  }
-
-  void updateTypeSite(SiteType? value) {
-    setState(() {
-      site = value!;
-      print("la type de site $site est change");
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final file = await SurveyRfiExcel.createExcel();
-          await OpenFile.open(file.path);
+          await controller.generateRfiReport();
         },
         elevation: 10,
         backgroundColor: Colors.black,
@@ -114,8 +56,8 @@ class _SurveySitePageState extends State<SurveySitePage>
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: FormSiteComponent(
-                  controller: TextEditingController(),
-                  focusNode: FocusNode(),
+                  controller: controller.fieldSiteNom,
+                  focusNode: controller.focusSite,
                   formStateKey: const Key(""),
                   onTap: () {},
                 ),
@@ -127,22 +69,62 @@ class _SurveySitePageState extends State<SurveySitePage>
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-              const Wrap(
-                spacing: 10,
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Chip(
-                    label: Text("Nodal"),
-                  ),
-                  Chip(
-                    label: Text("Agg"),
-                  ),
-                  Chip(
-                    label: Text("Terminal"),
-                  ),
-                ],
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return Wrap(
+                    spacing: 10,
+                    children: [
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ChoiceChip(
+                        backgroundColor: Colors.white,
+                        disabledColor: Colors.black38,
+                        color: const MaterialStatePropertyAll(
+                          Colors.black12,
+                        ),
+                        selectedColor: Colors.white,
+                        label: const Text(
+                          "Nodal",
+                        ),
+                        selected: controller.selectedsite == Site.nodal,
+                        onSelected: (value) {
+                          controller.updateSite(Site.nodal);
+                        },
+                      ),
+                      ChoiceChip(
+                        backgroundColor: Colors.white,
+                        disabledColor: Colors.black38,
+                        color: const MaterialStatePropertyAll(
+                          Colors.black12,
+                        ),
+                        selectedColor: Colors.white,
+                        label: const Text(
+                          "Aggreg",
+                        ),
+                        selected: controller.selectedsite == Site.agg,
+                        onSelected: (value) {
+                          controller.updateSite(Site.agg);
+                        },
+                      ),
+                      ChoiceChip(
+                        backgroundColor: Colors.white,
+                        disabledColor: Colors.black38,
+                        color: const MaterialStatePropertyAll(
+                          Colors.black12,
+                        ),
+                        selectedColor: Colors.white,
+                        label: const Text(
+                          "Terminal",
+                        ),
+                        selected: controller.selectedsite == Site.ter,
+                        onSelected: (value) {
+                          controller.updateSite(Site.ter);
+                        },
+                      ),
+                    ],
+                  );
+                },
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
@@ -174,31 +156,18 @@ class _SurveySitePageState extends State<SurveySitePage>
                           ),
                           Expanded(
                             flex: 2,
-                            child: AnimatedBuilder(
-                                animation: controller,
-                                builder: (context, child) {
-                                  return Transform(
-                                    transform: Matrix4.translationValues(
-                                      0,
-                                      size.height * animation.value,
-                                      0,
-                                    ),
-                                    child: Slider(
-                                      value: slider,
-                                      allowedInteraction:
-                                          SliderInteraction.tapOnly,
-                                      divisions: 2,
-                                      min: 2,
-                                      max: 110.0,
-                                      label: "${slider.toInt()}",
-                                      onChanged: (value) {
-                                        setState(() {
-                                          slider = value;
-                                        });
-                                      },
-                                    ),
-                                  );
-                                }),
+                            child: GetBuilder<SurveySiteController>(
+                                builder: (controller) {
+                              return Slider(
+                                value: controller.pylone,
+                                allowedInteraction:
+                                    SliderInteraction.tapAndSlide,
+                                min: 0,
+                                max: 1,
+                                label: "${controller.pylone.toInt()}",
+                                onChanged: controller.upddateMetragePylone,
+                              );
+                            }),
                           ),
                         ],
                       ),
@@ -216,10 +185,13 @@ class _SurveySitePageState extends State<SurveySitePage>
                           ),
                         ),
                         child: Center(
-                          child: Text(
-                            "${slider.toInt()} m",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
+                          child: GetBuilder<SurveySiteController>(
+                              builder: (controller) {
+                            return Text(
+                              "${(controller.pylone * 100).toInt()} m",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            );
+                          }),
                         ),
                       ),
                     ),
@@ -247,6 +219,8 @@ class _SurveySitePageState extends State<SurveySitePage>
                       child: Padding(
                         padding: const EdgeInsets.only(right: 15.0),
                         child: TextFormField(
+                          controller: controller.fieldSupportAntenne,
+                          autocorrect: false,
                           decoration: const InputDecoration(
                             hintText: "commentaire",
                             border: OutlineInputBorder(),
@@ -257,35 +231,96 @@ class _SurveySitePageState extends State<SurveySitePage>
                   ],
                 ),
               ),
-              ComponentItem(
-                title: "Support bracon si existe :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (conteroller) {
+                  return ComponentItem(
+                    title: "Support bracon si existe :",
+                    isExist: controller.supportAntenne,
+                    onChanged: controller.updateSupportAntenne,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Baterre de Terre No_01 :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Baterre de Terre No_01 :",
+                    isExist: controller.barretteTerre,
+                    onChanged: controller.updateBaretteTerre,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Tremie :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Tremie :",
+                    isExist: controller.tremie,
+                    onChanged: controller.updateTremie,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Chemin de cable V :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Chemin de cable V :",
+                    isExist: controller.cheminV,
+                    onChanged: controller.updateCheminV,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Chemin de cable H:",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Chemin de cable H:",
+                    isExist: controller.cheminH,
+                    onChanged: controller.updateCheminH,
+                  );
+                },
               ),
-              TitleComponentTask(
-                title: "Selectionnez les images outdoor",
-                isActive: false,
-                onTap: () {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5.0,
+                    ),
+                    child: TitleComponentTask(
+                        title: "Selectionnez les images Outdoor",
+                        isActive: controller.outdoorImage.isNotEmpty,
+                        onTap: controller.getListImageFromGallerieoutdoorImage),
+                  );
+                },
+              ),
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return SizedBox(
+                    width: double.infinity,
+                    height: controller.outdoorImage.isEmpty ? 10 : 200,
+                    child: controller.outdoorImage.isEmpty
+                        ? Container()
+                        : ListView.builder(
+                            itemCount: controller.outdoorImage.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              File file = controller.outdoorImage[index];
+                              return Container(
+                                width: 150,
+                                padding: const EdgeInsets.all(3),
+                                child: Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.file(
+                                      file,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                  );
+                },
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
@@ -293,40 +328,71 @@ class _SurveySitePageState extends State<SurveySitePage>
                   title: "Survey InDoor :",
                 ),
               ),
-              ComponentItem(
-                title: "BTS:",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "BTS:",
+                    isExist: controller.bts,
+                    onChanged: controller.updateBts,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Chemin de cable :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Chemin de cable ",
+                    isExist: controller.cheminCable,
+                    onChanged: controller.updateCheminCable,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Rack espace:",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Rack espace",
+                    isExist: controller.rackEspace,
+                    onChanged: controller.updateRackEsp,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "DC :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "DC :",
+                    isExist: controller.courantDc,
+                    onChanged: controller.updateCourantDc,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "AC :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "AC :",
+                    isExist: controller.courantAc,
+                    onChanged: controller.updateCourantAc,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "GND :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "GND ",
+                    isExist: controller.vertJaune,
+                    onChanged: controller.updateGND,
+                  );
+                },
               ),
-              ComponentItem(
-                title: "Clim :",
-                isExist: bracon,
-                onChanged: (value) {},
+              GetBuilder<SurveySiteController>(
+                builder: (controller) {
+                  return ComponentItem(
+                    title: "Clim ",
+                    isExist: controller.clim,
+                    onChanged: controller.updateClim,
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -335,6 +401,8 @@ class _SurveySitePageState extends State<SurveySitePage>
                 child: TextFormField(
                   minLines: 1,
                   maxLines: 20,
+                  controller: controller.fieldDetail,
+                  autocorrect: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(),
@@ -347,14 +415,52 @@ class _SurveySitePageState extends State<SurveySitePage>
               const SizedBox(
                 height: 5,
               ),
-              TitleComponentTask(
-                title: "Selectionnez les images indoor",
-                isActive: false,
-                onTap: () {},
-              ),
+              GetBuilder<SurveySiteController>(builder: (controller) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: TitleComponentTask(
+                    title: "Selectionnez les images indoor",
+                    isActive: controller.indoorImage.isNotEmpty,
+                    onTap: () {
+                      controller.getListImageFromGallerieindoorImage();
+                    },
+                  ),
+                );
+              }),
+              GetBuilder<SurveySiteController>(builder: (controller) {
+                return SizedBox(
+                  width: double.infinity,
+                  height: controller.indoorImage.isEmpty ? 10 : 200,
+                  child: controller.indoorImage.isEmpty
+                      ? Container()
+                      : ListView.builder(
+                          itemCount: controller.indoorImage.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            File file = controller.indoorImage[index];
+                            return Container(
+                              width: 150,
+                              padding: const EdgeInsets.all(3),
+                              child: Card(
+                                elevation: 2,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    file,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                );
+              }),
               const SizedBox(
-                height: 80,
-              ),
+                height: 50,
+              )
             ],
           ),
         ),
@@ -372,50 +478,37 @@ class ComponentItem extends StatelessWidget {
   }) : super(key: key);
   final String title;
   final bool isExist;
-  final void Function(bool value)? onChanged;
+  final void Function(bool? value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 50,
-      margin: const EdgeInsets.only(top: 5),
-      padding: const EdgeInsets.only(left: 15),
-      //color: Colors.amber,
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              title,
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                const Text("Non"),
-                const SizedBox(
-                  width: 5,
-                ),
-                Switch(
-                  value: isExist,
-                  activeTrackColor: Colors.grey.shade300,
-                  inactiveThumbColor: primaryColor,
-                  thumbColor: MaterialStatePropertyAll(
-                    primaryColor,
-                  ),
-                  onChanged: onChanged,
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Text(
-                  "oui",
-                ),
-              ],
-            ),
-          )
-        ],
+      margin: const EdgeInsets.only(top: 1),
+      child: ListTile(
+        title: Text(title),
+        trailing: Checkbox(
+          value: isExist,
+          onChanged: onChanged,
+        ),
       ),
+      //color: Colors.amber,
+      // child: Row(
+      // children: [
+      // Expanded(
+      // flex: 3,
+      // child: Text(
+      // title,
+      // ),
+      // ),
+      // Expanded(
+      // child: Checkbox(
+      // value: isExist,
+      // onChanged: onChanged,
+      // ),
+      // )
+      // ],
+      // ),
     );
   }
 }

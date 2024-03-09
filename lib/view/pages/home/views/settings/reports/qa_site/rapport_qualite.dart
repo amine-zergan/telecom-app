@@ -254,15 +254,20 @@ class TitleComponentTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
+      elevation: 0,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
-            color: isActive ? Colors.green.shade400 : Colors.transparent,
+            color: isActive ? Colors.green.shade400 : Colors.black38,
           )),
       child: ListTile(
           onTap: onTap,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              10,
+            ),
+          ),
           title: Text(
             title,
             style: Theme.of(context).textTheme.titleSmall,

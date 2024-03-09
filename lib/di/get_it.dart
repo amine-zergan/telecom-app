@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telecom/db/Remote_Data_Source/articles/abstract_material_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasource.dart';
@@ -32,6 +33,7 @@ Future<void> setup() async {
   final sharedPreferences = await SharedPreferences.getInstance();
 
   getItInstance.registerLazySingleton(() => sharedPreferences);
+  getItInstance.registerLazySingleton<ImagePicker>(() => ImagePicker());
   getItInstance.registerLazySingleton<DbHelper>(() => DbHelper());
   getItInstance.registerLazySingleton<IrepositoryConfigPageInit>(
     () => RemoteConfigPageInit(

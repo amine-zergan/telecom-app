@@ -2,9 +2,10 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/rfi_model.dart';
 
 class SurveyRfiExcel {
-  static Future<File> createExcel() async {
+  static Future<File> createExcel(RFIModel model) async {
     final picture = (await rootBundle.load("assets/project/image001.jpg"))
         .buffer
         .asUint8List();
@@ -60,7 +61,11 @@ class SurveyRfiExcel {
     sheet.getRangeByName('E5:H5').cellStyle.fontSize = 12;
 
     numeroFh(sheet, 'A6', 'Nom de Site');
-    numeroFh(sheet, 'B6:E6', 'BIZ_0145');
+    numeroFh(
+      sheet,
+      'B6:E6',
+      model.site,
+    );
     numeroFh(sheet, 'F6:H6', 'Type de Site');
 
     numeroFh(sheet, 'A7', 'Code Site');
@@ -98,7 +103,7 @@ class SurveyRfiExcel {
     numeroFh(sheet, 'L17:Q17', '');
     numeroFh(sheet, 'L18:Q18', '');
     numeroFh(sheet, 'L19:Q19', '');
-    numeroRFICommentaire(sheet, 'J20:Q32', """ 
+    numeroRFICommentaire(sheet, 'J20:Q32', """
     # BIZ_0145
     * Position antenne: NN (fixation direct)
     * position energie (-48) ok 1m

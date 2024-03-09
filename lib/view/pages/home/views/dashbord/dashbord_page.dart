@@ -171,28 +171,30 @@ class WelcomeDashBord extends StatelessWidget {
             ),
             Positioned(
               left: 10,
-              top: 30,
+              top: 5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Bienvenue ",
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Text(
                     "Amine Mejri",
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Commencer votre \nMission de cette Semaine ",
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black54,
+                    "Commencer A creer\nvotre Mission de cette \nSemaine ",
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Colors.black87,
                         ),
                   ),
                 ],

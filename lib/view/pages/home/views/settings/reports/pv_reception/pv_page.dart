@@ -146,8 +146,16 @@ class CardTitleClientInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 1,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+      color: Colors.grey.shade100,
       child: ListTile(
-        title: Text(title),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
       ),
     );
   }
