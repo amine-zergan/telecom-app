@@ -8,6 +8,7 @@ class SurveySiteBinding extends Bindings {
     Get.put(
       SurveySiteController(
         getItInstance(),
+        Get.find(),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
+import 'package:telecom/view/pages/home/views/settings/controller/setting_controller.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/rfi_model.dart';
 
 import '../../../../../../../report/rfi_excel.dart';
@@ -17,8 +18,10 @@ class SurveySiteController extends GetxController {
   ///
   ///
   final ImagePicker picker;
+  final SettingController settingController;
+  SurveySiteController(this.picker, this.settingController);
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  SurveySiteController(this.picker);
   Site selectedsite = Site.nodal;
   double pylone = 0.45;
   late TextEditingController fieldSiteNom;
@@ -44,30 +47,45 @@ class SurveySiteController extends GetxController {
   ///******** create Excel Report**********///
   ///
   Future<void> generateRfiReport() async {
-    final model = RFIModel(
-      site: fieldSiteNom.text,
-      supervior: "Amine mejri",
-      operator: "orange",
-      type: selectedsite,
-      pylone: pylone,
-      support: fieldSupportAntenne.text,
-      details: fieldDetail.text,
-      imageOutdoor: outdoorImage,
-      imageIndoor: indoorImage,
-      barrette: barretteTerre,
-      bracon: supportAntenne,
-      cheminCable: cheminCable,
-      cheminH: cheminH,
-      cheminV: cheminV,
-      gND: vertJaune,
-      clim: clim,
-      courantAc: courantAc,
-      courantDc: courantDc,
-      bts: bts,
-      tremie: tremie,
-    );
-    final file = await SurveyRfiExcel.createExcel(model);
-    await OpenFile.open(file.path);
+    try {
+      print("${settingController.profile?.name}");
+      final model = RFIModel(
+        site: fieldSiteNom.text,
+        supervior: settingController.profile?.name ?? "",
+        operator: "orange",
+        type: selectedsite,
+        pylone: pylone * 100,
+        support: fieldSupportAntenne.text,
+        details: fieldDetail.text,
+        imageOutdoor: outdoorImage,
+        imageIndoor: indoorImage,
+        barrette: barretteTerre,
+        bracon: supportAntenne,
+        cheminCable: cheminCable,
+        cheminH: cheminH,
+        cheminV: cheminV,
+        gND: vertJaune,
+        clim: clim,
+        courantAc: courantAc,
+        courantDc: courantDc,
+        bts: bts,
+        tremie: tremie,
+      );
+      if (formKey.currentState!.validate()) {
+        print("erreur depuis form validation ");
+        final file = await SurveyRfiExcel.createExcel(model);
+        await OpenFile.open(file.path);
+      } else {
+        Get.snackbar(
+          "Notification",
+          "Rapport RFI doit contenir le nom de Site",
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red.shade300,
+        );
+      }
+    } catch (e) {
+      print("catch erreur from methode create excel $e");
+    }
   }
 
   Future<void> getListImageFromGallerieindoorImage() async {

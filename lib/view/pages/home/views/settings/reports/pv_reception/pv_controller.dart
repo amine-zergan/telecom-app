@@ -3,17 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
-import 'package:telecom/db/Remote_Data_Source/profile/abstract_profile_datasource.dart';
-
-import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/report/pv_install.dart';
+import 'package:telecom/view/pages/home/views/settings/controller/setting_controller.dart';
 
 class PvReceptionController extends GetxController {
-  PvReceptionController(
-    this.reposProfile,
-  );
-  final IrepositroyProfileDataSource reposProfile;
+  PvReceptionController(this.settingController);
 
+  final SettingController settingController;
   late TextEditingController societeField;
   late TextEditingController addressField;
   late TextEditingController responsableField;
@@ -28,8 +24,6 @@ class PvReceptionController extends GetxController {
 
   GlobalKey<FormState> formvalidation = GlobalKey();
 
-  Profile? user;
-
   String? validateDebit(String? value) {
     if (value == null || value.isEmpty) {
       return "merci de mettre le debit";
@@ -43,8 +37,8 @@ class PvReceptionController extends GetxController {
   Future<void> generatePvReception() async {
     try {
       final file = await PvInstall.generatePdf(
-        technicien: user?.name ?? "",
-        contact: user?.phone ?? "",
+        technicien: settingController.profile?.name ?? "",
+        contact: settingController.profile?.phone ?? "",
         b2b: societeField.text,
         address: addressField.text,
         responsable: responsableField.text,
@@ -59,16 +53,8 @@ class PvReceptionController extends GetxController {
     }
   }
 
-  void getUser() async {
-    final response = await reposProfile.fetch();
-    user = response;
-    print("user fetched with success $user ");
-    update();
-  }
-
   @override
   void onInit() {
-    getUser();
     societeField = TextEditingController();
     addressField = TextEditingController();
     responsableField = TextEditingController();

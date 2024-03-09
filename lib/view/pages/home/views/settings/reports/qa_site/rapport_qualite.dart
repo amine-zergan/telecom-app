@@ -195,7 +195,7 @@ class FormSiteComponent extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   void Function()? onTap;
-  final Key formStateKey;
+  final GlobalKey formStateKey;
 
   @override
   Widget build(BuildContext context) {

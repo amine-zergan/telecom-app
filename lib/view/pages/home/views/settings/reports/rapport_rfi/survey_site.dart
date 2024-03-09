@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linearprogress/linearprogress.dart';
+import 'package:open_file/open_file.dart';
+import 'package:telecom/report/survey_excel.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site_controller.dart';
@@ -12,14 +14,14 @@ import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/surve
 class SurveySitePage extends GetWidget<SurveySiteController> {
   SurveySitePage({super.key});
 
-  bool bracon = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await controller.generateRfiReport();
+          //await controller.generateRfiReport();
+          final file = await SurveyExcel.createExcel();
+          await OpenFile.open(file.path);
         },
         elevation: 10,
         backgroundColor: Colors.black,
@@ -58,7 +60,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                 child: FormSiteComponent(
                   controller: controller.fieldSiteNom,
                   focusNode: controller.focusSite,
-                  formStateKey: const Key(""),
+                  formStateKey: controller.formKey,
                   onTap: () {},
                 ),
               ),
