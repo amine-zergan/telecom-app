@@ -1,11 +1,11 @@
-// ignore_for_file: unnecessary_overrides, avoid_print, unnecessary_brace_in_string_interps
-
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
+
 import 'package:telecom/view/pages/home/views/settings/controller/setting_controller.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/rfi_model.dart';
 
@@ -19,8 +19,14 @@ class SurveySiteController extends GetxController {
   ///
   final ImagePicker picker;
   final SettingController settingController;
-  SurveySiteController(this.picker, this.settingController);
+
+  SurveySiteController(
+    this.picker,
+    this.settingController,
+  );
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final myListKeyOutDoor = GlobalKey<AnimatedListState>();
+  final myListKeyIndoor = GlobalKey<AnimatedListState>();
 
   Site selectedsite = Site.nodal;
   double pylone = 0.45;
@@ -98,27 +104,25 @@ class SurveySiteController extends GetxController {
   }
 
   Future<void> getListImageFromGallerieindoorImage() async {
+    print("start fetch from picker ");
     final List<XFile> images = await picker.pickMultiImage();
-    images
-        .map(
-          (e) => indoorImage.add(
-            File.fromUri(Uri.file(e.path)),
-          ),
-        )
-        .toList();
+    images.map((e) {
+      indoorImage.add(
+        File.fromUri(Uri.file(e.path)),
+      );
+    }).toList();
+    print("data fetch from picker ");
     update();
-    print("les images telecharges sont ${indoorImage.length}");
   }
 
   Future<void> getListImageFromGallerieoutdoorImage() async {
     final List<XFile> images = await picker.pickMultiImage();
-    images
-        .map(
-          (e) => outdoorImage.add(
-            File.fromUri(Uri.file(e.path)),
-          ),
-        )
-        .toList();
+    images.map((e) {
+      outdoorImage.add(
+        File.fromUri(Uri.file(e.path)),
+      );
+    }).toList();
+
     update();
     print("les images telecharges outdoorImage sont ${outdoorImage.length}");
   }

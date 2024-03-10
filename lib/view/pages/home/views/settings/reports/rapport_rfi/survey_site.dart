@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, unnecessary_overrides
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,16 +8,12 @@ import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/surve
 
 // ignore: must_be_immutable
 class SurveySitePage extends GetWidget<SurveySiteController> {
-  SurveySitePage({super.key});
-
-  final _myListKeyOutDoor = GlobalKey<AnimatedListState>();
-
-  final _myListKeyIndoor = GlobalKey<AnimatedListState>();
+  const SurveySitePage({super.key});
 
   void deleteItemdeleteoutdoorImage(
       int index, file, SurveySiteController controller) {
     controller.deleteoutdoorImage(index);
-    _myListKeyOutDoor.currentState!.removeItem(
+    controller.myListKeyOutDoor.currentState!.removeItem(
       index,
       (context, animation) => FadeTransition(
         opacity: animation,
@@ -34,7 +28,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
   void deleteItemdeleteindoorImage(
       int index, file, SurveySiteController controller) {
     controller.deleteindoorImage(index);
-    _myListKeyIndoor.currentState!.removeItem(
+    controller.myListKeyIndoor.currentState!.removeItem(
       index,
       (context, animation) => FadeTransition(
         opacity: animation,
@@ -218,9 +212,10 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                       horizontal: 5.0,
                     ),
                     child: TitleComponentTask(
-                        title: "Selectionnez les images Outdoor",
-                        isActive: controller.outdoorImage.isNotEmpty,
-                        onTap: controller.getListImageFromGallerieoutdoorImage),
+                      title: "Selectionnez les images Outdoor",
+                      isActive: controller.outdoorImage.isNotEmpty,
+                      onTap: controller.getListImageFromGallerieoutdoorImage,
+                    ),
                   );
                 },
               ),
@@ -232,7 +227,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                     child: controller.outdoorImage.isEmpty
                         ? Container()
                         : AnimatedList(
-                            key: _myListKeyOutDoor,
+                            key: controller.myListKeyOutDoor,
                             initialItemCount: controller.outdoorImage.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index, animation) {
@@ -244,7 +239,10 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                                   index: index,
                                   onTap: () {
                                     deleteItemdeleteoutdoorImage(
-                                        index, file, controller);
+                                      index,
+                                      file,
+                                      controller,
+                                    );
                                   },
                                 ),
                               );
@@ -352,8 +350,10 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                   child: TitleComponentTask(
                     title: "Selectionnez les images indoor",
                     isActive: controller.indoorImage.isNotEmpty,
-                    onTap: () {
-                      controller.getListImageFromGallerieindoorImage();
+                    onTap: () async {
+                      print("fetch from pick image");
+                      await controller.getListImageFromGallerieindoorImage();
+                      print("finish pick image");
                     },
                   ),
                 );
@@ -365,7 +365,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                   child: controller.indoorImage.isEmpty
                       ? Container()
                       : AnimatedList(
-                          key: _myListKeyIndoor,
+                          key: controller.myListKeyIndoor,
                           initialItemCount: controller.indoorImage.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index, animation) {
@@ -377,7 +377,10 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                                 index: index,
                                 onTap: () {
                                   deleteItemdeleteindoorImage(
-                                      index, file, controller);
+                                    index,
+                                    file,
+                                    controller,
+                                  );
                                 },
                               ),
                             );
@@ -411,20 +414,25 @@ class ImageItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: Key("$index"),
       width: 150,
       padding: const EdgeInsets.all(3),
       child: Stack(
         children: [
-          Card(
-            elevation: 2,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.file(
-                file,
-                fit: BoxFit.fill,
+          Positioned(
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.file(
+                  file,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
@@ -433,9 +441,16 @@ class ImageItemWidget extends StatelessWidget {
             right: 10,
             child: GestureDetector(
               onTap: onTap,
-              child: const Icon(
-                Icons.delete_outline_sharp,
-                color: Colors.white,
+              child: Container(
+                padding: const EdgeInsets.all(3),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Icon(
+                  Icons.delete_outline_sharp,
+                  color: Colors.grey.shade600,
+                ),
               ),
             ),
           )

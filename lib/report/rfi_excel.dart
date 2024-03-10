@@ -1,12 +1,16 @@
-import 'dart:io';
+// ignore_for_file: avoid_print
 
+import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/rfi_model.dart';
 
 class SurveyRfiExcel {
+  const SurveyRfiExcel._();
+
   static Future<File> createExcel(RFIModel model) async {
     final Workbook workbook = Workbook();
+    print("========= instance of workbook ${workbook}==========");
     final Worksheet sheet = workbook.worksheets[0];
 
     sheet.showGridlines = false;
@@ -61,6 +65,7 @@ class SurveyRfiExcel {
       'B6:E6',
       model.site,
     );
+    print("====== type of site =======");
     numeroFh(sheet, 'F6:H6', 'Type de Site');
     numeroFh(sheet, 'A7', 'Code Site');
     numeroFh(sheet, 'B7:E7', model.site.toUpperCase());
@@ -203,6 +208,7 @@ class SurveyRfiExcel {
     numeroFh(sheet, "B35", "ACCES/CLE");
 
     ///##########################################///
+    print("====== barette var =======");
     numeroFh(sheet, "C29", model.barrette! ? "OK" : "NOK");
     numeroFh(sheet, "C30", "");
     numeroFh(sheet, "C31", "");
@@ -229,22 +235,30 @@ class SurveyRfiExcel {
 
     numeroFh(sheet, "G29:H30", model.cheminV! ? "OK" : "NOK");
     numeroFh(sheet, "G31:H32", model.cheminH! ? "OK" : "NOK");
+    print("====== start of pic =======");
+    model.imageIndoor.asMap().forEach((key, value) {
+      final List<int> bytes = value.readAsBytesSync();
+      if (key > 2 && key < 7) {
+        sheet.pictures.addStream(45, 1 + (key - 3) * 4, bytes);
+      } else {
+        sheet.pictures.addStream(40, 1 + key * 4, bytes);
+      }
+    });
+
+    sheet.pictures.innerList.map((e) {
+      e.height = 200;
+      e.width = 200;
+    }).toList();
+    print("====== end of pic =======");
     // sheet.pictures.addStream(40, 1, picture);
     // sheet.pictures.addStream(40, 9, picture1);
     // final Picture pic = sheet.pictures[0];
     // final Picture pic1 = sheet.pictures[1];
 
-// Re-size an image
-    // pic.height = 400;
-    // pic.width = 400;
-    // pic1.height = 300;
-    // pic1.width = 300;
-
     //Save and launch the excel.
     final dir = await getpath();
     final byte = workbook.saveAsStream();
-    final file = File(
-        '$dir/Survey site_${model.site.toUpperCase()}_${DateTime.now()}.xlsx');
+    final file = File('$dir/Survey site_${model.site.toUpperCase()}.xlsx');
     await file.writeAsBytes(byte);
     //Dispose the document.
     workbook.dispose();
