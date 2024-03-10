@@ -48,7 +48,6 @@ class SurveySiteController extends GetxController {
   ///
   Future<void> generateRfiReport() async {
     try {
-      print("${settingController.profile?.name}");
       final model = RFIModel(
         site: fieldSiteNom.text,
         supervior: settingController.profile?.name ?? "",
@@ -69,10 +68,10 @@ class SurveySiteController extends GetxController {
         courantAc: courantAc,
         courantDc: courantDc,
         bts: bts,
+        rackEspace: rackEspace,
         tremie: tremie,
       );
       if (formKey.currentState!.validate()) {
-        print("erreur depuis form validation ");
         final file = await SurveyRfiExcel.createExcel(model);
         await OpenFile.open(file.path);
       } else {
@@ -86,6 +85,16 @@ class SurveySiteController extends GetxController {
     } catch (e) {
       print("catch erreur from methode create excel $e");
     }
+  }
+
+  void deleteoutdoorImage(int index) {
+    outdoorImage.removeAt(index);
+    update();
+  }
+
+  void deleteindoorImage(int index) {
+    indoorImage.removeAt(index);
+    update();
   }
 
   Future<void> getListImageFromGallerieindoorImage() async {

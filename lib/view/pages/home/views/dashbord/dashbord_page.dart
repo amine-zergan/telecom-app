@@ -26,7 +26,7 @@ class DashbordPage extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Container(
                   height: size.height * 0.19,
-                  color: Colors.amber,
+                  //  color: Colors.amber,
                   child: Row(
                     children: [
                       Expanded(
@@ -86,7 +86,7 @@ class BackGroundContainer extends CustomPainter {
       fontSize: 13,
     );
     const textSpan = TextSpan(
-      text: 'Hello, world.',
+      text: 'State',
       style: textStyle,
     );
     final textPainter = TextPainter(

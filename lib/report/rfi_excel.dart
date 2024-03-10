@@ -6,7 +6,6 @@ import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/rfi_m
 
 class SurveyRfiExcel {
   static Future<File> createExcel(RFIModel model) async {
-    print("start creat EXcel ");
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
 
@@ -53,7 +52,7 @@ class SurveyRfiExcel {
         LineStyle.thin;
     sheet.getRangeByName('E5:H5').cellStyle.hAlign = HAlignType.left;
     sheet.getRangeByName('E5:H5').numberFormat =
-        '[\$-x-sysdate]dddd, mm dd, yyyy';
+        '[\$-x-sysdate]dddd, mmmm dd, yyyy';
     sheet.getRangeByName('E5:H5').cellStyle.fontSize = 12;
 
     numeroFh(sheet, 'A6', 'Nom de Site');
@@ -64,10 +63,10 @@ class SurveyRfiExcel {
     );
     numeroFh(sheet, 'F6:H6', 'Type de Site');
     numeroFh(sheet, 'A7', 'Code Site');
-    numeroFh(sheet, 'B7:E7', model.site);
-    numeroFh(sheet, 'F7', 'Nodal');
-    numeroFh(sheet, 'G7', 'Agg');
-    numeroFh(sheet, 'H7', 'Terminale');
+    numeroFh(sheet, 'B7:E7', model.site.toUpperCase());
+    numeroFhTypeSite(sheet, 'F7', 'Nodal', model.type.name == "nodal");
+    numeroFhTypeSite(sheet, 'G7', 'Agg', model.type.name == "agg");
+    numeroFhTypeSite(sheet, 'H7', 'Terminale', model.type.name == "ter");
     numeroFh(sheet, 'A9:A14', 'N°');
     numeroFh(sheet, 'J9:K9', 'ITEM');
     numeroFh(sheet, 'B9:C9', 'ITEM');
@@ -83,6 +82,7 @@ class SurveyRfiExcel {
     numeroFh(sheet, 'L12:Q12', model.rackEspace! ? "OK" : 'NOK');
     numeroFh(sheet, 'J13:K13', 'DC');
     numeroFh(sheet, 'L13:Q13', model.courantDc! ? "OK" : "NOK");
+
     numeroFh(sheet, 'J14:K15', 'Disjoncteur');
     numeroFh(sheet, 'L14:M14', 'Nbr DISJ');
     numeroFh(sheet, 'N14:O14', 'Capacite Disj(A)');
@@ -101,6 +101,7 @@ class SurveyRfiExcel {
     numeroRFICommentaire(sheet, 'J20:Q32', """
      ${model.details}
     """);
+
     numeroFh(sheet, 'k34:L34', ' Representant NEC ');
     numeroFh(sheet, 'M34:N34', model.supervior);
     numeroFh(sheet, 'C10:C12', '${model.pylone} m');
@@ -242,7 +243,8 @@ class SurveyRfiExcel {
     //Save and launch the excel.
     final dir = await getpath();
     final byte = workbook.saveAsStream();
-    final file = File('$dir/Survey site_${model.site}.xlsx');
+    final file = File(
+        '$dir/Survey site_${model.site.toUpperCase()}_${DateTime.now()}.xlsx');
     await file.writeAsBytes(byte);
     //Dispose the document.
     workbook.dispose();
@@ -276,6 +278,20 @@ class SurveyRfiExcel {
     sheet.getRangeByName(numero).cellStyle.wrapText = true;
     sheet.getRangeByName(numero).cellStyle.hAlign = HAlignType.center;
     sheet.getRangeByName(numero).cellStyle.vAlign = VAlignType.center;
+    sheet.getRangeByName(numero).cellStyle.borders.all.lineStyle =
+        LineStyle.thin;
+  }
+
+  static void numeroFhTypeSite(
+      Worksheet sheet, String numero, String valeur, bool type) {
+    sheet.getRangeByName(numero).setText(valeur);
+    sheet.getRangeByName(numero).merge();
+    sheet.getRangeByName(numero).cellStyle.fontSize = 9;
+    sheet.getRangeByName(numero).cellStyle.wrapText = true;
+    sheet.getRangeByName(numero).cellStyle.hAlign = HAlignType.center;
+    sheet.getRangeByName(numero).cellStyle.vAlign = VAlignType.center;
+    sheet.getRangeByName(numero).cellStyle.backColor =
+        type == false ? "#FFFFFF" : "#FFFF55";
     sheet.getRangeByName(numero).cellStyle.borders.all.lineStyle =
         LineStyle.thin;
   }

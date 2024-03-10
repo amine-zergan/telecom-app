@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linearprogress/linearprogress.dart';
-import 'package:open_file/open_file.dart';
-import 'package:telecom/report/survey_excel.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site_controller.dart';
@@ -14,14 +12,46 @@ import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/surve
 class SurveySitePage extends GetWidget<SurveySiteController> {
   SurveySitePage({super.key});
 
+  final _myListKeyOutDoor = GlobalKey<AnimatedListState>();
+
+  final _myListKeyIndoor = GlobalKey<AnimatedListState>();
+
+  void deleteItemdeleteoutdoorImage(
+      int index, file, SurveySiteController controller) {
+    controller.deleteoutdoorImage(index);
+    _myListKeyOutDoor.currentState!.removeItem(
+      index,
+      (context, animation) => FadeTransition(
+        opacity: animation,
+        child: ImageItemWidget(
+          file: file,
+          index: index,
+        ),
+      ),
+    );
+  }
+
+  void deleteItemdeleteindoorImage(
+      int index, file, SurveySiteController controller) {
+    controller.deleteindoorImage(index);
+    _myListKeyIndoor.currentState!.removeItem(
+      index,
+      (context, animation) => FadeTransition(
+        opacity: animation,
+        child: ImageItemWidget(
+          file: file,
+          index: index,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          //await controller.generateRfiReport();
-          final file = await SurveyExcel.createExcel();
-          await OpenFile.open(file.path);
+          await controller.generateRfiReport();
         },
         elevation: 10,
         backgroundColor: Colors.black,
@@ -134,105 +164,8 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                   title: "Survey OutDoor :",
                 ),
               ),
-              Container(
-                width: double.infinity,
-                height: 100,
-
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  top: 15,
-                ),
-                //color: Colors.amber,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "Metrage de Pylone",
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: GetBuilder<SurveySiteController>(
-                                builder: (controller) {
-                              return Slider(
-                                value: controller.pylone,
-                                allowedInteraction:
-                                    SliderInteraction.tapAndSlide,
-                                min: 0,
-                                max: 1,
-                                label: "${controller.pylone.toInt()}",
-                                onChanged: controller.upddateMetragePylone,
-                              );
-                            }),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 60,
-                        margin: const EdgeInsets.only(
-                          right: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(
-                            10,
-                          ),
-                        ),
-                        child: Center(
-                          child: GetBuilder<SurveySiteController>(
-                              builder: (controller) {
-                            return Text(
-                              "${(controller.pylone * 100).toInt()} m",
-                              style: Theme.of(context).textTheme.titleMedium,
-                            );
-                          }),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 90,
-                margin: const EdgeInsets.only(top: 5),
-                padding: const EdgeInsets.only(left: 15),
-                // color: Colors.amber,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        "Support Antenne",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: TextFormField(
-                          controller: controller.fieldSupportAntenne,
-                          autocorrect: false,
-                          decoration: const InputDecoration(
-                            hintText: "commentaire",
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              const MetragePyloneWidget(),
+              SupportAntenneFieldWidget(controller: controller),
               GetBuilder<SurveySiteController>(
                 builder: (conteroller) {
                   return ComponentItem(
@@ -298,25 +231,21 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                     height: controller.outdoorImage.isEmpty ? 10 : 200,
                     child: controller.outdoorImage.isEmpty
                         ? Container()
-                        : ListView.builder(
-                            itemCount: controller.outdoorImage.length,
+                        : AnimatedList(
+                            key: _myListKeyOutDoor,
+                            initialItemCount: controller.outdoorImage.length,
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
+                            itemBuilder: (context, index, animation) {
                               File file = controller.outdoorImage[index];
-                              return Container(
-                                width: 150,
-                                padding: const EdgeInsets.all(3),
-                                child: Card(
-                                  elevation: 2,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.file(
-                                      file,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
+                              return FadeTransition(
+                                opacity: animation,
+                                child: ImageItemWidget(
+                                  file: file,
+                                  index: index,
+                                  onTap: () {
+                                    deleteItemdeleteoutdoorImage(
+                                        index, file, controller);
+                                  },
                                 ),
                               );
                             },
@@ -435,25 +364,21 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                   height: controller.indoorImage.isEmpty ? 10 : 200,
                   child: controller.indoorImage.isEmpty
                       ? Container()
-                      : ListView.builder(
-                          itemCount: controller.indoorImage.length,
+                      : AnimatedList(
+                          key: _myListKeyIndoor,
+                          initialItemCount: controller.indoorImage.length,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
+                          itemBuilder: (context, index, animation) {
                             File file = controller.indoorImage[index];
-                            return Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(3),
-                              child: Card(
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.file(
-                                    file,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
+                            return FadeTransition(
+                              opacity: animation,
+                              child: ImageItemWidget(
+                                file: file,
+                                index: index,
+                                onTap: () {
+                                  deleteItemdeleteindoorImage(
+                                      index, file, controller);
+                                },
                               ),
                             );
                           },
@@ -466,6 +391,174 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ImageItemWidget extends StatelessWidget {
+  const ImageItemWidget({
+    Key? key,
+    required this.file,
+    required this.index,
+    this.onTap,
+  }) : super(key: key);
+
+  final File file;
+  final int index;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: Key("$index"),
+      width: 150,
+      padding: const EdgeInsets.all(3),
+      child: Stack(
+        children: [
+          Card(
+            elevation: 2,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.file(
+                file,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            child: GestureDetector(
+              onTap: onTap,
+              child: const Icon(
+                Icons.delete_outline_sharp,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SupportAntenneFieldWidget extends StatelessWidget {
+  const SupportAntenneFieldWidget({
+    super.key,
+    required this.controller,
+  });
+
+  final SurveySiteController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 90,
+      margin: const EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(left: 15),
+      // color: Colors.amber,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Text(
+              "Support Antenne",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: TextFormField(
+                controller: controller.fieldSupportAntenne,
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  hintText: "commentaire",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MetragePyloneWidget extends StatelessWidget {
+  const MetragePyloneWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 100,
+      padding: const EdgeInsets.only(
+        left: 15,
+        top: 15,
+      ),
+      //color: Colors.amber,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    "Metrage de Pylone",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child:
+                      GetBuilder<SurveySiteController>(builder: (controller) {
+                    return Slider(
+                      value: controller.pylone,
+                      allowedInteraction: SliderInteraction.tapAndSlide,
+                      min: 0,
+                      max: 1,
+                      label: "${controller.pylone.toInt()}",
+                      onChanged: controller.upddateMetragePylone,
+                    );
+                  }),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 60,
+              margin: const EdgeInsets.only(
+                right: 15,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(
+                  10,
+                ),
+              ),
+              child: Center(
+                child: GetBuilder<SurveySiteController>(builder: (controller) {
+                  return Text(
+                    "${(controller.pylone * 100).toInt()} m",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  );
+                }),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
