@@ -6,10 +6,10 @@ import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/rfi_model.dart';
 
 class SurveyRfiExcel {
-  const SurveyRfiExcel._();
+  const SurveyRfiExcel._(); // priv
 
   static Future<File> createExcel(RFIModel model) async {
-    final Workbook workbook = Workbook();
+    final Workbook workbook = Workbook(); //
     print("========= instance of workbook ${workbook}==========");
     final Worksheet sheet = workbook.worksheets[0];
 

@@ -104,14 +104,12 @@ class SurveySiteController extends GetxController {
   }
 
   Future<void> getListImageFromGallerieindoorImage() async {
-    print("start fetch from picker ");
     final List<XFile> images = await picker.pickMultiImage();
     images.map((e) {
       indoorImage.add(
         File.fromUri(Uri.file(e.path)),
       );
     }).toList();
-    print("data fetch from picker ");
     update();
   }
 
