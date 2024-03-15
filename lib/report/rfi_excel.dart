@@ -10,7 +10,6 @@ class SurveyRfiExcel {
 
   static Future<File> createExcel(RFIModel model) async {
     final Workbook workbook = Workbook(); //
-    print("========= instance of workbook ${workbook}==========");
     final Worksheet sheet = workbook.worksheets[0];
 
     sheet.showGridlines = false;
@@ -313,7 +312,6 @@ class SurveyRfiExcel {
   static Future<String> getpath() async {
     if (Platform.isIOS) {
       final dir = await getApplicationDocumentsDirectory();
-      // ignore: avoid_print
       print("IOS excel create ");
       return dir.path;
     } else if (Platform.isAndroid) {

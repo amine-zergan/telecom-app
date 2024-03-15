@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:telecom/di/get_it.dart' as getIt;
+
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/routes/routes_navigation.dart';
 import 'package:telecom/view/theme/theming_app.dart';
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return GetMaterialApp(
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
-      getPages: Routes.routes,
+      getPages: Routes.routes, //list<Class widget Page >
       defaultTransition: Transition.fadeIn,
       initialRoute: RouteName.onboard,
       theme: ThemeApp.light,

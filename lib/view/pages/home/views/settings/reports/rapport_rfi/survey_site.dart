@@ -260,7 +260,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
               GetBuilder<SurveySiteController>(
                 builder: (controller) {
                   return ComponentItem(
-                    title: "BTS:",
+                    title: "BTS",
                     isExist: controller.bts,
                     onChanged: controller.updateBts,
                   );

@@ -15,10 +15,10 @@ class WelcomeMiddleware extends GetMiddleware {
   @override
   int? priority = 1;
 
-  // ignore: body_might_complete_normally_nullable
   @override
   RouteSettings? redirect(String? route) {
     String? route = repos.fetchParamsConfig(init);
+    // boool is logged =true ; sharedPReference : local storage
     print("============== middleware onboard $route");
     if (route == "config") {
       return const RouteSettings(name: RouteName.config);
