@@ -27,6 +27,8 @@ class HomeBinding extends Bindings {
       SettingController(
         reposEntreprise: getItInstance(),
         reposProfile: getItInstance(),
+        operatorDatasource: getItInstance(),
+        projectDatasource: getItInstance(),
       ),
     );
     Get.put(

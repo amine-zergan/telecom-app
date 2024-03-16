@@ -19,12 +19,13 @@ class DashbordPage extends StatelessWidget {
           width: double.infinity,
           height: Get.size.height,
           child: CustomScrollView(
+            // CustomScroll
             physics: const ClampingScrollPhysics(),
             slivers: [
               const DashboardAppBar(),
               const WelcomeDashBord(),
               SliverToBoxAdapter(
-                child: Container(
+                child: SizedBox(
                   height: size.height * 0.19,
                   //  color: Colors.amber,
                   child: Row(

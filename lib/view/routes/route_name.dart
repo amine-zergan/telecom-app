@@ -33,6 +33,7 @@ class RouteName {
 
   static const pvReception = "/pv-reception";
   static const pvDemontage = "/pv-demontage";
+  static const retourMateriel = "/demontage";
   static const reportQualite = "/quality";
   static const surveySite = "/survey";
 }

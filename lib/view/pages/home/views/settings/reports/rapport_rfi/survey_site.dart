@@ -351,9 +351,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                     title: "Selectionnez les images indoor",
                     isActive: controller.indoorImage.isNotEmpty,
                     onTap: () async {
-                      print("fetch from pick image");
                       await controller.getListImageFromGallerieindoorImage();
-                      print("finish pick image");
                     },
                   ),
                 );

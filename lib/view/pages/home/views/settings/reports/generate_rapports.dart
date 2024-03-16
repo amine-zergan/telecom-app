@@ -1,13 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-//import 'package:telecom/report/pv_install.dart';
-//import 'package:open_file/open_file.dart';
-//import 'package:telecom/report/pv_install.dart';
 import 'package:telecom/view/pages/home/start/components/get_back_button.dart';
-//import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_page.dart';
-import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_material.dart';
 import 'package:telecom/view/routes/route_name.dart';
 
 class GenerateRapport extends StatelessWidget {
@@ -45,9 +39,7 @@ class GenerateRapport extends StatelessWidget {
               CardTitle(
                 title: "Demande Retour Materials",
                 press: () {
-                  Get.to(
-                    () => const RetourMaterial(),
-                  );
+                  Get.toNamed(RouteName.retourMateriel);
                 },
               ),
               CardTitle(

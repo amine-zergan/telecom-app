@@ -31,6 +31,8 @@ import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_q
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/rapport_rfi/survey_site_binding.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_material.dart';
+import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_materiel_binding.dart';
 import 'package:telecom/view/pages/onboard/controller/onboard_bind.dart';
 import 'package:telecom/view/pages/onboard/middleware/onboard_middleware_config.dart';
 import 'package:telecom/view/routes/route_name.dart';
@@ -93,6 +95,11 @@ class Routes {
       name: RouteName.detailSite,
       page: () => const DetailSite(),
     ),
+    GetPage(
+      name: RouteName.retourMateriel,
+      page: () => const RetourMaterialPage(),
+      binding: RetourMaterileBinding(),
+    ),
 
     GetPage(
       name: RouteName.pvReception,
@@ -108,7 +115,7 @@ class Routes {
 
     GetPage(
       name: RouteName.surveySite,
-      page: () => SurveySitePage(),
+      page: () => const SurveySitePage(),
       binding: SurveySiteBinding(),
     ),
 
