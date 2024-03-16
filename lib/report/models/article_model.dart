@@ -3,13 +3,13 @@ import 'dart:convert';
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Article {
   final int? id;
-  final String ref;
+  final String? ref;
   final String name;
   final String fournisseur;
   final int quantite;
   Article({
     this.id,
-    required this.ref,
+    this.ref,
     required this.name,
     required this.fournisseur,
     required this.quantite,
@@ -44,7 +44,7 @@ class Article {
   factory Article.fromMap(Map<String, dynamic> map) {
     return Article(
       id: map['id'] != null ? map['id'] as int : null,
-      ref: map['ref'] as String,
+      ref: map['ref'] as String?,
       name: map['name'] as String,
       fournisseur: map['fournisseur'] as String,
       quantite: map['quantite'] as int,

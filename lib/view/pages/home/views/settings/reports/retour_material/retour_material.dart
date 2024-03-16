@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:linearprogress/linearprogress.dart';
+import 'package:open_file/open_file.dart';
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/components/project/project_model.dart';
+import 'package:telecom/report/dpm_drm-report.dart';
+import 'package:telecom/report/models/article_model.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/qa_site/rapport_qualite.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/retour_material/retour_materiel_controller.dart';
 
@@ -13,6 +16,31 @@ class RetourMaterialPage extends GetWidget<RetourMaterielController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final file = await LivraisonReport.generatePdf(
+            title: "DRM site ${controller.fieldNomSite.text}",
+            articles: List.generate(
+              controller.materiels.length,
+              (index) => Article(
+                name: controller.materiels[index],
+                fournisseur: controller.project?.name ?? "",
+                quantite: 1,
+              ),
+            ),
+            operator: controller.operator?.operator ?? "",
+            destination: "Depot Cometel",
+            ref: "",
+            demandeur: "Cometel",
+            nom_pdf: "DRM site ${controller.fieldNomSite.text}",
+          );
+          await OpenFile.open(file.path);
+        },
+        backgroundColor: Colors.black,
+        child: const Icon(
+          Icons.file_open,
+        ),
+      ),
       appBar: AppBar(
         elevation: 0,
         title: Text(
@@ -38,10 +66,13 @@ class RetourMaterialPage extends GetWidget<RetourMaterielController> {
                 formStateKey: controller.formkeySite,
                 onTap: () {},
               ),
+              const SizedBox(
+                height: 5,
+              ),
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 3),
                 title: const Text(
-                  "date démontage",
+                  "Date démontage",
                 ),
                 trailing: GestureDetector(
                   onTap: () {
@@ -51,13 +82,13 @@ class RetourMaterialPage extends GetWidget<RetourMaterielController> {
                       lastDate: DateTime(2025),
                     );
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.calendar_month,
                   ),
                 ),
               ),
               GetBuilder<RetourMaterielController>(builder: (conteroller) {
-                return Container(
+                return SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Row(
@@ -154,8 +185,99 @@ class RetourMaterialPage extends GetWidget<RetourMaterielController> {
               TitleComponentTask(
                 title: "Ajouter la Liste de materiel demonté",
                 isActive: false,
-                onTap: () {},
+                onTap: () {
+                  //showLicensePage(context: context);
+                  showModalBottomSheet(
+                    context: context,
+                    isDismissible: true,
+                    isScrollControlled: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
+                    ),
+                    builder: (context) {
+                      return GetBuilder<RetourMaterielController>(
+                          builder: (controller) {
+                        return Container(
+                          width: double.infinity,
+                          height: 600,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: ListView.builder(
+                            itemCount: controller.choixMateriel.length,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              final item = controller.choixMateriel[index];
+                              return ListTile(
+                                title: Text(
+                                  item,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(color: Colors.black),
+                                ),
+                                trailing: Checkbox(
+                                  value: controller.isContain(item),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  onChanged: (value) {
+                                    controller.updateListRetourMateriel(item);
+                                  },
+                                ),
+                                onTap: () {
+                                  controller.updateListRetourMateriel(item);
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      });
+                    },
+                  );
+                },
               ),
+              GetBuilder<RetourMaterielController>(builder: (controller) {
+                return controller.materiels.isEmpty
+                    ? Container()
+                    : ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 0,
+                        ),
+                        title: Text(
+                          "Article",
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      );
+              }),
+              GetBuilder<RetourMaterielController>(builder: (controller) {
+                return controller.materiels.isEmpty
+                    ? Container()
+                    : SizedBox(
+                        width: double.infinity,
+                        height: Get.height * 0.5,
+                        child: ListView.builder(
+                          itemCount: controller.materiels.length,
+                          itemBuilder: (context, index) {
+                            final article = controller.materiels[index];
+                            return Card(
+                              child: ListTile(
+                                title: Text(
+                                  article,
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+              }),
             ],
           ),
         ),

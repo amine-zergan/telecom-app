@@ -71,6 +71,19 @@ class RetourMaterielController extends GetxController {
     update();
   }
 
+  void updateListRetourMateriel(String value) {
+    if (materiels.contains(value)) {
+      materiels.remove(value);
+    } else {
+      materiels.add(value);
+    }
+    update();
+  }
+
+  bool isContain(String value) {
+    return materiels.contains(value);
+  }
+
   @override
   void onInit() {
     fieldNomSite = TextEditingController();

@@ -63,6 +63,7 @@ class LivraisonReport {
               fontWeight: FontWeight.normal,
             ),
           ),
+          SizedBox(height: 0.4 * PdfPageFormat.cm),
           buildArticles(
             articles,
           ),
@@ -80,7 +81,6 @@ class LivraisonReport {
         headerStyle: TextStyle(fontWeight: FontWeight.bold),
         cellAlignment: Alignment.centerLeft,
         headers: [
-          "Réf",
           "Nom",
           "Fournisseur",
           "Quantité",
@@ -88,10 +88,9 @@ class LivraisonReport {
         data: articles
             .map(
               (article) => [
-                article.ref,
                 article.name,
                 article.fournisseur,
-                article.quantite
+                article.quantite,
               ],
             )
             .toList(),
