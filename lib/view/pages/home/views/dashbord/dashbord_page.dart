@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:telecom/view/pages/home/views/dashbord/components/dashbord_app_bar.dart';
+import 'package:telecom/view/pages/home/views/dashbord/components/welcome_component.dart';
 
 class DashbordPage extends StatelessWidget {
   const DashbordPage({super.key});
@@ -79,131 +80,65 @@ class DashbordPage extends StatelessWidget {
   }
 }
 
+class CustomPathClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(10, size.height * 0.85);
+    path.lineTo(size.width * 0.7, size.height * 0.85);
+    path.quadraticBezierTo(
+        size.width * 0.7 - 100, size.height / 2, size.width, 10);
+    path.lineTo(10, 10);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
 class BackGroundContainer extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    const textStyle = TextStyle(
-      color: Colors.black,
-      fontSize: 13,
-    );
-    const textSpan = TextSpan(
-      text: 'State',
-      style: textStyle,
-    );
-    final textPainter = TextPainter(
-      text: textSpan,
-      textDirection: TextDirection.ltr,
-    );
-    textPainter.layout(
-      minWidth: 0,
-      maxWidth: size.width,
-    );
-    final offset = Offset(size.width - 120, size.height / 2 - 10);
-
     Path getClip(Size size) {
       Path path = Path();
-      path.lineTo(0, size.height);
-      path.lineTo(size.width, size.height);
-      path.quadraticBezierTo(size.width - 100, size.height / 2, size.width, 0);
-      path.lineTo(0, 0);
+      path.lineTo(10, size.height * 0.95);
+      path.lineTo(size.width * 0.7, size.height * 0.95);
+      path.quadraticBezierTo(size.width * 0.7 - 90, 70, size.width * 0.72, 0);
       path.close();
       return path;
     }
 
     Offset center = Offset(size.width - 80, size.height / 2);
+
     Paint paint = Paint()
       ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.square
-      ..strokeWidth = 12
+      ..strokeWidth = 10
       ..style = PaintingStyle.stroke
       ..color = Colors.grey;
     Paint paint1 = Paint()
       ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.square
       ..style = PaintingStyle.fill
-      ..color = Colors.purple;
-    //canvas.clipRect(rect);
-    //canvas.clipPath(getClip(size));
+      ..color = Colors.blueAccent;
+    Paint paintRect = Paint()
+      ..strokeJoin = StrokeJoin.round
+      ..strokeCap = StrokeCap.square
+      ..style = PaintingStyle.fill
+      ..color = const Color.fromARGB(255, 128, 103, 201);
+
+    Rect rect = Rect.fromLTWH(10, 10, size.width, size.height * 0.85);
     canvas.drawCircle(center, 60, paint);
-    canvas.drawCircle(center, 40, paint1);
-    textPainter.paint(canvas, offset);
+    canvas.drawCircle(center, 50, paint1);
+    canvas.clipPath(getClip(size));
+    canvas.drawRect(rect, paintRect);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
-  }
-}
-
-class WelcomeDashBord extends StatelessWidget {
-  const WelcomeDashBord({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return SliverToBoxAdapter(
-      // ignore: sized_box_for_whitespace
-      child: Container(
-        height: size.height * 0.2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            10,
-          ),
-          color: Colors.white,
-        ),
-        margin: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 10,
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              right: -50,
-              top: 10,
-              bottom: 10,
-              child: LottieBuilder.asset(
-                "assets/animations/home.json",
-                height: 70,
-                repeat: false,
-                fit: BoxFit.contain,
-              ),
-            ),
-            Positioned(
-              left: 10,
-              top: 5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Bienvenue ",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Amine Mejri",
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Commencer A creer\nvotre Mission de cette \nSemaine ",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Colors.black87,
-                        ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
   }
 }

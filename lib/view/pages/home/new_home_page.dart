@@ -1,14 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:telecom/view/pages/home/views/contact_page/contact_page.dart';
-
 import 'package:telecom/view/pages/home/views/dashbord/dashbord_page.dart';
 import 'package:telecom/view/pages/home/views/navigation/navigation_page.dart';
 import 'package:telecom/view/pages/home/views/settings/setting_page.dart';
 import 'package:telecom/view/routes/route_name.dart';
-import 'package:telecom/view/theme/color_constants.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
 class HomeNewPage extends StatefulWidget {
@@ -45,7 +42,7 @@ class _HomeNewPageState extends State<HomeNewPage> {
         onPressed: () {
           Get.toNamed(RouteName.createPage);
         },
-        backgroundColor: colorButton,
+        backgroundColor: const Color.fromARGB(255, 73, 125, 239),
         child: const Icon(
           Icons.add,
           size: 25,
@@ -57,7 +54,7 @@ class _HomeNewPageState extends State<HomeNewPage> {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 5.0,
-        color: Colors.grey.shade800,
+        color: const Color.fromARGB(255, 0, 51, 145),
         elevation: 20,
         height: 65,
         padding: const EdgeInsets.only(
