@@ -13,7 +13,7 @@ class RetourMaterielController extends GetxController {
     required this.setting,
   });
 
-  late TextEditingController fieldNomSite;
+  late TextEditingController fieldNomSite; // initstate
   late DateTime dateDemontage;
   late FocusNode focusSite;
   GlobalKey<FormState> formkeySite = GlobalKey();

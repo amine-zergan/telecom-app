@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
+import 'package:telecom/view/pages/home/views/settings/components/card_parametre.dart';
+import 'package:telecom/view/pages/home/views/settings/components/card_societe.dart';
 import 'package:telecom/view/pages/home/views/settings/controller/setting_controller.dart';
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/theme/size_constants.dart';
@@ -104,46 +106,6 @@ class SettingPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class SocieteCard extends StatelessWidget {
-  const SocieteCard({
-    Key? key,
-    required this.controller,
-    required this.onPressed,
-  }) : super(key: key);
-  final SettingController controller;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return CardSetting(
-      title: "Societé",
-      subtitle: controller.entreprise == null
-          ? "Nom de entreprise "
-          : controller.entreprise!.name,
-      logo: controller.imageEntreprise == null
-          ? const Padding(
-              padding: EdgeInsets.only(left: 17.0),
-              child: Icon(
-                Icons.home_work,
-                size: 25,
-              ),
-            )
-          : ClipRRect(
-              borderRadius: BorderRadius.circular(
-                30,
-              ),
-              child: Image.memory(
-                controller.imageEntreprise!,
-                width: 50,
-                height: 80,
-                fit: BoxFit.fill,
-              ),
-            ),
-      onPressed: onPressed,
     );
   }
 }
@@ -271,42 +233,6 @@ class AppBarSetting extends StatelessWidget {
             const Spacer(),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ParametreCard extends StatelessWidget {
-  const ParametreCard({
-    Key? key,
-    required this.title,
-    required this.onTap,
-    required this.icons,
-  }) : super(key: key);
-  final String title;
-  final VoidCallback onTap;
-  final IconData icons;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      color: Colors.black12,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(padding10 / 2),
-      ),
-      margin: const EdgeInsets.symmetric(
-        horizontal: padding10 / 2,
-        vertical: padding10 / 5,
-      ),
-      child: ListTile(
-        title: Text(title),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(padding10 / 2),
-        ),
-        horizontalTitleGap: 0.0,
-        onTap: onTap,
-        leading: Icon(icons),
       ),
     );
   }

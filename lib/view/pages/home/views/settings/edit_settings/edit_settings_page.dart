@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
 import 'package:telecom/view/routes/route_name.dart';
-
 import 'package:telecom/view/theme/size_constants.dart';
 
 class EditSetting extends StatelessWidget {
@@ -17,15 +15,22 @@ class EditSetting extends StatelessWidget {
         bottom: false,
         child: CustomScrollView(
           slivers: [
-            const SliverAppBar(
+            SliverAppBar(
               expandedHeight: 250,
+              elevation: 10,
+              pinned: true,
+              backgroundColor: Colors.amber,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(
-                  "Parametre",
-                ),
-                centerTitle: false,
-                expandedTitleScale: 1.6,
-              ),
+                  title: Text(
+                    "Parametre",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  centerTitle: false,
+                  expandedTitleScale: 1.7,
+                  titlePadding:
+                      const EdgeInsetsDirectional.only(start: 60, bottom: 16)
+                  // EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  ),
             ),
             const SliverPadding(
               padding: EdgeInsets.only(top: padding10),
@@ -50,7 +55,7 @@ class EditSetting extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(
                     top: padding10, left: padding10, bottom: padding10),
-                child: TitleComponent(title: "Configuration :"),
+                child: Text("Configuration :"),
               ),
             ),
             CardTitleView(
@@ -73,6 +78,11 @@ class EditSetting extends StatelessWidget {
               onTap: () {},
               title: "Projet",
             ),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 220,
+              ),
+            )
           ],
         ),
       ),
@@ -97,21 +107,26 @@ class CardTitleView extends StatelessWidget {
           horizontal: padding10 * 0.5,
         ),
         child: Card(
-          elevation: 0,
-          color: Colors.black26,
+          elevation: 1,
+          //color: Colors.white24,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(padding10 * 0.5)),
+            borderRadius: BorderRadius.circular(
+              padding10 * 0.5,
+            ),
+          ),
           child: ListTile(
             onTap: onTap,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(padding10 * 0.5),
+              borderRadius: BorderRadius.circular(
+                padding10 * 0.5,
+              ),
             ),
             title: Text(
               title,
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
-                  .copyWith(fontWeight: FontWeight.w600),
+                  .copyWith(fontWeight: FontWeight.w500),
             ),
             trailing: const Icon(
               Icons.arrow_forward_ios_rounded,

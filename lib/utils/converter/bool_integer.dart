@@ -1,6 +1,7 @@
 class BoolConverter {
   BoolConverter._();
 
+  ///
   /// Function return [bool] converted from type int
   ///
   static bool boolFromInt(int value) {
