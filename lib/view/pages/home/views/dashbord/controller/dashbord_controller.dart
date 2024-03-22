@@ -9,7 +9,9 @@ import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dar
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
 import 'package:telecom/model/mission/mission_model.dart';
 import 'package:telecom/model/components/project/operator_model.dart';
+import 'package:telecom/model/tasks/task_model.dart';
 
+// ChangeNotifier
 class DashboardController extends GetxController {
   final IrepositoryMissionDatasource missionRepository;
   final IrepositoryTaskDatasource taskDatasource;
@@ -17,21 +19,28 @@ class DashboardController extends GetxController {
   final IrepositoryProjectDatasource projectDatasource;
   final IrepositroyProfileDataSource profileDataSource;
 
-  DashboardController(
-      {required this.missionRepository,
-      required this.operatorDatasource,
-      required this.taskDatasource,
-      required this.profileDataSource,
-      required this.projectDatasource});
+  DashboardController({
+    required this.missionRepository,
+    required this.operatorDatasource,
+    required this.taskDatasource,
+    required this.profileDataSource,
+    required this.projectDatasource,
+  });
 
   Mission? mission;
   Profile? user;
   List<Operator> dataOperators = [];
+  List<Task> completeTask = [];
+  List<Task> incomplitTask = [];
+  List<Mission> missions = [];
 
   fetchCurrentMission() async {
     try {
-      final value = await missionRepository.fetchIncomplited();
-      print("======== current mission from dashboard $value ===========");
+      final result = await missionRepository.fetchIncomplited();
+      if (result.isNotEmpty) {
+        result.map((e) => missions.add(e)).toList();
+      }
+      print("======== current mission from dashboard $result ===========");
     } catch (e) {
       print("======== error mission from db ${e.toString()} ===========");
     }
@@ -50,7 +59,7 @@ class DashboardController extends GetxController {
       print("============= error ${e.toString()}");
       dataOperators = [];
     }
-    update();
+    update(); //
   }
 
   void getUser() async {

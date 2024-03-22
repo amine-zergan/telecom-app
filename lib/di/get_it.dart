@@ -31,7 +31,6 @@ import '../db/services/remote_data_service/load_page_init/remote_load_data_sourc
 final getItInstance = GetIt.I;
 Future<void> setup() async {
   final sharedPreferences = await SharedPreferences.getInstance();
-
   getItInstance.registerLazySingleton(() => sharedPreferences);
   getItInstance.registerLazySingleton<ImagePicker>(() => ImagePicker());
   getItInstance.registerLazySingleton<DbHelper>(() => DbHelper());
