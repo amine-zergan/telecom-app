@@ -4,7 +4,8 @@ import 'package:telecom/view/pages/home/views/settings/reports/retour_material/r
 class RetourMaterileBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(RetourMaterielController(
+    Get.put(
+      RetourMaterielController(
       setting: Get.find(),
     ));
   }

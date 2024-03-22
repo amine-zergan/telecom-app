@@ -1,23 +1,15 @@
-// ignore_for_file: library_prefixes
+// ignore_for_file: library_prefixes, await_only_futures
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
-import 'package:telecom/di/get_it.dart' as getIt;
+import 'package:telecom/init.dart';
 
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/routes/routes_navigation.dart';
 import 'package:telecom/view/theme/theming_app.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await getIt.setup();
-  SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp,
-    ],
-  );
+  await initialise();
   runApp(
     const MyApp(),
   );
