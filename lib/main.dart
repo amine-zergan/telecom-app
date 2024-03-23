@@ -1,9 +1,7 @@
 // ignore_for_file: library_prefixes, await_only_futures
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:telecom/init.dart';
-
 import 'package:telecom/view/routes/route_name.dart';
 import 'package:telecom/view/routes/routes_navigation.dart';
 import 'package:telecom/view/theme/theming_app.dart';
