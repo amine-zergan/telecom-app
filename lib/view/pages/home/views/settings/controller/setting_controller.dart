@@ -10,7 +10,7 @@ import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/components/project/project_model.dart';
 import 'package:telecom/model/entreprise/entreprise_model.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
-import 'package:telecom/utils/converter/base64_encode.dart';
+import 'package:telecom/helpers/utils/converter/base64_encode.dart';
 
 enum StatusData { loading, loaded, initial, error }
 

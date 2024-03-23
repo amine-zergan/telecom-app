@@ -8,7 +8,7 @@ import 'package:telecom/db/Remote_Data_Source/contact/abstract_contact_datasourc
 import 'package:telecom/db/services/cache/filter/filter_service.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/filter_model.dart';
-import 'package:telecom/utils/converter/enum/order_post.dart';
+import 'package:telecom/helpers/utils/converter/enum/order_post.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactController extends GetxController with StateMixin {

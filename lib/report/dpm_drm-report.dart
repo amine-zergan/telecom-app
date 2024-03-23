@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:telecom/report/models/article_model.dart';
-import 'package:telecom/utils/formater/time_format.dart';
+import 'package:telecom/helpers/utils/formater/time_format.dart';
 
 /// File dart for creating dpm en format pdf :
 ///  need for creating Dpm we need :

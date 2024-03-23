@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../../../validators/profil/profile_validator.dart';
+import '../../../helpers/validators/profil/profile_validator.dart';
 
 class AddressFormField extends StatelessWidget {
   const AddressFormField({

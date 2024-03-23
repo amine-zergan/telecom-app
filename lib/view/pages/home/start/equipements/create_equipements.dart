@@ -12,7 +12,7 @@ import 'package:telecom/view/pages/home/start/equipements/components/nom_descrip
 import 'package:telecom/view/pages/home/start/equipements/components/radio_tile_install_equipement.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_controller.dart';
 import 'package:telecom/view/theme/size_constants.dart';
-import '../../../../../validators/equipement/equipement_validator.dart';
+import '../../../../../helpers/validators/equipement/equipement_validator.dart';
 import '../site/components/title_section_component.dart';
 
 class StartMaterial extends GetWidget<CreateEquipementController> {

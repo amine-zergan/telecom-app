@@ -4,7 +4,7 @@ import 'package:telecom/db/Remote_Data_Source/project/abstract_project_datasourc
 import 'package:telecom/db/helpers/constant_db.dart';
 import 'package:telecom/model/components/project/project_model.dart';
 
-import 'package:telecom/utils/converter/enum/indoor_outdoor_enum.dart';
+import 'package:telecom/helpers/utils/converter/enum/indoor_outdoor_enum.dart';
 import 'package:telecom/view/pages/home/start/tasks/data/data_project.dart';
 import '../../../../../../db/Remote_Data_Source/articles/abstract_material_datasource.dart';
 import '../../../../../../model/components/article/material_model.dart';

@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:telecom/utils/input_formatter/phone_formater.dart';
-import 'package:telecom/validators/profil/profile_validator.dart';
+import 'package:telecom/helpers/utils/input_formatter/phone_formater.dart';
+import 'package:telecom/helpers/validators/profil/profile_validator.dart';
 
 class PhoneFormField extends StatelessWidget {
   const PhoneFormField({

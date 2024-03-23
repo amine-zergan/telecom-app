@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:telecom/view/pages/home/start/equipements/controller/create_equipement_controller.dart';
 import 'package:telecom/view/theme/color_constants.dart';
 
-import '../../../../../../utils/converter/enum/indoor_outdoor_enum.dart';
+import '../../../../../../helpers/utils/converter/enum/indoor_outdoor_enum.dart';
 
 class CardRadioTile extends StatelessWidget {
   const CardRadioTile({

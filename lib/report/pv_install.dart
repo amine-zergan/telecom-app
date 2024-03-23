@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
-import '../utils/formater/time_format.dart';
+import '../helpers/utils/formater/time_format.dart';
 
 class PvInstall {
   static Future<File> generatePdf({

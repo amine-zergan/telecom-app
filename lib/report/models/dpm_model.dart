@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/report/models/article_model.dart';
 
-import '../../utils/converter/enum/type_report.dart';
+import '../../helpers/utils/converter/enum/type_report.dart';
 
 /// type of Report : dpm or drm
 

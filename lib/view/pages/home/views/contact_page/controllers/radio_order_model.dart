@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:telecom/utils/converter/enum/order_post.dart';
+import 'package:telecom/helpers/utils/converter/enum/order_post.dart';
 
 class OrderModel {
   final String title;

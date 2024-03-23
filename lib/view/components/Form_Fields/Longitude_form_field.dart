@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:telecom/validators/site/coordonnee_validator.dart';
+import 'package:telecom/helpers/validators/site/coordonnee_validator.dart';
 
-import '../../../utils/input_formatter/longitude_formater.dart';
+import '../../../helpers/utils/input_formatter/longitude_formater.dart';
 
 class LongitudeFormField extends StatelessWidget {
   const LongitudeFormField({

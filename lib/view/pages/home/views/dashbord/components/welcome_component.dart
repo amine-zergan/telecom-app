@@ -12,12 +12,11 @@ class WelcomeDashBord extends StatelessWidget {
     return SliverToBoxAdapter(
       // ignore: sized_box_for_whitespace
       child: Container(
-        height: size.height * 0.2,
+        height: size.height * 0.16,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
             10,
           ),
-          color: Colors.white,
         ),
         margin: const EdgeInsets.symmetric(
           horizontal: 10,

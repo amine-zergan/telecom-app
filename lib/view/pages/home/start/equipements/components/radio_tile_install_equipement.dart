@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telecom/view/pages/home/start/equipements/components/card_list_tile.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
-import '../../../../../../utils/converter/enum/indoor_outdoor_enum.dart';
+import '../../../../../../helpers/utils/converter/enum/indoor_outdoor_enum.dart';
 import '../../../../../theme/size_constants.dart';
 import '../controller/create_equipement_controller.dart';
 

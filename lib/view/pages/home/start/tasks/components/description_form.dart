@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:telecom/validators/task/task_validator.dart';
+import 'package:telecom/helpers/validators/task/task_validator.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
 import 'package:telecom/view/pages/home/start/tasks/controller/create_task_controller.dart';
 import 'package:telecom/view/theme/size_constants.dart';

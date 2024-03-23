@@ -2,8 +2,8 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:telecom/utils/converter/bool_integer.dart';
-import '../../utils/converter/enum/status_mission.dart';
+import 'package:telecom/helpers/utils/converter/bool_integer.dart';
+import '../../helpers/utils/converter/enum/status_mission.dart';
 import '../tasks/task_model.dart';
 
 class Mission {

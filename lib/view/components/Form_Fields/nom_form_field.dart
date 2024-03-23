@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../validators/profil/profile_validator.dart';
+import '../../../helpers/validators/profil/profile_validator.dart';
 
 class NomFormField extends StatelessWidget {
   NomFormField(

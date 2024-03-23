@@ -7,7 +7,7 @@ import 'package:telecom/db/Remote_Data_Source/tasks/abstract_task_datasource.dar
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/components/project/project_model.dart';
 import 'package:telecom/model/tasks/task_model.dart';
-import 'package:telecom/utils/formater/time_format.dart';
+import 'package:telecom/helpers/utils/formater/time_format.dart';
 
 class CreateTaskController extends GetxController {
   final IrepositoryProjectDatasource repo;

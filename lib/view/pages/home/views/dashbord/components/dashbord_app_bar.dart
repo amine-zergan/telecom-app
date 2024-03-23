@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
-import 'package:telecom/utils/converter/base64_encode.dart';
+import 'package:telecom/helpers/utils/converter/base64_encode.dart';
 import 'package:telecom/view/pages/home/views/dashbord/controller/dashbord_controller.dart';
 import 'package:telecom/view/routes/route_name.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:telecom/report/qa.dart';
-import 'package:telecom/utils/formater/image_picker.dart';
+import 'package:telecom/helpers/utils/formater/image_picker.dart';
 
 class QaController extends GetxController {
   late TextEditingController nomSiteField;

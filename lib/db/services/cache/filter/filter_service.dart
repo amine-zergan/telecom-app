@@ -2,7 +2,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telecom/db/services/cache/filter/constant_params_filter.dart';
 
-import 'package:telecom/utils/converter/enum/order_post.dart';
+import 'package:telecom/helpers/utils/converter/enum/order_post.dart';
 
 abstract class FilterServiceRepository {
   Future<double> readLimitSearch();

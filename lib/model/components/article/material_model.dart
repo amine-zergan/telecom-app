@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:telecom/model/components/project/project_model.dart';
-import 'package:telecom/utils/converter/enum/indoor_outdoor_enum.dart';
+import 'package:telecom/helpers/utils/converter/enum/indoor_outdoor_enum.dart';
 
 class Equipement {
   final int? id;

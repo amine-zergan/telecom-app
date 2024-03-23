@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/components/project/project_model.dart';
-import 'package:telecom/utils/formater/time_format.dart';
+import 'package:telecom/helpers/utils/formater/time_format.dart';
 
 class Task {
   final int? id;

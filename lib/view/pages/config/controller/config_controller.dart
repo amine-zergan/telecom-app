@@ -10,11 +10,11 @@ import 'package:telecom/db/services/core/constants_config.dart';
 import 'package:telecom/db/services/remote_data_service/load_page_init/Remote_load_config.dart';
 import 'package:telecom/model/entreprise/entreprise_model.dart';
 import 'package:telecom/model/entreprise/profile_and_contact/profile_user.dart';
-import 'package:telecom/utils/converter/base64_encode.dart';
-import 'package:telecom/utils/formater/image_picker.dart';
-import 'package:telecom/utils/formater/phone_format.dart';
+import 'package:telecom/helpers/utils/converter/base64_encode.dart';
+import 'package:telecom/helpers/utils/formater/image_picker.dart';
+import 'package:telecom/helpers/utils/formater/phone_format.dart';
 
-import 'package:telecom/validators/file_size_validator.dart';
+import 'package:telecom/helpers/validators/file_size_validator.dart';
 import 'package:telecom/view/routes/route_name.dart';
 
 class ConfigController extends GetxController {

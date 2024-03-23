@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linearprogress/linearprogress.dart';
 
-import 'package:telecom/validators/client_validator.dart';
+import 'package:telecom/helpers/validators/client_validator.dart';
 import 'package:telecom/view/components/Form_Fields/phone_form_field.dart';
 import 'package:telecom/view/pages/home/views/settings/reports/pv_reception/pv_controller.dart';
 
