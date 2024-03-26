@@ -2,18 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:telecom/view/components/Form_Fields/nom_form_field.dart';
-import 'package:telecom/view/pages/home/start/components/intro_title_page.dart';
 import 'package:telecom/view/pages/home/start/mission/components/add_equipe_card.dart';
 import 'package:telecom/view/pages/home/start/mission/components/add_remouve_component.dart';
 import 'package:telecom/view/pages/home/start/mission/components/add_site_card.dart';
 import 'package:telecom/view/pages/home/start/mission/components/code_site_widget.dart';
 import 'package:telecom/view/pages/home/start/mission/components/deplacement_listtile_widget.dart';
-import 'package:telecom/view/pages/home/start/mission/components/nombre_jour_estime_widget.dart';
 import 'package:telecom/view/pages/home/start/mission/controller/create_mission_controller.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_component.dart';
 import 'package:telecom/view/pages/home/start/site/components/title_section_component.dart';
-import 'package:telecom/view/pages/home/start/components/icon_data_animatedPicker.dart';
 import 'package:telecom/view/theme/size_constants.dart';
 
 class BodyCreateMission extends StatelessWidget {
@@ -33,50 +31,76 @@ class BodyCreateMission extends StatelessWidget {
               1.5 * padding10,
             ),
             children: [
-              const Introtitle(
-                title:
-                    "Commencer à ouvrir votre mission et la suivie jusqu'à la cloturée et organiser votre taches et dépenses",
-              ),
-              const SizedBox(
-                height: 2 * padding10,
-              ),
+              //  const Introtitle(
+              // title:
+              // "Commencer à ouvrir votre mission et la suivie jusqu'à la cloturée et organiser votre taches et dépenses",
+              // ),
+              // const SizedBox(
+              // height: 2 * padding10,
+              // ),
               const TitleComponent(
                 title: "Mission et Dépense :",
               ),
-              const SizedBox(
-                height: padding10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const SubTitleComponent(
-                        title: "Date de depart :",
-                      ),
-                      const SizedBox(
-                        width: padding10,
-                      ),
-                      GetBuilder<CreateMissionController>(
-                        builder: (controller) {
-                          return Text(
-                            controller.dateDepart,
-                          );
-                        },
-                      ),
-                    ],
+              // const SizedBox(
+              // height: padding10,
+              // ),
+              TableCalendar(
+                locale: 'fr_FR',
+                onDaySelected: controller.onDaySelected,
+                onFormatChanged: (format) {},
+                onDayLongPressed: controller.onDaySelected,
+                selectedDayPredicate: (day) => false,
+                headerVisible: true,
+                onRangeSelected: (start, end, focusedDay) {
+                  controller.onDaySelected(focusedDay, start!);
+                },
+                rangeSelectionMode: RangeSelectionMode.toggledOn,
+                rangeStartDay: controller.startedDateMission,
+                rangeEndDay: controller.finishedDateMission,
+                currentDay: controller.finishedDateMission,
+                focusedDay: controller.startedDateMission,
+                firstDay: DateTime.now().subtract(
+                  const Duration(
+                    days: 20,
                   ),
-                  IconDateWidget(
-                    onTap: () {
-                      controller.updateDateTask(context);
-                    },
+                ),
+                lastDay: DateTime.now().add(
+                  const Duration(
+                    days: 30,
                   ),
-                ],
+                ),
               ),
-              const SizedBox(
-                height: padding10,
-              ),
-              const NombreJourEstime(),
+              // Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // children: [
+              // Row(
+              // children: [
+              // const SubTitleComponent(
+              // title: "Date de depart :",
+              // ),
+              // const SizedBox(
+              // width: padding10,
+              // ),
+              // GetBuilder<CreateMissionController>(
+              // builder: (controller) {
+              // return Text(
+              // controller.dateDepart,
+              // );
+              // },
+              // ),
+              // ],
+              // ),
+              // IconDateWidget(
+              // onTap: () {
+              // controller.updateDateTask(context);
+              // },
+              // ),
+              // ],
+              // ),
+              // const SizedBox(
+              // height: padding10,
+              // ),
+              //const NombreJourEstime(),
               const SizedBox(
                 height: padding10,
               ),

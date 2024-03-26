@@ -17,6 +17,7 @@ class WelcomeDashBord extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             10,
           ),
+          color: Colors.white,
         ),
         margin: const EdgeInsets.symmetric(
           horizontal: 10,

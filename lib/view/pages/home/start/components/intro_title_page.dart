@@ -13,7 +13,7 @@ class Introtitle extends StatelessWidget {
       title,
       style: Theme.of(context).textTheme.titleMedium!.copyWith(
             fontWeight: FontWeight.w500,
-            color: Colors.grey.shade400,
+            color: Colors.grey.shade600,
           ),
       textAlign: TextAlign.center,
     );

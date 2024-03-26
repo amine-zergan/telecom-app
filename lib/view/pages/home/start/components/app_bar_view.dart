@@ -24,7 +24,7 @@ class AppBarCreate extends StatelessWidget implements PreferredSizeWidget {
       ),
       //backgroundColor: Colors.grey.shade800,
       elevation: 1,
-      centerTitle: false,
+      centerTitle: true,
       leading: const GetBackButton(),
       actions: [
         AddButton(

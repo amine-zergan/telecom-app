@@ -36,6 +36,17 @@ class CreateMissionController extends GetxController {
     "deux semaines"
   ];
 
+  DateTime startedDateMission = DateTime.now();
+  DateTime? finishedDateMission;
+
+  void onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    startedDateMission = focusedDay;
+    finishedDateMission = selectedDay;
+    print("**** selected started date $startedDateMission *************");
+    print("**** selected finished date $finishedDateMission *************");
+    update();
+  }
+
   /// Update Functions for variable declaring to injected to Ui components :
   /// ************
 
@@ -98,7 +109,6 @@ class CreateMissionController extends GetxController {
       membreEquipe.add(fieldsEquipe.text);
       fieldsEquipe.clear();
     }
-
     update();
   }
 
