@@ -8,6 +8,7 @@ class CreateSiteBinding extends Bindings {
     Get.put(
       CreateSiteController(
         repositoryOperator: getItInstance(),
+        navigationController: Get.find(),
         repositorySite: getItInstance(),
       ),
     );

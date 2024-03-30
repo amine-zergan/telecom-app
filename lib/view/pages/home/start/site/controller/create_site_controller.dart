@@ -2,18 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-
 import 'package:telecom/data/post_data.dart';
 import 'package:telecom/db/Remote_Data_Source/project/abstract_operator_datasource.dart';
 import 'package:telecom/db/Remote_Data_Source/site/abstract_site_datasource.dart';
 import 'package:telecom/model/components/project/operator_model.dart';
 import 'package:telecom/model/site/site_model.dart';
+import 'package:telecom/view/pages/home/views/navigation/controllers/navigation_Controller.dart';
 
 class CreateSiteController extends GetxController {
   final IrepositoryOperatorDatasource repositoryOperator;
+  final NavigationController navigationController;
   final IrepositorySiteDatasource repositorySite;
   CreateSiteController({
     required this.repositoryOperator,
+    required this.navigationController,
     required this.repositorySite,
   });
 
@@ -143,7 +145,9 @@ class CreateSiteController extends GetxController {
           );
           // ignore: avoid_print
 
-          await repositorySite.insert(model);
+          await repositorySite.insert(model).then((value) {
+            navigationController.addSiteTolist(model);
+          });
 
           Get.snackbar(
             "Notification",

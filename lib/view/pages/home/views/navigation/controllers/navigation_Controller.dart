@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, avoid_print
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/site/abstract_site_datasource.dart';
@@ -15,6 +17,8 @@ class NavigationController extends GetxController {
   }
   late TextEditingController fieldLongitude;
   late TextEditingController fieldLatitude;
+  late StreamSubscription<Site> streamSubscription;
+  StreamController<Site> streamController = StreamController<Site>.broadcast();
   GlobalKey<FormState> form = GlobalKey<FormState>();
 
   List<Site> allSite = [];
@@ -27,10 +31,18 @@ class NavigationController extends GetxController {
   @override
   void onInit() {
     print("========= call navigation controller onInit=======");
+
     fetchAllSite();
+    streamSubscription = streamController.stream.listen((event) {});
     fieldLatitude = TextEditingController();
     fieldLongitude = TextEditingController();
+
     super.onInit();
+  }
+
+  void addSiteTolist(Site value) {
+    allSite.add(value);
+    update();
   }
 
   void fetchAllSite() async {
@@ -76,6 +88,7 @@ class NavigationController extends GetxController {
   void onClose() {
     fieldLatitude.dispose();
     fieldLongitude.dispose();
+    streamSubscription.cancel();
     print("P====== onclose controller navigation ==============");
     super.onClose();
   }
