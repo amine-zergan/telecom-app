@@ -16,9 +16,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ConfigController controller;
 
   @override

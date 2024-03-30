@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Introtitle extends StatelessWidget {
   const Introtitle({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
   final String title;
 
   @override

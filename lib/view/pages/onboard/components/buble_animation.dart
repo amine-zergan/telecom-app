@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class Buble extends StatelessWidget {
   const Buble({
-    Key? key,
+    super.key,
     required this.selectIndex,
     required this.index,
-  }) : super(key: key);
+  });
 
   final int selectIndex;
   final int index;

@@ -5,9 +5,9 @@ import 'package:telecom/view/pages/home/views/navigation/controllers/navigation_
 
 class NavigatorIconButton extends StatelessWidget {
   const NavigatorIconButton({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final NavigationController controller;
 
   @override

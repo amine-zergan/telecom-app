@@ -6,11 +6,11 @@ import '../controller/contact_controller.dart';
 
 class PostRadioTileCard extends StatelessWidget {
   const PostRadioTileCard({
-    Key? key,
+    super.key,
     required this.model,
     required this.controller,
     required this.index,
-  }) : super(key: key);
+  });
 
   final String model;
   final CreateContactController controller;

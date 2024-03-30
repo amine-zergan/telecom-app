@@ -6,9 +6,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class DescriptionFormWithTile extends StatelessWidget {
   const DescriptionFormWithTile({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateTaskController controller;
 
   @override

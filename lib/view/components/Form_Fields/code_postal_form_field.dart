@@ -6,14 +6,14 @@ import 'package:telecom/helpers/validators/profil/profile_validator.dart';
 
 class CodePostalFormField extends StatelessWidget {
   const CodePostalFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.onSaved,
     this.onChanged,
     this.onEditComplete,
     this.labelText,
     this.focusNode,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final Function(String? value)? onSaved;
   final Function(String? value)? onChanged;

@@ -7,9 +7,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class AddSiteComponent extends StatelessWidget {
   const AddSiteComponent({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateMissionController controller;
 
   @override

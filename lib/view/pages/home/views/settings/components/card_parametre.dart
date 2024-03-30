@@ -3,11 +3,11 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class ParametreCard extends StatelessWidget {
   const ParametreCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.onTap,
     required this.icons,
-  }) : super(key: key);
+  });
   final String title;
   final VoidCallback onTap;
   final IconData icons;

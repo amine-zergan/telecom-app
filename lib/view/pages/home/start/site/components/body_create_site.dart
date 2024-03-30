@@ -15,9 +15,9 @@ import 'package:telecom/view/pages/home/start/site/components/check_card_with_co
 
 class BodyCreateSite extends StatelessWidget {
   const BodyCreateSite({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateSiteController controller;
 
   @override

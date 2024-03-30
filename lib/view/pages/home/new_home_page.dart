@@ -133,12 +133,12 @@ class _HomeNewPageState extends State<HomeNewPage> {
 
 class BottomNavItem extends StatelessWidget {
   const BottomNavItem({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.label,
     required this.index,
     required this.icon,
-  }) : super(key: key);
+  });
 
   final int currentIndex;
   final String label;

@@ -6,11 +6,10 @@ import 'package:telecom/view/pages/home/start/site/components/add_button.dart';
 
 class AppBarCreate extends StatelessWidget implements PreferredSizeWidget {
   AppBarCreate(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.validate,
-      this.icon = Icons.check})
-      : super(key: key);
+      this.icon = Icons.check});
   final String title;
   final VoidCallback validate;
   IconData icon;

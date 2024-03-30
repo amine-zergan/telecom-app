@@ -5,10 +5,10 @@ import '../../../../../theme/color_constants.dart';
 
 class CheckCardTile extends StatelessWidget {
   const CheckCardTile({
-    Key? key,
+    super.key,
     required this.value,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   final bool value;
   final Function(bool?)? onChanged;

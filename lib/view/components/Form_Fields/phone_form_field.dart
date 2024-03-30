@@ -7,14 +7,14 @@ import 'package:telecom/helpers/validators/profil/profile_validator.dart';
 
 class PhoneFormField extends StatelessWidget {
   const PhoneFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.onSaved,
     this.onChanged,
     this.onEditComplete,
     this.focusNode,
     this.labelText,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final Function(String? value)? onSaved;

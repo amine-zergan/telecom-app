@@ -4,9 +4,9 @@ import '../../../theme/color_constants.dart';
 
 class StartedButton extends StatelessWidget {
   const StartedButton({
-    Key? key,
+    super.key,
     required this.press,
-  }) : super(key: key);
+  });
   final VoidCallback press;
 
   @override

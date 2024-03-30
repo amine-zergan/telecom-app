@@ -6,9 +6,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class ListContactView extends StatelessWidget {
   const ListContactView({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ContactController controller;
 
   @override

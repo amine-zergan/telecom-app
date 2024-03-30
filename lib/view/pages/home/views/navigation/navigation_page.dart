@@ -10,8 +10,8 @@ import 'package:telecom/view/routes/route_name.dart';
 
 class NavigationPage extends StatelessWidget {
   const NavigationPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

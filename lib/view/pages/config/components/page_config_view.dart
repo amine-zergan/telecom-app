@@ -12,9 +12,9 @@ import '../controller/config_controller.dart';
 
 class PageViewConfig extends StatelessWidget {
   const PageViewConfig({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ConfigController controller;
 

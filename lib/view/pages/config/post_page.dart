@@ -6,9 +6,9 @@ import 'package:telecom/view/pages/config/niveau_page.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ConfigController controller;
   @override
   Widget build(BuildContext context) {

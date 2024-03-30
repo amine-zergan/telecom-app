@@ -5,9 +5,9 @@ import 'package:telecom/view/pages/home/start/mission/controller/create_mission_
 
 class CodeSiteComponent extends StatelessWidget {
   const CodeSiteComponent({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateMissionController controller;
 
   @override

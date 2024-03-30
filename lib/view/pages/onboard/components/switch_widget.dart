@@ -8,10 +8,10 @@ import 'package:telecom/view/routes/route_name.dart';
 
 class SwitcheWidget extends StatelessWidget {
   const SwitcheWidget({
-    Key? key,
+    super.key,
     required this.selectIndex,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int selectIndex;
   final OnBoardController controller;

@@ -4,10 +4,10 @@ import 'package:telecom/view/pages/home/views/settings/setting_page.dart';
 
 class SocieteCard extends StatelessWidget {
   const SocieteCard({
-    Key? key,
+    super.key,
     required this.controller,
     required this.onPressed,
-  }) : super(key: key);
+  });
   final SettingController controller;
   final VoidCallback onPressed;
 

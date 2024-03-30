@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class SubTitleComponent extends StatelessWidget {
   const SubTitleComponent({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
   final String title;
 
   @override

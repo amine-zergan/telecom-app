@@ -399,11 +399,11 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
 
 class ImageItemWidget extends StatelessWidget {
   const ImageItemWidget({
-    Key? key,
+    super.key,
     required this.file,
     required this.index,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final File file;
   final int index;
@@ -579,11 +579,11 @@ class MetragePyloneWidget extends StatelessWidget {
 
 class ComponentItem extends StatelessWidget {
   const ComponentItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.isExist,
     this.onChanged,
-  }) : super(key: key);
+  });
   final String title;
   final bool isExist;
   final void Function(bool? value)? onChanged;

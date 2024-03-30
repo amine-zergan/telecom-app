@@ -8,11 +8,11 @@ import '../../../../../theme/size_constants.dart';
 
 class ListOperatorCard extends StatelessWidget {
   const ListOperatorCard({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onTap,
     required this.operators,
-  }) : super(key: key);
+  });
 
   final int? selectedIndex;
   final Function(int) onTap;

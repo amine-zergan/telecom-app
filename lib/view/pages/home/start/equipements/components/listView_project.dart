@@ -8,9 +8,9 @@ import '../../../../../../model/components/project/project_model.dart';
 
 class ListViewFournisseur extends StatelessWidget {
   const ListViewFournisseur({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateEquipementController controller;
 
   @override

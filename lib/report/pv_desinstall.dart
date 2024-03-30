@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_to_list_in_spreads
+
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';

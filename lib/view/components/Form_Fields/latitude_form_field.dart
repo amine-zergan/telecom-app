@@ -8,11 +8,11 @@ import '../../../helpers/utils/input_formatter/latitude_formater.dart';
 
 class LatitudeFormField extends StatelessWidget {
   const LatitudeFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.focusNode,
     this.onEditCompleted,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final FocusNode? focusNode;
   final void Function()? onEditCompleted;

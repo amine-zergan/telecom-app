@@ -4,9 +4,9 @@ import 'package:telecom/view/pages/home/start/site/controller/create_site_contro
 
 class CheckCardWithController extends StatelessWidget {
   const CheckCardWithController({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateSiteController controller;
 
   @override

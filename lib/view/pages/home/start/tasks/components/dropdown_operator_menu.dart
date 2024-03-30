@@ -4,10 +4,10 @@ import 'package:telecom/view/pages/home/start/tasks/controller/create_task_contr
 
 class DropdownOperatorWithController extends StatefulWidget {
   const DropdownOperatorWithController({
-    Key? key,
+    super.key,
     required this.size,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final Size size;
   final CreateTaskController controller;

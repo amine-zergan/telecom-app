@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class DescriptionFormField extends StatelessWidget {
   const DescriptionFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.focusNode,
     this.onEditComplete,
     required this.hintText,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Function()? onEditComplete;

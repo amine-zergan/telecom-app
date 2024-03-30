@@ -6,9 +6,9 @@ import 'package:telecom/view/pages/config/niveau_page.dart';
 
 class SalairePage extends StatelessWidget {
   const SalairePage({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ConfigController controller;
   @override
   Widget build(BuildContext context) {

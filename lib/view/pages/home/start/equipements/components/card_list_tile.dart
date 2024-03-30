@@ -6,11 +6,11 @@ import '../../../../../../helpers/utils/converter/enum/indoor_outdoor_enum.dart'
 
 class CardRadioTile extends StatelessWidget {
   const CardRadioTile({
-    Key? key,
+    super.key,
     required this.value,
     required this.title,
     required this.controller,
-  }) : super(key: key);
+  });
   final Qualification value;
   final String title;
   final CreateEquipementController controller;

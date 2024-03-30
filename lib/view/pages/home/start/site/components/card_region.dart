@@ -4,11 +4,11 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class CardRegion extends StatelessWidget {
   const CardRegion({
-    Key? key,
+    super.key,
     required this.nom,
     required this.controller,
     required this.index,
-  }) : super(key: key);
+  });
 
   final String nom;
   final CreateSiteController controller;

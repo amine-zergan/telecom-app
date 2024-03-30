@@ -8,9 +8,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class DropDownRegionWithcontroller extends StatelessWidget {
   const DropDownRegionWithcontroller({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final CreateTaskController controller;
 

@@ -9,9 +9,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class FilterView extends StatelessWidget {
   const FilterView({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ContactController controller;
 

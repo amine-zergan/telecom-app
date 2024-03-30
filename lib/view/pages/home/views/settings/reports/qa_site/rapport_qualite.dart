@@ -186,12 +186,12 @@ class QualiteRapportPage extends GetWidget<QaController> {
 
 class FormSiteComponent extends StatelessWidget {
   FormSiteComponent({
-    Key? key,
+    super.key,
     required this.controller,
     required this.focusNode,
     required this.formStateKey,
     this.onTap,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final FocusNode focusNode;
   void Function()? onTap;
@@ -242,11 +242,11 @@ class FormSiteComponent extends StatelessWidget {
 
 class TitleComponentTask extends StatelessWidget {
   const TitleComponentTask({
-    Key? key,
+    super.key,
     required this.title,
     this.onTap,
     required this.isActive,
-  }) : super(key: key);
+  });
   final String title;
   final bool isActive;
   final Function()? onTap;

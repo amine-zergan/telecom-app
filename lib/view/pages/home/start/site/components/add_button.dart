@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 
 class AddButton extends StatelessWidget {
-  AddButton({Key? key, required this.press, this.icon = Icons.check})
-      : super(key: key);
+  AddButton({super.key, required this.press, this.icon = Icons.check});
   final VoidCallback press;
   IconData icon;
 

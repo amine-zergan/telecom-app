@@ -240,12 +240,12 @@ class AppBarSetting extends StatelessWidget {
 
 class CardSetting extends StatelessWidget {
   const CardSetting({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.logo,
     required this.onPressed,
-  }) : super(key: key);
+  });
   final String title;
   final String? subtitle;
   final Widget? logo;

@@ -4,9 +4,9 @@ import '../controller/config_controller.dart';
 
 class FloatButton extends StatelessWidget {
   const FloatButton({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ConfigController controller;
 
   @override

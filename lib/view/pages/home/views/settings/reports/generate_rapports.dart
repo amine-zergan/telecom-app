@@ -82,10 +82,10 @@ class GenerateRapport extends StatelessWidget {
 
 class CardTitle extends StatelessWidget {
   const CardTitle({
-    Key? key,
+    super.key,
     required this.press,
     required this.title,
-  }) : super(key: key);
+  });
   final VoidCallback press;
   final String title;
 

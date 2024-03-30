@@ -92,10 +92,10 @@ class EditSetting extends StatelessWidget {
 
 class CardTitleView extends StatelessWidget {
   const CardTitleView({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.title,
-  }) : super(key: key);
+  });
   final VoidCallback onTap;
   final String title;
 

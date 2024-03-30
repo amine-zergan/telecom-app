@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class SubtitleConfig extends StatelessWidget {
   const SubtitleConfig({
-    Key? key,
+    super.key,
     required this.title,
     this.textAlign,
-  }) : super(key: key);
+  });
   final String title;
   final TextAlign? textAlign;
 

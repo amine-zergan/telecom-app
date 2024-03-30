@@ -6,9 +6,9 @@ import 'package:linearprogress/linearprogress.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
-    Key? key,
+    super.key,
     required this.index,
-  }) : super(key: key);
+  });
   final double index;
 
   @override

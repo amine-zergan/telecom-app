@@ -4,12 +4,12 @@ import '../../../../../../model/components/project/project_model.dart';
 
 class CardFournisseur extends StatelessWidget {
   const CardFournisseur({
-    Key? key,
+    super.key,
     required this.project,
     required this.selectedProject,
     required this.index,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final Project project;
   final int? selectedProject;

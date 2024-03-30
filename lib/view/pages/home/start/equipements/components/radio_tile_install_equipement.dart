@@ -7,9 +7,9 @@ import '../controller/create_equipement_controller.dart';
 
 class RadioTileInstallationEquipement extends StatelessWidget {
   const RadioTileInstallationEquipement({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateEquipementController controller;
 
   @override

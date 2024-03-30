@@ -6,9 +6,9 @@ import 'package:telecom/view/pages/config/niveau_page.dart';
 
 class ContractPage extends StatelessWidget {
   const ContractPage({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ConfigController controller;
 
   @override

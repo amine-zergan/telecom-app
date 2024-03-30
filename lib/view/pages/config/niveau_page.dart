@@ -8,9 +8,9 @@ import 'package:telecom/view/theme/color_constants.dart';
 
 class NiveauPage extends StatelessWidget {
   const NiveauPage({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ConfigController controller;
 
   @override
@@ -42,10 +42,10 @@ class NiveauPage extends StatelessWidget {
 
 class TitleConfig extends StatelessWidget {
   const TitleConfig({
-    Key? key,
+    super.key,
     required this.title,
     this.textAlign,
-  }) : super(key: key);
+  });
   final String title;
   final TextAlign? textAlign;
 
@@ -66,12 +66,12 @@ class TitleConfig extends StatelessWidget {
 
 class CardChoix extends StatelessWidget {
   const CardChoix({
-    Key? key,
+    super.key,
     required this.index,
     required this.selectedIndex,
     required this.onTap,
     required this.title,
-  }) : super(key: key);
+  });
   final int index;
   final int? selectedIndex;
   final VoidCallback onTap;

@@ -8,9 +8,9 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class ListViewRegionWithController extends StatelessWidget {
   const ListViewRegionWithController({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final CreateSiteController controller;
 

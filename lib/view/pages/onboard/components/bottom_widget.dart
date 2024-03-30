@@ -10,10 +10,10 @@ import '../data_onboard.dart';
 
 class ButtomWidget extends StatelessWidget {
   const ButtomWidget({
-    Key? key,
+    super.key,
     required this.selectIndex,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int selectIndex;
   final OnBoardController controller;

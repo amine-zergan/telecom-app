@@ -5,14 +5,14 @@ import '../../../helpers/validators/profil/profile_validator.dart';
 
 class AddressFormField extends StatelessWidget {
   const AddressFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.onSaved,
     this.onEditComplete,
     this.labelText,
     this.focusNode,
     this.onChanged,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final Function(String? value)? onSaved;
   final Function()? onEditComplete;

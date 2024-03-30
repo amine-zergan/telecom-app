@@ -6,14 +6,14 @@ import '../../../helpers/utils/input_formatter/phone_formater.dart';
 
 class PhoneFixFormField extends StatelessWidget {
   const PhoneFixFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.onSaved,
     this.onChanged,
     this.onEditComplete,
     this.focusNode,
     this.labelText,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final Function(String? value)? onSaved;

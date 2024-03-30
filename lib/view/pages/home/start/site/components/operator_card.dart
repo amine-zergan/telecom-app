@@ -4,12 +4,12 @@ import '../../../../../theme/size_constants.dart';
 
 class OperatorCard extends StatelessWidget {
   const OperatorCard({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.model,
     required this.index,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final int? selectedIndex;
   final Operator model;

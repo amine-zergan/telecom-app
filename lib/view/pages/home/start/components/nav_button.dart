@@ -5,10 +5,10 @@ import '../../../../theme/size_constants.dart';
 
 class CreateNavButton extends StatelessWidget {
   const CreateNavButton({
-    Key? key,
+    super.key,
     required this.press,
     required this.title,
-  }) : super(key: key);
+  });
 
   final VoidCallback press;
   final String title;

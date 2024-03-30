@@ -9,9 +9,9 @@ import '../controller/contact_controller.dart';
 
 class BodyCreateContact extends StatelessWidget {
   const BodyCreateContact({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateContactController controller;
 
   @override

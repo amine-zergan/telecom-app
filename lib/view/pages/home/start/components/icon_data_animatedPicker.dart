@@ -5,9 +5,9 @@ import 'package:lottie/lottie.dart';
 
 class IconDateWidget extends StatelessWidget {
   const IconDateWidget({
-    Key? key,
+    super.key,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onTap;
 

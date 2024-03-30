@@ -8,11 +8,11 @@ import '../../../helpers/utils/input_formatter/longitude_formater.dart';
 
 class LongitudeFormField extends StatelessWidget {
   const LongitudeFormField({
-    Key? key,
+    super.key,
     required this.controller,
     this.focusNode,
     this.onEditCompleted,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final FocusNode? focusNode;
   final void Function()? onEditCompleted;

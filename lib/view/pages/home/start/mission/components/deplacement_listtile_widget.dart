@@ -4,9 +4,9 @@ import 'package:telecom/view/pages/home/start/site/components/title_component.da
 
 class DeplacementTileCheckYesNo extends StatelessWidget {
   const DeplacementTileCheckYesNo({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final CreateMissionController controller;
   @override
   Widget build(BuildContext context) {

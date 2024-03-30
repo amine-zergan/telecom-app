@@ -138,9 +138,9 @@ class PvReceptionPage extends GetWidget<PvReceptionController> {
 
 class CardTitleClientInfo extends StatelessWidget {
   const CardTitleClientInfo({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
   final String title;
 
   @override
@@ -187,14 +187,14 @@ class AppBarPvReceptionOrDemontage extends StatelessWidget
 // ignore: must_be_immutable
 class FormFieldTextB2B extends StatelessWidget {
   FormFieldTextB2B({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.controller,
     this.validator,
     this.onEditingComplete,
     this.focusNode,
     this.keyboardType,
-  }) : super(key: key);
+  });
   final String labelText;
   final TextEditingController controller;
   void Function()? onEditingComplete;

@@ -5,12 +5,12 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class ConfigImage extends StatelessWidget {
   const ConfigImage({
-    Key? key,
+    super.key,
     required this.press,
     this.file,
     required this.icon,
     this.error = "message d'erreur au cas ou ",
-  }) : super(key: key);
+  });
   final VoidCallback press;
   final File? file;
   final IconData icon;

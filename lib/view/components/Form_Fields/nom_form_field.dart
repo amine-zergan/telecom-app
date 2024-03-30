@@ -6,7 +6,7 @@ import '../../../helpers/validators/profil/profile_validator.dart';
 
 class NomFormField extends StatelessWidget {
   NomFormField(
-      {Key? key,
+      {super.key,
       required this.controller,
       this.onSaved,
       this.suffix,
@@ -19,8 +19,7 @@ class NomFormField extends StatelessWidget {
       this.maxlength,
       this.inputFormatters,
       this.keyboardType,
-      this.validator = ValidatorProfile.validatorName})
-      : super(key: key);
+      this.validator = ValidatorProfile.validatorName});
   final TextEditingController controller;
   final Function(String? value)? onSaved;
   final Function()? onEditComplete;

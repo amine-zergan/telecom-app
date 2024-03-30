@@ -4,12 +4,12 @@ import 'package:telecom/view/theme/size_constants.dart';
 
 class AddandRemouveComponent extends StatelessWidget {
   const AddandRemouveComponent({
-    Key? key,
+    super.key,
     required this.title,
     this.increase,
     this.decrease,
     required this.bonCarburant,
-  }) : super(key: key);
+  });
   final String title;
   final int bonCarburant;
   final VoidCallback? increase;

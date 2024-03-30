@@ -3,9 +3,9 @@ import 'package:telecom/view/pages/home/start/tasks/controller/create_task_contr
 
 class DropdownProjectMenu extends StatelessWidget {
   const DropdownProjectMenu({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final CreateTaskController controller;
 
