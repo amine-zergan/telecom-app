@@ -7,9 +7,12 @@ import 'package:telecom/model/site/site_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigationController extends GetxController {
-  final IrepositorySiteDatasource repository;
+  final IrepositorySiteDatasource _repository;
 
-  NavigationController({required this.repository});
+  NavigationController({required IrepositorySiteDatasource repository})
+      : _repository = repository {
+    print("=========  creation d'instance irepos==========");
+  }
   late TextEditingController fieldLongitude;
   late TextEditingController fieldLatitude;
   GlobalKey<FormState> form = GlobalKey<FormState>();
@@ -32,7 +35,7 @@ class NavigationController extends GetxController {
 
   void fetchAllSite() async {
     try {
-      List<Site> response = await repository.queryall();
+      List<Site> response = await _repository.queryall();
       response.map((e) => allSite.add(e)).toList();
       update();
     } catch (e) {

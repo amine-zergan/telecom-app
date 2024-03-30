@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:telecom/model/site/site_model.dart';
 import 'package:telecom/view/pages/home/views/navigation/components/appbar_navigation_view.dart';
 import 'package:telecom/view/pages/home/views/navigation/components/emty_navigation_view.dart';

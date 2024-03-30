@@ -19,7 +19,6 @@
     "analysis_options.yaml": true,
     "pubspec.lock": true,
     "telecom.iml": true,
-    "linearprogress": true,
     "build 2": true,
     "build 3": true,
     "build": true,
@@ -31,7 +30,8 @@
     "lib/helpers": true,
     "lib/data": true,
     ".dart_tool 2": true,
-    ".github": true
+    ".github": true,
+    "linearprogress": true
   },
   "yaml.schemas": {
     "https://json.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/aminemejri/Desktop/telecom/.github/workflows/ci.yaml"

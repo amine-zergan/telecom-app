@@ -29,8 +29,6 @@ class DbHelper {
       version: 1,
       onConfigure: _onConfigure,
     );
-    // ignore: avoid_print
-    // print("=======Database ready for used ===========");
     return mydb;
   }
 
@@ -171,7 +169,6 @@ CREATE TABLE $tasks(
 )
 """);
 // ignore: avoid_print
-    print("=======Database created with succes   ===========");
 
     await db.transaction((txn) async {
       await txn.rawInsert("""
