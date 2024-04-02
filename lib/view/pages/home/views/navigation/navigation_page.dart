@@ -60,7 +60,7 @@ class NavigationPage extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Image.asset(
                                           site.operator.image,
-                                          fit: BoxFit.contain,
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                     ),
@@ -133,9 +133,14 @@ class NavigationPage extends StatelessWidget {
                                                 ),
                                                 trailing: IconButton(
                                                   onPressed: () {
+                                                    print(
+                                                        "========phone call ${site.phone!}=======");
                                                     controller
                                                         .makeCallMaintenancier(
-                                                            site.phone!);
+                                                      site.phone!,
+                                                    );
+                                                    print(
+                                                        "make call from icon===========");
                                                   },
                                                   splashRadius: 20,
                                                   icon: const Icon(

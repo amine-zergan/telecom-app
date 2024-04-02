@@ -75,10 +75,11 @@ class NavigationController extends GetxController {
     }
   }
 
-  makeCallMaintenancier(String phone) async {
+  Future<void> makeCallMaintenancier(String phone) async {
     try {
       final Uri appel = Uri(scheme: 'tel', path: phone);
       await launchUrl(appel);
+      print("start making call");
     } catch (e) {
       print("======== error from call maintenancier $e======");
     }

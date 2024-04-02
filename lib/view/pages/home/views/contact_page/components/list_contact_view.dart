@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:telecom/model/entreprise/profile_and_contact/contact_model.dart';
 
 import 'package:telecom/view/pages/home/views/contact_page/components/empty_cantact_view.dart';
 import 'package:telecom/view/pages/home/views/contact_page/controllers/contact_controller.dart';
@@ -29,7 +31,7 @@ class ListContactView extends StatelessWidget {
                 ),
                 itemCount: controller.contacts.length,
                 itemBuilder: (context, index) {
-                  //Contact contact = controller.contacts[index];
+                  Contact contact = controller.contacts[index];
                   return Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
@@ -39,6 +41,13 @@ class ListContactView extends StatelessWidget {
                       bottom: 5.0,
                       right: padding10 / 2,
                       left: padding10 / 2,
+                    ),
+                    child: ListTile(
+                      title: Text(contact.name),
+                      subtitle: Text(contact.contact),
+                      trailing: LottieBuilder.asset(
+                        "assets/animations/call.json",
+                      ),
                     ),
                   );
                 },

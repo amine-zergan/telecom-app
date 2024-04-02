@@ -16,6 +16,7 @@ class _DetailSiteState extends State<DetailSite> {
   @override
   void initState() {
     site = Get.arguments;
+
     print("=========== site fetched from navigation $site");
     super.initState();
   }
@@ -24,7 +25,12 @@ class _DetailSiteState extends State<DetailSite> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          site.name,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ),
       body: SafeArea(
         top: false,
         bottom: false,
