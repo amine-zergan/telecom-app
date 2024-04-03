@@ -21,6 +21,7 @@ class NavigationController extends GetxController {
   GlobalKey<FormState> form = GlobalKey<FormState>();
 
   List<Site> allSite = [];
+  List<String> siteSuggestion = [];
 
   removeSiteFromList(Site site) {
     allSite.remove(site);
@@ -41,13 +42,17 @@ class NavigationController extends GetxController {
 
   void addSiteTolist(Site value) {
     allSite.add(value);
+    siteSuggestion.add(value.name);
     update();
   }
 
   void fetchAllSite() async {
     try {
       List<Site> response = await _repository.queryall();
-      response.map((e) => allSite.add(e)).toList();
+      response.map((e) {
+        allSite.add(e);
+        siteSuggestion.add(e.name);
+      }).toList();
       update();
     } catch (e) {
       allSite = [];

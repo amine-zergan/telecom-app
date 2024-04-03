@@ -19,26 +19,34 @@ class AppBarNavigation extends StatelessWidget {
       floating: true,
       snap: true,
       actions: [
-        GetBuilder<NavigationController>(builder: (controller) {
-          return NavigatorIconButton(
-            controller: controller,
-          );
-        }),
-        IconButton(
-          onPressed: () {
-            showSearch(
-              context: context,
-              delegate: NavigationSearch(),
+        GetBuilder<NavigationController>(
+          builder: (controller) {
+            return NavigatorIconButton(
+              controller: controller,
             );
           },
-          splashRadius: 20,
-          icon: const Icon(
-            Icons.search_outlined,
-            color: Colors.black,
-          ),
+        ),
+        GetBuilder<NavigationController>(
+          builder: (controller) {
+            return IconButton(
+              onPressed: () {
+                showSearch<String>(
+                  context: context,
+                  delegate: NavigationSearch(
+                    controller,
+                  ),
+                );
+              },
+              splashRadius: 20,
+              icon: const Icon(
+                Icons.search_outlined,
+                color: Colors.black,
+              ),
+            );
+          },
         ),
       ],
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade300,
       flexibleSpace: const BackgroundAppBar(),
     );
   }

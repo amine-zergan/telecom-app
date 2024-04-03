@@ -31,7 +31,7 @@ class BackgroundAppBar extends StatelessWidget {
         left: padding10,
       ),
       centerTitle: false,
-      collapseMode: CollapseMode.none,
+      collapseMode: CollapseMode.parallax,
     );
   }
 }
