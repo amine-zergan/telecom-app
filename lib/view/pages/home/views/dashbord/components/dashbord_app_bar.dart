@@ -20,8 +20,8 @@ class DashboardAppBar extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.grey.shade100,
         title: const Text("Dashborad"),
-        pinned: false,
-        floating: true,
+        pinned: true,
+        floating: false,
         stretch: true,
         centerTitle: false,
         actions: [

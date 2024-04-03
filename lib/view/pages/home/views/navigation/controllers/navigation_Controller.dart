@@ -1,7 +1,6 @@
-// ignore_for_file: file_names, avoid_print
+// ignore_for_file: file_names, avoid_print, unnecessary_brace_in_string_interps
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/db/Remote_Data_Source/site/abstract_site_datasource.dart';
@@ -57,21 +56,28 @@ class NavigationController extends GetxController {
   }
 
   // pour naviguer suite une coordonnee longitude et latitude
-  void navigateTosite() async {
+  Future<void> navigateTosite(String lat, String long) async {
     if (form.currentState!.validate()) {
-      try {
-        final Uri url = Uri.parse(
-          "https://www.google.com/maps?q=${fieldLatitude.text},${fieldLongitude.text}",
-        );
-        if (!await launchUrl(
-          url,
-          mode: LaunchMode.externalApplication,
-        )) {
-          throw 'Could not launch $url';
-        }
-      } catch (e) {
-        print("======= error from urlauncher $e =========");
+      navigateTosite(lat, long);
+    } else {
+      Get.snackbar("notification", "merci de verifier les coordonnées saisis",
+          backgroundColor: Colors.red.shade300);
+    }
+  }
+
+  Future<void> nvaigationSite(String lat, String long) async {
+    try {
+      final Uri url = Uri.parse(
+        "https://www.google.com/maps?q=${lat},${long}",
+      );
+      if (!await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      )) {
+        throw 'Could not launch $url';
       }
+    } catch (e) {
+      print("======= error from urlauncher $e =========");
     }
   }
 

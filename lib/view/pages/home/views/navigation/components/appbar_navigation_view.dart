@@ -38,7 +38,7 @@ class AppBarNavigation extends StatelessWidget {
           ),
         ),
       ],
-      backgroundColor: Colors.grey.shade800,
+      backgroundColor: Colors.white,
       flexibleSpace: const BackgroundAppBar(),
     );
   }

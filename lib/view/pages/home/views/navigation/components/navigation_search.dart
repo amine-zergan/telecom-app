@@ -45,7 +45,10 @@ class SearchComponent extends StatelessWidget {
             ),
             Center(
               child: MaterialButton(
-                onPressed: controller.navigateTosite,
+                onPressed: () {
+                  controller.navigateTosite(controller.fieldLatitude.text,
+                      controller.fieldLongitude.text);
+                },
                 elevation: 0,
                 color: colorButton.withOpacity(0.5),
                 shape: RoundedRectangleBorder(
