@@ -26,7 +26,11 @@ class NavigationPage extends StatelessWidget {
             slivers: [
               const AppBarNavigation(),
               SliverPadding(
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 10,
+                  right: 10,
+                ),
                 sliver: controller.allSite.isEmpty
                     ? const EmptyNavigationView()
                     : SliverGrid.builder(

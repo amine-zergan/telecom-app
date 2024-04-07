@@ -15,8 +15,7 @@ class SalairePage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
       children: [
-        const TitleConfig(
-            title: "Quelle est votre Salaire dans cette entreprise ?"),
+        TitleConfig(title: "Quelle est votre Salaire dans cette entreprise ?"),
         Wrap(
           spacing: 15.0,
           direction: Axis.horizontal,

@@ -70,13 +70,14 @@ flutter_launcher_icons:
 flutter_native_splash:
   color: "#ffffff"
   image: "assets/pylone.png"
-  color_dark: "#121212"
+  color_dark: "#ffffff"
   image_dark: "assets/pylone.png"
+  android_gravity: center
   android_12:
     image: "assets/pylone.png"
     icon_background_color: "#ffffff"
     image_dark: "assets/pylone.png"
-    icon_background_color_dark: "#121212"
+    icon_background_color_dark: "#ffffff"
 
   web: false
 
@@ -89,5 +90,6 @@ flutter:
     - assets/project/
     - assets/spinner.gif
     - assets/pylone.png
+    - assets/route.png
     - .env
 

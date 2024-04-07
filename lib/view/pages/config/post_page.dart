@@ -15,7 +15,7 @@ class PostPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
       children: [
-        const TitleConfig(
+        TitleConfig(
           title: "Quel est votre Poste Actuel ?",
         ),
         ...List.generate(occupations.length, (index) {

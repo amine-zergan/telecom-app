@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
         child: Column(
           children: [
-            const TitleConfig(
+            TitleConfig(
               title: "Completer votre Profile",
               textAlign: TextAlign.center,
             ),

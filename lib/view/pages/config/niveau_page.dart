@@ -18,7 +18,7 @@ class NiveauPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
       children: [
-        const TitleConfig(
+        TitleConfig(
           title: "Quel est votre Niveau Scolaire ?",
         ),
         ...List.generate(etude.length, (index) {
@@ -41,18 +41,20 @@ class NiveauPage extends StatelessWidget {
 }
 
 class TitleConfig extends StatelessWidget {
-  const TitleConfig({
+  TitleConfig({
     super.key,
     required this.title,
     this.textAlign,
+    this.padding = 15.0,
   });
   final String title;
   final TextAlign? textAlign;
+  double padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0),
+      padding: EdgeInsets.only(bottom: padding),
       child: Text(
         title,
         textAlign: textAlign,

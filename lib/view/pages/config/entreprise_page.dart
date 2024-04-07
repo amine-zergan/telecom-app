@@ -26,7 +26,7 @@ class ProfileEntreprisePage extends StatelessWidget {
           left: padding10, right: padding10, top: 1.5 * padding10),
       child: Column(
         children: [
-          const TitleConfig(
+          TitleConfig(
             title: "Completer Coordonnées de L'entreprise",
             textAlign: TextAlign.center,
           ),
