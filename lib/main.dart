@@ -13,7 +13,9 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return GetMaterialApp(
       title: 'Telecom App',
       debugShowCheckedModeBanner: false,
-      getPages: Routes.routes, //list<Class widget Page >
+      getPages: Routes.routes,
       defaultTransition: Transition.fadeIn,
       initialRoute: RouteName.onboard,
       theme: ThemeApp.light,
