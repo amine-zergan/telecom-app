@@ -237,10 +237,19 @@ class SurveyRfiExcel {
     print("====== start of pic =======");
     model.imageIndoor.asMap().forEach((key, value) {
       final List<int> bytes = value.readAsBytesSync();
-      if (key > 2 && key < 7) {
+      if (key > 2 && key < 4) {
         sheet.pictures.addStream(45, 1 + (key - 3) * 4, bytes);
       } else {
         sheet.pictures.addStream(40, 1 + key * 4, bytes);
+      }
+    });
+
+    model.imageOutdoor.asMap().forEach((key, value) {
+      final List<int> bytes = value.readAsBytesSync();
+      if (key > 2 && key < 4) {
+        sheet.pictures.addStream(40, 10 + (key - 3) * 4, bytes);
+      } else {
+        sheet.pictures.addStream(45, 10 + key * 4, bytes);
       }
     });
 

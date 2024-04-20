@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,45 +15,32 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
   void deleteItemdeleteoutdoorImage(
       int index, file, SurveySiteController controller) {
     controller.deleteoutdoorImage(index);
-    controller.myListKeyOutDoor.currentState!.removeItem(
-      index,
-      (context, animation) => FadeTransition(
-        opacity: animation,
-        child: ImageItemWidget(
-          file: file,
-          index: index,
-        ),
-      ),
-    );
   }
 
   void deleteItemdeleteindoorImage(
       int index, file, SurveySiteController controller) {
     controller.deleteindoorImage(index);
-    controller.myListKeyIndoor.currentState!.removeItem(
-      index,
-      (context, animation) => FadeTransition(
-        opacity: animation,
-        child: ImageItemWidget(
-          file: file,
-          index: index,
-        ),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await controller.generateRfiReport();
+      floatingActionButton: GetBuilder<SurveySiteController>(
+        builder: (controller) {
+          return FloatingActionButton(
+            onPressed: () async {
+              print("=========start debug file creation==========");
+              await controller.generateRfiReport();
+            },
+            elevation: 10,
+            backgroundColor: Colors.black,
+            child: controller.loading
+                ? const CircularProgressIndicator()
+                : const Icon(
+                    Icons.create,
+                  ),
+          );
         },
-        elevation: 10,
-        backgroundColor: Colors.black,
-        child: const Icon(
-          Icons.create,
-        ),
       ),
       appBar: AppBar(
         centerTitle: false,
@@ -69,330 +58,336 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: SizedBox(
-          width: double.infinity,
-          height: Get.height,
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: FormSiteComponent(
-                  controller: controller.fieldSiteNom,
-                  focusNode: controller.focusSite,
-                  formStateKey: controller.formKey,
-                  onTap: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, top: 10),
-                child: Text(
-                  "Type de Site :",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return Wrap(
-                    spacing: 10,
+      body: GetBuilder<SurveySiteController>(builder: (controller) {
+        return controller.loading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SafeArea(
+                bottom: false,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: Get.height,
+                  child: ListView(
                     children: [
                       const SizedBox(
-                        width: 10,
+                        height: 15,
                       ),
-                      ChoiceChip(
-                        backgroundColor: Colors.white,
-                        disabledColor: Colors.black38,
-                        color: const MaterialStatePropertyAll(
-                          Colors.black12,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: FormSiteComponent(
+                          controller: controller.fieldSiteNom,
+                          focusNode: controller.focusSite,
+                          formStateKey: controller.formKey,
+                          onTap: () {},
                         ),
-                        selectedColor: Colors.white,
-                        label: const Text(
-                          "Nodal",
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0, top: 10),
+                        child: Text(
+                          "Type de Site :",
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
-                        selected: controller.selectedsite == Site.nodal,
-                        onSelected: (value) {
-                          controller.updateSite(Site.nodal);
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return Wrap(
+                            spacing: 10,
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              ChoiceChip(
+                                backgroundColor: Colors.white,
+                                disabledColor: Colors.black38,
+                                color: const MaterialStatePropertyAll(
+                                  Colors.black12,
+                                ),
+                                selectedColor: Colors.white,
+                                label: const Text(
+                                  "Nodal",
+                                ),
+                                selected: controller.selectedsite == Site.nodal,
+                                onSelected: (value) {
+                                  controller.updateSite(Site.nodal);
+                                },
+                              ),
+                              ChoiceChip(
+                                backgroundColor: Colors.white,
+                                disabledColor: Colors.black38,
+                                color: const MaterialStatePropertyAll(
+                                  Colors.black12,
+                                ),
+                                selectedColor: Colors.white,
+                                label: const Text(
+                                  "Aggreg",
+                                ),
+                                selected: controller.selectedsite == Site.agg,
+                                onSelected: (value) {
+                                  controller.updateSite(Site.agg);
+                                },
+                              ),
+                              ChoiceChip(
+                                backgroundColor: Colors.white,
+                                disabledColor: Colors.black38,
+                                color: const MaterialStatePropertyAll(
+                                  Colors.black12,
+                                ),
+                                selectedColor: Colors.white,
+                                label: const Text(
+                                  "Terminal",
+                                ),
+                                selected: controller.selectedsite == Site.ter,
+                                onSelected: (value) {
+                                  controller.updateSite(Site.ter);
+                                },
+                              ),
+                            ],
+                          );
                         },
                       ),
-                      ChoiceChip(
-                        backgroundColor: Colors.white,
-                        disabledColor: Colors.black38,
-                        color: const MaterialStatePropertyAll(
-                          Colors.black12,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.0),
+                        child: CardTitleClientInfo(
+                          title: "Survey OutDoor :",
                         ),
-                        selectedColor: Colors.white,
-                        label: const Text(
-                          "Aggreg",
-                        ),
-                        selected: controller.selectedsite == Site.agg,
-                        onSelected: (value) {
-                          controller.updateSite(Site.agg);
+                      ),
+                      const MetragePyloneWidget(),
+                      SupportAntenneFieldWidget(controller: controller),
+                      GetBuilder<SurveySiteController>(
+                        builder: (conteroller) {
+                          return ComponentItem(
+                            title: "Support bracon si existe :",
+                            isExist: controller.supportAntenne,
+                            onChanged: controller.updateSupportAntenne,
+                          );
                         },
                       ),
-                      ChoiceChip(
-                        backgroundColor: Colors.white,
-                        disabledColor: Colors.black38,
-                        color: const MaterialStatePropertyAll(
-                          Colors.black12,
-                        ),
-                        selectedColor: Colors.white,
-                        label: const Text(
-                          "Terminal",
-                        ),
-                        selected: controller.selectedsite == Site.ter,
-                        onSelected: (value) {
-                          controller.updateSite(Site.ter);
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Baterre de Terre No_01 :",
+                            isExist: controller.barretteTerre,
+                            onChanged: controller.updateBaretteTerre,
+                          );
                         },
                       ),
-                    ],
-                  );
-                },
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
-                child: CardTitleClientInfo(
-                  title: "Survey OutDoor :",
-                ),
-              ),
-              const MetragePyloneWidget(),
-              SupportAntenneFieldWidget(controller: controller),
-              GetBuilder<SurveySiteController>(
-                builder: (conteroller) {
-                  return ComponentItem(
-                    title: "Support bracon si existe :",
-                    isExist: controller.supportAntenne,
-                    onChanged: controller.updateSupportAntenne,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Baterre de Terre No_01 :",
-                    isExist: controller.barretteTerre,
-                    onChanged: controller.updateBaretteTerre,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Tremie :",
-                    isExist: controller.tremie,
-                    onChanged: controller.updateTremie,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Chemin de cable V :",
-                    isExist: controller.cheminV,
-                    onChanged: controller.updateCheminV,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Chemin de cable H:",
-                    isExist: controller.cheminH,
-                    onChanged: controller.updateCheminH,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 5.0,
-                    ),
-                    child: TitleComponentTask(
-                      title: "Selectionnez les images Outdoor",
-                      isActive: controller.outdoorImage.isNotEmpty,
-                      onTap: controller.getListImageFromGallerieoutdoorImage,
-                    ),
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return SizedBox(
-                    width: double.infinity,
-                    height: controller.outdoorImage.isEmpty ? 10 : 200,
-                    child: controller.outdoorImage.isEmpty
-                        ? Container()
-                        : AnimatedList(
-                            key: controller.myListKeyOutDoor,
-                            initialItemCount: controller.outdoorImage.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index, animation) {
-                              File file = controller.outdoorImage[index];
-                              return FadeTransition(
-                                opacity: animation,
-                                child: ImageItemWidget(
-                                  file: file,
-                                  index: index,
-                                  onTap: () {
-                                    deleteItemdeleteoutdoorImage(
-                                      index,
-                                      file,
-                                      controller,
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Tremie :",
+                            isExist: controller.tremie,
+                            onChanged: controller.updateTremie,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Chemin de cable V :",
+                            isExist: controller.cheminV,
+                            onChanged: controller.updateCheminV,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Chemin de cable H:",
+                            isExist: controller.cheminH,
+                            onChanged: controller.updateCheminH,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          print("====== function press to get images======");
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5.0,
+                            ),
+                            child: TitleComponentTask(
+                              title: "Selectionnez les images Outdoor",
+                              isActive: controller.outdoorImage.isNotEmpty,
+                              onTap: controller
+                                  .getListImageFromGallerieoutdoorImage,
+                            ),
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return SizedBox(
+                            width: double.infinity,
+                            height: controller.outdoorImage.isEmpty ? 10 : 200,
+                            child: controller.outdoorImage.isEmpty
+                                ? Container()
+                                : ListView.builder(
+                                    key: controller.myListKeyOutDoor,
+                                    itemCount: controller.outdoorImage.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      print(
+                                          "====== get debug from list current========");
+                                      File file =
+                                          controller.outdoorImage[index];
+                                      return ImageItemWidget(
+                                        file: file,
+                                        index: index,
+                                        onTap: () {
+                                          deleteItemdeleteoutdoorImage(
+                                            index,
+                                            file,
+                                            controller,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                          );
+                        },
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.0),
+                        child: CardTitleClientInfo(
+                          title: "Survey InDoor :",
+                        ),
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "BTS",
+                            isExist: controller.bts,
+                            onChanged: controller.updateBts,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Chemin de cable ",
+                            isExist: controller.cheminCable,
+                            onChanged: controller.updateCheminCable,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Rack espace",
+                            isExist: controller.rackEspace,
+                            onChanged: controller.updateRackEsp,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "DC :",
+                            isExist: controller.courantDc,
+                            onChanged: controller.updateCourantDc,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "AC :",
+                            isExist: controller.courantAc,
+                            onChanged: controller.updateCourantAc,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "GND ",
+                            isExist: controller.vertJaune,
+                            onChanged: controller.updateGND,
+                          );
+                        },
+                      ),
+                      GetBuilder<SurveySiteController>(
+                        builder: (controller) {
+                          return ComponentItem(
+                            title: "Clim ",
+                            isExist: controller.clim,
+                            onChanged: controller.updateClim,
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        child: TextFormField(
+                          minLines: 1,
+                          maxLines: 20,
+                          controller: controller.fieldDetail,
+                          autocorrect: false,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(),
+                            errorBorder: OutlineInputBorder(),
+                            hintText: "Ajouter les details RFI...",
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      GetBuilder<SurveySiteController>(builder: (controller) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: TitleComponentTask(
+                            title: "Selectionnez les images indoor",
+                            isActive: controller.indoorImage.isNotEmpty,
+                            onTap: () async {
+                              await controller
+                                  .getListImageFromGallerieindoorImage();
+                            },
+                          ),
+                        );
+                      }),
+                      GetBuilder<SurveySiteController>(builder: (controller) {
+                        return SizedBox(
+                          width: double.infinity,
+                          height: controller.indoorImage.isEmpty ? 10 : 200,
+                          child: controller.indoorImage.isEmpty
+                              ? Container()
+                              : ListView.builder(
+                                  key: controller.myListKeyIndoor,
+                                  itemCount: controller.indoorImage.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    File file = controller.indoorImage[index];
+                                    return ImageItemWidget(
+                                      file: file,
+                                      index: index,
+                                      onTap: () {
+                                        deleteItemdeleteindoorImage(
+                                          index,
+                                          file,
+                                          controller,
+                                        );
+                                      },
                                     );
                                   },
                                 ),
-                              );
-                            },
-                          ),
-                  );
-                },
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
-                child: CardTitleClientInfo(
-                  title: "Survey InDoor :",
-                ),
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "BTS",
-                    isExist: controller.bts,
-                    onChanged: controller.updateBts,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Chemin de cable ",
-                    isExist: controller.cheminCable,
-                    onChanged: controller.updateCheminCable,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Rack espace",
-                    isExist: controller.rackEspace,
-                    onChanged: controller.updateRackEsp,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "DC :",
-                    isExist: controller.courantDc,
-                    onChanged: controller.updateCourantDc,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "AC :",
-                    isExist: controller.courantAc,
-                    onChanged: controller.updateCourantAc,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "GND ",
-                    isExist: controller.vertJaune,
-                    onChanged: controller.updateGND,
-                  );
-                },
-              ),
-              GetBuilder<SurveySiteController>(
-                builder: (controller) {
-                  return ComponentItem(
-                    title: "Clim ",
-                    isExist: controller.clim,
-                    onChanged: controller.updateClim,
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: TextFormField(
-                  minLines: 1,
-                  maxLines: 20,
-                  controller: controller.fieldDetail,
-                  autocorrect: false,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
-                    errorBorder: OutlineInputBorder(),
-                    hintText: "Ajouter les details RFI...",
+                        );
+                      }),
+                      const SizedBox(
+                        height: 50,
+                      )
+                    ],
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              GetBuilder<SurveySiteController>(builder: (controller) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: TitleComponentTask(
-                    title: "Selectionnez les images indoor",
-                    isActive: controller.indoorImage.isNotEmpty,
-                    onTap: () async {
-                      await controller.getListImageFromGallerieindoorImage();
-                    },
-                  ),
-                );
-              }),
-              GetBuilder<SurveySiteController>(builder: (controller) {
-                return SizedBox(
-                  width: double.infinity,
-                  height: controller.indoorImage.isEmpty ? 10 : 200,
-                  child: controller.indoorImage.isEmpty
-                      ? Container()
-                      : AnimatedList(
-                          key: controller.myListKeyIndoor,
-                          initialItemCount: controller.indoorImage.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index, animation) {
-                            File file = controller.indoorImage[index];
-                            return FadeTransition(
-                              opacity: animation,
-                              child: ImageItemWidget(
-                                file: file,
-                                index: index,
-                                onTap: () {
-                                  deleteItemdeleteindoorImage(
-                                    index,
-                                    file,
-                                    controller,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                );
-              }),
-              const SizedBox(
-                height: 50,
-              )
-            ],
-          ),
-        ),
-      ),
+              );
+      }),
     );
   }
 }

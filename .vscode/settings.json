@@ -29,7 +29,6 @@
     "lib/helpers": true,
     "lib/data": true,
     ".dart_tool 2": true,
-    ".github": true,
     "linearprogress": true,
     "lib/view/pages/onboard": true,
     "ios": true

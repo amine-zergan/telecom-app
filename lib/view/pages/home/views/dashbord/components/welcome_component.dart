@@ -12,7 +12,10 @@ class WelcomeDashBord extends StatelessWidget {
     return SliverToBoxAdapter(
       // ignore: sized_box_for_whitespace
       child: Container(
-        height: size.height * 0.16,
+        height: size.height * 0.19,
+        constraints: BoxConstraints(
+          minHeight: size.height * 0.18,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
             10,
@@ -60,7 +63,7 @@ class WelcomeDashBord extends StatelessWidget {
                   ),
                   Text(
                     "Commencer A creer\nvotre Mission de cette \nSemaine ",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.black87,
                         ),
                   ),

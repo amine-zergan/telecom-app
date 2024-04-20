@@ -132,8 +132,8 @@ class Routes {
     GetPage(
       name: RouteName.createPage,
       page: () => const CreateObjectPage(),
-      transition: Transition.fadeIn,
-      curve: Curves.elasticInOut,
+      transition: Transition.fade,
+      curve: Curves.fastEaseInToSlowEaseOut,
     ),
     GetPage(
       name: RouteName.startMission,

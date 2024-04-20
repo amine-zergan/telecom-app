@@ -40,9 +40,11 @@ class _HomeNewPageState extends State<HomeNewPage> {
           borderRadius: BorderRadius.circular(30),
         ),
         onPressed: () {
-          Get.toNamed(RouteName.createPage);
+          Get.toNamed(
+            RouteName.createPage,
+          );
         },
-        backgroundColor: const Color.fromARGB(255, 73, 125, 239),
+        backgroundColor: const Color.fromARGB(255, 0, 51, 145),
         child: const Icon(
           Icons.add,
           size: 25,

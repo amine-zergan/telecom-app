@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../theme/color_constants.dart';
-
 class BackFloatButton extends StatelessWidget {
   const BackFloatButton({
     super.key,
@@ -11,12 +9,17 @@ class BackFloatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 0, 51, 145),
       elevation: 15,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          15,
+        ),
+      ),
       onPressed: () {
-        Get.back(result: 40.0);
+        Get.back();
       },
-      child: const Icon(Icons.close, color: colorButton),
+      child: const Icon(Icons.close, color: Colors.white),
     );
   }
 }

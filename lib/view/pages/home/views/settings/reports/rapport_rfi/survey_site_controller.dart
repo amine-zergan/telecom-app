@@ -18,6 +18,7 @@ class SurveySiteController extends GetxController {
   ///
   ///
   final ImagePicker picker;
+
   final SettingController settingController;
 
   SurveySiteController(
@@ -29,6 +30,7 @@ class SurveySiteController extends GetxController {
   final myListKeyIndoor = GlobalKey<AnimatedListState>();
 
   Site selectedsite = Site.nodal;
+  bool loading = false;
   double pylone = 0.45;
   late TextEditingController fieldSiteNom;
   late TextEditingController fieldSupportAntenne;
@@ -50,10 +52,17 @@ class SurveySiteController extends GetxController {
   List<File> outdoorImage = [];
   List<File> indoorImage = [];
 
+  /// si loading =true => on applique function toggle , valeur loading =false;
+  void toggleloeading() {
+    loading != loading;
+    update();
+  }
+
   ///******** create Excel Report**********///
   ///
   Future<void> generateRfiReport() async {
     try {
+      loading = true;
       final model = RFIModel(
         site: fieldSiteNom.text,
         supervior: settingController.profile?.name ?? "",
@@ -80,6 +89,8 @@ class SurveySiteController extends GetxController {
       if (formKey.currentState!.validate()) {
         final file = await SurveyRfiExcel.createExcel(model);
         await OpenFile.open(file.path);
+        print("======debug open file =======");
+        loading = false;
       } else {
         Get.snackbar(
           "Notification",
@@ -87,14 +98,19 @@ class SurveySiteController extends GetxController {
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.red.shade300,
         );
+        loading = false;
       }
     } catch (e) {
+      loading = false;
       print("catch erreur from methode create excel $e");
     }
+    update();
   }
 
   void deleteoutdoorImage(int index) {
     outdoorImage.removeAt(index);
+    print(
+        "=============remove function image outdoor controller==============");
     update();
   }
 
@@ -110,17 +126,21 @@ class SurveySiteController extends GetxController {
         File.fromUri(Uri.file(e.path)),
       );
     }).toList();
+
+    print(
+        "=============get gallerie function image outdoor controller==============");
     update();
   }
 
   Future<void> getListImageFromGallerieoutdoorImage() async {
     final List<XFile> images = await picker.pickMultiImage();
+    print("======== index before adding==========");
+
     images.map((e) {
       outdoorImage.add(
         File.fromUri(Uri.file(e.path)),
       );
     }).toList();
-
     update();
     print("les images telecharges outdoorImage sont ${outdoorImage.length}");
   }

@@ -19,13 +19,26 @@ class OperatorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Card(
-        elevation: 0,
+        elevation: selectedIndex == index ? 5 : 0,
+        shape: RoundedRectangleBorder(
+          side: selectedIndex == index
+              ? BorderSide.none
+              : const BorderSide(
+                  color: Colors.grey,
+                ),
+          borderRadius: BorderRadius.circular(
+            10,
+          ),
+        ),
         margin: const EdgeInsets.only(
           right: padding10 / 2,
         ),
-        color: selectedIndex == index ? Colors.white70 : Colors.black12,
+        color: selectedIndex == index ? Colors.white : Colors.white70,
         child: InkWell(
           onTap: onTap,
+          borderRadius: BorderRadius.circular(
+            10,
+          ),
           child: Column(
             children: [
               Expanded(
@@ -43,10 +56,11 @@ class OperatorCard extends StatelessWidget {
                   child: Text(
                     model.operator,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: selectedIndex == index
-                            ? Colors.black
-                            : Colors.grey),
+                          fontWeight: FontWeight.w700,
+                          color: selectedIndex == index
+                              ? Colors.black
+                              : Colors.grey,
+                        ),
                   ),
                 ),
               ),

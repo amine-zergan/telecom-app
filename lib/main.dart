@@ -9,7 +9,11 @@ import 'package:telecom/view/theme/theming_app.dart';
 
 void main() async {
   await initialise();
-  initializeDateFormatting().then((_) => runApp(const MyApp()));
+  initializeDateFormatting().then(
+    (_) => runApp(
+      const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
