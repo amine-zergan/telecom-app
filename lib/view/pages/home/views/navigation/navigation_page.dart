@@ -62,9 +62,12 @@ class NavigationPage extends StatelessWidget {
                                       flex: 2,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Image.asset(
-                                          site.operator.image,
-                                          fit: BoxFit.fill,
+                                        child: Hero(
+                                          tag: site.name,
+                                          child: Image.asset(
+                                            site.operator.image,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
                                     ),

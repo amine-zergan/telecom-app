@@ -47,7 +47,12 @@ class SiteDetailInfoCard extends StatelessWidget {
                   site.operator.operator,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                leading: Image.asset(site.operator.image),
+                leading: Hero(
+                  tag: site.name,
+                  child: Image.asset(
+                    site.operator.image,
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 10,
