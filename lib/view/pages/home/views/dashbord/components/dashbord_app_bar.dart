@@ -54,7 +54,9 @@ class DashboardAppBar extends StatelessWidget {
                           child: Image.memory(
                             ImageConvert.decode(user.image)!,
                             width: 30,
+                            height: 30,
                             filterQuality: FilterQuality.high,
+                            fit: BoxFit.fitHeight,
                           ),
                         ),
                       )),

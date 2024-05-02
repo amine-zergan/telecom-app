@@ -176,23 +176,25 @@ class AppBarSetting extends StatelessWidget {
                           width: 250,
                         )
                       : Container(
-                          width: Get.size.width * 0.37,
+                          width: 140,
+                          height: 140,
                           padding: const EdgeInsets.all(3),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: Colors.grey,
+                              width: 2,
                             ),
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(
-                              Get.size.width * 0.2,
+                              70,
                             ),
                             child: Image.memory(
                               controller.imageProfile!,
                               width: 120,
                               height: 120,
-                              fit: BoxFit.fill,
+                              fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),

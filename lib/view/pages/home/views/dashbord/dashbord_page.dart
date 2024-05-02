@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: unused_element
 
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class DashbordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.white,
       body: SafeArea(
         top: false,
         child: SizedBox(
@@ -26,32 +27,49 @@ class DashbordPage extends StatelessWidget {
               const DashboardAppBar(),
               const WelcomeDashBord(),
               SliverToBoxAdapter(
-                child: SizedBox(
-                  height: size.height * 0.19,
-                  //  color: Colors.amber,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: CustomPaint(
-                          painter: BackGroundContainer(),
-                          child: Container(
-                            color: Colors.black12,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-
-                  //color: Colors.amber,
+                child: Container(
+                  height: size.height * 0.2,
+                  color: Colors.grey,
                 ),
               ),
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: size.height * 0.3,
-                  child: const Center(
-                    child: Text(
-                      "Current Task with Report",
+                  child: GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
                     ),
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    childAspectRatio: 1.0,
+                    children: const [
+                      CardMission(
+                        title: "Mission Complete",
+                        icon: Icons.timer_outlined,
+                        value: "200",
+                        color: Colors.white,
+                      ),
+                      CardMission(
+                        title: "Taches effectues",
+                        icon: Icons.timer_off_outlined,
+                        value: "200",
+                        color: Colors.white,
+                      ),
+                      CardMission(
+                        title: "kilometrage",
+                        icon: Icons.car_rental_rounded,
+                        value: "200",
+                        color: Colors.white,
+                      ),
+                      CardMission(
+                        title: "Carburant",
+                        icon: Icons.card_giftcard,
+                        value: "200",
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                   //color: Colors.amber,
                 ),
@@ -75,6 +93,56 @@ class DashbordPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CardMission extends StatelessWidget {
+  const CardMission({
+    super.key,
+    required this.value,
+    required this.title,
+    required this.icon,
+    required this.color,
+  });
+  final String value;
+  final String title;
+  final IconData icon;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 1,
+      color: color,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Colors.black),
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: Colors.white),
+            child: Icon(
+              icon,
+              size: 50,
+              color: const Color.fromARGB(209, 59, 91, 150),
+            ),
+          ),
+          Text(
+            value,
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Colors.black,
+                ),
+          )
+        ],
       ),
     );
   }
