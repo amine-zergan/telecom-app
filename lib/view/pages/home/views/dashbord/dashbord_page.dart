@@ -21,7 +21,6 @@ class DashbordPage extends StatelessWidget {
           width: double.infinity,
           height: Get.size.height,
           child: CustomScrollView(
-            // CustomScroll
             physics: const ClampingScrollPhysics(),
             slivers: [
               const DashboardAppBar(),
