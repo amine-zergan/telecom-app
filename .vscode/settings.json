@@ -29,7 +29,6 @@
     ".dart_tool 2": true,
     "linearprogress": true,
     "lib/view/pages/onboard": true,
-    "ios": true,
     "build": true
   },
   "yaml.schemas": {
