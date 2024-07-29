@@ -68,9 +68,8 @@ INNER JOIN operators ON operators.idOperator = tasks.operator
 INNER JOIN projects ON projects.id = tasks.project
 WHERE tasks.isCompleted = 0
 """);
-    print("=========== query data source  response $response ================");
     response.map((e) => tasks.add(Task.fromMap(e))).toList();
-    print("=========== query data source $tasks ================");
+
     return tasks;
   }
 }
