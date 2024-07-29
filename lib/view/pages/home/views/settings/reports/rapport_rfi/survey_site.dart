@@ -100,7 +100,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                               ChoiceChip(
                                 backgroundColor: Colors.white,
                                 disabledColor: Colors.black38,
-                                color: const MaterialStatePropertyAll(
+                                color: const WidgetStatePropertyAll(
                                   Colors.black12,
                                 ),
                                 selectedColor: Colors.white,
@@ -115,7 +115,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                               ChoiceChip(
                                 backgroundColor: Colors.white,
                                 disabledColor: Colors.black38,
-                                color: const MaterialStatePropertyAll(
+                                color: const WidgetStatePropertyAll(
                                   Colors.black12,
                                 ),
                                 selectedColor: Colors.white,
@@ -130,7 +130,7 @@ class SurveySitePage extends GetWidget<SurveySiteController> {
                               ChoiceChip(
                                 backgroundColor: Colors.white,
                                 disabledColor: Colors.black38,
-                                color: const MaterialStatePropertyAll(
+                                color: const WidgetStatePropertyAll(
                                   Colors.black12,
                                 ),
                                 selectedColor: Colors.white,

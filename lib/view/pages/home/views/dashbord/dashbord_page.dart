@@ -3,9 +3,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:telecom/view/components/loading/loading_components.dart';
 import 'package:telecom/view/pages/home/views/dashbord/components/dashbord_app_bar.dart';
 import 'package:telecom/view/pages/home/views/dashbord/components/welcome_component.dart';
+import 'package:telecom/view/pages/home/views/dashbord/controller/dashbord_controller.dart';
 
 class DashbordPage extends StatelessWidget {
   const DashbordPage({super.key});
@@ -25,11 +26,8 @@ class DashbordPage extends StatelessWidget {
             slivers: [
               const DashboardAppBar(),
               const WelcomeDashBord(),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: size.height * 0.2,
-                  color: Colors.grey,
-                ),
+              const SliverToBoxAdapter(
+                child: TaskViewComponent(),
               ),
               SliverToBoxAdapter(
                 child: SizedBox(
@@ -94,6 +92,40 @@ class DashbordPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class TaskViewComponent extends StatelessWidget {
+  const TaskViewComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<DashboardController>(builder: (controller) {
+      if (controller.isLoading) {
+        return const Center(
+          child: LoadingWidget(),
+        );
+      } else {
+        return ListView.builder(
+          itemCount: controller.incomplitTask.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            final task = controller.incomplitTask[index];
+            return Card(
+              child: ListTile(
+                leading: Image.asset(task.operator!.image),
+                title: Text("task todo ${task.description}"),
+                trailing: Checkbox(
+                  value: task.isCompleted,
+                  onChanged: (value) {},
+                ),
+              ),
+            );
+          },
+        );
+      }
+    });
   }
 }
 

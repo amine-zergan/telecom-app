@@ -29,7 +29,7 @@ class AddandRemouveComponent extends StatelessWidget {
             TextButton(
               onPressed: decrease,
               style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
+                backgroundColor: WidgetStatePropertyAll(
                   Colors.grey.shade200,
                 ),
               ),
@@ -51,7 +51,7 @@ class AddandRemouveComponent extends StatelessWidget {
             TextButton(
               onPressed: increase,
               style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
+                backgroundColor: WidgetStatePropertyAll(
                   Colors.grey.shade200,
                 ),
               ),

@@ -27,15 +27,15 @@ class Project {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'image': image,
+      'imageproject': image,
     };
   }
 
   factory Project.fromMap(Map<String, dynamic> map) {
     return Project(
-      id: map['id'] != null ? map['id'] as int : null,
+      id: map['project'] != null ? map['project'] as int : null,
       name: map['name'] as String,
-      image: map['image'] as String,
+      image: map['imageproject'] as String,
     );
   }
 

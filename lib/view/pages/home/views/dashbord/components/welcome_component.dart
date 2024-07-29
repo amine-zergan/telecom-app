@@ -15,7 +15,6 @@ class WelcomeDashBord extends StatelessWidget {
         elevation: 2,
         margin: const EdgeInsets.symmetric(
           horizontal: 15,
-          vertical: 15,
         ),
         child: Container(
           height: size.height * 0.19,

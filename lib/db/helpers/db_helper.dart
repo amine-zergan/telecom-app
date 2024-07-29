@@ -52,8 +52,8 @@ CREATE TABLE $historiques(
     await db.execute("""
 CREATE TABLE $operators(
   idOperator INTEGER PRIMARY KEY,
-  operator TEXT NOT NULL,
-  $image TEXT 
+    operator TEXT NOT NULL,
+   image TEXT 
 )""");
 
     /// Table for Project Mobile in App
@@ -110,7 +110,7 @@ CREATE TABLE $entreprises(
     /// Table for Contact Mobile in App Ok
     await db.execute("""
 CREATE TABLE $contacts(
-  $id INTEGER PRIMARY KEY,
+  $id INTEGER PRIMARY KEY ,
   $name TEXT NOT NULL,
   $post TEXT NOT NULL,
   $contact TEXT
@@ -130,7 +130,7 @@ CREATE TABLE $profile(
   $niveau TEXT,
   $contract TEXT,
   $creatAt INTEGER,
-  $image TEXT
+  image TEXT
 )
 """);
 
@@ -163,6 +163,7 @@ CREATE TABLE $tasks(
   $description TEXT NOT NULL,
   $mission INTEGER,
   $operator INTEGER,
+  isCompleted INTEGER,
   FOREIGN KEY (operator) REFERENCES operators(idOperator),
   FOREIGN KEY (project) REFERENCES projects(id),
   FOREIGN KEY (mission) REFERENCES missions(id)
@@ -181,16 +182,16 @@ INSERT INTO operators(operator,image) VALUES('Orange','assets/project/orange.png
 INSERT INTO operators(operator,image) VALUES('Telecom','assets/project/Telecom.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(name,image) VALUES('Nokia','assets/project/nokia.png')
+INSERT INTO projects(name,imageproject) VALUES('Nokia','assets/project/nokia.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(name,image) VALUES('Nec','assets/project/NEC.png')
+INSERT INTO projects(name,imageproject) VALUES('Nec','assets/project/NEC.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(name,image) VALUES('Alcatel','assets/project/alcatel.png')
+INSERT INTO projects(name,imageproject) VALUES('Alcatel','assets/project/alcatel.png')
 """);
       await txn.rawInsert("""
-INSERT INTO projects(name,image) VALUES('Huawei','assets/project/huawei.png')
+INSERT INTO projects(name,imageproject) VALUES('Huawei','assets/project/huawei.png')
 """);
     }).then((_) {
       // ignore: avoid_print

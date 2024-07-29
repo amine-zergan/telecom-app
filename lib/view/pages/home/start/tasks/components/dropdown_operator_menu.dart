@@ -28,10 +28,10 @@ class _DropdownOperatorWithControllerState
           width: widget.size.width * 0.8,
           enabled: true,
           menuStyle: const MenuStyle(
-            backgroundColor: MaterialStatePropertyAll(
+            backgroundColor: WidgetStatePropertyAll(
               Colors.white,
             ),
-            elevation: MaterialStatePropertyAll(10),
+            elevation: WidgetStatePropertyAll(10),
           ),
           //controller: taskfields,
           leadingIcon: const Icon(

@@ -9,12 +9,14 @@ class Task {
   final int? id;
   final String description;
   final int? mission;
-  final Project project;
-  final Operator operator;
+  final bool isCompleted;
+  final Project? project;
+  final Operator? operator;
   final String region;
   final DateTime date;
   Task({
     this.id,
+    required this.isCompleted,
     required this.description,
     required this.mission,
     required this.project,
@@ -23,17 +25,20 @@ class Task {
     required this.date,
   });
 
-  Task copyWith(
-      {int? id,
-      String? description,
-      int? mission,
-      Project? project,
-      String? region,
-      DateTime? date,
-      Operator? operator}) {
+  Task copyWith({
+    int? id,
+    String? description,
+    int? mission,
+    bool? isCompleted,
+    Project? project,
+    String? region,
+    DateTime? date,
+    Operator? operator,
+  }) {
     return Task(
       id: id ?? this.id,
       description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
       mission: mission ?? this.mission,
       project: project ?? this.project,
       region: region ?? this.region,
@@ -47,8 +52,11 @@ class Task {
       'idTask': id,
       'description': description,
       'mission': mission,
-      'project': project.id,
-      'operator': operator.idOperator,
+      'isCompleted': isCompleted == true
+          ? 1
+          : 0, // boolean save to database : sqfilte ne supporte pas bool 1 ou 0
+      'project': project?.id,
+      'operator': operator?.idOperator,
       'region': region,
       'date': DateFormat.formDate(date),
     };
@@ -58,9 +66,14 @@ class Task {
     return Task(
       id: map['idTask'] != null ? map['idTask'] as int : null,
       description: map['description'] as String,
-      mission: map['mission'] as int,
-      project: Project.fromMap(map['project'] as Map<String, dynamic>),
-      operator: Operator.fromMap(map['operator'] as Map<String, dynamic>),
+      mission: map['mission'] as int?,
+      isCompleted: map['isCompleted'] == 1 ? true : false,
+      project: Project(
+          id: map['project'], name: map["name"], image: map["imageproject"]),
+      operator: Operator(
+          idOperator: map['idOperator'],
+          operator: map["operator"],
+          image: map["image"]),
       region: map['region'] as String,
       date: DateFormat.toDate(map['date'] as String),
     );

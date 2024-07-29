@@ -35,7 +35,8 @@ class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
   }
 
   @override
-  Future<List<Task>> fetchForMission(String started, String finished) async {
+  Future<List<Task>> fetchTaskForMission(
+      String started, String finished) async {
     final db = await helper.db;
     final response = await db.rawQuery("""
     SELECT * FROM tasks WHERE tasks.date BETWEEN  started=? AND finished=?
@@ -53,5 +54,23 @@ class RemoteTaskDataSourceImpl extends IrepositoryTaskDatasource {
           .toList();
       return tasks;
     }
+  }
+
+  @override
+  Future<List<Task>> fetchTaskPending() async {
+    List<Task> tasks = [];
+    final db = await helper.db;
+
+    List<Map<String, Object?>> response = await db.rawQuery("""
+    SELECT * 
+FROM tasks
+INNER JOIN operators ON operators.idOperator = tasks.operator
+INNER JOIN projects ON projects.id = tasks.project
+WHERE tasks.isCompleted = 0
+""");
+    print("=========== query data source  response $response ================");
+    response.map((e) => tasks.add(Task.fromMap(e))).toList();
+    print("=========== query data source $tasks ================");
+    return tasks;
   }
 }

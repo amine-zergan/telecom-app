@@ -25,10 +25,13 @@ class DashboardController extends GetxController {
     required this.taskDatasource,
     required this.profileDataSource,
     required this.projectDatasource,
-  });
+  }) {
+    print("================= start dashbord Controller =============");
+  }
 
   Mission? mission;
   Profile? user;
+  bool isLoading = false;
   List<Operator> dataOperators = [];
   List<Task> completeTask = [];
   List<Task> incomplitTask = [];
@@ -53,10 +56,7 @@ class DashboardController extends GetxController {
       response.map((operator) {
         dataOperators.add(operator);
       }).toList();
-      print(
-          "============= succes fetch operator dashbord controller ${dataOperators.length}");
     } catch (e) {
-      print("============= error ${e.toString()}");
       dataOperators = [];
     }
     update(); //
@@ -71,9 +71,26 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() {
+    fetchIncompletTask();
     queryOperatorFromDatabase();
     fetchCurrentMission();
     getUser();
     super.onInit();
+  }
+
+  Future<void> fetchIncompletTask() async {
+    try {
+      isLoading = true;
+      final response = await taskDatasource.fetchTaskPending();
+
+      response.map((e) {
+        incomplitTask.add(e);
+      }).toList();
+      isLoading = false;
+    } catch (e) {
+      isLoading = false;
+    }
+
+    update();
   }
 }

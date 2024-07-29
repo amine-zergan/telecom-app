@@ -118,6 +118,7 @@ class CreateTaskController extends GetxController {
         if ((await verfieExistTask()) == false) {
           final Task model = Task(
             description: description.text,
+            isCompleted: false,
             mission: mission,
             project: currentProject!,
             operator: currentOperator!,
