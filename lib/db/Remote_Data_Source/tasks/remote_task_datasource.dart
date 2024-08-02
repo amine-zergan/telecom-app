@@ -69,7 +69,6 @@ INNER JOIN projects ON projects.id = tasks.project
 WHERE tasks.isCompleted = 0
 """);
     response.map((e) => tasks.add(Task.fromMap(e))).toList();
-
     return tasks;
   }
 }
