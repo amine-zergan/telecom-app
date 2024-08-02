@@ -65,7 +65,6 @@ class DashboardController extends GetxController {
   void getUser() async {
     final response = await profileDataSource.fetch();
     user = response;
-    print("user fetched with success $user ");
     update();
   }
 
