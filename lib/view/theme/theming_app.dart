@@ -4,6 +4,7 @@ import 'package:telecom/view/theme/color_constants.dart';
 class ThemeApp {
   ThemeApp._();
   static ThemeData light = ThemeData.light().copyWith(
+    scaffoldBackgroundColor: Colors.white,
     primaryColor: primaryColor,
     primaryColorLight: primaryColor,
     colorScheme: ColorScheme.light(

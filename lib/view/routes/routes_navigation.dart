@@ -5,6 +5,8 @@ import 'package:telecom/view/pages/config/config_page.dart';
 import 'package:telecom/view/pages/config/controller/config_binding.dart';
 import 'package:telecom/view/pages/config/middleware/config_middleware.dart';
 import 'package:telecom/view/pages/home/controller/home_binding.dart';
+import 'package:telecom/view/pages/home/views/auth_pages/signin_page/controllers/auth_binding.dart';
+import 'package:telecom/view/pages/home/views/auth_pages/signin_page/signin_page.dart';
 import 'package:telecom/view/pages/home/views/dashbord/sound/notification_page.dart';
 import 'package:telecom/view/pages/home/views/dashbord/tasks/history_view/history_page.dart';
 import 'package:telecom/view/pages/home/new_home_page.dart';
@@ -63,6 +65,15 @@ class Routes {
             priority: 1,
           ),
         ]),
+        ///====================Auth routing START ====================
+        GetPage(
+          name: RouteName.signIn,
+          page: ()=> const SigninPage(),
+          binding: AuthBinding(),
+        ),
+        ///====================Auth routing END ====================
+
+
     GetPage(
       name: RouteName.home,
       page: () => const HomeNewPage(),
@@ -160,5 +171,6 @@ class Routes {
       page: () => const StartMaterial(),
       binding: CreateEquipementBinding(),
     ),
+    
   ];
 }

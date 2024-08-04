@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'package:flutter/material.dart';
+
 class ValidatorProfile {
   ValidatorProfile._();
 
@@ -81,4 +83,15 @@ class ValidatorProfile {
       return null;
     }
   }
+
+  static String? validatorPassword(String? value, BuildContext context) {
+    if (value!.isEmpty) {
+      return 'Champ obligatoire !';
+    } else if (value.length < 4) {
+      return 'Le mot de passe doit comporter plus de 4 caractères.';
+    } else {
+      return null;
+    }
+  }
+
 }

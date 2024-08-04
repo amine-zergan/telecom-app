@@ -6,6 +6,10 @@ class RouteName {
   static const load = "/load";
   static const config = "/config";
 
+  /// ============= Auth view ============= ///
+
+  static const signIn = '/signIn';
+
   /// const for HomeView :
   /// ============= Dashboard view ============= ///
   static const history = "/history";

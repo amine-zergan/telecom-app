@@ -44,6 +44,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     } else {}
   }
 
+  void changeTheme(ThemeData data) {
+    Get.changeTheme(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -51,7 +55,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
       defaultTransition: Transition.fadeIn,
-      initialRoute: RouteName.onboard,
+      initialRoute: RouteName.signIn, //onBoard
       theme: ThemeApp.light,
       darkTheme: ThemeApp.darkTheme(
         context,

@@ -82,11 +82,18 @@ flutter_native_splash:
   web: false
 
 
+
+fonts:
+  - family: DINFont
+    fonts:
+      - asset: assets/fonts/DINFont.ttf
+
 flutter:
   uses-material-design: true
   assets:
     - assets/animations/
     - assets/svg/
+    - assets/fonts/
     - assets/project/
     - assets/spinner.gif
     - assets/pylone.png
