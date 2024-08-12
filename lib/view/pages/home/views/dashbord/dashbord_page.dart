@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telecom/view/components/loading/loading_components.dart';
+import 'package:telecom/view/pages/home/views/dashbord/components/card_mission.dart';
 import 'package:telecom/view/pages/home/views/dashbord/components/dashbord_app_bar.dart';
 import 'package:telecom/view/pages/home/views/dashbord/components/welcome_component.dart';
 import 'package:telecom/view/pages/home/views/dashbord/controller/dashbord_controller.dart';
@@ -106,76 +107,35 @@ class TaskViewComponent extends StatelessWidget {
           child: LoadingWidget(),
         );
       } else {
-        return ListView.builder(
-          itemCount: controller.incomplitTask.length,
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
-            final task = controller.incomplitTask[index];
-            return Card(
-              child: ListTile(
-                leading: Image.asset(task.operator!.image),
-                title: Text("task todo ${task.description}"),
-                trailing: Checkbox(
-                  value: task.isCompleted,
-                  onChanged: (value) {},
-                ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Les Task en Cours",
               ),
-            );
-          },
+            ),
+            ListView.builder(
+              itemCount: controller.incomplitTask.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                final task = controller.incomplitTask[index];
+                return ListTile(
+                  leading: Image.asset(task.operator!.image),
+                  title: Text("task todo ${task.description}"),
+                  trailing: Checkbox(
+                    value: task.isCompleted,
+                    onChanged: (value) {},
+                  ),
+                );
+              },
+            ),
+          ],
         );
       }
     });
-  }
-}
-
-class CardMission extends StatelessWidget {
-  const CardMission({
-    super.key,
-    required this.value,
-    required this.title,
-    required this.icon,
-    required this.color,
-  });
-  final String value;
-  final String title;
-  final IconData icon;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      color: color,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.black),
-          ),
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: Colors.white),
-            child: Icon(
-              icon,
-              size: 50,
-              color: const Color.fromARGB(209, 59, 91, 150),
-            ),
-          ),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: Colors.black,
-                ),
-          )
-        ],
-      ),
-    );
   }
 }
 

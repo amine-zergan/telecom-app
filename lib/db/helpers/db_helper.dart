@@ -203,6 +203,5 @@ INSERT INTO projects(name,imageproject) VALUES('Huawei','assets/project/huawei.p
   Future close() async {
     await _db!.close();
     // ignore:, avoid_print
-    print("===== database was cloased with succcess =======");
   }
 }

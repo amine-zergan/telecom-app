@@ -63,17 +63,24 @@ class DashboardController extends GetxController {
   }
 
   void getUser() async {
-    final response = await profileDataSource.fetch();
-    user = response;
+    try {
+      isLoading = true;
+      final response = await profileDataSource.fetch();
+      user = response;
+      isLoading = false;
+    } catch (e) {
+      isLoading = false;
+    }
     update();
   }
 
   @override
   void onInit() {
+    getUser();
     fetchIncompletTask();
     queryOperatorFromDatabase();
     fetchCurrentMission();
-    getUser();
+
     super.onInit();
   }
 
